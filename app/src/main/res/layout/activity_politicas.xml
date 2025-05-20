@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo2"
+    tools:context=".activities.Politicas">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:backgroundTint="@color/white">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="@drawable/borde_card">
+
+                <!-- Título principal -->
+                <TextView
+                    android:id="@+id/titleMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Políticas de Calidad y Seguridad"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:padding="10dp" />
+
+                <!-- Título Calidad del Producto -->
+                <TextView
+                    android:id="@+id/titleCalidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Calidad del Producto"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+
+                <TextView
+                    android:id="@+id/contentCalidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/punto1"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    android:padding="5dp" />
+
+                <!-- Título Garantía de Satisfacción -->
+                <TextView
+                    android:id="@+id/titleGarantia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Garantía de Satisfacción"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <!-- Contenido Garantía de Satisfacción -->
+                <TextView
+                    android:id="@+id/contentGarantia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/punto2"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    android:padding="5dp" />
+
+                <!-- Título Seguridad en las Transacciones -->
+                <TextView
+                    android:id="@+id/titleSeguridad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seguridad en Transacciones"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+
+                <TextView
+                    android:id="@+id/contentSeguridad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/punto3"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    android:padding="5dp" />
+
+
+                <TextView
+                    android:id="@+id/titlePrivacidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Privacidad de los Datos"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+
+                <TextView
+                    android:id="@+id/contentPrivacidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/punto4"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    android:padding="5dp" />
+
+
+                <TextView
+                    android:id="@+id/titleEnvio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Envío Seguro y Confiable"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+
+                <TextView
+                    android:id="@+id/contentEnvio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/punto5"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    android:padding="5dp" />
+
+
+                <TextView
+                    android:id="@+id/titleAtencion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Atención al Cliente"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+
+                <TextView
+                    android:id="@+id/contentAtencion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/punto6"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    android:padding="5dp" />
+
+
+                <TextView
+                    android:id="@+id/footerText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agradecimiento"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

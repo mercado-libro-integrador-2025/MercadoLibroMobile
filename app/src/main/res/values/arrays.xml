@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categorias_random">
+        <item>Aventura</item>
+        <item>Ficción</item>
+        <item>Ciencia</item>
+        <item>Fantasía</item>
+        <item>Historia</item>
+        <item>Arte</item>
+        <item>Tecnología</item>
+        <item>Romance</item>
+    </string-array>
+    <string-array name="tipos_tarjeta_array">
+        <item>Debito</item>
+        <item>Credito</item>
+    </string-array>
+</resources>

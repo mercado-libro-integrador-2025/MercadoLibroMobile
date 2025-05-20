@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">MercadoLibroMobile</string>
+
+
+    <string name="navigation_drawer_open">Open drawer</string>
+    <string name="navigation_drawer_close">Close drawer</string>
+    <string name="logout_message">Cerrando sesión...</string>
+
+    <!-- Tabla -->
+    <string name="titTable">Finalizar Compra</string>
+    <string name="FirCol">Libro</string>
+    <string name="SecCol">Cantidad</string>
+    <string name="ThiCol">Precio Unitario</string>
+    <string name="Lib1">Manuelita</string>
+    <string name="Lib2">50 Sombras</string>
+    <string name="Pre1">$500</string>
+    <string name="Pre2">$150.000.000</string>
+    <string name="c1">1</string>
+    <string name="c2">4</string>
+    <string name="btnfin">Pagar</string>
+
+
+    <!-- Contacto sanitizando datos con atributo formated CiberSec -->
+    <string name="Contact" formatted="false">Contacto</string>
+    <string name="Email" formatted="false">  Email</string>
+    <string name="asunto" formatted="false">  Asunto</string>
+    <string name="nombre" formatted="false">  Nombre</string>
+    <string name="consulta1" formatted="false">Porfavor escribe tu consulta a continuacion</string>
+    <string name="consulta_hint" formatted="false">Escribenos aqui</string>
+    <string name="enviar" formatted="false">Enviar Consulta</string>
+
+    <!-- login -->
+    <string name="usuario">Email</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="inputUsuario">ingrese correo</string>
+    <string name="nombrelogin">Nombre</string>
+    <string name="inputNombre">ingrese su nombre</string>
+    <string name="inputContra">ingrese contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="registrarse">registrarse</string>
+    <string name="volver">Volver</string>
+    <string name="politicas">Politicas de Seguridad </string>
+    <string name="seguridad_priv">Como cuidadamos tu privacidad.\n Ver contratos de adhesión (Ley Nº.24.240- Defensa del Consumidor.\n Términos y Condiciones.\n Accesibilidad.</string>
+
+    <!-- productos -->
+    <string name="categoria">Aventura</string>
+    <string name="categoria1">Ficción</string>
+    <string name="categoria2">Ciencia</string>
+    <string name="categoria3">Fantasía</string>
+    <string name="categoria4">Historia</string>
+    <string name="categoria5">Arte</string>
+    <string name="categoria6">Tecnología</string>
+    <string name="categoria7">Romance</string>
+
+    <string name="atributo1">titulo</string>
+    <string name="atributo2">autor</string>
+    <string name="atributo3">precio</string>
+    <string name="atributo4">portada</string>
+    <string name="atributo5">categoria</string>
+
+    <string name="método1">Comprar</string>
+    <string name="método2">Sinopsis</string>
+
+    <!-- Contact -->
+
+    <string name="error_asunto">Por favor, escribe el asunto.</string>
+    <string name="error_nombre">Por favor, escribe tu nombre.</string>
+    <string name="error_email">Por favor, escribe un email válido.</string>
+    <string name="error_consulta">Por favor, escribe tu consulta.</string>
+    <string name="error_consulta_longitud">La consulta debe tener al menos 10 caracteres.</string>
+    <string name="consulta_enviada_exito">Consulta enviada con éxito.</string>
+    <string name="error_envio_consulta">Error al enviar la consulta.</string>
+    <string name="error_obtener_contactos">Error al obtener los contactos.</string>
+    <string name="error_general">Error: %1$s</string>
+
+    <!-- BooksFragment -->
+
+    <string name="error_cargar_categorias">Error al cargar las categorías: %1$s</string>
+    <string name="error_respuesta">Error en la respuesta: %1$s</string>
+    <string name="error_cargar_libros">Error al cargar los libros: %1$s</string>
+    <string name="cargando_libros">Cargando libros...</string> <!-- Mensaje adicional si es necesario -->
+    <string name="seleccion_categoria">Selecciona una categoría</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="politica">Políticas de Calidad y Seguridad</string>
+    <string name="politicas_texto">
+
+
+
+    <string name="punto1">1. Calidad del Producto: Nos comprometemos a ofrecer libros de la más alta calidad. Cada libro es revisado cuidadosamente para garantizar que esté en condiciones óptimas antes de ser enviado.</string>
+
+
+
+    </string>
+    <string name="punto2"> Si no quedas completamente satisfecho con tu compra, puedes devolver el libro en un plazo de 30 días desde la fecha de recepción. El libro debe estar sin usar y en las mismas condiciones en que lo recibiste.</string>
+    <string name="punto3"> Utilizamos tecnologías de cifrado avanzadas para proteger tus datos durante todo el proceso de compra. Tu información personal y de pago está segura con nosotros.</string>
+    <string name="punto4"> Respetamos tu privacidad. Tus datos personales no serán compartidos con terceros sin tu consentimiento explícito, salvo en los casos exigidos por ley.</string>
+    <string name="punto5"> Todos los pedidos se procesan dentro de los 2 a 3 días hábiles posteriores a la compra. Ofrecemos opciones de envío con seguimiento para que puedas monitorear el estado de tu pedido en tiempo real.</string>
+    <string name="punto6"> Nuestro equipo de atención al cliente está disponible para resolver cualquier duda o inquietud que tengas. Puedes contactarnos a través de nuestro correo electrónico o número de teléfono disponible en nuestra página.</string>
+    <string name="agradecimiento">Agradecemos tu confianza y trabajamos continuamente para mejorar tu experiencia de compra.</string>
+    <string name="footer_text">¿Tienes alguna pregunta? ¡Estamos aquí para ayudarte!</string>
+    <string name="punto1"> Nos comprometemos a ofrecer libros de la más alta calidad. Cada libro es revisado cuidadosamente para garantizar que esté en condiciones óptimas antes de ser enviado.</string>
+
+</resources>
