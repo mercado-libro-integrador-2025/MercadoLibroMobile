@@ -42,7 +42,7 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
     private TextView precioTotal;
     private Button btnFinalizarCompra;
     private List<ItemCarrito> itemsCarrito;
-    private final String API_URL = "https://backend-mercado-libro-mobile.onrender.com/api/carrito/";
+    private final String API_URL = "https://mercadolibroweb.onrender.com/api/carrito/";
     private CarritoAdapter adapter;
 
     @Nullable
@@ -143,7 +143,7 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
         String token = getAccessToken();
 
         CarritoApi carritoApi = new Retrofit.Builder()
-                .baseUrl("https://backend-mercado-libro-mobile.onrender.com/api/")
+                .baseUrl("https://mercadolibroweb.onrender.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(CarritoApi.class);

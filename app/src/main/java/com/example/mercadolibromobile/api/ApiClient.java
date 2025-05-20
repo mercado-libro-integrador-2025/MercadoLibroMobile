@@ -10,7 +10,7 @@ public class ApiClient {
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://backend-mercado-libro-mobile.onrender.com/api/") // Cambia esto a tu URL base
+                    .baseUrl("https://mercadolibroweb.onrender.com/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

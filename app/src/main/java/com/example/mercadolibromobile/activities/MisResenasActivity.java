@@ -50,7 +50,7 @@ public class MisResenasActivity extends AppCompatActivity implements ResenaAdapt
         // Inicializar Retrofit y apiService antes de llamar a getResenas()
         OkHttpClient client = new OkHttpClient.Builder().build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://backend-mercado-libro-mobile.onrender.com")
+                .baseUrl("https://mercadolibroweb.onrender.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

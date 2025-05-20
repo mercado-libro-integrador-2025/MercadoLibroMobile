@@ -80,7 +80,7 @@ public class DireccionFragment extends Fragment {
         Log.d(TAG, "Guardando dirección con token: " + token);
 
         if (token != null) {
-            Retrofit retrofit = RetrofitClient.getInstance("https://backend-mercado-libro-mobile.onrender.com/api/");
+            Retrofit retrofit = RetrofitClient.getInstance("https://mercadolibroweb.onrender.com/api/");
             DireccionApi direccionApi = retrofit.create(DireccionApi.class);
 
             Direccion nuevaDireccion = new Direccion(

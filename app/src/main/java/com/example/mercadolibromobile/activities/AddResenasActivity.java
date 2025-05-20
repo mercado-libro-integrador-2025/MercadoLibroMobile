@@ -44,7 +44,7 @@ public class AddResenasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_addresena);
 
         // Inicializar el API
-        apiService = RetrofitClient.getInstance("https://backend-mercado-libro-mobile.onrender.com/").create(PedidoApi.class);
+        apiService = RetrofitClient.getInstance("https://mercadolibroweb.onrender.com/").create(PedidoApi.class);
 
         spinnerOpciones = findViewById(R.id.spinnerOpciones);
         editTextResena = findViewById(R.id.editTextResena);

@@ -97,7 +97,7 @@ public class PagoFragment extends Fragment {
             // Crear instancia del modelo Pago con el usuario
             Pago pago = new Pago(usuario, numeroTarjeta, cvv, vencimiento, tipoTarjeta);
 
-            Retrofit retrofit = RetrofitClient.getInstance("https://backend-mercado-libro-mobile.onrender.com/api/");
+            Retrofit retrofit = RetrofitClient.getInstance("https://mercadolibroweb.onrender.com/api/");
             PagoApi pagoApi = retrofit.create(PagoApi.class);
 
             pagoApi.realizarPago("Bearer " + token, pago).enqueue(new Callback<Pago>() {

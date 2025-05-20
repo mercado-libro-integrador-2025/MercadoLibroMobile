@@ -36,7 +36,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
     private final List<Book> books;
     private final List<Book> booksListFull;
     private final FragmentActivity activity;
-    private static final String BASE_URL = "https://backend-mercado-libro-mobile.onrender.com/api/";
+    private static final String BASE_URL = "https://mercadolibroweb.onrender.com/api/";
     private static final String TAG = "BooksAdapter";
 
     public BooksAdapter(List<Book> books, FragmentActivity activity) {

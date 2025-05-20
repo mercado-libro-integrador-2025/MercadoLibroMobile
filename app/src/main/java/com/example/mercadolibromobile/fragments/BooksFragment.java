@@ -73,7 +73,7 @@ public class BooksFragment extends Fragment {
 
     private void fetchBooks() {
         // Inicializa Retrofit
-        String baseUrl = "https://backend-mercado-libro-mobile.onrender.com/api/";
+        String baseUrl = "https://mercadolibroweb.onrender.com/api/";
         BookApi bookApi = RetrofitClient.getInstance(baseUrl).create(BookApi.class);
 
         Call<List<Book>> call = bookApi.getBooks();

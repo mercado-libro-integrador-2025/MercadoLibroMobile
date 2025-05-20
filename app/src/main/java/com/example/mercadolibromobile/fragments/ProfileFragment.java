@@ -114,7 +114,7 @@ public class ProfileFragment extends Fragment {
 
     private void obtenerUsuarioAutenticado(String authToken) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://backend-mercado-libro-mobile.onrender.com/api/")
+                .baseUrl("https://mercadolibroweb.onrender.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -141,7 +141,7 @@ public class ProfileFragment extends Fragment {
 
     private void eliminarUsuario(int userId, String authToken) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://backend-mercado-libro-mobile.onrender.com/api/")
+                .baseUrl("https://mercadolibroweb.onrender.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

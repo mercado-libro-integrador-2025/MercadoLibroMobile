@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton, toggleModeButton, poliButton; // Botón de políticas
     private ProgressBar progressBar;
     private boolean isLoginMode = true;
-    private final String BASE_URL = "https://backend-mercado-libro-mobile.onrender.com/api/";
+    private final String BASE_URL = "https://mercadolibroweb.onrender.com/api/";
     private SharedPreferences sharedPreferences;
 
     @Override
