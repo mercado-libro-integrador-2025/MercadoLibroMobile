@@ -186,7 +186,6 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:layout_width="196dp"
@@ -194,7 +193,7 @@
         android:visibility="gone"
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintHorizontal_bias="1.5"
-         />
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
