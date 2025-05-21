@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.amarillo)); // Reemplaza "tu_color" con el color deseado
+            getWindow().setStatusBarColor(getResources().getColor(R.color.beige_suave));
         }
 
         // Añade logo al Toolbar
