@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mercadolibromobile.R;
 import com.example.mercadolibromobile.adapters.CarritoAdapter;
-import com.example.mercadolibromobile.api.CarritoApi;
+import com.example.mercadolibromobile.api.ApiService;
 import com.example.mercadolibromobile.models.ItemCarrito;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -103,7 +103,6 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
                     });
                 } else {
                     requireActivity().runOnUiThread(() -> {
-                        // Handle error (optional)
                     });
                 }
             }
@@ -143,13 +142,13 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
     public void eliminarItem(ItemCarrito item) {
         String token = getAccessToken();
 
-        CarritoApi carritoApi = new Retrofit.Builder()
+        ApiService apiService = new Retrofit.Builder()
                 .baseUrl("https://mercadolibroweb.onrender.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(CarritoApi.class);
+                .create(ApiService.class);
 
-        retrofit2.Call<Void> call = carritoApi.eliminarDelCarrito("Bearer " + token, item.getId());
+        retrofit2.Call<Void> call = apiService.eliminarDelCarrito("Bearer " + token, item.getId());
         call.enqueue(new retrofit2.Callback<Void>() {
             @Override
             public void onResponse(@NonNull retrofit2.Call<Void> call, @NonNull retrofit2.Response<Void> response) {

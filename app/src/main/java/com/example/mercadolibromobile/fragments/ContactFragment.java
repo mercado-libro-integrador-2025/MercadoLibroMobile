@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.mercadolibromobile.R;
-import com.example.mercadolibromobile.api.ContactoApi;
+import com.example.mercadolibromobile.api.ApiService;
 import com.example.mercadolibromobile.models.Contacto;
 
 import retrofit2.Call;
@@ -22,23 +22,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ContactFragment extends Fragment {
 
-    private ContactoApi contactoApi;
+    private ApiService apiService;
     private EditText nombreEditText, asuntoEditText, emailEditText, consultaEditText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflar el layout personalizado (fragment_contact.xml)
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
-        // Inicializar Retrofit con la URL base fija
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://mercadolibroweb.onrender.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        contactoApi = retrofit.create(ContactoApi.class);
+        apiService = retrofit.create(ApiService.class);
 
-        // Referencias a los elementos del layout
         nombreEditText = view.findViewById(R.id.etNombre);
         asuntoEditText = view.findViewById(R.id.etAsunto);
         emailEditText = view.findViewById(R.id.etEmail);
@@ -52,7 +49,6 @@ public class ContactFragment extends Fragment {
             String email = emailEditText.getText().toString().trim();
             String consulta = consultaEditText.getText().toString().trim();
 
-            // Validación: los campos no deben estar vacíos
             if (asunto.isEmpty()) {
                 asuntoEditText.setError("Por favor, escribe el asunto.");
                 asuntoEditText.requestFocus();
@@ -69,10 +65,8 @@ public class ContactFragment extends Fragment {
                 consultaEditText.setError("La consulta debe tener al menos 10 caracteres.");
                 consultaEditText.requestFocus();
             } else {
-                // Crear el objeto Contacto con los datos ingresados
                 Contacto contacto = new Contacto(nombre, email, asunto, consulta);
 
-                // Enviar la consulta al servidor utilizando contactoApi
                 enviarConsulta(contacto);
             }
         });
@@ -81,14 +75,14 @@ public class ContactFragment extends Fragment {
     }
 
     private void enviarConsulta(Contacto contacto) {
-        Call<Void> call = contactoApi.enviarConsulta(contacto);
+        Call<Void> call = apiService.enviarConsulta(contacto);
 
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getActivity(), "Consulta enviada con éxito", Toast.LENGTH_SHORT).show();
-                    limpiarCampos();  // Limpiar los campos al enviar con éxito
+                    limpiarCampos();
                 } else {
                     Toast.makeText(getActivity(), "Error al enviar la consulta", Toast.LENGTH_SHORT).show();
                 }

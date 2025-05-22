@@ -3,11 +3,12 @@ package com.example.mercadolibromobile.api;
 import com.example.mercadolibromobile.models.AuthModels;
 import com.example.mercadolibromobile.models.Book;
 import com.example.mercadolibromobile.models.Pedido;
+//import com.example.mercadolibromobile.models.Resena;
 import com.example.mercadolibromobile.models.User;
 import com.example.mercadolibromobile.models.ItemCarrito;
 import com.example.mercadolibromobile.models.Direccion;
 import com.example.mercadolibromobile.models.Pago;
-
+import com.example.mercadolibromobile.models.Contacto;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -46,18 +48,18 @@ public interface ApiService {
     Call<List<Book>> getBooks();
 
     // =================== Reseñas ===================
-    /*@GET("resenas/")
+    /* @GET("resenas/")
     Call<List<Resena>> getResenas(@Header("Authorization") String token);
 
     @POST("resenas/")
     Call<Void> addResena(@Header("Authorization") String token, @Body Resena resena);
 
     @DELETE("resenas/{id}/")
-    Call<Void> deleteResena(@Header("Authorization") String token, @Path("id") String id);
+    Call<Void> deleteResena(@Header("Authorization") String token, @Path("id") String id); // Asegúrate de que el ID de reseña es String
 
     @PUT("resenas/{id}/")
-    Call<Resena> updateResena(@Header("Authorization") String token, @Path("id") String resenaId, @Body Resena resena);
-*/
+    Call<Resena> updateResena(@Header("Authorization") String token, @Path("id") String resenaId, @Body Resena resena);*/
+
     // =================== Pedidos ===================
     @GET("pedidos/")
     Call<List<Pedido>> getPedidos(@Header("Authorization") String token);
@@ -72,11 +74,27 @@ public interface ApiService {
     @POST("carrito/")
     Call<ItemCarrito> agregarAlCarrito(@Header("Authorization") String token, @Body ItemCarrito itemCarrito);
 
+    @GET("carrito/")
+    Call<List<ItemCarrito>> obtenerCarrito(@Header("Authorization") String token);
+
+    @DELETE("carrito/{id}/")
+    Call<Void> eliminarDelCarrito(@Header("Authorization") String token, @Path("id") int id);
+
     // =================== Direcciones ===================
+    @GET("direcciones/")
+    Call<List<Direccion>> getDirecciones(@Header("Authorization") String token);
+
     @POST("direcciones/")
-    Call<Direccion> createDireccion(@Header("Authorization") String token, @Body Direccion nuevaDireccion);
+    Call<Direccion> createDireccion(@Header("Authorization") String token, @Body Direccion direccion);
 
     // =================== Pagos ===================
     @POST("pagos/")
     Call<Pago> realizarPago(@Header("Authorization") String token, @Body Pago pago);
+
+    @GET("metodopagos/")
+    Call<List<Pago>> getMostrarPago(@Header("Authorization") String token);
+
+    // =================== Contacto ===================
+    @POST("contacto/")
+    Call<Void> enviarConsulta(@Body Contacto contacto);
 }

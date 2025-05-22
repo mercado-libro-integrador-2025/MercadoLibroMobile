@@ -134,7 +134,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Inicializa las vistas desde el layout item_book
             ivBookCover = itemView.findViewById(R.id.ivBookCover);
             tvBookTitle = itemView.findViewById(R.id.tvBookTitle);
             tvBookPrice = itemView.findViewById(R.id.tvBookPrice);
