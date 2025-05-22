@@ -7,21 +7,20 @@ public class ItemCarrito {
     private int id;
 
     @SerializedName("libro")
-    private int libro;
+    private final int libro;
 
     @SerializedName("usuario")
-    private int usuario;
+    private final int usuario;
 
     @SerializedName("cantidad")
     private int cantidad;
 
     @SerializedName("precio_unitario")
-    private double precioUnitario;
+    private final double precioUnitario;
 
     @SerializedName("titulo_libro")
     private String tituloLibro;
 
-    // Constructor sin id para crear un nuevo item desde la app
     public ItemCarrito(int libro, int usuario, int cantidad, double precioUnitario) {
         this.libro = libro;
         this.usuario = usuario;
@@ -29,7 +28,6 @@ public class ItemCarrito {
         this.precioUnitario = precioUnitario;
     }
 
-    // Constructor con id para deserialización desde el backend
     public ItemCarrito(int id, int libro, int usuario, int cantidad, double precioUnitario) {
         this.id = id;
         this.libro = libro;

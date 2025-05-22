@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
 
-public interface deleteApi {
+public interface DeleteApi {
 
     // Método GET para obtener los datos del usuario autenticado
     @GET("usuarios/me/")

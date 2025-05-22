@@ -35,7 +35,7 @@
         <TextView
             android:id="@+id/footer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="10mm"
             android:background="@drawable/fondo2"
             android:gravity="center"
             android:textColor="@android:color/black"

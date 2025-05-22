@@ -1,7 +1,5 @@
 package com.example.mercadolibromobile.adapters;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mercadolibromobile.R;
-import com.example.mercadolibromobile.api.CarritoApi;
+import com.example.mercadolibromobile.api.ApiService;
 import com.example.mercadolibromobile.api.RetrofitClient;
 import com.example.mercadolibromobile.fragments.SinopsisFragment;
 import com.example.mercadolibromobile.models.Book;
 import com.example.mercadolibromobile.models.ItemCarrito;
-import com.example.mercadolibromobile.utils.AuthUtils;
+import com.example.mercadolibromobile.utils.SessionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +34,12 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
     private final List<Book> books;
     private final List<Book> booksListFull;
     private final FragmentActivity activity;
-    private static final String BASE_URL = "https://mercadolibroweb.onrender.com/api/";
     private static final String TAG = "BooksAdapter";
 
     public BooksAdapter(List<Book> books, FragmentActivity activity) {
         this.books = books;
         this.activity = activity;
-        this.booksListFull = new ArrayList<>(books); // copia de la lista original
+        this.booksListFull = new ArrayList<>(books);
     }
 
     @NonNull
@@ -66,8 +63,9 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
 
         String portadaUrl = book.getPortada();
 
-        if (portadaUrl.startsWith("image/upload/")) {
-            portadaUrl = portadaUrl.replace("image/upload/https://", "https://");
+        // Limpia la URL si contiene el prefijo "image/upload/https://"
+        if (portadaUrl.startsWith("image/upload/https://")) {
+            portadaUrl = portadaUrl.replace("image/upload/", "");
         }
 
         Log.d("URL Debug", "URL de la imagen: " + portadaUrl);
@@ -92,18 +90,18 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
                     .commit();
         });
 
-        // Botón para comprar (Agregar al carrito)
         holder.btnComprar.setOnClickListener(v -> {
-            String token = getAccessToken();
-            Log.d(TAG, "Botón de compra clickeado");
-            int userId = AuthUtils.obtenerUsuarioIdDesdeToken(token);
+            String token = SessionUtils.getAuthToken(activity);
+            int userId = SessionUtils.getUserId(activity);
 
-            if (userId != -1) {
+            Log.d(TAG, "Botón de compra clickeado. Token: " + token + ", UserId: " + userId);
+
+            if (token != null && userId != -1) {
                 double precio = book.getPrecio();
                 ItemCarrito itemCarrito = new ItemCarrito(book.getIdLibro(), userId, 1, precio);
                 agregarAlCarrito(itemCarrito);
             } else {
-                Toast.makeText(v.getContext(), "Usuario no autenticado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "Usuario no autenticado. Por favor, inicia sesión.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -113,6 +111,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
     public int getItemCount() {
         return books.size();
     }
+
     public void filter(String text) {
         books.clear();
 
@@ -128,15 +127,14 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         }
         notifyDataSetChanged();
     }
-
     static class BookViewHolder extends RecyclerView.ViewHolder {
         ImageView ivBookCover;
         TextView tvBookTitle, tvBookPrice, tvBookStock, tvAuthor, tvCategory;
         Button btnSinopsis, btnComprar;
 
-
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Inicializa las vistas desde el layout item_book
             ivBookCover = itemView.findViewById(R.id.ivBookCover);
             tvBookTitle = itemView.findViewById(R.id.tvBookTitle);
             tvBookPrice = itemView.findViewById(R.id.tvBookPrice);
@@ -147,9 +145,8 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             btnComprar = itemView.findViewById(R.id.btnComprar);
         }
     }
-
     private void agregarAlCarrito(ItemCarrito itemCarrito) {
-        String token = getAccessToken();  // Obtiene el token desde SharedPreferences
+        String token = SessionUtils.getAuthToken(activity);
 
         if (token == null) {
             Toast.makeText(activity, "Token no encontrado. Por favor, inicia sesión nuevamente.", Toast.LENGTH_SHORT).show();
@@ -157,8 +154,8 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             return;
         }
 
-        CarritoApi carritoApi = RetrofitClient.getInstance(BASE_URL).create(CarritoApi.class);
-        Call<ItemCarrito> call = carritoApi.agregarAlCarrito("Bearer " + token, itemCarrito);
+        ApiService apiService = RetrofitClient.getApiService(activity);
+        Call<ItemCarrito> call = apiService.agregarAlCarrito("Bearer " + token, itemCarrito);
 
         call.enqueue(new Callback<ItemCarrito>() {
             @Override
@@ -178,10 +175,5 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
                 Toast.makeText(activity, "Fallo la conexión", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private String getAccessToken() {
-        SharedPreferences prefs = activity.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
-        return prefs.getString("access_token", null);
     }
 }

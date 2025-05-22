@@ -19,6 +19,7 @@ import com.example.mercadolibromobile.fragments.BooksFragment;
 import com.example.mercadolibromobile.fragments.ContactFragment;
 import com.example.mercadolibromobile.fragments.ProfileFragment;
 import com.example.mercadolibromobile.fragments.CarritoFragment;
+import com.example.mercadolibromobile.utils.SessionUtils; // Importa SessionUtils
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
-        // Toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,24 +41,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getWindow().setStatusBarColor(getResources().getColor(R.color.beige_suave));
         }
 
-        // Añade logo al Toolbar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setLogo(R.drawable.logoremake);
             getSupportActionBar().setDisplayUseLogoEnabled(true);
-
-            // Título de la app
             getSupportActionBar().setTitle(R.string.app_name);
-
         }
 
-        // Configura el Drawer Layout y el icono de hamburguesa
         drawerLayout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Configura el NavigationView
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -68,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
             navigationView.setCheckedItem(R.id.nav_products);
         }
-
     }
 
     @Override
@@ -83,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.nav_products) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new BooksFragment())
@@ -100,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, getString(R.string.logout_message), Toast.LENGTH_SHORT).show();
+            SessionUtils.clearSession(this);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();

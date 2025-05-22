@@ -1,11 +1,11 @@
 package com.example.mercadolibromobile.models;
 
 public class Pago {
-    private int usuario;
-    private String numero_tarjeta;
-    private String cvv;
-    private String vencimiento;
-    private String tipo_tarjeta;
+    private final int usuario;
+    private final String numero_tarjeta;
+    private final String cvv;
+    private final String vencimiento;
+    private final String tipo_tarjeta;
 
     public Pago(int usuario, String numero_tarjeta, String cvv, String vencimiento, String tipo_tarjeta) {
         this.usuario = usuario;

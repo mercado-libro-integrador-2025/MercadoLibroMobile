@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mercadolibromobile.R;
 import com.example.mercadolibromobile.api.ContactoApi;
-import com.example.mercadolibromobile.api.RetrofitClient;
 import com.example.mercadolibromobile.models.Contacto;
 
 import retrofit2.Call;

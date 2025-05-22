@@ -1,5 +1,6 @@
 package com.example.mercadolibromobile.fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,15 +19,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.mercadolibromobile.R;
-import com.example.mercadolibromobile.api.PagoApi;
+import com.example.mercadolibromobile.api.ApiService; // Usar ApiService
 import com.example.mercadolibromobile.api.RetrofitClient;
 import com.example.mercadolibromobile.models.Pago;
-import com.example.mercadolibromobile.utils.AuthUtils;
+import com.example.mercadolibromobile.utils.SessionUtils; // Importar SessionUtils
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class PagoFragment extends Fragment {
 
@@ -36,14 +36,13 @@ public class PagoFragment extends Fragment {
     private Spinner spTipoTarjeta;
     private TextView tvNumeroTarjetaMostrar, tvCVVMostrar, tvVencimientoMostrar, tvMostrarTipoTarjeta;
     private Button btnPagar;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences appPrefs;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pagar, container, false);
 
-        // Inicializar vistas
         etNumeroTarjeta = view.findViewById(R.id.etNumeroTarjeta);
         etCVV = view.findViewById(R.id.etCVV);
         etVencimiento = view.findViewById(R.id.etVencimiento);
@@ -56,10 +55,8 @@ public class PagoFragment extends Fragment {
 
         btnPagar = view.findViewById(R.id.btnPagar);
 
-        // Inicializar SharedPreferences
-        sharedPreferences = getActivity().getSharedPreferences("MyAppPrefs", getActivity().MODE_PRIVATE);
+        appPrefs = getActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
 
-        // Configurar el Spinner con los tipos de tarjeta
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.tipos_tarjeta_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -82,32 +79,24 @@ public class PagoFragment extends Fragment {
         String vencimiento = etVencimiento.getText().toString().trim();
         String tipoTarjeta = spTipoTarjeta.getSelectedItem().toString().toLowerCase(); // Obtener el tipo de tarjeta del Spinner
 
-        // Validar los datos
         if (!validarDatos(numeroTarjeta, cvv, vencimiento, tipoTarjeta)) {
-            return;
+            return; // Si la validación falla, se detiene la ejecución
         }
 
-        // Obtener el token de acceso de SharedPreferences
-        String token = sharedPreferences.getString("access_token", "");
+        String token = SessionUtils.getAuthToken(getContext());
+        int usuarioId = SessionUtils.getUserId(getContext());
 
-        // Extraer el usuario (ID) desde el token usando AuthUtils
-        int usuario = AuthUtils.obtenerUsuarioIdDesdeToken(token);
+        if (token != null && usuarioId != -1) {
+            Pago pago = new Pago(usuarioId, numeroTarjeta, cvv, vencimiento, tipoTarjeta);
 
-        if (!token.isEmpty() && usuario != -1) {
-            // Crear instancia del modelo Pago con el usuario
-            Pago pago = new Pago(usuario, numeroTarjeta, cvv, vencimiento, tipoTarjeta);
+            ApiService apiService = RetrofitClient.getApiService(getContext());
 
-            Retrofit retrofit = RetrofitClient.getInstance("https://mercadolibroweb.onrender.com/api/");
-            PagoApi pagoApi = retrofit.create(PagoApi.class);
-
-            pagoApi.realizarPago("Bearer " + token, pago).enqueue(new Callback<Pago>() {
+            apiService.realizarPago("Bearer " + token, pago).enqueue(new Callback<Pago>() {
                 @Override
                 public void onResponse(Call<Pago> call, Response<Pago> response) {
                     if (response.isSuccessful() && response.body() != null) {
                         Pago pagoRespuesta = response.body();
-                        // Mostrar detalles del pago
                         mostrarDetallesPago(pagoRespuesta);
-                        // Guardar los detalles del último pago en SharedPreferences
                         guardarUltimoPago(pagoRespuesta);
                         Toast.makeText(getActivity(), "Pago realizado con éxito", Toast.LENGTH_SHORT).show();
                     } else {
@@ -131,7 +120,6 @@ public class PagoFragment extends Fragment {
             Toast.makeText(getActivity(), "Token o ID de usuario no válido. Por favor, inicie sesión.", Toast.LENGTH_SHORT).show();
         }
     }
-
     private void mostrarDetallesPago(Pago pagoRespuesta) {
         tvNumeroTarjetaMostrar.setText("Número de Tarjeta: " + pagoRespuesta.getNumero_tarjeta());
         tvCVVMostrar.setText("CVV: " + pagoRespuesta.getCvv());
@@ -140,21 +128,19 @@ public class PagoFragment extends Fragment {
     }
 
     private void guardarUltimoPago(Pago pagoRespuesta) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = appPrefs.edit();
         editor.putString("ultimo_pago_numero_tarjeta", pagoRespuesta.getNumero_tarjeta());
         editor.putString("ultimo_pago_cvv", pagoRespuesta.getCvv());
         editor.putString("ultimo_pago_vencimiento", pagoRespuesta.getVencimiento());
         editor.putString("ultimo_pago_tipo_tarjeta", pagoRespuesta.getTipo_tarjeta());
-        editor.apply(); // Guardar los cambios
+        editor.apply();
     }
-
     private void cargarDatosUltimoPago() {
-        String ultimoNumeroTarjeta = sharedPreferences.getString("ultimo_pago_numero_tarjeta", "");
-        String ultimoCVV = sharedPreferences.getString("ultimo_pago_cvv", "");
-        String ultimoVencimiento = sharedPreferences.getString("ultimo_pago_vencimiento", "");
-        String ultimoTipoTarjeta = sharedPreferences.getString("ultimo_pago_tipo_tarjeta", "");
+        String ultimoNumeroTarjeta = appPrefs.getString("ultimo_pago_numero_tarjeta", "");
+        String ultimoCVV = appPrefs.getString("ultimo_pago_cvv", "");
+        String ultimoVencimiento = appPrefs.getString("ultimo_pago_vencimiento", "");
+        String ultimoTipoTarjeta = appPrefs.getString("ultimo_pago_tipo_tarjeta", "");
 
-        // Cargar los datos en los EditText y TextView
         etNumeroTarjeta.setText(ultimoNumeroTarjeta);
         etCVV.setText(ultimoCVV);
         etVencimiento.setText(ultimoVencimiento);
@@ -179,18 +165,16 @@ public class PagoFragment extends Fragment {
         }
         return true;
     }
-
     private boolean validarVencimiento(String vencimiento) {
         if (vencimiento.length() != 5 || !vencimiento.matches("\\d{2}/\\d{2}")) {
             Toast.makeText(getActivity(), "El vencimiento debe estar en formato mm/aa y no puede tener más de 5 caracteres.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        // Separar el mes y el año
         String[] partes = vencimiento.split("/");
         int mes = Integer.parseInt(partes[0]);
+        // int anio = Integer.parseInt(partes[1]); // Puedes usar esto para validar el año también si es necesario
 
-        // Verificar que el mes esté entre 01 y 12
         if (mes < 1 || mes > 12) {
             Toast.makeText(getActivity(), "El mes debe estar entre 01 y 12.", Toast.LENGTH_SHORT).show();
             return false;

@@ -1,7 +1,6 @@
 package com.example.mercadolibromobile.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -14,12 +13,13 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mercadolibromobile.R;
-import com.example.mercadolibromobile.api.LoginApi;
 import com.example.mercadolibromobile.api.RetrofitClient;
 import com.example.mercadolibromobile.models.AuthModels;
+import com.example.mercadolibromobile.utils.SessionUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -28,38 +28,43 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+
     private TextInputLayout usernameLayout, passwordLayout, nameLayout;
     private TextInputEditText usernameEditText, passwordEditText, nameEditText;
-    private Button loginButton, toggleModeButton, poliButton; // Botón de políticas
+    private Button loginButton, toggleModeButton, poliButton;
     private ProgressBar progressBar;
     private boolean isLoginMode = true;
-    private final String BASE_URL = "https://mercadolibroweb.onrender.com/api/";
-    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+        initViews();
+        setListeners();
+        validateButtonState();
+    }
 
+    private void initViews() {
         usernameLayout = findViewById(R.id.textInputLayout2);
         passwordLayout = findViewById(R.id.textInputLayout);
         nameLayout = findViewById(R.id.textInputLayoutName);
+
         usernameEditText = findViewById(R.id.textInputEditTextUsername);
         passwordEditText = findViewById(R.id.textInputEditTextPassword);
         nameEditText = findViewById(R.id.textInputEditTextName);
+
         loginButton = findViewById(R.id.buttonMainAction);
         toggleModeButton = findViewById(R.id.buttonToggleMode);
-        poliButton = findViewById(R.id.buttonpoli); // Botón de políticas
+        poliButton = findViewById(R.id.buttonpoli);
+
         progressBar = findViewById(R.id.progressBar);
+    }
 
-        final Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        final Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+    private void setListeners() {
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
-        toggleModeButton.setOnClickListener(v -> {
-            toggleLoginMode(fadeIn, fadeOut);
-        });
+        toggleModeButton.setOnClickListener(v -> toggleLoginMode(fadeIn));
 
         loginButton.setOnClickListener(v -> {
             if (isLoginMode) {
@@ -69,64 +74,53 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Listener para el botón de políticas
-        poliButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, Politicas.class);
-            startActivity(intent);
-        });
+        poliButton.setOnClickListener(v -> startActivity(new Intent(this, Politicas.class)));
 
-        usernameEditText.addTextChangedListener(new SimpleTextWatcher() {
+        TextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 validateButtonState();
             }
-        });
+        };
 
-        passwordEditText.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                validateButtonState();
-            }
-        });
-
-        nameEditText.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                validateButtonState();
-            }
-        });
+        usernameEditText.addTextChangedListener(watcher);
+        passwordEditText.addTextChangedListener(watcher);
+        nameEditText.addTextChangedListener(watcher);
     }
 
-    private void toggleLoginMode(Animation fadeIn, Animation fadeOut) {
+    private void toggleLoginMode(Animation fadeIn) {
         isLoginMode = !isLoginMode;
+        loginButton.setText(isLoginMode ? R.string.ingresar : R.string.registrarse);
+        toggleModeButton.setText(isLoginMode ? R.string.registrarse : R.string.volver);
+
         if (isLoginMode) {
-            loginButton.setText(R.string.ingresar);
-            toggleModeButton.setText(R.string.registrarse);
             nameLayout.setVisibility(View.GONE);
             findViewById(R.id.textViewName).setVisibility(View.GONE);
         } else {
-            loginButton.setText(R.string.registrarse);
-            toggleModeButton.setText(R.string.volver);
             nameLayout.setVisibility(View.VISIBLE);
             findViewById(R.id.textViewName).setVisibility(View.VISIBLE);
             findViewById(R.id.textViewName).startAnimation(fadeIn);
         }
-        nameLayout.setError(null);
-        usernameLayout.setError(null);
-        passwordLayout.setError(null);
+
+        clearErrors();
         validateButtonState();
     }
 
+    private void clearErrors() {
+        usernameLayout.setError(null);
+        passwordLayout.setError(null);
+        nameLayout.setError(null);
+    }
+
     private void validateButtonState() {
-        String username = usernameEditText.getText().toString().trim();
+        String email = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String name = nameEditText.getText().toString().trim();
-        boolean isEnabled = isLoginMode ?
-                !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) :
-                !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(name);
-        loginButton.setEnabled(isEnabled);
 
-        Log.d("LoginActivity", "Botón de login habilitado: " + isEnabled);
+        boolean isEnabled = !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)
+                && (isLoginMode || !TextUtils.isEmpty(name));
+
+        loginButton.setEnabled(isEnabled);
     }
 
     private void loginUser() {
@@ -134,45 +128,18 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
         progressBar.setVisibility(View.VISIBLE);
 
-        LoginApi api = RetrofitClient.getInstance(BASE_URL).create(LoginApi.class);
-        Call<AuthModels.LoginResponse> call = api.login(email, password);
-
-        call.enqueue(new Callback<AuthModels.LoginResponse>() {
+        RetrofitClient.getApiService(this).login(email, password).enqueue(new Callback<AuthModels.LoginResponse>() {
             @Override
             public void onResponse(Call<AuthModels.LoginResponse> call, Response<AuthModels.LoginResponse> response) {
                 progressBar.setVisibility(View.GONE);
-
-                // Agrega logs para ver el contenido de la respuesta y verificar errores de usuario
-                Log.d("LoginActivity", "Código de respuesta: " + response.code());
-                if (response.body() != null) {
-                    Log.d("LoginActivity", "Respuesta del backend: " + response.body().toString());
-                } else {
-                    Log.e("LoginActivity", "Error en la respuesta, body es null");
-                }
-
                 if (response.isSuccessful() && response.body() != null) {
-                    AuthModels.LoginResponse loginResponse = response.body();
-                    int userId = loginResponse.getUserId();
-                    String accessToken = loginResponse.getAccess();
-                    String refreshToken = loginResponse.getRefresh();
+                    AuthModels.LoginResponse data = response.body();
+                    SessionUtils.saveAuthToken(LoginActivity.this, data.getAccess());
+                    SessionUtils.saveRefreshToken(LoginActivity.this, data.getRefresh());
+                    SessionUtils.saveUserId(LoginActivity.this, data.getUserId());
+                    SessionUtils.saveUserEmail(LoginActivity.this, email);
 
-                    // Log para verificar valores recibidos
-                    Log.d("LoginActivity", "UserID recibido: " + userId);
-                    Log.d("LoginActivity", "Access token recibido: " + accessToken);
-                    Log.d("LoginActivity", "Refresh token recibido: " + refreshToken);
-
-                    // Guardar en SharedPreferences
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("access_token", accessToken);
-                    editor.putString("refresh_token", refreshToken);
-                    editor.putString("user_email", email);
-                    editor.putInt("user_id", userId);  // Guardar el userId
-                    editor.apply();
-
-                    Log.d("LoginActivity", "UserID guardado en SharedPreferences: " + userId);
-
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
                     usernameLayout.setError("Credenciales incorrectas");
@@ -183,19 +150,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<AuthModels.LoginResponse> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
-                Log.e("LoginActivity", "Error en la conexión con el backend", t);
+                Log.e("LoginActivity", "Error: ", t);
             }
         });
-    }
-
-
-
-    private boolean isEmailValid(String email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    private boolean isPasswordValid(String password) {
-        return password.length() >= 6 && !password.matches(".*[^a-zA-Z0-9].*");
     }
 
     private void registerUser() {
@@ -203,74 +160,60 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
         String username = nameEditText.getText().toString().trim();
 
-        if (!isEmailValid(email)) {
-            usernameLayout.setError("Correo electrónico inválido");
+        clearErrors();
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            usernameLayout.setError("Correo inválido");
             return;
         }
 
-        if (!isPasswordValid(password)) {
-            passwordLayout.setError("La contraseña debe tener al menos 6 caracteres y no incluir caracteres especiales");
+        if (password.length() < 6) {
+            passwordLayout.setError("Mínimo 6 caracteres");
             return;
         }
 
         if (TextUtils.isEmpty(username)) {
-            nameLayout.setError("El nombre es requerido");
+            nameLayout.setError("Nombre requerido");
             return;
         }
 
-        AuthModels.SignupRequest signupRequest = new AuthModels.SignupRequest(email, password, username);
-        LoginApi api = RetrofitClient.getInstance(BASE_URL).create(LoginApi.class);
-        Call<AuthModels.SignupResponse> call = api.register(signupRequest);
-        call.enqueue(new Callback<AuthModels.SignupResponse>() {
+        AuthModels.SignupRequest request = new AuthModels.SignupRequest(email, password, username);
+        RetrofitClient.getApiService(this).register(request).enqueue(new Callback<AuthModels.SignupResponse>() {
             @Override
             public void onResponse(Call<AuthModels.SignupResponse> call, Response<AuthModels.SignupResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
-                    // Muestra el dialogo de registro exitoso
                     showSuccessDialog();
                 } else {
-                    usernameLayout.setError("Error al registrarse. Intenta nuevamente.");
+                    usernameLayout.setError("No se pudo registrar. Intenta nuevamente.");
                 }
             }
 
             @Override
             public void onFailure(Call<AuthModels.SignupResponse> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Error de red", Toast.LENGTH_SHORT).show();
+                Log.e("Register", "Error: ", t);
             }
         });
     }
 
     private void showSuccessDialog() {
-        // Inflar el layout personalizado
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_alert, null);
-
-
-        androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(dialogView)
                 .create();
 
-
-        dialog.setOnShowListener(dialogInterface -> {
-            Button positiveButton = dialogView.findViewById(R.id.positive_button);
-            positiveButton.setOnClickListener(v -> dialog.dismiss());
+        dialog.setOnShowListener(d -> {
+            Button btn = dialogView.findViewById(R.id.positive_button);
+            btn.setOnClickListener(v -> dialog.dismiss());
         });
 
         dialog.show();
     }
 
-
     private abstract class SimpleTextWatcher implements TextWatcher {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-        }
+        @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        @Override public void afterTextChanged(Editable s) {}
     }
 }

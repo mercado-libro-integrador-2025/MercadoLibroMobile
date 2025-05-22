@@ -6,20 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mercadolibromobile.R;
-import com.example.mercadolibromobile.fragments.CarritoFragment;
 import com.example.mercadolibromobile.models.ItemCarrito;
 
 import java.util.List;
 
 public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder> {
 
-    private List<ItemCarrito> itemsCarrito;
-    private Context context;
-    private CarritoListener carritoListener;
+    private final List<ItemCarrito> itemsCarrito;
+    private final Context context;
+    private final CarritoListener carritoListener;
 
     public CarritoAdapter(List<ItemCarrito> itemsCarrito, Context context, CarritoListener carritoListener) {
         this.itemsCarrito = itemsCarrito;
@@ -77,7 +77,9 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
 
     public interface CarritoListener {
         void aumentarCantidad(ItemCarrito item);
+
         void disminuirCantidad(ItemCarrito item);
+
         void eliminarItem(ItemCarrito item);
     }
 }

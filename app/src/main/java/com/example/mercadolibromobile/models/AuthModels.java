@@ -4,7 +4,7 @@ public class AuthModels {
     public static class LoginResponse {
         private String access;
         private String refresh;
-        private int userId;  // Agregar el campo userId
+        private int userId;
 
         public String getAccess() {
             return access;
@@ -15,14 +15,13 @@ public class AuthModels {
         }
 
         public int getUserId() {
-            return userId;  // Método para obtener el userId
-        }
-    }
+            return userId;
+    }}
 
     public static class SignupRequest {
-        private String email;
-        private String password;
-        private String username;
+        private final String email;
+        private final String password;
+        private final String username;
 
         public SignupRequest(String email, String password, String username) {
             this.email = email;
@@ -56,15 +55,21 @@ public class AuthModels {
         }
     }
 
-    public class LoginRequest {
-        private String email;
-        private String password;
+    public static class LoginRequest {
+        private final String email;
+        private final String password;
 
         public LoginRequest(String email, String password) {
             this.email = email;
-
-            
             this.password = password;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getPassword() {
+            return password;
         }
     }
 }

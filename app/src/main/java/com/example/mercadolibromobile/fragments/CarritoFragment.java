@@ -91,7 +91,8 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
                     String responseData = response.body().string();
-                    Type listType = new TypeToken<List<ItemCarrito>>() {}.getType();
+                    Type listType = new TypeToken<List<ItemCarrito>>() {
+                    }.getType();
                     List<ItemCarrito> nuevosItems = new Gson().fromJson(responseData, listType);
 
                     requireActivity().runOnUiThread(() -> {

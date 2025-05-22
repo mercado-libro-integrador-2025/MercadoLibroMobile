@@ -4,15 +4,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mercadolibromobile.R;
-import com.example.mercadolibromobile.api.PedidoApi;
 import com.example.mercadolibromobile.models.Pedido;
+
 import java.util.List;
 
 public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoViewHolder> {
-    private List<Pedido> pedidoList;
+    private final List<Pedido> pedidoList;
 
     public PedidoAdapter(List<Pedido> pedidoList) {
         this.pedidoList = pedidoList;
