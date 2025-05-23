@@ -10,9 +10,20 @@
     android:id="@+id/search_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="@string/hint_search_book" android:padding="@dimen/padding_medium" android:background="@drawable/ic_edit" android:drawableStart="@drawable/ic_search" android:drawablePadding="@dimen/padding_small" android:textColorHint="@color/text_hint" android:textColor="@color/text_primary" android:inputType="textCapSentences" android:imeOptions="actionSearch" android:maxLines="1" />
+    android:background="@color/white"
+    android:hint="@string/hint_search_book"
+    android:padding="@dimen/padding_large"
+    android:drawableStart="@drawable/ic_search"
+    android:drawablePadding="@dimen/padding_small"
+    android:textColorHint="@color/text_hint"
+    android:textColor="@color/text_primary"
+    android:inputType="textCapSentences"
+    android:imeOptions="actionSearch"
+    android:maxLines="1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBooks"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:layout_marginTop="@dimen/margin_medium" /> </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_medium" />
+</LinearLayout>

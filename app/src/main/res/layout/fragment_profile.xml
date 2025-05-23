@@ -49,7 +49,6 @@
                     android:minHeight="@dimen/min_touch_target_size"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:background="@drawable/ic_edit"
                     android:gravity="center"
                     android:padding="@dimen/padding_small"
                     android:text="@string/email_placeholder"

@@ -36,9 +36,9 @@
         <TextView
             android:id="@+id/footer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:background="@drawable/fondo2"
+            android:layout_height="8mm" android:background="@drawable/fondo2"
             android:gravity="center"
-            android:textColor="@color/text_primary" android:padding="@dimen/padding_large"/> </LinearLayout>
+            android:textColor="@color/text_primary" android:padding="@dimen/padding_large"/> ®Mercado Libro 2025</LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
