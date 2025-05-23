@@ -1,5 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_focused="true" android:drawable="@color/black" /> <!-- Color cuando está enfocado -->
-    <item android:drawable="@color/black" /> <!-- Color por defecto -->
-</selector>
+    <item android:state_focused="true" android:drawable="@color/focused_input_color" /> <item android:drawable="@color/default_input_color" /> </selector>

@@ -1,19 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/nav_profile"
-        android:title="Perfil"
-        android:icon="@drawable/ic_profile"/>
+        android:title="@string/drawer_menu_profile" android:icon="@drawable/ic_profile"/>
     <item
         android:id="@+id/nav_products"
-        android:title="Productos"
-        android:icon="@drawable/ic_products"/>
+        android:title="@string/drawer_menu_products" android:icon="@drawable/ic_products"/>
     <item
         android:id="@+id/nav_contact"
-        android:title="Contacto"
-        android:icon="@drawable/ic_contact"/>
+        android:title="@string/drawer_menu_contact" android:icon="@drawable/ic_contact"/>
     <item
         android:id="@+id/nav_logout"
-        android:title="Cerrar sesión"
-        android:icon="@drawable/ic_logout"/>
+        android:title="@string/drawer_menu_logout" android:icon="@drawable/ic_logout"/>
 </menu>
