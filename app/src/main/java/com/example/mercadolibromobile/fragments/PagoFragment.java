@@ -19,10 +19,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.mercadolibromobile.R;
-import com.example.mercadolibromobile.api.ApiService; // Usar ApiService
+import com.example.mercadolibromobile.api.ApiService;
 import com.example.mercadolibromobile.api.RetrofitClient;
 import com.example.mercadolibromobile.models.Pago;
-import com.example.mercadolibromobile.utils.SessionUtils; // Importar SessionUtils
+import com.example.mercadolibromobile.utils.SessionUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +37,7 @@ public class PagoFragment extends Fragment {
     private TextView tvNumeroTarjetaMostrar, tvCVVMostrar, tvVencimientoMostrar, tvMostrarTipoTarjeta;
     private Button btnPagar;
     private SharedPreferences appPrefs;
+    private ApiService apiService;
 
     @Nullable
     @Override
@@ -55,9 +56,14 @@ public class PagoFragment extends Fragment {
 
         btnPagar = view.findViewById(R.id.btnPagar);
 
-        appPrefs = getActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        // Inicializar SharedPreferences para datos de la aplicación (no de sesión)
+        appPrefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+        // Obtener la instancia de ApiService
+        apiService = RetrofitClient.getApiService(getContext());
+
+        // Configurar el Spinner con los tipos de tarjeta
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(), // Usar requireContext()
                 R.array.tipos_tarjeta_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTipoTarjeta.setAdapter(adapter);
@@ -72,38 +78,41 @@ public class PagoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cargarDatosUltimoPago();
     }
-
     private void realizarPago() {
         String numeroTarjeta = etNumeroTarjeta.getText().toString().trim();
         String cvv = etCVV.getText().toString().trim();
         String vencimiento = etVencimiento.getText().toString().trim();
         String tipoTarjeta = spTipoTarjeta.getSelectedItem().toString().toLowerCase(); // Obtener el tipo de tarjeta del Spinner
 
+        // Validar los datos ingresados por el usuario
         if (!validarDatos(numeroTarjeta, cvv, vencimiento, tipoTarjeta)) {
             return; // Si la validación falla, se detiene la ejecución
         }
 
+        // Obtener el token de acceso y el ID de usuario desde SessionUtils
         String token = SessionUtils.getAuthToken(getContext());
         int usuarioId = SessionUtils.getUserId(getContext());
 
         if (token != null && usuarioId != -1) {
             Pago pago = new Pago(usuarioId, numeroTarjeta, cvv, vencimiento, tipoTarjeta);
 
-            ApiService apiService = RetrofitClient.getApiService(getContext());
-
             apiService.realizarPago("Bearer " + token, pago).enqueue(new Callback<Pago>() {
                 @Override
-                public void onResponse(Call<Pago> call, Response<Pago> response) {
+                public void onResponse(@NonNull Call<Pago> call, @NonNull Response<Pago> response) {
                     if (response.isSuccessful() && response.body() != null) {
                         Pago pagoRespuesta = response.body();
-                        mostrarDetallesPago(pagoRespuesta);
-                        guardarUltimoPago(pagoRespuesta);
-                        Toast.makeText(getActivity(), "Pago realizado con éxito", Toast.LENGTH_SHORT).show();
+                        if (isAdded()) {
+                            mostrarDetallesPago(pagoRespuesta);
+                            guardarUltimoPago(pagoRespuesta);
+                            Toast.makeText(getContext(), getString(R.string.success_payment_made), Toast.LENGTH_SHORT).show();
+                        }
                     } else {
+                        Log.e(TAG, "Error al realizar el pago. Código: " + response.code() + ", Mensaje: " + response.message());
                         try {
-                            String errorMessage = response.errorBody() != null ? response.errorBody().string() : "Error desconocido";
-                            Log.e(TAG, "Error al realizar el pago: " + errorMessage);
-                            Toast.makeText(getActivity(), "Error al realizar el pago: " + errorMessage, Toast.LENGTH_LONG).show();
+                            String errorMessage = response.errorBody() != null ? response.errorBody().string() : getString(R.string.error_unknown);
+                            if (isAdded()) {
+                                Toast.makeText(getContext(), getString(R.string.error_making_payment, errorMessage), Toast.LENGTH_LONG).show();
+                            }
                         } catch (Exception e) {
                             Log.e(TAG, "Error al procesar el cuerpo de error", e);
                         }
@@ -111,29 +120,30 @@ public class PagoFragment extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<Pago> call, Throwable t) {
-                    Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "Fallo al realizar el pago: ", t);
+                public void onFailure(@NonNull Call<Pago> call, @NonNull Throwable t) {
+                    Log.e(TAG, "Fallo al realizar el pago: " + t.getMessage(), t);
+                    if (isAdded()) {
+                        Toast.makeText(getContext(), getString(R.string.error_network_connection_payment), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         } else {
-            Toast.makeText(getActivity(), "Token o ID de usuario no válido. Por favor, inicie sesión.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.error_invalid_token_or_user_id), Toast.LENGTH_SHORT).show();
         }
     }
-    private void mostrarDetallesPago(Pago pagoRespuesta) {
-        tvNumeroTarjetaMostrar.setText("Número de Tarjeta: " + pagoRespuesta.getNumero_tarjeta());
-        tvCVVMostrar.setText("CVV: " + pagoRespuesta.getCvv());
-        tvVencimientoMostrar.setText("Vencimiento: " + pagoRespuesta.getVencimiento());
-        tvMostrarTipoTarjeta.setText("Tipo de Tarjeta: " + pagoRespuesta.getTipo_tarjeta());
+    private void mostrarDetallesPago(@NonNull Pago pagoRespuesta) {
+        tvNumeroTarjetaMostrar.setText(getString(R.string.label_card_number_display, pagoRespuesta.getNumero_tarjeta()));
+        tvCVVMostrar.setText(getString(R.string.label_cvv_display, pagoRespuesta.getCvv()));
+        tvVencimientoMostrar.setText(getString(R.string.label_expiration_display, pagoRespuesta.getVencimiento()));
+        tvMostrarTipoTarjeta.setText(getString(R.string.label_card_type_display, pagoRespuesta.getTipo_tarjeta()));
     }
-
-    private void guardarUltimoPago(Pago pagoRespuesta) {
+    private void guardarUltimoPago(@NonNull Pago pagoRespuesta) {
         SharedPreferences.Editor editor = appPrefs.edit();
         editor.putString("ultimo_pago_numero_tarjeta", pagoRespuesta.getNumero_tarjeta());
         editor.putString("ultimo_pago_cvv", pagoRespuesta.getCvv());
         editor.putString("ultimo_pago_vencimiento", pagoRespuesta.getVencimiento());
         editor.putString("ultimo_pago_tipo_tarjeta", pagoRespuesta.getTipo_tarjeta());
-        editor.apply();
+        editor.apply(); // Guardar los cambios
     }
     private void cargarDatosUltimoPago() {
         String ultimoNumeroTarjeta = appPrefs.getString("ultimo_pago_numero_tarjeta", "");
@@ -144,39 +154,58 @@ public class PagoFragment extends Fragment {
         etNumeroTarjeta.setText(ultimoNumeroTarjeta);
         etCVV.setText(ultimoCVV);
         etVencimiento.setText(ultimoVencimiento);
-        tvMostrarTipoTarjeta.setText("Tipo de Tarjeta: " + ultimoTipoTarjeta);
+        if (!ultimoTipoTarjeta.isEmpty()) {
+            tvMostrarTipoTarjeta.setText(getString(R.string.label_card_type_display, ultimoTipoTarjeta));
+        } else {
+            tvMostrarTipoTarjeta.setText(getString(R.string.label_card_type_display_placeholder));
+        }
     }
-
     private boolean validarDatos(String numeroTarjeta, String cvv, String vencimiento, String tipoTarjeta) {
         if (numeroTarjeta.length() != 16 || !numeroTarjeta.matches("\\d+")) {
-            Toast.makeText(getActivity(), "El número de tarjeta debe tener 16 dígitos.", Toast.LENGTH_SHORT).show();
+            etNumeroTarjeta.setError(getString(R.string.error_card_number_length));
+            etNumeroTarjeta.requestFocus();
             return false;
         }
         if (cvv.length() != 3 || !cvv.matches("\\d+")) {
-            Toast.makeText(getActivity(), "El CVV debe tener 3 dígitos.", Toast.LENGTH_SHORT).show();
+            etCVV.setError(getString(R.string.error_cvv_length));
+            etCVV.requestFocus();
             return false;
         }
         if (!validarVencimiento(vencimiento)) {
+            etVencimiento.requestFocus();
             return false;
         }
         if (!tipoTarjeta.equals("debito") && !tipoTarjeta.equals("credito")) {
-            Toast.makeText(getActivity(), "El tipo de tarjeta debe ser 'debito' o 'credito'.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.error_card_type_invalid), Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
+
     private boolean validarVencimiento(String vencimiento) {
         if (vencimiento.length() != 5 || !vencimiento.matches("\\d{2}/\\d{2}")) {
-            Toast.makeText(getActivity(), "El vencimiento debe estar en formato mm/aa y no puede tener más de 5 caracteres.", Toast.LENGTH_SHORT).show();
+            etVencimiento.setError(getString(R.string.error_expiration_format));
             return false;
         }
 
+        // Separar el mes y el año
         String[] partes = vencimiento.split("/");
         int mes = Integer.parseInt(partes[0]);
-        // int anio = Integer.parseInt(partes[1]); // Puedes usar esto para validar el año también si es necesario
+        int anio = Integer.parseInt(partes[1]); // Obtener el año
 
+        // Obtener el año actual (últimos dos dígitos)
+        int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) % 100;
+        int currentMonth = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH) + 1; // Meses de 0-11
+
+        // Verificar que el mes esté entre 01 y 12
         if (mes < 1 || mes > 12) {
-            Toast.makeText(getActivity(), "El mes debe estar entre 01 y 12.", Toast.LENGTH_SHORT).show();
+            etVencimiento.setError(getString(R.string.error_month_range));
+            return false;
+        }
+
+        // Verificar que el año no sea pasado
+        if (anio < currentYear || (anio == currentYear && mes < currentMonth)) {
+            etVencimiento.setError(getString(R.string.error_expiration_past));
             return false;
         }
         return true;

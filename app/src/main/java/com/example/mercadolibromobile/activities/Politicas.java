@@ -22,7 +22,6 @@ public class Politicas extends AppCompatActivity {
         setupExpandableText(findViewById(R.id.titleEnvio), findViewById(R.id.contentEnvio));
         setupExpandableText(findViewById(R.id.titleAtencion), findViewById(R.id.contentAtencion));
     }
-
     private void setupExpandableText(TextView title, TextView content) {
         title.setOnClickListener(v -> {
             boolean isExpanded = content.getVisibility() == View.VISIBLE;

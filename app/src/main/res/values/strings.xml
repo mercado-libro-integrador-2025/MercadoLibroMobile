@@ -1,121 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MercadoLibroMobile</string>
+    <string name="app_name">Mercado Libro</string>
+    <string name="navigation_drawer_open">Abrir menú de navegación</string>
+    <string name="navigation_drawer_close">Cerrar menú de navegación</string>
+    <string name="logout_message">Sesión cerrada. ¡Hasta pronto!</string>
+    <string name="footer_text">© Mercado Libro 2024</string>
 
-
-    <string name="navigation_drawer_open">Open drawer</string>
-    <string name="navigation_drawer_close">Close drawer</string>
-    <string name="logout_message">Cerrando sesión...</string>
-
-    <!-- Tabla -->
-    <string name="titTable">Finalizar Compra</string>
-    <string name="FirCol">Libro</string>
-    <string name="SecCol">Cantidad</string>
-    <string name="ThiCol">Precio Unitario</string>
-    <string name="Lib1">Manuelita</string>
-    <string name="Lib2">50 Sombras</string>
-    <string name="Pre1">$500</string>
-    <string name="Pre2">$150.000.000</string>
-    <string name="c1">1</string>
-    <string name="c2">4</string>
-    <string name="btnfin">Pagar</string>
-
-
-    <!-- Contacto sanitizando datos con atributo formated CiberSec -->
-    <string name="Contact" formatted="false">Contacto</string>
-    <string name="Email" formatted="false">  Email</string>
-    <string name="asunto" formatted="false">  Asunto</string>
-    <string name="nombre" formatted="false">  Nombre</string>
-    <string name="consulta1" formatted="false">Porfavor escribe tu consulta a continuacion</string>
-    <string name="consulta_hint" formatted="false">Escribenos aqui</string>
-    <string name="enviar" formatted="false">Enviar Consulta</string>
-
-    <!-- login -->
-    <string name="usuario">Email</string>
-    <string name="contraseña">Contraseña</string>
-    <string name="inputUsuario">ingrese correo</string>
-    <string name="nombrelogin">Nombre</string>
-    <string name="inputNombre">ingrese su nombre</string>
-    <string name="inputContra">ingrese contraseña</string>
-    <string name="ingresar">Ingresar</string>
-    <string name="registrarse">registrarse</string>
-    <string name="volver">Volver</string>
-    <string name="politicas">Politicas de Seguridad </string>
-    <string name="seguridad_priv">Como cuidadamos tu privacidad.\n Ver contratos de adhesión (Ley Nº.24.240- Defensa del Consumidor.\n Términos y Condiciones.\n Accesibilidad.</string>
-
-    <!-- productos -->
-    <string name="categoria">Aventura</string>
-    <string name="categoria1">Ficción</string>
-    <string name="categoria2">Ciencia</string>
-    <string name="categoria3">Fantasía</string>
-    <string name="categoria4">Historia</string>
-    <string name="categoria5">Arte</string>
-    <string name="categoria6">Tecnología</string>
-    <string name="categoria7">Romance</string>
-
-    <string name="atributo1">titulo</string>
-    <string name="atributo2">autor</string>
-    <string name="atributo3">precio</string>
-    <string name="atributo4">portada</string>
-    <string name="atributo5">categoria</string>
-
-    <string name="método1">Comprar</string>
-    <string name="método2">Sinopsis</string>
-
-    <!-- Contact -->
-
-    <string name="error_asunto">Por favor, escribe el asunto.</string>
-    <string name="error_nombre">Por favor, escribe tu nombre.</string>
-    <string name="error_email">Por favor, escribe un email válido.</string>
-    <string name="error_consulta">Por favor, escribe tu consulta.</string>
-    <string name="error_consulta_longitud">La consulta debe tener al menos 10 caracteres.</string>
-    <string name="consulta_enviada_exito">Consulta enviada con éxito.</string>
-    <string name="error_envio_consulta">Error al enviar la consulta.</string>
-    <string name="error_obtener_contactos">Error al obtener los contactos.</string>
-    <string name="error_general">Error: %1$s</string>
-
-    <!-- BooksFragment -->
-
-    <string name="error_cargar_categorias">Error al cargar las categorías: %1$s</string>
-    <string name="error_respuesta">Error en la respuesta: %1$s</string>
-    <string name="error_cargar_libros">Error al cargar los libros: %1$s</string>
-    <string name="cargando_libros">Cargando libros...</string> <!-- Mensaje adicional si es necesario -->
-    <string name="seleccion_categoria">Selecciona una categoría</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="politica">Políticas de Calidad y Seguridad</string>
-    <string name="politicas_texto">
-
-
-
-    <string name="punto1">1. Calidad del Producto: Nos comprometemos a ofrecer libros de la más alta calidad. Cada libro es revisado cuidadosamente para garantizar que esté en condiciones óptimas antes de ser enviado.</string>
-
-
-
-    </string>
-    <string name="punto2"> Si no quedas completamente satisfecho con tu compra, puedes devolver el libro en un plazo de 30 días desde la fecha de recepción. El libro debe estar sin usar y en las mismas condiciones en que lo recibiste.</string>
-    <string name="punto3"> Utilizamos tecnologías de cifrado avanzadas para proteger tus datos durante todo el proceso de compra. Tu información personal y de pago está segura con nosotros.</string>
-    <string name="punto4"> Respetamos tu privacidad. Tus datos personales no serán compartidos con terceros sin tu consentimiento explícito, salvo en los casos exigidos por ley.</string>
-    <string name="punto5"> Todos los pedidos se procesan dentro de los 2 a 3 días hábiles posteriores a la compra. Ofrecemos opciones de envío con seguimiento para que puedas monitorear el estado de tu pedido en tiempo real.</string>
-    <string name="punto6"> Nuestro equipo de atención al cliente está disponible para resolver cualquier duda o inquietud que tengas. Puedes contactarnos a través de nuestro correo electrónico o número de teléfono disponible en nuestra página.</string>
-    <string name="agradecimiento">Agradecemos tu confianza y trabajamos continuamente para mejorar tu experiencia de compra.</string>
-    <string name="footer_text">¿Tienes alguna pregunta? ¡Estamos aquí para ayudarte!</string>
-    <string name="punto1"> Nos comprometemos a ofrecer libros de la más alta calidad. Cada libro es revisado cuidadosamente para garantizar que esté en condiciones óptimas antes de ser enviado.</string>
+    <string name="button_back">Volver</string>
+    <string name="button_save_data">Guardar Datos</string>
+    <string name="button_go_to_payment">Ir al Pago</string>
+    <string name="error_unknown">Error desconocido</string>
+    <string name="dialog_alert_positive_button">Aceptar</string>
+    <string name="feature_not_implemented">Funcionalidad no implementada aún.</string>
 
     <string name="hint_search_book">Busca tu próxima historia</string>
-    <string name="text_primary">#000000</string>
-    <string name="text_hint">#72696A</string>
-
-    <string name="content_description_book_cover">Portada del libro</string>
     <string name="book_title_placeholder">Título del Libro</string>
-    <string name="label_synopsis">Sinopsis:</string>
-    <string name="book_synopsis_placeholder">El Diario de Ana Frank es el relato personal...</string>
-    <string name="button_back">Volver</string>
-    <string name="card_background_color">#FFFFFF</string>
     <string name="book_price_placeholder">Precio: $100.00</string>
     <string name="book_author_placeholder">Autor:</string>
     <string name="book_category_placeholder">Categoría:</string>
     <string name="book_stock_placeholder">En stock: 9</string>
     <string name="button_buy">Comprar</string>
     <string name="button_synopsis">Sinopsis</string>
+    <string name="error_respuesta">Error de respuesta: %s</string>
+    <string name="error_cargar_libros">Error al cargar libros: %s</string>
+
+    <string name="content_description_book_cover">Portada del libro</string>
+    <string name="label_synopsis">Sinopsis:</string>
+    <string name="book_synopsis_placeholder">El Diario de Ana Frank es el relato personal de una niña judía de 13 años que, junto con su familia y otras personas, se ocultó durante dos años en un anexo secreto de Ámsterdam para escapar de la persecución nazi durante la Segunda Guerra Mundial.</string>
+
+    <string name="total_price_format">Total: $%s</string>
+    <string name="title_finish_purchase">Finalizar compra</string>
+    <string name="total_price_placeholder">Total: $0.00</string>
+    <string name="button_continue">Continuar</string>
+
+    <string name="contact_title">Contacto</string>
+    <string name="hint_subject">Asunto</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_query">Escribe tu consulta aquí...</string>
+    <string name="button_send">Enviar</string>
+    <string name="error_asunto_required">Por favor, escribe el asunto.</string>
+    <string name="error_email_invalid">Por favor, escribe un email válido.</string>
+    <string name="error_query_required">Por favor, escribe tu consulta.</string>
+    <string name="error_query_min_length">La consulta debe tener al menos 10 caracteres.</string>
+    <string name="success_query_sent">Consulta enviada con éxito</string>
+    <string name="error_sending_query">Error al enviar la consulta</string>
+    <string name="error_network_connection">Error de conexión. Por favor, verifica tu red.</string>
+
+    <string name="title_enter_address">Ingrese su dirección:</string>
+    <string name="label_street">Calle:</string>
+    <string name="hint_enter_street">Ingrese la calle</string>
+    <string name="label_number">Número:</string>
+    <string name="hint_enter_number">Ingrese el número</string>
+    <string name="label_city">Ciudad:</string>
+    <string name="hint_enter_city">Ingrese la ciudad</string>
+    <string name="label_province">Provincia:</string>
+    <string name="hint_enter_province">Ingrese la provincia</string>
+    <string name="label_my_address">MI DIRECCION:</string>
+    <string name="label_street_entered_placeholder">Calle ingresada:</string>
+    <string name="label_number_entered_placeholder">Número ingresado:</string>
+    <string name="label_city_entered_placeholder">Ciudad ingresada:</string>
+    <string name="label_province_entered_placeholder">Provincia ingresada:</string>
+    <string name="error_street_required">Por favor, ingrese la calle.</string>
+    <string name="error_number_required">Por favor, ingrese el número.</string>
+    <string name="error_city_required">Por favor, ingrese la ciudad.</string>
+    <string name="error_province_required">Por favor, ingrese la provincia.</string>
+    <string name="success_address_saved">Dirección guardada exitosamente</string>
+    <string name="error_saving_address">Error al guardar dirección: %s</string>
+    <string name="error_network_connection_address">Error de conexión al guardar dirección.</string>
+    <string name="error_token_not_found">Token no encontrado, por favor inicie sesión.</string>
+    <string name="no_address_saved">No hay dirección guardada</string>
+    <string name="label_street_entered">Calle ingresada: %s</string>
+    <string name="label_number_entered">Número ingresado: %s</string>
+    <string name="label_city_entered">Ciudad ingresada: %s</string>
+    <string name="label_province_entered">Provincia ingresada: %s</string>
+
+    <string name="label_username">Usuario</string>
+    <string name="hint_username_input">Ingrese su usuario</string>
+    <string name="label_password">Contraseña</string>
+    <string name="hint_password_input">Ingrese su contraseña</string>
+    <string name="label_name">Nombre</string>
+    <string name="hint_name_input">Ingrese su nombre</string>
+    <string name="button_login_text">Ingresar</string>
+    <string name="button_register_text">Registrarse</string>
+    <string name="button_back_text">Volver</string>
+    <string name="button_politics_text">Políticas de Privacidad</string>
+    <string name="error_invalid_credentials">Credenciales incorrectas</string>
+    <string name="error_login_failed">Error al iniciar sesión. Intenta nuevamente.</string>
+    <string name="error_invalid_email">Correo electrónico inválido</string>
+    <string name="error_password_required">La contraseña es requerida.</string>
+    <string name="error_password_min_length">La contraseña debe tener al menos 6 caracteres.</string>
+    <string name="error_name_required">El nombre de usuario es requerido.</string>
+    <string name="error_registration_failed">No se pudo registrar. Intenta nuevamente.</string>
+    <string name="error_registration_failed_toast">Error al registrar. Por favor, intenta nuevamente.</string>
+
+    <string name="title_payment_method">Método de Pago</string>
+    <string name="label_card_number">Número de Tarjeta:</string>
+    <string name="hint_enter_card_number">Ingrese el número de tarjeta</string>
+    <string name="label_cvv">CVV:</string>
+    <string name="hint_enter_cvv">Ingrese el CVV</string>
+    <string name="label_expiration">Vencimiento (MM/AA):</string>
+    <string name="hint_enter_expiration">Ingrese la fecha de vencimiento</string>
+    <string name="label_card_type">Tipo de Tarjeta:</string>
+    <string name="label_my_data">MIS DATOS:</string>
+    <string name="label_card_number_display_placeholder">Su número de tarjeta es:</string>
+    <string name="label_cvv_display_placeholder">Su CVV es:</string>
+    <string name="label_expiration_display_placeholder">Su fecha de vencimiento es:</string>
+    <string name="info_payment_verification">Por favor, verifique que los datos sean correctos antes de continuar.</string>
+    <string name="button_pay">Pagar</string>
+    <string name="success_payment_made">Pago realizado con éxito</string>
+    <string name="error_making_payment">Error al realizar el pago: %s</string>
+    <string name="error_network_connection_payment">Error de conexión al realizar el pago.</string>
+    <string name="error_invalid_token_or_user_id">Token o ID de usuario no válido. Por favor, inicie sesión.</string>
+    <string name="label_card_type_display">Tipo de Tarjeta: %s</string>
+    <string name="error_card_number_length">El número de tarjeta debe tener 16 dígitos.</string>
+    <string name="error_cvv_length">El CVV debe tener 3 dígitos.</string>
+    <string name="error_expiration_format">El vencimiento debe estar en formato MM/AA y no puede tener más de 5 caracteres.</string>
+    <string name="error_month_range">El mes debe estar entre 01 y 12.</string>
+    <string name="error_expiration_past">La fecha de vencimiento no puede ser en el pasado.</string>
+    <string name="error_card_type_invalid">El tipo de tarjeta debe ser \'debito\' o \'credito\'.</string>
+
+    <string name="my_orders_title">Mis Pedidos</string>
+
+    <string name="welcome_message">¡Hola querido Lector!</string>
+    <string name="email_placeholder">Dato desde el back</string>
+    <string name="button_my_reviews">Mis Reseñas</string>
+    <string name="button_shipping_status">Estado de mi envío</string>
+    <string name="button_edit_data">Editar mis datos</string>
+    <string name="button_unsubscribe">Dar de Baja</string>
+    <string name="error_no_active_session_delete">No hay sesión activa para eliminar el usuario.</string>
+    <string name="error_getting_user_data">Error al obtener datos del usuario.</string>
+    <string name="error_network_connection_user_data">Fallo en la conexión para obtener usuario.</string>
+    <string name="success_user_deleted">Usuario eliminado con éxito.</string>
+    <string name="error_deleting_user">Error al eliminar el usuario.</string>
+    <string name="error_network_connection_delete_user">Fallo en la conexión para eliminar usuario.</string>
+
+    <string name="title_policies_main">Políticas de Calidad y Seguridad</string>
+    <string name="title_quality">Calidad del Producto</string>
+    <string name="content_quality">En Mercado Libro, nos comprometemos a ofrecer productos de la más alta calidad. Cada libro es cuidadosamente seleccionado y verificado para asegurar que cumpla con nuestros estándares antes de ser enviado. Trabajamos con proveedores de confianza para garantizar la autenticidad y el buen estado de cada ejemplar. Su satisfacción es nuestra prioridad, y nos esforzamos por superar sus expectativas en cada compra.</string>
+    <string name="title_satisfaction_guarantee">Garantía de Satisfacción</string>
+    <string name="content_satisfaction_guarantee">Su felicidad con su compra es fundamental para nosotros. Si por alguna razón no está completamente satisfecho con su pedido, le ofrecemos una garantía de satisfacción total. Puede devolver cualquier libro dentro de los 30 días posteriores a la recepción para obtener un reembolso completo o un cambio, sin preguntas. Queremos que compre con confianza, sabiendo que estamos aquí para apoyarlo.</string>
+    <string name="title_transaction_security">Seguridad en Transacciones</string>
+    <string name="content_transaction_security">La seguridad de sus transacciones es nuestra máxima prioridad. Utilizamos tecnología de cifrado avanzada y protocolos de seguridad robustos para proteger su información financiera y personal durante todo el proceso de compra. Todas las transacciones se procesan a través de pasarelas de pago seguras, garantizando que sus datos estén protegidos contra accesos no autorizados. Puede comprar con tranquilidad, sabiendo que su información está en buenas manos.</string>
+    <string name="title_data_privacy">Privacidad de los Datos</string>
+    <string name="content_data_privacy">En Mercado Libro, valoramos y respetamos su privacidad. Nuestra política de privacidad detalla cómo recopilamos, usamos y protegemos su información personal. Nos comprometemos a no compartir sus datos con terceros sin su consentimiento explícito, y tomamos todas las medidas necesarias para asegurar que su información esté segura. Creemos en la transparencia y le invitamos a revisar nuestra política completa para entender mejor cómo manejamos sus datos.</string>
+    <string name="title_secure_shipping">Envío Seguro y Confiable</string>
+    <string name="content_secure_shipping">Garantizamos un envío seguro y confiable para todos sus pedidos. Trabajamos con socios logísticos de renombre para asegurar que sus libros lleguen a su destino en perfectas condiciones y en el menor tiempo posible. Cada paquete es cuidadosamente embalado para proteger su contenido durante el tránsito. Además, ofrecemos seguimiento de envíos para que pueda monitorear el progreso de su pedido en todo momento.</string>
+    <string name="title_customer_service">Atención al Cliente</string>
+    <string name="content_customer_service">Nuestro equipo de atención al cliente está siempre disponible para ayudarle con cualquier pregunta, inquietud o problema que pueda tener. Nos esforzamos por ofrecer un servicio rápido, amable y eficiente. Ya sea que necesite ayuda con un pedido, tenga preguntas sobre un producto o simplemente quiera compartir sus comentarios, no dude en contactarnos. Su opinión es invaluable para nosotros y nos ayuda a mejorar continuamente.</string>
+    <string name="footer_acknowledgement">Gracias por confiar en Mercado Libro. ¡Esperamos que disfrute de su lectura!</string>
+
+    <string name="drawer_menu_profile">Perfil</string>
+    <string name="drawer_menu_products">Productos</string>
+    <string name="drawer_menu_contact">Contacto</string>
+    <string name="drawer_menu_logout">Cerrar sesión</string>
+
+    <string name="toolbar_menu_cart">Carrito</string>
+
+    <string name="dialog_registration_success_title">¡Registro exitoso!</string>
+    <string name="dialog_registration_success_message">Te has registrado correctamente.</string>
+
+    <string name="dialog_confirm_delete_message">¿Está seguro de que desea eliminar su cuenta de usuario?</string>
+    <string name="dialog_confirm_delete_yes_button">Sí</string>
+    <string name="dialog_confirm_delete_no_button">No</string>
+    <string name="logo_content_description">Logo</string>
+    <string name="label_card_type_display_placeholder"></string>
+
+    <string name="label_card_number_display">Número de Tarjeta: %s</string>
+    <string name="label_cvv_display">CVV: %s</string>
+    <string name="label_expiration_display">Vencimiento: %s</string>
+
+    <string name="error_auth_required">Error de autenticación. Por favor, inicia sesión nuevamente.</string>
+    <string name="error_loading_orders">Error al cargar los pedidos: %s</string>
+    <string name="error_network_connection_orders">Error de conexión al cargar pedidos: %s</string>
+    <string name="email_not_found">Email no encontrado</string>
+
 </resources>

@@ -18,6 +18,7 @@ import com.example.mercadolibromobile.R;
 
 public class SinopsisFragment extends Fragment {
 
+    private static final String TAG = "SinopsisFragment";
     public static SinopsisFragment newInstance(String title, String description, String imageUrl) {
         SinopsisFragment fragment = new SinopsisFragment();
         Bundle args = new Bundle();
@@ -33,21 +34,31 @@ public class SinopsisFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sinopsis, container, false);
 
-        String title = getArguments().getString("title");
-        String description = getArguments().getString("description");
-        String imageUrl = getArguments().getString("image");
+        String title = "";
+        String description = "";
+        String imageUrl = "";
 
-        if (imageUrl != null && imageUrl.startsWith("image/upload/")) {
-            imageUrl = imageUrl.replace("image/upload/https://", "https://");
+        if (getArguments() != null) {
+            title = getArguments().getString("title", "");
+            description = getArguments().getString("description", "");
+            imageUrl = getArguments().getString("image", "");
         }
 
-        Log.d("Image URL", "URL de la imagen: " + imageUrl);
+        if (imageUrl != null && imageUrl.startsWith("image/upload/https://")) {
+            imageUrl = imageUrl.replace("image/upload/", "");
+        } else if (imageUrl != null && imageUrl.startsWith("image/upload/")) {
 
+        }
+
+        Log.d(TAG, "URL de la imagen: " + imageUrl);
+
+        // Inicializar vistas
         TextView tvTitle = view.findViewById(R.id.book_title);
         TextView tvDescription = view.findViewById(R.id.book_synopsis);
         ImageView ivBookCover = view.findViewById(R.id.book_image);
         Button btnVolver = view.findViewById(R.id.btnvolversinopsis);
 
+        // Establecer el texto y cargar la imagen
         tvTitle.setText(title);
         tvDescription.setText(description);
 
@@ -57,7 +68,10 @@ public class SinopsisFragment extends Fragment {
                 .timeout(10000)
                 .into(ivBookCover);
 
-        btnVolver.setOnClickListener(v -> getActivity().onBackPressed());
+        // Configurar el botón de volver
+        btnVolver.setOnClickListener(v -> {
+            requireActivity().onBackPressed();
+        });
 
         return view;
     }

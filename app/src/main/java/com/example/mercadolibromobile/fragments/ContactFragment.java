@@ -1,6 +1,7 @@
-package com.example.mercadolibromobile.fragments;
+package com.example.mercadolibromobile.fragments; // O com.ispc.mercadolibromobile.fragments si ya refactorizaste el paquete
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,34 +9,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.mercadolibromobile.R;
 import com.example.mercadolibromobile.api.ApiService;
+import com.example.mercadolibromobile.api.RetrofitClient; // Importar RetrofitClient
 import com.example.mercadolibromobile.models.Contacto;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ContactFragment extends Fragment {
 
     private ApiService apiService;
     private EditText nombreEditText, asuntoEditText, emailEditText, consultaEditText;
 
+    private static final String TAG = "ContactFragment";
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://mercadolibroweb.onrender.com/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        apiService = RetrofitClient.getApiService(getContext());
 
-        apiService = retrofit.create(ApiService.class);
-
+        // Inicializar las vistas
         nombreEditText = view.findViewById(R.id.etNombre);
         asuntoEditText = view.findViewById(R.id.etAsunto);
         emailEditText = view.findViewById(R.id.etEmail);
@@ -50,55 +51,64 @@ public class ContactFragment extends Fragment {
             String consulta = consultaEditText.getText().toString().trim();
 
             if (asunto.isEmpty()) {
-                asuntoEditText.setError("Por favor, escribe el asunto.");
+                asuntoEditText.setError(getString(R.string.error_asunto_required));
                 asuntoEditText.requestFocus();
             } else if (nombre.isEmpty()) {
-                nombreEditText.setError("Por favor, escribe tu nombre.");
+                nombreEditText.setError(getString(R.string.error_name_required));
                 nombreEditText.requestFocus();
-            } else if (email.isEmpty() || !email.contains("@")) {
-                emailEditText.setError("Por favor, escribe un email válido.");
+            } else if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailEditText.setError(getString(R.string.error_email_invalid));
                 emailEditText.requestFocus();
             } else if (consulta.isEmpty()) {
-                consultaEditText.setError("Por favor, escribe tu consulta.");
+                consultaEditText.setError(getString(R.string.error_query_required));
                 consultaEditText.requestFocus();
             } else if (consulta.length() < 10) {
-                consultaEditText.setError("La consulta debe tener al menos 10 caracteres.");
+                consultaEditText.setError(getString(R.string.error_query_min_length));
                 consultaEditText.requestFocus();
             } else {
                 Contacto contacto = new Contacto(nombre, email, asunto, consulta);
-
                 enviarConsulta(contacto);
             }
         });
 
         return view;
     }
-
-    private void enviarConsulta(Contacto contacto) {
+    private void enviarConsulta(@NonNull Contacto contacto) {
         Call<Void> call = apiService.enviarConsulta(contacto);
 
         call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Consulta enviada con éxito", Toast.LENGTH_SHORT).show();
-                    limpiarCampos();
+                    if (isAdded()) {
+                        Toast.makeText(getContext(), getString(R.string.success_query_sent), Toast.LENGTH_SHORT).show();
+                        limpiarCampos();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "Error al enviar la consulta", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error al enviar consulta. Código: " + response.code() + ", Mensaje: " + response.message());
+                    if (isAdded()) {
+                        Toast.makeText(getContext(), getString(R.string.error_sending_query), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getActivity(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Log.e(TAG, "Fallo en la conexión al enviar consulta: " + t.getMessage(), t);
+                if (isAdded()) {
+                    Toast.makeText(getContext(), getString(R.string.error_network_connection, t.getMessage()), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-
     private void limpiarCampos() {
         nombreEditText.setText("");
         asuntoEditText.setText("");
         emailEditText.setText("");
         consultaEditText.setText("");
+        nombreEditText.setError(null);
+        asuntoEditText.setError(null);
+        emailEditText.setError(null);
+        consultaEditText.setError(null);
     }
 }

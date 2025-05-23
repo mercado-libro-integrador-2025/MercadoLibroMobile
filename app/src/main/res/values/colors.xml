@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="azul">#004987</color>
-    <color name="rojo">#FF0000</color>
-    <color name="naranja_claro">#FF7F50</color>
-    <color name="crim">#a0203a</color>
-    <color name="vino">#4a4a5a</color>
-    <color name="azul_electrico">#1e3a5f</color>
-    <color name="rosa">#fdf5e6</color>
-    <color name="beige_suave">#d3c6a8</color>
-    <color name="beige_transparente">#E5D4B4</color>
-    <color name="red">#FF0000</color>
+    <resources>
+        <color name="black">#FF000000</color>
+        <color name="white">#FFFFFFFF</color>
+
+        <color name="azul">#004987</color>
+        <color name="vino">#4a4a5a</color>
+        <color name="azul_electrico">#1e3a5f</color>
+        <color name="crim">#a0203a</color>
+        <color name="rosa">#fdf5e6</color>
+        <color name="beige_suave">#d3c6a8</color>
+        <color name="beige_transparente">#E5D4B4</color>
+        <color name="card_background_color">#f6eee3</color>
+        <color name="card_background_color_light">#F0F0F0</color>
+
+        <color name="text_primary">#000000</color>
+        <color name="text_secondary">#5F5C5D</color>
+        <color name="text_hint">#72696A</color>
+        <color name="line_separator_color">#000000</color>
+
+        <color name="input_hint_color">@color/azul</color>
+        <color name="button_background_secondary">@color/vino</color>
+
+        <color name="button_background_dialog_positive">@color/rosa</color>
+
+        <color name="button_background_dialog_delete_negative">@color/rosa</color>
 
 
+        <color name="rojo">#FF0000</color>
+        <color name="naranja_claro">#FF7F50</color>
+        <color name="red">#FF0000</color>
 
+
+        <color name="border_gray">#808080</color>
+        <color name="card_border_color">#d3c6a8</color>
+        <color name="input_border_color">#000000</color>
+        <color name="button_background_primary">@color/azul_electrico</color>
+        <color name="button_rounded_color">#FFFF00</color>
+        <color name="button_background_dialog_delete_positive">@color/naranja_claro</color>
+
+        <color name="icon_color_black">#000000</color> <color name="focused_input_color">@color/black</color> <color name="default_input_color">@color/black</color> <color name="splash_background_color">@android:color/holo_orange_light</color> <color name="error_color">@color/rojo</color>
 
 </resources>

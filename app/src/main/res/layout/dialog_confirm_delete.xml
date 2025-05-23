@@ -1,43 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/layout/dialog_confirm_delete.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@drawable/borde_card">
+    android:padding="@dimen/dialog_padding_xlarge" android:background="@drawable/borde_card">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Está seguro de que desea eliminar su cuenta de usuario?"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal" />
-
-    <LinearLayout
+        android:text="@string/dialog_confirm_delete_message" android:textSize="@dimen/text_size_medium_18sp" android:textColor="@color/text_primary" android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/margin_medium" /> <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/positive_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/naranja_claro"
-            android:textColor="@color/black"
-            android:text="Sí" />
-
-        <Button
-            android:id="@+id/negative_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No"
-            android:backgroundTint="@color/rosa"
-            android:textColor="@color/black"
-            android:layout_marginStart="16dp" />
-    </LinearLayout>
+        android:layout_marginTop="@dimen/margin_large"> <Button
+        android:id="@+id/positive_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/min_touch_target_size" android:backgroundTint="@color/white" android:textColor="@color/text_primary" android:text="@string/dialog_confirm_delete_yes_button" /> <Button
+        android:id="@+id/negative_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/min_touch_target_size" android:text="@string/dialog_confirm_delete_no_button" android:backgroundTint="@color/button_background_dialog_delete_negative" android:textColor="@color/text_primary" android:layout_marginStart="@dimen/margin_large" /> </LinearLayout>
 </LinearLayout>

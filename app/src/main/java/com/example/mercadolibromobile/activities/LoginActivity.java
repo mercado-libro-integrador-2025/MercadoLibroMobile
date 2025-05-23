@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String TAG = "LoginActivity";
 
     private TextInputLayout usernameLayout, passwordLayout, nameLayout;
     private TextInputEditText usernameEditText, passwordEditText, nameEditText;
@@ -46,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        usernameLayout = findViewById(R.id.textInputLayout2);
-        passwordLayout = findViewById(R.id.textInputLayout);
+        usernameLayout = findViewById(R.id.textInputLayoutUsername);
+        passwordLayout = findViewById(R.id.textInputLayoutPassword);
         nameLayout = findViewById(R.id.textInputLayoutName);
 
         usernameEditText = findViewById(R.id.textInputEditTextUsername);
@@ -90,8 +93,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void toggleLoginMode(Animation fadeIn) {
         isLoginMode = !isLoginMode;
-        loginButton.setText(isLoginMode ? R.string.ingresar : R.string.registrarse);
-        toggleModeButton.setText(isLoginMode ? R.string.registrarse : R.string.volver);
+        loginButton.setText(isLoginMode ? R.string.button_login_text : R.string.button_register_text);
+        toggleModeButton.setText(isLoginMode ? R.string.button_register_text : R.string.button_back_text);
 
         if (isLoginMode) {
             nameLayout.setVisibility(View.GONE);
@@ -126,11 +129,23 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         String email = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
+
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            usernameLayout.setError(getString(R.string.error_invalid_email));
+            usernameEditText.requestFocus();
+            return;
+        }
+        if (password.isEmpty()) {
+            passwordLayout.setError(getString(R.string.error_password_required));
+            passwordEditText.requestFocus();
+            return;
+        }
+
         progressBar.setVisibility(View.VISIBLE);
 
         RetrofitClient.getApiService(this).login(email, password).enqueue(new Callback<AuthModels.LoginResponse>() {
             @Override
-            public void onResponse(Call<AuthModels.LoginResponse> call, Response<AuthModels.LoginResponse> response) {
+            public void onResponse(@NonNull Call<AuthModels.LoginResponse> call, @NonNull Response<AuthModels.LoginResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful() && response.body() != null) {
                     AuthModels.LoginResponse data = response.body();
@@ -142,15 +157,18 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
-                    usernameLayout.setError("Credenciales incorrectas");
+                    // Usar recurso de string para el mensaje de error
+                    usernameLayout.setError(getString(R.string.error_invalid_credentials));
+                    Toast.makeText(LoginActivity.this, getString(R.string.error_login_failed), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Login failed: " + response.code() + " - " + response.message());
                 }
             }
 
             @Override
-            public void onFailure(Call<AuthModels.LoginResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<AuthModels.LoginResponse> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
-                Log.e("LoginActivity", "Error: ", t);
+                Toast.makeText(LoginActivity.this, getString(R.string.error_network_connection), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Login network error: ", t);
             }
         });
     }
@@ -163,37 +181,45 @@ public class LoginActivity extends AppCompatActivity {
         clearErrors();
 
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            usernameLayout.setError("Correo inválido");
+            usernameLayout.setError(getString(R.string.error_invalid_email));
+            usernameEditText.requestFocus();
             return;
         }
 
         if (password.length() < 6) {
-            passwordLayout.setError("Mínimo 6 caracteres");
+            passwordLayout.setError(getString(R.string.error_password_min_length));
+            passwordEditText.requestFocus();
             return;
         }
 
         if (TextUtils.isEmpty(username)) {
-            nameLayout.setError("Nombre requerido");
+            nameLayout.setError(getString(R.string.error_name_required));
+            nameEditText.requestFocus();
             return;
         }
+
+        progressBar.setVisibility(View.VISIBLE);
 
         AuthModels.SignupRequest request = new AuthModels.SignupRequest(email, password, username);
         RetrofitClient.getApiService(this).register(request).enqueue(new Callback<AuthModels.SignupResponse>() {
             @Override
-            public void onResponse(Call<AuthModels.SignupResponse> call, Response<AuthModels.SignupResponse> response) {
+            public void onResponse(@NonNull Call<AuthModels.SignupResponse> call, @NonNull Response<AuthModels.SignupResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     showSuccessDialog();
                 } else {
-                    usernameLayout.setError("No se pudo registrar. Intenta nuevamente.");
+                    usernameLayout.setError(getString(R.string.error_registration_failed));
+                    Toast.makeText(LoginActivity.this, getString(R.string.error_registration_failed_toast), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Registration failed: " + response.code() + " - " + response.message());
                 }
             }
 
             @Override
-            public void onFailure(Call<AuthModels.SignupResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<AuthModels.SignupResponse> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(LoginActivity.this, "Error de red", Toast.LENGTH_SHORT).show();
-                Log.e("Register", "Error: ", t);
+                // Usar recurso de string para el mensaje de error de red
+                Toast.makeText(LoginActivity.this, getString(R.string.error_network_connection), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Register network error: ", t);
             }
         });
     }
@@ -206,12 +232,15 @@ public class LoginActivity extends AppCompatActivity {
 
         dialog.setOnShowListener(d -> {
             Button btn = dialogView.findViewById(R.id.positive_button);
-            btn.setOnClickListener(v -> dialog.dismiss());
+            if (btn != null) {
+                btn.setOnClickListener(v -> dialog.dismiss());
+            } else {
+                Log.e(TAG, "dialog_alert layout is missing positive_button");
+            }
         });
 
         dialog.show();
     }
-
     private abstract class SimpleTextWatcher implements TextWatcher {
         @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
         @Override public void afterTextChanged(Editable s) {}

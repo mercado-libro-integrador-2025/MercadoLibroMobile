@@ -18,10 +18,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mercadolibromobile.R;
-import com.example.mercadolibromobile.api.ApiService; // Usar ApiService
+import com.example.mercadolibromobile.api.ApiService;
 import com.example.mercadolibromobile.api.RetrofitClient;
 import com.example.mercadolibromobile.models.Direccion;
-import com.example.mercadolibromobile.utils.SessionUtils; // Importar SessionUtils
+import com.example.mercadolibromobile.utils.SessionUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,12 +36,14 @@ public class DireccionFragment extends Fragment {
     private Button btnIrAlPago;
     private SharedPreferences appPrefs;
     private boolean direccionGuardada = false;
+    private ApiService apiService;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_direccion, container, false);
 
+        // Inicializar vistas
         etCalle = view.findViewById(R.id.etCalle);
         etNumero = view.findViewById(R.id.etNumero);
         etCiudad = view.findViewById(R.id.etCiudad);
@@ -54,8 +56,11 @@ public class DireccionFragment extends Fragment {
 
         btnIrAlPago = view.findViewById(R.id.btnIrAlPago);
 
-        appPrefs = getActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        appPrefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
 
+        apiService = RetrofitClient.getApiService(getContext());
+
+        // Configurar el botón para guardar la dirección o ir al pago
         btnIrAlPago.setOnClickListener(v -> {
             if (!direccionGuardada) {
                 guardarDireccion();
@@ -64,42 +69,75 @@ public class DireccionFragment extends Fragment {
             }
         });
 
+        // Cargar las direcciones al iniciar el fragmento
         cargarDirecciones();
 
         return view;
     }
-
     private void guardarDireccion() {
+        // Obtener el token y el ID de usuario usando SessionUtils
         String token = SessionUtils.getAuthToken(getContext());
-        Log.d(TAG, "Guardando dirección con token: " + token);
+        int userId = SessionUtils.getUserId(getContext());
 
-        if (token != null) {
-            ApiService apiService = RetrofitClient.getApiService(getContext());
+        Log.d(TAG, "Guardando dirección con token: " + token + ", UserId: " + userId);
 
+        // Validar campos de entrada
+        String calle = etCalle.getText().toString().trim();
+        String numero = etNumero.getText().toString().trim();
+        String ciudad = etCiudad.getText().toString().trim();
+        String provincia = etProvincia.getText().toString().trim();
+
+        if (calle.isEmpty()) {
+            etCalle.setError(getString(R.string.error_street_required));
+            etCalle.requestFocus();
+            return;
+        }
+        if (numero.isEmpty()) {
+            etNumero.setError(getString(R.string.error_number_required));
+            etNumero.requestFocus();
+            return;
+        }
+        if (ciudad.isEmpty()) {
+            etCiudad.setError(getString(R.string.error_city_required));
+            etCiudad.requestFocus();
+            return;
+        }
+        if (provincia.isEmpty()) {
+            etProvincia.setError(getString(R.string.error_province_required));
+            etProvincia.requestFocus();
+            return;
+        }
+
+        if (token != null && userId != -1) {
             Direccion nuevaDireccion = new Direccion(
                     0,
-                    0,
-                    etCalle.getText().toString(),
-                    etNumero.getText().toString(),
-                    etCiudad.getText().toString(),
-                    etProvincia.getText().toString()
+                    userId,
+                    calle,
+                    numero,
+                    ciudad,
+                    provincia
             );
 
+            // Realizar el POST para guardar la dirección
             apiService.createDireccion("Bearer " + token, nuevaDireccion).enqueue(new Callback<Direccion>() {
                 @Override
-                public void onResponse(Call<Direccion> call, Response<Direccion> response) {
+                public void onResponse(@NonNull Call<Direccion> call, @NonNull Response<Direccion> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        guardarDireccionEnSharedPreferences(response.body());
-
-                        Toast.makeText(getActivity(), "Dirección guardada exitosamente", Toast.LENGTH_SHORT).show();
-                        direccionGuardada = true;
-                        btnIrAlPago.setText("Ir al Pago");
-                        cargarDirecciones();
+                        // Asegurarse de que el fragmento está adjunto antes de actualizar la UI
+                        if (isAdded()) {
+                            guardarDireccionEnSharedPreferences(response.body());
+                            Toast.makeText(getContext(), getString(R.string.success_address_saved), Toast.LENGTH_SHORT).show();
+                            direccionGuardada = true;
+                            btnIrAlPago.setText(getString(R.string.button_go_to_payment));
+                            cargarDirecciones(); // Llama al GET después de guardar para actualizar la UI
+                        }
                     } else {
+                        Log.e(TAG, "Error al guardar dirección. Código: " + response.code() + ", Mensaje: " + response.message());
                         try {
-                            String errorMessage = response.errorBody() != null ? response.errorBody().string() : "Error desconocido";
-                            Toast.makeText(getActivity(), "Error al guardar dirección: " + errorMessage, Toast.LENGTH_SHORT).show();
-                            Log.e(TAG, "Error al guardar dirección: " + errorMessage);
+                            String errorMessage = response.errorBody() != null ? response.errorBody().string() : getString(R.string.error_unknown);
+                            if (isAdded()) {
+                                Toast.makeText(getContext(), getString(R.string.error_saving_address, errorMessage), Toast.LENGTH_SHORT).show();
+                            }
                         } catch (Exception e) {
                             Log.e(TAG, "Error al procesar el cuerpo de error al guardar dirección", e);
                         }
@@ -107,16 +145,17 @@ public class DireccionFragment extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<Direccion> call, Throwable t) {
-                    Toast.makeText(getActivity(), "Error de conexión al guardar dirección", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "Fallo al guardar dirección: ", t);
+                public void onFailure(@NonNull Call<Direccion> call, @NonNull Throwable t) {
+                    Log.e(TAG, "Fallo al guardar dirección: " + t.getMessage(), t);
+                    if (isAdded()) {
+                        Toast.makeText(getContext(), getString(R.string.error_network_connection_address), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         } else {
-            Toast.makeText(getActivity(), "Token no encontrado, por favor inicie sesión.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.error_token_not_found), Toast.LENGTH_SHORT).show();
         }
     }
-
     private void guardarDireccionEnSharedPreferences(Direccion direccion) {
         SharedPreferences.Editor editor = appPrefs.edit();
         editor.putString("direccion_calle", direccion.getCalle());
@@ -125,33 +164,34 @@ public class DireccionFragment extends Fragment {
         editor.putString("direccion_provincia", direccion.getProvincia());
         editor.apply();
     }
-
     private void cargarDirecciones() {
-        String calle = appPrefs.getString("direccion_calle", "No hay dirección guardada");
-        String numero = appPrefs.getString("direccion_numero", "No hay dirección guardada");
-        String ciudad = appPrefs.getString("direccion_ciudad", "No hay dirección guardada");
-        String provincia = appPrefs.getString("direccion_provincia", "No hay dirección guardada");
+        // Obtener la dirección guardada de SharedPreferences de la aplicación
+        String calle = appPrefs.getString("direccion_calle", getString(R.string.no_address_saved));
+        String numero = appPrefs.getString("direccion_numero", getString(R.string.no_address_saved));
+        String ciudad = appPrefs.getString("direccion_ciudad", getString(R.string.no_address_saved));
+        String provincia = appPrefs.getString("direccion_provincia", getString(R.string.no_address_saved));
 
-        tvCalleIngresada.setText("Calle ingresada: " + calle);
-        tvNumeroIngresado.setText("Número ingresado: " + numero);
-        tvCiudadIngresada.setText("Ciudad ingresada: " + ciudad);
-        tvProvinciaIngresada.setText("Provincia ingresada: " + provincia);
+        // Mostrar los datos en los TextViews
+        tvCalleIngresada.setText(getString(R.string.label_street_entered, calle));
+        tvNumeroIngresado.setText(getString(R.string.label_number_entered, numero));
+        tvCiudadIngresada.setText(getString(R.string.label_city_entered, ciudad));
+        tvProvinciaIngresada.setText(getString(R.string.label_province_entered, provincia));
 
         Log.d(TAG, "Dirección cargada desde SharedPreferences: Calle=" + calle + ", Número=" + numero + ", Ciudad=" + ciudad + ", Provincia=" + provincia);
 
-        if (!"No hay dirección guardada".equals(calle)) {
+        // Actualizar el estado de direccionGuardada si hay una dirección guardada
+        if (!getString(R.string.no_address_saved).equals(calle)) {
             direccionGuardada = true;
-            btnIrAlPago.setText("Ir al Pago");
+            btnIrAlPago.setText(getString(R.string.button_go_to_payment));
         } else {
             direccionGuardada = false;
-            btnIrAlPago.setText("Guardar Dirección");
+            btnIrAlPago.setText(getString(R.string.button_save_data));
         }
     }
-
     private void irAPagoFragment() {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new PagoFragment());
-        transaction.addToBackStack(null);
+        transaction.addToBackStack(null);  // Agregar a la pila de retroceso
         transaction.commit();
     }
 }
