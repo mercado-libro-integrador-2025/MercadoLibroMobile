@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.mercadolibromobile'
+    namespace 'com.ispc.mercadolibromobile'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.example.mercadolibromobile"
+        applicationId "com.ispc.mercadolibromobile"
         minSdk 21
         targetSdk 35
         versionCode 1

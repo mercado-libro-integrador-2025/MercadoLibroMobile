@@ -11,218 +11,204 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:backgroundTint="@color/white">
+        android:padding="@dimen/padding_large"
+        android:backgroundTint="@color/white"> <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        app:cardBackgroundColor="@color/card_background_color" app:cardCornerRadius="@dimen/card_corner_radius_large_16dp"
+        app:cardElevation="@dimen/card_elevation_medium">
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            android:orientation="vertical"
+            android:padding="@dimen/padding_medium_12dp"
+            android:background="@drawable/borde_card">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/titleMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp"
-                android:background="@drawable/borde_card">
+                android:text="@string/title_policies_main"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_xlarge"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/margin_xlarge_20dp"
+                android:padding="@dimen/padding_medium_10dp" />
 
-                <!-- Título principal -->
-                <TextView
-                    android:id="@+id/titleMain"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Políticas de Calidad y Seguridad"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginBottom="20dp"
-                    android:padding="10dp" />
+            <TextView
+                android:id="@+id/titleCalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_touch_target_size" android:text="@string/title_quality"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_section_title"
+                android:textStyle="bold"
+                android:padding="@dimen/padding_medium_10dp"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
 
-                <!-- Título Calidad del Producto -->
-                <TextView
-                    android:id="@+id/titleCalidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Calidad del Producto"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true" />
+            <TextView
+                android:id="@+id/contentCalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_quality"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_content"
+                android:layout_margin="@dimen/margin_extra_small_5dp"
+                android:visibility="gone"
+                android:padding="@dimen/padding_extra_small_5dp" />
 
+            <TextView
+                android:id="@+id/titleGarantia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_touch_target_size"
+                android:text="@string/title_satisfaction_guarantee"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_section_title"
+                android:textStyle="bold"
+                android:padding="@dimen/padding_medium_10dp"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
 
-                <TextView
-                    android:id="@+id/contentCalidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/punto1"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_margin="5dp"
-                    android:visibility="gone"
-                    android:padding="5dp" />
+            <TextView
+                android:id="@+id/contentGarantia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_satisfaction_guarantee"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_content"
+                android:layout_margin="@dimen/margin_extra_small_5dp"
+                android:visibility="gone"
+                android:padding="@dimen/padding_extra_small_5dp" />
 
-                <!-- Título Garantía de Satisfacción -->
-                <TextView
-                    android:id="@+id/titleGarantia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Garantía de Satisfacción"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true" />
+            <TextView
+                android:id="@+id/titleSeguridad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_touch_target_size"
+                android:text="@string/title_transaction_security"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_section_title"
+                android:textStyle="bold"
+                android:padding="@dimen/padding_medium_10dp"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
 
-                <!-- Contenido Garantía de Satisfacción -->
-                <TextView
-                    android:id="@+id/contentGarantia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/punto2"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_margin="5dp"
-                    android:visibility="gone"
-                    android:padding="5dp" />
+            <TextView
+                android:id="@+id/contentSeguridad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_transaction_security"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_content"
+                android:layout_margin="@dimen/margin_extra_small_5dp"
+                android:visibility="gone"
+                android:padding="@dimen/padding_extra_small_5dp" />
 
-                <!-- Título Seguridad en las Transacciones -->
-                <TextView
-                    android:id="@+id/titleSeguridad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Seguridad en Transacciones"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true" />
+            <TextView
+                android:id="@+id/titlePrivacidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_touch_target_size"
+                android:text="@string/title_data_privacy"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_section_title"
+                android:textStyle="bold"
+                android:padding="@dimen/padding_medium_10dp"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
 
+            <TextView
+                android:id="@+id/contentPrivacidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_data_privacy"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_content"
+                android:layout_margin="@dimen/margin_extra_small_5dp"
+                android:visibility="gone"
+                android:padding="@dimen/padding_extra_small_5dp" />
 
-                <TextView
-                    android:id="@+id/contentSeguridad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/punto3"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_margin="5dp"
-                    android:visibility="gone"
-                    android:padding="5dp" />
+            <TextView
+                android:id="@+id/titleEnvio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_touch_target_size"
+                android:text="@string/title_secure_shipping"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_section_title"
+                android:textStyle="bold"
+                android:padding="@dimen/padding_medium_10dp"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
 
+            <TextView
+                android:id="@+id/contentEnvio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_secure_shipping"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_content"
+                android:layout_margin="@dimen/margin_extra_small_5dp"
+                android:visibility="gone"
+                android:padding="@dimen/padding_extra_small_5dp" />
 
-                <TextView
-                    android:id="@+id/titlePrivacidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Privacidad de los Datos"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true" />
+            <TextView
+                android:id="@+id/titleAtencion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_touch_target_size"
+                android:text="@string/title_customer_service"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_section_title"
+                android:textStyle="bold"
+                android:padding="@dimen/padding_medium_10dp"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
 
+            <TextView
+                android:id="@+id/contentAtencion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_customer_service"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_content"
+                android:layout_margin="@dimen/margin_extra_small_5dp"
+                android:visibility="gone"
+                android:padding="@dimen/padding_extra_small_5dp" />
 
-                <TextView
-                    android:id="@+id/contentPrivacidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/punto4"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_margin="5dp"
-                    android:visibility="gone"
-                    android:padding="5dp" />
+            <TextView
+                android:id="@+id/footerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/footer_acknowledgement"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_xlarge_20dp"
+                android:padding="@dimen/padding_medium_10dp" />
 
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/titleEnvio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Envío Seguro y Confiable"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true" />
-
-
-                <TextView
-                    android:id="@+id/contentEnvio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/punto5"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_margin="5dp"
-                    android:visibility="gone"
-                    android:padding="5dp" />
-
-
-                <TextView
-                    android:id="@+id/titleAtencion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Atención al Cliente"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true" />
-
-
-                <TextView
-                    android:id="@+id/contentAtencion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/punto6"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_margin="5dp"
-                    android:visibility="gone"
-                    android:padding="5dp" />
-
-
-                <TextView
-                    android:id="@+id/footerText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/agradecimiento"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:padding="10dp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
