@@ -102,4 +102,20 @@
     <string name="footer_text">¿Tienes alguna pregunta? ¡Estamos aquí para ayudarte!</string>
     <string name="punto1"> Nos comprometemos a ofrecer libros de la más alta calidad. Cada libro es revisado cuidadosamente para garantizar que esté en condiciones óptimas antes de ser enviado.</string>
 
+    <string name="hint_search_book">Busca tu próxima historia</string>
+    <string name="text_primary">#000000</string>
+    <string name="text_hint">#72696A</string>
+
+    <string name="content_description_book_cover">Portada del libro</string>
+    <string name="book_title_placeholder">Título del Libro</string>
+    <string name="label_synopsis">Sinopsis:</string>
+    <string name="book_synopsis_placeholder">El Diario de Ana Frank es el relato personal...</string>
+    <string name="button_back">Volver</string>
+    <string name="card_background_color">#FFFFFF</string>
+    <string name="book_price_placeholder">Precio: $100.00</string>
+    <string name="book_author_placeholder">Autor:</string>
+    <string name="book_category_placeholder">Categoría:</string>
+    <string name="book_stock_placeholder">En stock: 9</string>
+    <string name="button_buy">Comprar</string>
+    <string name="button_synopsis">Sinopsis</string>
 </resources>

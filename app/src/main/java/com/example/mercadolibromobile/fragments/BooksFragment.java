@@ -13,13 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mercadolibromobile.R;
 import com.example.mercadolibromobile.adapters.BooksAdapter;
-import com.example.mercadolibromobile.api.ApiService; // Usar ApiService
+import com.example.mercadolibromobile.api.ApiService;
 import com.example.mercadolibromobile.api.RetrofitClient;
 import com.example.mercadolibromobile.models.Book;
 
@@ -33,7 +32,6 @@ public class BooksFragment extends Fragment {
 
     private RecyclerView recyclerViewBooks;
     private BooksAdapter booksAdapter;
-    private FragmentActivity activity;
 
     @Nullable
     @Override
@@ -76,7 +74,7 @@ public class BooksFragment extends Fragment {
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Book> books = response.body();
-                    booksAdapter = new BooksAdapter(books, activity);
+                    booksAdapter = new BooksAdapter(books, requireActivity());
                     recyclerViewBooks.setAdapter(booksAdapter);
                 } else {
                     Log.e("API Error", "Código de respuesta: " + response.code() + ", Mensaje: " + response.message());
