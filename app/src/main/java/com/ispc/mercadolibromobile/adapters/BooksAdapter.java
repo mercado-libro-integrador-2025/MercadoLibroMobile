@@ -57,7 +57,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
 
         holder.tvBookTitle.setText(book.getTitulo());
         holder.tvBookPrice.setText("Precio: $" + book.getPrecio());
-        holder.tvBookStock.setText("En stock: " + book.getStock());
 
         holder.tvAuthor.setText("Autor: " + book.getAutor().getNombreAutor());
         holder.tvCategory.setText("Categoría: " + book.getCategoria().getNombreCategoria());
@@ -138,20 +137,19 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
 
     static class BookViewHolder extends RecyclerView.ViewHolder {
         ImageView ivBookCover;
-        TextView tvBookTitle, tvBookPrice, tvBookStock, tvAuthor, tvCategory;
-        Button btnSinopsis, btnComprar, btnViewReviews; // Added btnViewReviews here
+        TextView tvBookTitle, tvBookPrice, tvAuthor, tvCategory;
+        Button btnSinopsis, btnComprar, btnViewReviews;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             ivBookCover = itemView.findViewById(R.id.ivBookCover);
             tvBookTitle = itemView.findViewById(R.id.tvBookTitle);
             tvBookPrice = itemView.findViewById(R.id.tvBookPrice);
-            tvBookStock = itemView.findViewById(R.id.tvBookStock);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
             tvCategory = itemView.findViewById(R.id.tvCategory);
             btnSinopsis = itemView.findViewById(R.id.btnSinopsis);
             btnComprar = itemView.findViewById(R.id.btnComprar);
-            btnViewReviews = itemView.findViewById(R.id.btnViewReviews); // Initialized btnViewReviews
+            btnViewReviews = itemView.findViewById(R.id.btnViewReviews);
         }
     }
 

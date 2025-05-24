@@ -18,7 +18,6 @@
     <string name="book_price_placeholder">Precio: $100.00</string>
     <string name="book_author_placeholder">Autor:</string>
     <string name="book_category_placeholder">Categoría:</string>
-    <string name="book_stock_placeholder">En stock: 9</string>
     <string name="button_buy">Comprar</string>
     <string name="button_synopsis">Sinopsis</string>
     <string name="error_respuesta">Error de respuesta: %s</string>
@@ -175,7 +174,7 @@
     <string name="error_network_connection_orders">Error de conexión al cargar pedidos: %s</string>
     <string name="email_not_found">Email no encontrado</string>
 
-    <string name="button_view_reviews">Ver Reseñas</string>
+    <string name="button_view_reviews">Reseñas</string>
     <string name="reviews_for_book_placeholder">Reseñas del Libro</string>
     <string name="reviews_for_book_display">Reseñas de: %s</string>
     <string name="reviews_for_book_default">Reseñas del Libro</string>
@@ -202,7 +201,6 @@
     <string name="book_price_display">Precio: $%s</string>
     <string name="book_author_display">Autor: %s</string>
     <string name="book_category_display">Categoría: %s</string>
-    <string name="book_stock_display">En stock: %d</string>
     <string name="error_not_authenticated_buy">Usuario no autenticado. Por favor, inicia sesión.</string>
     <string name="error_show_reviews_fragment">Error: No se puede mostrar el fragment de reseñas.</string>
     <string name="error_token_not_found_cart">Token no encontrado. Por favor, inicia sesión nuevamente.</string>
@@ -235,4 +233,6 @@
     <string name="confirm_delete_review_title">Confirmar Eliminación</string>
     <string name="confirm_delete_review_message">¿Estás seguro de que quieres eliminar esta reseña?</string>
     <string name="app_footer_text">®Mercado Libro 2025</string>
+    <string name="personal_data_laws_info">De acuerdo con las leyes de protección de datos personales, tienes derecho a solicitar la eliminación de tu cuenta y de todos tus datos asociados en cualquier momento.</string>
+
 </resources>
