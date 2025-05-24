@@ -3,7 +3,7 @@ package com.ispc.mercadolibromobile.api;
 import com.ispc.mercadolibromobile.models.AuthModels;
 import com.ispc.mercadolibromobile.models.Book;
 import com.ispc.mercadolibromobile.models.Pedido;
-//import com.ispc.mercadolibromobile.models.Resena;
+import com.ispc.mercadolibromobile.models.Review;
 import com.ispc.mercadolibromobile.models.User;
 import com.ispc.mercadolibromobile.models.ItemCarrito;
 import com.ispc.mercadolibromobile.models.Direccion;
@@ -20,6 +20,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -47,17 +48,27 @@ public interface ApiService {
     Call<List<Book>> getBooks();
 
     // =================== Reseñas ===================
-    /* @GET("resenas/")
-    Call<List<Resena>> getResenas(@Header("Authorization") String token);
+    // CORRECCIÓN: Cambiado Resena a Review
+    @GET("resenas/")
+    Call<List<Review>> getAllReviews(@Header("Authorization") String token); // Renombrado para claridad
+
+    @GET("resenas/libro/{idLibro}/")
+    Call<List<Review>> getReviewsForBook(@Path("idLibro") int idLibro);
+
+    @GET("resenas/usuario/{idUsuario}/")
+    Call<List<Review>> getReviewsByUser(@Header("Authorization") String token, @Path("idUsuario") int idUsuario);
 
     @POST("resenas/")
-    Call<Void> addResena(@Header("Authorization") String token, @Body Resena resena);
+    Call<Review> createReview(@Header("Authorization") String token, @Body Review review); // CORRECCIÓN: Retorna Review
 
     @DELETE("resenas/{id}/")
-    Call<Void> deleteResena(@Header("Authorization") String token, @Path("id") String id); // Asegúrate de que el ID de reseña es String
+    Call<Void> deleteReview(@Header("Authorization") String token, @Path("id") int id); // CORRECCIÓN: id como int
 
     @PUT("resenas/{id}/")
-    Call<Resena> updateResena(@Header("Authorization") String token, @Path("id") String resenaId, @Body Resena resena);*/
+    Call<Review> updateReview(@Header("Authorization") String token, @Path("id") int reviewId, @Body Review review); // CORRECCIÓN: id como int, retorna Review
+
+    @GET("resenas/{id}/")
+    Call<Review> getReviewById(@Header("Authorization") String token, @Path("id") int reviewId); // Nuevo: para editar
 
     // =================== Pedidos ===================
     @GET("pedidos/")
@@ -74,14 +85,14 @@ public interface ApiService {
     Call<ItemCarrito> agregarAlCarrito(@Header("Authorization") String token, @Body ItemCarrito itemCarrito);
 
     @GET("carrito/")
-    Call<List<ItemCarrito>> obtenerCarrito(@Header("Authorization") String token);
+    Call<List<ItemCarrito>> obtenerCarrito(@Header("Authorization") String token); // Añadido: método para obtener carrito
 
     @DELETE("carrito/{id}/")
     Call<Void> eliminarDelCarrito(@Header("Authorization") String token, @Path("id") int id);
 
     // =================== Direcciones ===================
     @GET("direcciones/")
-    Call<List<Direccion>> getDirecciones(@Header("Authorization") String token);
+    Call<List<Direccion>> getDirecciones(@Header("Authorization") String token); // Añadido: método para obtener direcciones
 
     @POST("direcciones/")
     Call<Direccion> createDireccion(@Header("Authorization") String token, @Body Direccion direccion);
@@ -91,7 +102,7 @@ public interface ApiService {
     Call<Pago> realizarPago(@Header("Authorization") String token, @Body Pago pago);
 
     @GET("metodopagos/")
-    Call<List<Pago>> getMostrarPago(@Header("Authorization") String token);
+    Call<List<Pago>> getMostrarPago(@Header("Authorization") String token); // Añadido: método para mostrar pagos
 
     // =================== Contacto ===================
     @POST("contacto/")
