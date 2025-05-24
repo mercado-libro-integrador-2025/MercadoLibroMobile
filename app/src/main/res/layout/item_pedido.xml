@@ -9,7 +9,7 @@
         android:id="@+id/idPedido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="ID Pedido"
         android:textSize="18sp" />
 
@@ -17,7 +17,7 @@
         android:id="@+id/usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Usuario"
         android:textSize="16sp" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/direccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Dirección"
         android:textSize="16sp" />
 
@@ -33,7 +33,7 @@
         android:id="@+id/metodoPago"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Método de Pago"
         android:textSize="16sp" />
 
@@ -41,7 +41,7 @@
         android:id="@+id/estado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Estado"
         android:textSize="16sp" />
 
@@ -50,14 +50,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Fecha de Pedido"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Total"
         android:textSize="16sp" />
 </LinearLayout>
