@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mercado Libro</string>
+    <string name="app_name"></string>
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     <string name="logout_message">Sesión cerrada. ¡Hasta pronto!</string>
@@ -75,8 +75,8 @@
     <string name="label_city_entered">Ciudad ingresada: %s</string>
     <string name="label_province_entered">Provincia ingresada: %s</string>
 
-    <string name="label_username">Usuario</string>
-    <string name="hint_username_input">Ingrese su usuario</string>
+    <string name="label_username">Email</string>
+    <string name="hint_username_input">Ingrese su email</string>
     <string name="label_password">Contraseña</string>
     <string name="hint_password_input">Ingrese su contraseña</string>
     <string name="label_name">Nombre</string>

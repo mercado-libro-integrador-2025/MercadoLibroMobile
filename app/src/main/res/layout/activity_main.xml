@@ -35,7 +35,7 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/fondo2"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/sunstone_neutral_5"
             android:padding="@dimen/margin_medium"
             android:text="@string/app_footer_text"/>
 
