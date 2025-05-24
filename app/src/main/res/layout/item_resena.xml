@@ -1,104 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="16dp"
-    app:cardBackgroundColor="@color/white">
+    android:layout_marginBottom="@dimen/margin_medium"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardBackgroundColor="@color/card_background_color">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large"
+        android:background="@drawable/borde_card">
 
         <TextView
-            android:id="@+id/titulocomentario"
-            android:layout_width="0dp"
+            android:id="@+id/tvBookTitleAssociated"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_large"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/buttonsLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/review_item_book_title_placeholder"/>
+
+        <TextView
+            android:id="@+id/tvReviewEmailUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginBottom="@dimen/margin_extra_small"
+            android:text="@string/review_item_email_user_placeholder"/>
+
+        <TextView
+            android:id="@+id/tvReviewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/review_item_date_placeholder"/>
+
+        <TextView
+            android:id="@+id/tvReviewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@string/review_item_content_placeholder"/>
 
         <LinearLayout
-            android:id="@+id/buttonsLayout"
-            android:layout_width="wrap_content"
+            android:id="@+id/review_actions_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:gravity="end"
+            android:visibility="gone">
 
-            <ImageView
-                android:id="@+id/deleteButton"
+            <Button
+                android:id="@+id/btnEditReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="Eliminar reseña"
-                android:padding="8dp"
-                android:src="@drawable/ic_delete"
-                app:tint="@color/red" />
+                android:text="@string/button_edit_review_short"
+                android:backgroundTint="@color/sunstone_neutral_2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small"
+                android:layout_marginEnd="@dimen/margin_small"/>
 
-            <ImageView
-                android:id="@+id/editButton"
+            <Button
+                android:id="@+id/btnDeleteReviewItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="Editar reseña"
-                android:padding="8dp"
-                android:src="@drawable/ic_edit"
-                app:tint="@color/azul_electrico" />
+                android:text="@string/button_delete_review_short"
+                android:backgroundTint="@color/sunstone_neutral_6"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small"/>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/comentarioTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toTopOf="@id/fechaTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titulocomentario" />
-
-        <!-- Fecha -->
-        <TextView
-            android:id="@+id/fechaTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@id/libroTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/comentarioTextView" />
-
-        <!-- Título del libro -->
-        <TextView
-            android:id="@+id/libroTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@id/usuarioTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fechaTextView" />
-
-        <!-- Usuario -->
-        <TextView
-            android:id="@+id/usuarioTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/libroTextView" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

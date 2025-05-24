@@ -18,9 +18,6 @@ public class Book {
     @SerializedName("precio")
     private double precio;
 
-    @SerializedName("stock")
-    private int stock;
-
     @SerializedName("portada")
     private String portada;
 
@@ -28,13 +25,12 @@ public class Book {
     private String descripcion;
 
     // Constructor
-    public Book(int idLibro, String titulo, Autor autor, Categoria categoria, double precio, int stock, String portada, String descripcion) {
+    public Book(int idLibro, String titulo, Autor autor, Categoria categoria, double precio, String portada, String descripcion) {
         this.idLibro = idLibro;
         this.titulo = titulo;
         this.autor = autor;
         this.categoria = categoria;
         this.precio = precio;
-        this.stock = stock;
         this.portada = portada;
         this.descripcion = descripcion;
     }
@@ -78,14 +74,6 @@ public class Book {
 
     public void setPrecio(double precio) {
         this.precio = precio;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 
     public String getPortada() {

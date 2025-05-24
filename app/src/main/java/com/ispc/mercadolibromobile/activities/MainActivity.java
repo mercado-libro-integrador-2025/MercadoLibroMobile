@@ -20,7 +20,7 @@ import com.ispc.mercadolibromobile.fragments.BooksFragment;
 import com.ispc.mercadolibromobile.fragments.ContactFragment;
 import com.ispc.mercadolibromobile.fragments.ProfileFragment;
 import com.ispc.mercadolibromobile.fragments.CarritoFragment;
-import com.ispc.mercadolibromobile.utils.SessionUtils; // Importa SessionUtils
+import com.ispc.mercadolibromobile.utils.SessionUtils;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Configurar la ActionBar (Toolbar)
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setLogo(R.drawable.logoremake);
+            getSupportActionBar().setLogo(R.drawable.ic_logo_app);
             getSupportActionBar().setDisplayUseLogoEnabled(true);
             getSupportActionBar().setTitle(R.string.app_name);
         }
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        toggle.getDrawerArrowDrawable().setColor(ContextCompat.getColor(this, R.color.border_gray));
+        toggle.getDrawerArrowDrawable().setColor(ContextCompat.getColor(this, R.color.sunstone_neutral_7));
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
