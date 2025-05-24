@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_extra_small">4dp</dimen>
+    <dimen name="margin_medium_plus">12dp</dimen>
+    <dimen name="margin_xlarge">24dp</dimen>
+    <dimen name="margin_top_xlarge">20dp</dimen>
+    <dimen name="margin_top_button_large">24dp</dimen>
+    <dimen name="margin_xlarge_20dp">20dp</dimen>
+
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_xlarge">24sp</dimen>
+    <dimen name="text_size_xlarge_26sp">26sp</dimen>
+    <dimen name="text_size_xlarge_28sp">28sp</dimen>
+    <dimen name="text_size_medium_18sp">18sp</dimen>
+    <dimen name="text_size_section_title">18sp</dimen>
+    <dimen name="text_size_content">16sp</dimen>
+
+    <dimen name="icon_size_medium">24dp</dimen> <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="card_corner_radius_large_16dp">16dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_elevation_small">4dp</dimen>
+    <dimen name="card_elevation_medium">6dp</dimen>
+    <dimen name="line_height">2dp</dimen>
+    <dimen name="line_spacing_extra">4dp</dimen>
+    <dimen name="border_width_thin">1dp</dimen>
+    <dimen name="border_width_thick">8dp</dimen>
+    <dimen name="border_inset">1dp</dimen>
+
+    <dimen name="min_touch_target_size">48dp</dimen>
+    <dimen name="input_margin">10dp</dimen>
+    <dimen name="button_width_medium">272dp</dimen>
+    <dimen name="margin_top_button">10dp</dimen>
+    <dimen name="corner_radius_small">8dp</dimen>
+    <dimen name="corner_radius_extra_small">7dp</dimen>
+    <dimen name="corner_radius_button_large">150dp</dimen>
+
+    <dimen name="image_height_large">200dp</dimen>
+    <dimen name="book_cover_width">134dp</dimen>
+    <dimen name="book_cover_height">199dp</dimen>
+    <dimen name="logo_width">196dp</dimen>
+    <dimen name="logo_height">153dp</dimen>
+
+    <dimen name="dialog_padding_large">20dp</dimen>
+    <dimen name="dialog_padding_xlarge">24dp</dimen>
+
+    <dimen name="guideline_margin_horizontal">30dp</dimen>
+    <dimen name="padding_medium_10dp">10dp</dimen>
+    <dimen name="padding_extra_small_5dp">5dp</dimen>
+    <dimen name="margin_extra_small_5dp">5dp</dimen>
+    <dimen name="padding_medium_12dp">12dp</dimen>
+    <dimen name="progress_bar_size">48dp</dimen>
+</resources>

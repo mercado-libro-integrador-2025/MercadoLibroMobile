@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,114 +9,121 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardElevation="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardBackgroundColor="@android:color/transparent">
+        android:layout_margin="@dimen/margin_large"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardBackgroundColor="@color/card_background_color">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
+            android:padding="@dimen/padding_large"
             android:background="@drawable/borde_card">
 
             <TextView
                 android:id="@+id/tvContactoTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Contact"
-                android:textColor="@color/black"
+                android:text="@string/contact_title"
+                android:textColor="@color/text_primary"
                 android:textAlignment="center"
-                android:textSize="28sp"
+                android:textSize="@dimen/text_size_xlarge_28sp"
                 android:textStyle="bold"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_large" />
 
             <EditText
                 android:id="@+id/etAsunto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/asunto"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:minHeight="@dimen/min_touch_target_size" android:layout_marginTop="@dimen/margin_top_xlarge"
+                android:hint="@string/hint_subject"
+                android:inputType="textCapSentences"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_hint"
                 android:focusableInTouchMode="true"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:paddingBottom="@dimen/padding_small" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp"
-                android:background="@color/black" />
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:background="@color/line_separator_color" />
 
             <EditText
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="20dp"
-                android:hint="@string/nombre"
-                android:inputType="textPersonName"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:focusableInTouchMode="true" />
+                android:minHeight="@dimen/min_touch_target_size" android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/margin_top_xlarge"
+                android:hint="@string/hint_name"
+                android:inputType="textPersonName|textCapWords"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_hint"
+                android:focusableInTouchMode="true"
+                android:paddingBottom="@dimen/padding_small" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp"
-                android:background="@color/black" />
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:background="@color/line_separator_color" />
 
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="20dp"
-                android:hint="@string/Email"
+                android:minHeight="@dimen/min_touch_target_size" android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/margin_top_xlarge"
+                android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:focusableInTouchMode="true" />
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_hint"
+                android:focusableInTouchMode="true"
+                android:paddingBottom="@dimen/padding_small" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp"
-                android:background="@color/black" />
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:background="@color/line_separator_color" />
 
             <EditText
                 android:id="@+id/etConsulta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:layout_marginTop="20dp"
-                android:hint="@string/consulta_hint"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="18sp"
-                android:focusableInTouchMode="true" />
+                android:layout_marginTop="@dimen/margin_top_xlarge"
+                android:hint="@string/hint_query"
+                android:inputType="textMultiLine|textCapSentences"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_hint"
+                android:textSize="@dimen/text_size_medium"
+                android:focusableInTouchMode="true"
+                android:minLines="3"
+                android:gravity="top|start"
+                android:paddingBottom="@dimen/padding_small" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp"
-                android:background="@color/black" />
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:background="@color/line_separator_color" />
 
             <Button
                 android:id="@+id/btnEnviarConsulta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/enviar"
+                android:text="@string/button_send"
                 android:textColor="@color/white"
-                android:layout_marginTop="24dp"
-                android:textSize="20sp"
+                android:layout_marginTop="@dimen/margin_top_button_large"
+                android:textSize="@dimen/text_size_large"
                 android:backgroundTint="@color/azul_electrico"/>
 
         </LinearLayout>

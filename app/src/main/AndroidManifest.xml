@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.mercadolibromobile">
+    package="com.ispc.mercadolibromobile">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -23,7 +23,7 @@
             android:exported="true"
             android:label="Agregar Reseña"></activity>
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="com.ispc.mercadolibromobile.activities.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -37,13 +37,13 @@
             android:exported="true"
             android:label="Agregar Reseña"></activity>
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="com.ispc.mercadolibromobile.activities.LoginActivity"
             android:theme="@style/Base.Theme.MercadoLibroMobile" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.ispc.mercadolibromobile.activities.MainActivity"
             android:theme="@style/Base.Theme.MercadoLibroMobile" />
         <activity
-            android:name=".activities.Politicas"
+            android:name="com.ispc.mercadolibromobile.activities.Politicas"
             android:theme="@style/Base.Theme.MercadoLibroMobile" />
         <activity android:name=".activities.MisResenasActivity" />
 
