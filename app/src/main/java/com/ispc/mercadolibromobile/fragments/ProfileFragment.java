@@ -61,16 +61,18 @@ public class ProfileFragment extends Fragment {
         // Mostrar el email del usuario
         emailTextView.setText(userEmail != null ? userEmail : getString(R.string.email_not_found)); // Usar recurso de string
 
-        /*
-        // Botón de Mis Reseñas
-        Button reviewsButton = rootView.findViewById(R.id.button2);
-        reviewsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), MisResenasActivity.class);
-            startActivity(intent);
+        // CORRECCIÓN: Usar 'rootView' en lugar de 'view'
+        Button btnMyReviews = rootView.findViewById(R.id.button2);
+        btnMyReviews.setOnClickListener(v -> {
+            if (isAdded()) {
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new MyReviewsFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
         });
-        */
 
-        // Botón de Editar mis datos (si se implementa)
+        // Botón de Editar mis datos
         Button editProfileButton = rootView.findViewById(R.id.button10);
         editProfileButton.setOnClickListener(v -> {
             Toast.makeText(requireContext(), getString(R.string.feature_not_implemented), Toast.LENGTH_SHORT).show();

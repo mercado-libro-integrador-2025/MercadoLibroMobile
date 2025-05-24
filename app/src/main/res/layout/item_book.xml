@@ -3,14 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/margin_medium" android:background="@drawable/borde_card"
-    android:elevation="@dimen/card_elevation" android:padding="@dimen/padding_large">
+    android:layout_marginBottom="@dimen/margin_medium"
+    android:background="@drawable/borde_card"
+    android:elevation="@dimen/card_elevation"
+    android:padding="@dimen/padding_large">
 
     <ImageView
         android:id="@+id/ivBookCover"
-        android:layout_width="@dimen/book_cover_width" android:layout_height="@dimen/book_cover_height" android:scaleType="centerCrop"
+        android:layout_width="@dimen/book_cover_width"
+        android:layout_height="@dimen/book_cover_height"
+        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/content_description_book_cover" app:layout_constraintBottom_toBottomOf="parent"
+        android:contentDescription="@string/content_description_book_cover"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,7 +23,10 @@
         android:id="@+id/tvBookTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small" android:text="@string/book_title_placeholder" android:textColor="@color/text_primary" android:textSize="@dimen/text_size_large"
+        android:layout_marginStart="@dimen/margin_small"
+        android:text="@string/book_title_placeholder"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_large"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivBookCover"
@@ -29,7 +37,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_extra_small" android:text="@string/book_price_placeholder" android:textColor="@color/text_primary"
+        android:layout_marginTop="@dimen/margin_extra_small"
+        android:text="@string/book_price_placeholder"
+        android:textColor="@color/text_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivBookCover"
         app:layout_constraintTop_toBottomOf="@id/tvBookTitle" />
@@ -82,10 +92,12 @@
             android:id="@+id/btnComprar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_extra_small" android:layout_weight="1"
+            android:layout_margin="@dimen/margin_extra_small"
+            android:layout_weight="1"
             android:backgroundTint="@color/azul"
             android:padding="@dimen/padding_medium"
-            android:text="@string/button_buy" android:textColor="@color/white"
+            android:text="@string/button_buy"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_medium" />
 
         <Button
@@ -96,7 +108,20 @@
             android:layout_weight="1"
             android:backgroundTint="@color/vino"
             android:padding="@dimen/padding_medium"
-            android:text="@string/button_synopsis" android:textColor="@color/white"
+            android:text="@string/button_synopsis"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_medium" />
+
+        <Button
+            android:id="@+id/btnViewReviews"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_extra_small"
+            android:layout_weight="1"
+            android:backgroundTint="@color/naranja_claro"
+            android:padding="@dimen/padding_small"
+            android:text="@string/button_view_reviews"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_medium" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

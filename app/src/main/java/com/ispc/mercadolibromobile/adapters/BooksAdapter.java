@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.ispc.mercadolibromobile.R;
 import com.ispc.mercadolibromobile.api.ApiService;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
+import com.ispc.mercadolibromobile.fragments.ReviewListFragment;
 import com.ispc.mercadolibromobile.fragments.SinopsisFragment;
 import com.ispc.mercadolibromobile.models.Book;
 import com.ispc.mercadolibromobile.models.ItemCarrito;
@@ -57,13 +59,11 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         holder.tvBookPrice.setText("Precio: $" + book.getPrecio());
         holder.tvBookStock.setText("En stock: " + book.getStock());
 
-        // Muestra el nombre del autor y la categoría
         holder.tvAuthor.setText("Autor: " + book.getAutor().getNombreAutor());
         holder.tvCategory.setText("Categoría: " + book.getCategoria().getNombreCategoria());
 
         String portadaUrl = book.getPortada();
 
-        // Limpia la URL si contiene el prefijo "image/upload/https://"
         if (portadaUrl.startsWith("image/upload/https://")) {
             portadaUrl = portadaUrl.replace("image/upload/", "");
         }
@@ -75,8 +75,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
                 .timeout(10000)
                 .into(holder.ivBookCover);
 
-
-        // Botón para ver la sinopsis
         holder.btnSinopsis.setOnClickListener(v -> {
             SinopsisFragment fragment = SinopsisFragment.newInstance(
                     book.getTitulo(),
@@ -104,8 +102,18 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
                 Toast.makeText(v.getContext(), "Usuario no autenticado. Por favor, inicia sesión.", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
+        holder.btnViewReviews.setOnClickListener(v -> {
+            if (activity != null) {
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, ReviewListFragment.newInstance(book.getIdLibro(), book.getTitulo()))
+                        .addToBackStack(null)
+                        .commit();
+            } else {
+                Toast.makeText(v.getContext(), activity.getString(R.string.error_show_reviews_fragment), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     public int getItemCount() {
@@ -127,10 +135,11 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         }
         notifyDataSetChanged();
     }
+
     static class BookViewHolder extends RecyclerView.ViewHolder {
         ImageView ivBookCover;
         TextView tvBookTitle, tvBookPrice, tvBookStock, tvAuthor, tvCategory;
-        Button btnSinopsis, btnComprar;
+        Button btnSinopsis, btnComprar, btnViewReviews; // Added btnViewReviews here
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -142,8 +151,10 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             tvCategory = itemView.findViewById(R.id.tvCategory);
             btnSinopsis = itemView.findViewById(R.id.btnSinopsis);
             btnComprar = itemView.findViewById(R.id.btnComprar);
+            btnViewReviews = itemView.findViewById(R.id.btnViewReviews); // Initialized btnViewReviews
         }
     }
+
     private void agregarAlCarrito(ItemCarrito itemCarrito) {
         String token = SessionUtils.getAuthToken(activity);
 
@@ -158,7 +169,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
 
         call.enqueue(new Callback<ItemCarrito>() {
             @Override
-            public void onResponse(Call<ItemCarrito> call, Response<ItemCarrito> response) {
+            public void onResponse(@NonNull Call<ItemCarrito> call, @NonNull Response<ItemCarrito> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "Libro agregado al carrito exitosamente.");
                     Toast.makeText(activity, "Libro agregado al carrito", Toast.LENGTH_SHORT).show();
@@ -169,7 +180,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             }
 
             @Override
-            public void onFailure(Call<ItemCarrito> call, Throwable t) {
+            public void onFailure(@NonNull Call<ItemCarrito> call, @NonNull Throwable t) {
                 Log.e(TAG, "Fallo la conexión: " + t.getMessage());
                 Toast.makeText(activity, "Fallo la conexión", Toast.LENGTH_SHORT).show();
             }

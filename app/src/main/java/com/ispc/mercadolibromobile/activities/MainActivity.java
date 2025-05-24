@@ -20,7 +20,7 @@ import com.ispc.mercadolibromobile.fragments.BooksFragment;
 import com.ispc.mercadolibromobile.fragments.ContactFragment;
 import com.ispc.mercadolibromobile.fragments.ProfileFragment;
 import com.ispc.mercadolibromobile.fragments.CarritoFragment;
-import com.ispc.mercadolibromobile.utils.SessionUtils; // Importa SessionUtils
+import com.ispc.mercadolibromobile.utils.SessionUtils;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
