@@ -19,13 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_large"
             app:cardBackgroundColor="@color/card_background_color"
-            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardCornerRadius="@dimen/card_corner_radius_large_16dp"
             app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borde_card"
                 android:orientation="vertical"
                 android:padding="@dimen/padding_large">
 
@@ -52,41 +51,58 @@
                     android:minHeight="@dimen/min_touch_target_size"
                     android:padding="@dimen/padding_small"
                     android:text="@string/email_placeholder"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_large" />
 
                 <Button
                     android:id="@+id/button2"
-                    android:layout_width="match_parent"
+                    android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:backgroundTint="@color/sunstone_neutral_2"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_my_reviews"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius" />
 
                 <Button
                     android:id="@+id/button8"
-                    android:layout_width="match_parent"
+                    android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:backgroundTint="@color/sunstone_neutral_2"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_shipping_status"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius" />
 
                 <Button
                     android:id="@+id/button10"
-                    android:layout_width="match_parent"
+                    android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:backgroundTint="@color/sunstone_neutral_2"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_edit_data"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius" />
+
+                <TextView
+                    android:id="@+id/tvPersonalDataLaws"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="@dimen/line_spacing_extra"
+                    android:paddingStart="@dimen/padding_large"
+                    android:paddingEnd="@dimen/padding_large"
+                    android:text="@string/personal_data_laws_info"
+                    android:textAlignment="center"
+                    android:textColor="@color/sunstone_neutral_5"
+                    android:textSize="@dimen/text_size_small" />
 
                 <Button
                     android:id="@+id/button9"
@@ -94,11 +110,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_top_button_large"
-                    android:backgroundTint="@color/sunstone_neutral_6"
+                    android:backgroundTint="@color/error_color"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_unsubscribe"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textColor="@color/sunstone_neutral_4"
+                    android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
