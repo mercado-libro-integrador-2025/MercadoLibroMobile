@@ -15,7 +15,7 @@
     android:padding="@dimen/padding_large"
     android:drawableStart="@drawable/ic_search"
     android:drawablePadding="@dimen/padding_small"
-    android:textColorHint="@color/text_hint"
+    android:textColorHint="@color/sunstone_neutral_2"
     android:textColor="@color/text_primary"
     android:inputType="textCapSentences"
     android:imeOptions="actionSearch"

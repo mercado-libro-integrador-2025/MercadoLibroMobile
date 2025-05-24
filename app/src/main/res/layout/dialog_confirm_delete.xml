@@ -2,26 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/borde_card"
     android:orientation="vertical"
-    android:padding="@dimen/dialog_padding_xlarge" android:background="@drawable/borde_card">
+    android:padding="@dimen/dialog_padding_xlarge">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dialog_confirm_delete_message" android:textSize="@dimen/text_size_medium_18sp" android:textColor="@color/text_primary" android:gravity="center"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/margin_medium" /> <LinearLayout
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:gravity="center"
+        android:text="@string/dialog_confirm_delete_message"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_medium_18sp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_large"
         android:gravity="center"
-        android:layout_marginTop="@dimen/margin_large"> <Button
-        android:id="@+id/positive_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/min_touch_target_size" android:backgroundTint="@color/white" android:textColor="@color/text_primary" android:text="@string/dialog_confirm_delete_yes_button" /> <Button
-        android:id="@+id/negative_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/min_touch_target_size" android:text="@string/dialog_confirm_delete_no_button" android:backgroundTint="@color/button_background_dialog_delete_negative" android:textColor="@color/text_primary" android:layout_marginStart="@dimen/margin_large" /> </LinearLayout>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/positive_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:minHeight="@dimen/min_touch_target_size"
+            android:text="@string/dialog_confirm_delete_yes_button"
+            android:textColor="@color/text_primary" />
+
+        <Button
+            android:id="@+id/negative_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:backgroundTint="@color/sunstone_neutral_5"
+            android:minHeight="@dimen/min_touch_target_size"
+            android:text="@string/dialog_confirm_delete_no_button"
+            android:textColor="@color/text_primary" />
+    </LinearLayout>
 </LinearLayout>
