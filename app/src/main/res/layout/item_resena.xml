@@ -23,7 +23,17 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/buttonsLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:contentDescription="Título de comentario"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
         <LinearLayout
             android:id="@+id/buttonsLayout"
@@ -37,19 +47,37 @@
                 android:id="@+id/deleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="Eliminar reseña"
                 android:padding="8dp"
                 android:src="@drawable/ic_delete"
-                app:tint="@color/red" />
+                app:tint="@color/red"
+
+                android:contentDescription="Eliminar reseña"
+                android:importantForAccessibility="yes"
+                android:accessibilityLiveRegion="polite"
+                android:accessibilityTraversalBefore="@id/etNombre"
+                android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                android:focusable="true"
+                android:labelFor="@id/etNombre"
+
+                />
 
             <ImageView
                 android:id="@+id/editButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="Editar reseña"
                 android:padding="8dp"
                 android:src="@drawable/ic_edit"
-                app:tint="@color/azul_electrico" />
+                app:tint="@color/azul_electrico"
+
+                android:contentDescription="Editar reseña"
+                android:importantForAccessibility="yes"
+                android:accessibilityLiveRegion="polite"
+                android:accessibilityTraversalBefore="@id/etNombre"
+                android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                android:focusable="true"
+                android:labelFor="@id/etNombre"
+
+                />
         </LinearLayout>
 
         <TextView
@@ -62,7 +90,17 @@
             app:layout_constraintBottom_toTopOf="@id/fechaTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titulocomentario" />
+            app:layout_constraintTop_toBottomOf="@id/titulocomentario"
+
+            android:contentDescription="Comentario"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
         <!-- Fecha -->
         <TextView
@@ -74,7 +112,17 @@
             app:layout_constraintBottom_toTopOf="@id/libroTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/comentarioTextView" />
+            app:layout_constraintTop_toBottomOf="@id/comentarioTextView"
+
+            android:contentDescription="Fecha"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
         <!-- Título del libro -->
         <TextView
@@ -86,7 +134,17 @@
             app:layout_constraintBottom_toTopOf="@id/usuarioTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fechaTextView" />
+            app:layout_constraintTop_toBottomOf="@id/fechaTextView"
+
+            android:contentDescription="Libro"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
         <!-- Usuario -->
         <TextView
@@ -97,7 +155,17 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/libroTextView" />
+            app:layout_constraintTop_toBottomOf="@id/libroTextView"
+
+            android:contentDescription="Usuario"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

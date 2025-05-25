@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,21 +23,51 @@
             android:text="Título del Libro"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+
+            android:contentDescription="Título del libro"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
         <TextView
             android:id="@+id/tvCantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cantidad"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+
+            android:contentDescription="Cantidad"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
         <TextView
             android:id="@+id/tvPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Precio"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+
+            android:contentDescription="Precio"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -52,7 +81,17 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp"
-                android:src="@drawable/ic_borrar" />
+                android:src="@drawable/ic_delete"
+
+                android:contentDescription="Borrar"
+                android:importantForAccessibility="yes"
+                android:accessibilityLiveRegion="polite"
+                android:accessibilityTraversalBefore="@id/etNombre"
+                android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                android:focusable="true"
+                android:labelFor="@id/etNombre"
+
+                />
 
             <ImageButton
                 android:id="@+id/btnDisminuirCantidad"
@@ -60,7 +99,17 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp"
-                android:src="@drawable/ic_restar" />
+                android:src="@drawable/ic_restar"
+
+                android:contentDescription="Disminuir"
+                android:importantForAccessibility="yes"
+                android:accessibilityLiveRegion="polite"
+                android:accessibilityTraversalBefore="@id/etNombre"
+                android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                android:focusable="true"
+                android:labelFor="@id/etNombre"
+
+                />
 
             <ImageButton
                 android:id="@+id/btnAumentarCantidad"
@@ -68,7 +117,17 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp"
-                android:src="@drawable/ic_sumar" />
+                android:src="@drawable/ic_sumar"
+
+                android:contentDescription="Aumentar"
+                android:importantForAccessibility="yes"
+                android:accessibilityLiveRegion="polite"
+                android:accessibilityTraversalBefore="@id/etNombre"
+                android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                android:focusable="true"
+                android:labelFor="@id/etNombre"
+
+                />
         </LinearLayout>
 
     </LinearLayout>

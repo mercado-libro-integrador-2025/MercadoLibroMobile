@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo2">
+    android:background="@drawable/fondo2"
+    android:padding="@dimen/padding_large"
+    tools:context=".fragments.PedidosFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPedidos"
+    <TextView
+        android:id="@+id/tvPedidosTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_orders_title"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/margin_large"
+
+        android:contentDescription="Ms pedidios"
+        android:importantForAccessibility="yes"
+        android:accessibilityLiveRegion="polite"
+        android:accessibilityTraversalBefore="@id/etNombre"
+        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+        android:focusable="true"
+        android:labelFor="@id/etNombre"
+
+        />
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/margin_medium"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardBackgroundColor="@color/card_background_color"
+
+        android:contentDescription="Título: Bienvenido a la sección de contacto"
+        android:importantForAccessibility="yes"
+        android:accessibilityLiveRegion="polite"
+        android:accessibilityTraversalBefore="@id/etNombre"
+        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+        android:focusable="true"
+        android:labelFor="@id/etNombre"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large"
+            android:background="@drawable/borde_card">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewPedidos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:contentDescription="Mis Pedidos"
+                android:importantForAccessibility="yes"
+                android:accessibilityLiveRegion="polite"
+                android:accessibilityTraversalBefore="@id/etNombre"
+                android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                android:focusable="true"
+                android:labelFor="@id/etNombre"
+
+                />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
