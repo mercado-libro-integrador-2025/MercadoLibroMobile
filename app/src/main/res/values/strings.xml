@@ -235,4 +235,22 @@
     <string name="app_footer_text">®Mercado Libro 2025</string>
     <string name="personal_data_laws_info">De acuerdo con las leyes de protección de datos personales, tienes derecho a solicitar la eliminación de tu cuenta y de todos tus datos asociados en cualquier momento.</string>
 
+    <string name="error_email_required">El email es requerido.</string>
+
+
+
+    <string name="error_password_length">La contraseña debe tener entre 8 y 16 caracteres.</string>
+    <string name="error_password_format">La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.</string>
+
+    <string name="error_repeat_password_required">Repite la contraseña.</string>
+    <string name="error_password_mismatch">Las contraseñas no coinciden.</string>
+
+
+    <string name="error_username_length">El nombre de usuario debe tener entre 3 y 50 caracteres.</string>
+    <string name="error_username_format">El nombre de usuario solo puede contener letras y espacios.</string>
+
+    <string name="label_repeat_password">Repetir Contraseña</string>
+    <string name="hint_repeat_password_input">Vuelve a ingresar tu contraseña</string>
+
+
 </resources>
