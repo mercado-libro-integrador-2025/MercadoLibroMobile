@@ -15,15 +15,50 @@
     android:padding="@dimen/padding_large"
     android:drawableStart="@drawable/ic_search"
     android:drawablePadding="@dimen/padding_small"
-    android:textColorHint="@color/sunstone_neutral_2"
+    android:textColorHint="@color/text_hint"
     android:textColor="@color/text_primary"
     android:inputType="textCapSentences"
     android:imeOptions="actionSearch"
-    android:maxLines="1" />
+    android:maxLines="1"
+
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif"
+        android:maxLength="50"
+        android:singleLine="true"
+        android:gravity="start|center_vertical"
+        android:cursorVisible="true"
+        android:enabled="true"
+        android:focusableInTouchMode="true"
+        android:autofillHints="name"
+        android:importantForAutofill="yes"
+     android:visibility="visible"
+        android:layout_marginTop="16dp"
+
+    android:contentDescription="Busca tu proxima historia"
+    android:importantForAccessibility="yes"
+    android:accessibilityLiveRegion="polite"
+    android:accessibilityTraversalBefore="@id/etNombre"
+    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+    android:focusable="true"
+    android:labelFor="@id/etNombre"
+
+
+    />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBooks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/margin_medium" />
+        android:layout_marginTop="@dimen/margin_medium"
+
+        android:contentDescription="Título: Bienvenido a la sección de historia"
+        android:importantForAccessibility="yes"
+        android:accessibilityLiveRegion="polite"
+        android:accessibilityTraversalBefore="@id/etNombre"
+        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+        android:focusable="true"
+        android:labelFor="@id/etNombre"
+
+        />
 </LinearLayout>

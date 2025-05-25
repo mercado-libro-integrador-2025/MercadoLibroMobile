@@ -49,10 +49,10 @@ public class DireccionFragment extends Fragment {
         etCiudad = view.findViewById(R.id.etCiudad);
         etProvincia = view.findViewById(R.id.etProvincia);
 
-        tvCalleIngresada = view.findViewById(R.id.tvCalleIngresada);
-        tvNumeroIngresado = view.findViewById(R.id.tvNumeroIngresado);
-        tvCiudadIngresada = view.findViewById(R.id.tvCiudadIngresada);
-        tvProvinciaIngresada = view.findViewById(R.id.tvProvinciaIngresada);
+        //tvCalleIngresada = view.findViewById(R.id.tvCalleIngresada);
+        //tvNumeroIngresado = view.findViewById(R.id.tvNumeroIngresado);
+        //tvCiudadIngresada = view.findViewById(R.id.tvCiudadIngresada);
+        //tvProvinciaIngresada = view.findViewById(R.id.tvProvinciaIngresada);
 
         btnIrAlPago = view.findViewById(R.id.btnIrAlPago);
 
