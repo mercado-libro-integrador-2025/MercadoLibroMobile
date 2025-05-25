@@ -3,6 +3,8 @@
 *.iml
 *.iws
 
+.vs/
+
 # Archivos de configuración local
 local.properties
 
