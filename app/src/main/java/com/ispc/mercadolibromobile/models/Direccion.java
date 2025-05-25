@@ -1,11 +1,21 @@
 package com.ispc.mercadolibromobile.models;
 
-public class Direccion {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class Direccion implements Serializable {
+    @SerializedName("id")
     private int id;
+    @SerializedName("usuario")
     private int usuario;
+    @SerializedName("calle")
     private String calle;
+    @SerializedName("numero")
     private String numero;
+    @SerializedName("ciudad")
     private String ciudad;
+    @SerializedName("provincia")
     private String provincia;
 
     public Direccion(int id, int usuario, String calle, String numero, String ciudad, String provincia) {

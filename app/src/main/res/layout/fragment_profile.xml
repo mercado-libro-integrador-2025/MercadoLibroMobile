@@ -59,10 +59,11 @@
                     android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/sunstone_neutral_7"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_my_reviews"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius" />
 
@@ -71,10 +72,11 @@
                     android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/sunstone_neutral_7"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_shipping_status"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius" />
 
@@ -83,13 +85,58 @@
                     android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/sunstone_neutral_7"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_edit_data"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:background="@color/line_separator_color" />
+
+                <TextView
+                    android:id="@+id/tvAddressesTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:text="@string/my_addresses_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAddresses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_direccion" />
+
+                <Button
+                    android:id="@+id/btnAddAddress"
+                    android:layout_width="@dimen/button_width_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:backgroundTint="@color/sunstone_neutral_6"
+                    android:minHeight="@dimen/min_touch_target_size"
+                    android:text="@string/button_add_new_address"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:background="@color/line_separator_color" />
                 <TextView
                     android:id="@+id/tvPersonalDataLaws"
                     android:layout_width="match_parent"

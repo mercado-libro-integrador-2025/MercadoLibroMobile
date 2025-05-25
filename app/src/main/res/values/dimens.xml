@@ -57,4 +57,5 @@
     <dimen name="margin_extra_small_5dp">5dp</dimen>
     <dimen name="padding_medium_12dp">12dp</dimen>
     <dimen name="progress_bar_size">48dp</dimen>
+
 </resources>
