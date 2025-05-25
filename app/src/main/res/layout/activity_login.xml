@@ -507,7 +507,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        android:contentDescription="Título: Bienvenido a la sección de contacto"
+        android:contentDescription="Cargando"
         android:importantForAccessibility="yes"
         android:accessibilityLiveRegion="polite"
         android:accessibilityTraversalBefore="@id/etNombre"

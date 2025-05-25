@@ -439,7 +439,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_small"
                             android:text="@string/label_expiration_display_placeholder"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/sunstone_neutral_5"
                             android:textSize="@dimen/text_size_small" />
 
                         <TextView
