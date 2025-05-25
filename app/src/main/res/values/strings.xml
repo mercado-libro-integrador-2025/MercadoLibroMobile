@@ -1,78 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name"></string>
+
+    <string name="app_name">Mercado Libro</string>
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     <string name="logout_message">Sesión cerrada. ¡Hasta pronto!</string>
-    <string name="footer_text">© Mercado Libro 2024</string>
-
-    <string name="button_back">Volver</string>
-    <string name="button_save_data">Guardar Datos</string>
-    <string name="button_go_to_payment">Ir al Pago</string>
+    <string name="app_footer_text">© Mercado Libro 2025</string>
     <string name="error_unknown">Error desconocido</string>
-    <string name="dialog_alert_positive_button">Aceptar</string>
     <string name="feature_not_implemented">Funcionalidad no implementada aún.</string>
-
-    <string name="hint_search_book">Busca tu próxima historia</string>
-    <string name="book_title_placeholder">Título del Libro</string>
-    <string name="book_price_placeholder">Precio: $100.00</string>
-    <string name="book_author_placeholder">Autor:</string>
-    <string name="book_category_placeholder">Categoría:</string>
-    <string name="button_buy">Comprar</string>
-    <string name="button_synopsis">Sinopsis</string>
-    <string name="error_respuesta">Error de respuesta: %s</string>
-    <string name="error_cargar_libros">Error al cargar libros: %s</string>
-
-    <string name="content_description_book_cover">Portada del libro</string>
-    <string name="label_synopsis">Sinopsis:</string>
-    <string name="book_synopsis_placeholder">El Diario de Ana Frank es el relato personal de una niña judía de 13 años que, junto con su familia y otras personas, se ocultó durante dos años en un anexo secreto de Ámsterdam para escapar de la persecución nazi durante la Segunda Guerra Mundial.</string>
-
-    <string name="total_price_format">Total: $%s</string>
-    <string name="title_finish_purchase">Finalizar compra</string>
-    <string name="total_price_placeholder">Total: $0.00</string>
-    <string name="button_continue">Continuar</string>
-
-    <string name="contact_title">Contacto</string>
-    <string name="hint_subject">Asunto</string>
-    <string name="hint_name">Nombre</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_query">Escribe tu consulta aquí...</string>
-    <string name="button_send">Enviar</string>
-    <string name="error_asunto_required">Por favor, escribe el asunto.</string>
-    <string name="error_email_invalid">Por favor, escribe un email válido.</string>
-    <string name="error_query_required">Por favor, escribe tu consulta.</string>
-    <string name="error_query_min_length">La consulta debe tener al menos 10 caracteres.</string>
-    <string name="success_query_sent">Consulta enviada con éxito</string>
-    <string name="error_sending_query">Error al enviar la consulta</string>
-    <string name="error_network_connection">Error de conexión. Por favor, verifica tu red.</string>
-
-    <string name="title_enter_address">Ingrese su dirección:</string>
-    <string name="label_street">Calle:</string>
-    <string name="hint_enter_street">Ingrese la calle</string>
-    <string name="label_number">Número:</string>
-    <string name="hint_enter_number">Ingrese el número</string>
-    <string name="label_city">Ciudad:</string>
-    <string name="hint_enter_city">Ingrese la ciudad</string>
-    <string name="label_province">Provincia:</string>
-    <string name="hint_enter_province">Ingrese la provincia</string>
-    <string name="label_my_address">MI DIRECCION:</string>
-    <string name="label_street_entered_placeholder">Calle ingresada:</string>
-    <string name="label_number_entered_placeholder">Número ingresado:</string>
-    <string name="label_city_entered_placeholder">Ciudad ingresada:</string>
-    <string name="label_province_entered_placeholder">Provincia ingresada:</string>
-    <string name="error_street_required">Por favor, ingrese la calle.</string>
-    <string name="error_number_required">Por favor, ingrese el número.</string>
-    <string name="error_city_required">Por favor, ingrese la ciudad.</string>
-    <string name="error_province_required">Por favor, ingrese la provincia.</string>
-    <string name="success_address_saved">Dirección guardada exitosamente</string>
-    <string name="error_saving_address">Error al guardar dirección: %s</string>
-    <string name="error_network_connection_address">Error de conexión al guardar dirección.</string>
-    <string name="error_token_not_found">Token no encontrado, por favor inicie sesión.</string>
-    <string name="no_address_saved">No hay dirección guardada</string>
-    <string name="label_street_entered">Calle ingresada: %s</string>
-    <string name="label_number_entered">Número ingresado: %s</string>
-    <string name="label_city_entered">Ciudad ingresada: %s</string>
-    <string name="label_province_entered">Provincia ingresada: %s</string>
 
     <string name="label_username">Email</string>
     <string name="hint_username_input">Ingrese su email</string>
@@ -92,6 +27,60 @@
     <string name="error_name_required">El nombre de usuario es requerido.</string>
     <string name="error_registration_failed">No se pudo registrar. Intenta nuevamente.</string>
     <string name="error_registration_failed_toast">Error al registrar. Por favor, intenta nuevamente.</string>
+    <string name="logo_content_description">Logo</string>
+
+    <string name="welcome_message">¡Hola querido Lector!</string>
+    <string name="email_placeholder">Dato desde el back</string>
+    <string name="button_my_reviews">Mis Reseñas</string>
+    <string name="my_reviews_title">Mis Reseñas</string>
+    <string name="button_shipping_status">Estado de mi envío</string>
+    <string name="button_edit_data">Editar mis datos</string>
+    <string name="button_unsubscribe">Dar de Baja</string>
+    <string name="personal_data_laws_info">De acuerdo con las leyes de protección de datos personales,\ntienes derecho a solicitar la eliminación de tu cuenta\ny de todos tus datos asociados en cualquier momento.</string>
+    <string name="error_no_active_session_delete">No hay sesión activa para eliminar el usuario.</string>
+    <string name="error_getting_user_data">Error al obtener datos del usuario.</string>
+    <string name="error_network_connection_user_data">Fallo en la conexión para obtener usuario.</string>
+    <string name="success_user_deleted">Usuario eliminado con éxito.</string>
+    <string name="error_deleting_user">Error al eliminar el usuario.</string>
+    <string name="error_network_connection_delete_user">Fallo en la conexión para eliminar usuario.</string>
+    <string name="email_not_found">Email no encontrado</string>
+    <string name="error_auth_required">Error de autenticación. Por favor, inicia sesión nuevamente.</string>
+    <string name="error_auth_required_addresses">Se requiere autenticación para ver y gestionar direcciones.</string>
+    <string name="error_auth_required_delete_address">Se requiere autenticación para eliminar la dirección.</string>
+
+
+    <string name="hint_search_book">Busca tu próxima historia</string>
+    <string name="book_title_placeholder">Título del Libro</string>
+    <string name="book_price_placeholder">Precio: $100.00</string>
+    <string name="book_author_placeholder">Autor:</string>
+    <string name="book_category_placeholder">Categoría:</string>
+    <string name="book_stock_placeholder">En stock:</string>
+    <string name="button_buy">Comprar</string>
+    <string name="button_synopsis">Sinopsis</string>
+    <string name="button_view_reviews">Reseñas</string>
+    <string name="content_description_book_cover">Portada del libro</string>
+    <string name="error_respuesta">Error de respuesta: %s</string>
+    <string name="error_cargar_libros">Error al cargar libros: %s</string>
+    <string name="book_price_display">Precio: $%s</string>
+    <string name="book_author_display">Autor: %s</string>
+    <string name="book_category_display">Categoría: %s</string>
+    <string name="book_stock_display">En stock: %d</string>
+    <string name="error_not_authenticated_buy">Usuario no autenticado. Por favor, inicia sesión.</string>
+    <string name="error_show_reviews_fragment">Error: No se puede mostrar el fragment de reseñas.</string>
+
+    <string name="label_synopsis">Sinopsis:</string>
+    <string name="book_synopsis_placeholder">El Diario de Ana Frank es el relato personal de una niña judía de 13 años que, junto con su familia y otras personas, se ocultó durante dos años en un anexo secreto de Ámsterdam para escapar de la persecución nazi durante la Segunda Guerra Mundial.</string>
+    <string name="button_back">Volver</string>
+
+    <string name="total_price_format">Total: $%s</string>
+    <string name="title_finish_purchase">Finalizar compra</string>
+    <string name="total_price_placeholder">Total: $0.00</string>
+    <string name="button_continue">Continuar</string>
+    <string name="error_token_not_found_cart">Token no encontrado. Por favor, inicia sesión nuevamente.</string>
+    <string name="success_add_to_cart">Libro agregado al carrito</string>
+    <string name="error_add_to_cart_code">Error al agregar al carrito. Código: %d</string>
+    <string name="error_network_connection_cart">Fallo la conexión al agregar al carrito.</string>
+
 
     <string name="title_payment_method">Método de Pago</string>
     <string name="label_card_number">Número de Tarjeta:</string>
@@ -107,6 +96,10 @@
     <string name="label_expiration_display_placeholder">Su fecha de vencimiento es:</string>
     <string name="info_payment_verification">Por favor, verifique que los datos sean correctos antes de continuar.</string>
     <string name="button_pay">Pagar</string>
+    <string name="label_expiration_display">Vencimiento: %s</string>
+    <string name="label_card_number_display">Número de Tarjeta: %s</string>
+    <string name="label_cvv_display">CVV: %s</string>
+    <string name="label_card_type_display_placeholder"></string>
     <string name="success_payment_made">Pago realizado con éxito</string>
     <string name="error_making_payment">Error al realizar el pago: %s</string>
     <string name="error_network_connection_payment">Error de conexión al realizar el pago.</string>
@@ -119,20 +112,126 @@
     <string name="error_expiration_past">La fecha de vencimiento no puede ser en el pasado.</string>
     <string name="error_card_type_invalid">El tipo de tarjeta debe ser \'debito\' o \'credito\'.</string>
 
-    <string name="my_orders_title">Mis Pedidos</string>
 
-    <string name="welcome_message">¡Hola querido Lector!</string>
-    <string name="email_placeholder">Dato desde el back</string>
-    <string name="button_my_reviews">Mis Reseñas</string>
-    <string name="button_shipping_status">Estado de mi envío</string>
-    <string name="button_edit_data">Editar mis datos</string>
-    <string name="button_unsubscribe">Dar de Baja</string>
-    <string name="error_no_active_session_delete">No hay sesión activa para eliminar el usuario.</string>
-    <string name="error_getting_user_data">Error al obtener datos del usuario.</string>
-    <string name="error_network_connection_user_data">Fallo en la conexión para obtener usuario.</string>
-    <string name="success_user_deleted">Usuario eliminado con éxito.</string>
-    <string name="error_deleting_user">Error al eliminar el usuario.</string>
-    <string name="error_network_connection_delete_user">Fallo en la conexión para eliminar usuario.</string>
+    <string name="my_addresses_title">Mis Direcciones</string>
+    <string name="button_add_new_address">Agregar Nueva Dirección</string>
+    <string name="no_addresses_saved">No tienes direcciones guardadas.</string>
+    <string name="address_placeholder_format">%s %s, %s, %s</string>
+    <string name="button_edit_address">Editar</string>
+    <string name="button_delete_address">Eliminar</string>
+    <string name="title_add_new_address">Agregar Nueva Dirección</string>
+    <string name="title_edit_address">Editar Dirección</string>
+    <string name="button_save_address">Guardar Dirección</string>
+    <string name="button_update_address">Actualizar Dirección</string>
+    <string name="success_address_updated">Dirección actualizada exitosamente.</string>
+    <string name="error_updating_address">Error al actualizar la dirección.</string>
+    <string name="error_loading_addresses">Error al cargar las direcciones.</string>
+    <string name="error_network_connection_addresses">Fallo en la conexión de red al cargar direcciones.</string>
+    <string name="confirm_delete_address_title">Confirmar Eliminación</string>
+    <string name="confirm_delete_address_message">¿Estás seguro de que deseas eliminar esta dirección?</string>
+    <string name="success_address_deleted">Dirección eliminada exitosamente.</string>
+    <string name="error_deleting_address">Error al eliminar la dirección.</string>
+    <string name="error_network_connection_delete_address">Fallo en la conexión de red al eliminar dirección.</string>
+    <string name="title_enter_address">Ingresar su dirección:</string>
+    <string name="label_street">Calle:</string>
+    <string name="hint_enter_street">Ingrese la calle</string>
+    <string name="label_number">Número:</string>
+    <string name="hint_enter_number">Ingrese el número</string>
+    <string name="label_city">Ciudad:</string>
+    <string name="hint_enter_city">Ingrese la ciudad</string>
+    <string name="label_province">Provincia:</string>
+    <string name="hint_enter_province">Ingrese la provincia</string>
+    <string name="button_save_data">Guardar Datos</string>
+    <string name="button_go_to_payment">Ir al Pago</string>
+    <string name="success_address_saved">Dirección guardada exitosamente</string>
+    <string name="error_saving_address">Error al guardar dirección: %s</string>
+    <string name="error_network_connection_address">Error de conexión al guardar dirección.</string>
+    <string name="error_street_required">La calle es obligatoria.</string>
+    <string name="error_number_required">El número es obligatorio.</string>
+    <string name="error_city_required">La ciudad es obligatoria.</string>
+    <string name="error_province_required">La provincia es obligatoria.</string>
+    <string name="error_token_not_found">Token no encontrado, por favor inicie sesión.</string>
+    <string name="no_address_saved_placeholder">No hay dirección guardada</string> <string name="label_street_entered">Calle ingresada: %s</string>
+    <string name="label_number_entered">Número ingresado: %s</string>
+    <string name="label_city_entered">Ciudad ingresada: %s</string>
+    <string name="label_province_entered">Provincia ingresada: %s</string>
+    <string name="label_my_address">MI DIRECCION:</string>
+    <string name="label_street_entered_placeholder">Calle ingresada:</string>
+    <string name="label_number_entered_placeholder">Número ingresado:</string>
+    <string name="label_city_entered_placeholder">Ciudad ingresada:</string>
+    <string name="label_province_entered_placeholder">Provincia ingresada:</string>
+
+
+    <string name="my_orders_title">Mis Pedidos</string>
+    <string name="error_loading_orders">Error al cargar los pedidos: %s</string>
+    <string name="error_network_connection_orders">Error de conexión al cargar pedidos: %s</string>
+
+
+    <string name="contact_title">Contacto</string>
+    <string name="hint_subject">Asunto</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_query">Escribe tu consulta aquí...</string>
+    <string name="button_send">Enviar</string>
+    <string name="error_asunto_required">Por favor, escribe el asunto.</string>
+    <string name="error_email_invalid">Por favor, escribe un email válido.</string>
+    <string name="error_query_required">Por favor, escribe tu consulta.</string>
+    <string name="error_query_min_length">La consulta debe tener al menos 10 caracteres.</string>
+    <string name="success_query_sent">Consulta enviada con éxito</string>
+    <string name="error_sending_query">Error al enviar la consulta</string>
+    <string name="error_network_connection">Error de conexión. Por favor, verifica tu red.</string>
+
+
+    <string name="reviews_for_book_placeholder">Reseñas del Libro</string>
+    <string name="reviews_for_book_display">Reseñas de: %s</string>
+    <string name="reviews_for_book_default">Reseñas del Libro</string>
+    <string name="my_reviews_title_reviews">Mis Reseñas</string> <string name="button_create_new_review">Crear Nueva Reseña</string>
+    <string name="create_review_title">Crear Reseña</string>
+    <string name="edit_review_title">Editar Reseña</string>
+    <string name="hint_review_title">Título de la reseña</string>
+    <string name="hint_review_content">Reseña</string>
+    <string name="label_rating">Calificación:</string>
+    <string name="button_save_review">Guardar Reseña</string>
+    <string name="button_delete_review">Eliminar Reseña</string>
+    <string name="book_title_placeholder_review">Título del Libro:</string>
+    <string name="book_title_placeholder_review_id">Libro ID: %d</string>
+    <string name="select_book_for_review_message">Seleccione un libro para esta reseña</string>
+    <string name="error_review_empty_fields">Por favor, complete el título y el contenido de la reseña.</string>
+    <string name="error_review_no_rating">Por favor, asigne una calificación.</string>
+    <string name="error_not_logged_in_review">Debe iniciar sesión para crear o editar reseñas.</string>
+    <string name="success_review_created">Reseña creada exitosamente.</string>
+    <string name="success_review_updated">Reseña actualizada exitosamente.</string>
+    <string name="confirm_delete_review">¿Está seguro de que desea eliminar esta reseña?</string>
+    <string name="review_item_book_title_placeholder">Título del libro</string>
+    <string name="review_item_content_placeholder">Contenido de la reseña...</string>
+    <string name="review_item_email_user_placeholder">Usuario</string>
+    <string name="review_item_date_placeholder">Fecha: </string>
+    <string name="button_edit_review_short">Editar</string>
+    <string name="button_delete_review_short">Eliminar</string>
+    <string name="review_item_book_title_display">Libro: %s</string>
+    <string name="review_item_date_display">Fecha: %s</string>
+    <string name="no_reviews_found">No se encontraron reseñas para tu usuario.</string>
+    <string name="error_loading_my_reviews">Error al cargar tus reseñas: %s</string>
+    <string name="error_network_connection_reviews">Error de red. Verifica tu conexión.</string>
+    <string name="error_token_not_found_reviews">Token de autenticación no encontrado. Por favor, inicia sesión.</string>
+    <string name="error_user_id_not_found">No se pudo obtener el ID de usuario.</string>
+    <string name="confirm_delete_review_id">¿Estás seguro de que deseas eliminar la reseña con ID: %d?</string>
+    <string name="success_review_deleted">Reseña eliminada exitosamente.</string>
+    <string name="error_deleting_review">Error al eliminar la reseña: %s</string>
+    <string name="error_network_connection_delete_review">Error de red al eliminar la reseña.</string>
+    <string name="no_reviews_found_for_book">No se encontraron reseñas para este libro.</string>
+    <string name="error_loading_reviews_for_book">Error al cargar reseñas del libro: %s</string>
+    <string name="error_review_no_book_selected">Por favor, seleccione un libro para la reseña.</string>
+    <string name="error_loading_review_edit">Error al cargar la reseña para editar.</string>
+    <string name="error_creating_review">Error al crear la reseña: %s</string>
+    <string name="error_updating_review">Error al actualizar la reseña: %s</string>
+    <string name="hint_select_book_spinner">Selecciona un libro</string>
+    <string name="error_loading_books_for_spinner">Error al cargar la lista de libros.</string>
+    <string name="error_network_connection_books">Error de conexión al cargar libros.</string>
+    <string name="confirm_delete_review_title">Confirmar Eliminación</string>
+    <string name="confirm_delete_review_message">¿Estás seguro de que quieres eliminar esta reseña?</string>
+    <string name="review_item_title_placeholder">Título de la reseña</string>
+
 
     <string name="title_policies_main">Políticas de Calidad y Seguridad</string>
     <string name="title_quality">Calidad del Producto</string>
@@ -158,99 +257,9 @@
 
     <string name="dialog_registration_success_title">¡Registro exitoso!</string>
     <string name="dialog_registration_success_message">Te has registrado correctamente.</string>
-
     <string name="dialog_confirm_delete_message">¿Está seguro de que desea eliminar su cuenta de usuario?</string>
     <string name="dialog_confirm_delete_yes_button">Sí</string>
     <string name="dialog_confirm_delete_no_button">No</string>
-    <string name="logo_content_description">Logo</string>
-    <string name="label_card_type_display_placeholder">Tipo de Tarjeta: No especificado</string>
 
-    <string name="label_card_number_display">Número de Tarjeta: %s</string>
-    <string name="label_cvv_display">CVV: %s</string>
-    <string name="label_expiration_display">Vencimiento: %s</string>
-
-    <string name="error_auth_required">Error de autenticación. Por favor, inicia sesión nuevamente.</string>
-    <string name="error_loading_orders">Error al cargar los pedidos: %s</string>
-    <string name="error_network_connection_orders">Error de conexión al cargar pedidos: %s</string>
-    <string name="email_not_found">Email no encontrado</string>
-
-    <string name="button_view_reviews">Reseñas</string>
-    <string name="reviews_for_book_placeholder">Reseñas del Libro</string>
-    <string name="reviews_for_book_display">Reseñas de: %s</string>
-    <string name="reviews_for_book_default">Reseñas del Libro</string>
-    <string name="my_reviews_title">Mis Reseñas</string>
-    <string name="button_create_new_review">Crear Nueva Reseña</string>
-    <string name="create_review_title">Crear Reseña</string>
-    <string name="edit_review_title">Editar Reseña</string>
-    <string name="review_item_date_placeholder">Fecha: </string>
-    <string name="button_save_review">Guardar Reseña</string>
-    <string name="button_delete_review">Eliminar Reseña</string>
-    <string name="book_title_placeholder_review">Título del Libro:</string>
-    <string name="book_title_placeholder_review_id">Libro ID: %d</string> <string name="select_book_for_review_message">Seleccione un libro para esta reseña</string>
-
-    <string name="error_review_empty_content">Por favor, complete el contenido de la reseña.</string> <string name="error_not_logged_in_review">Debe iniciar sesión para crear o editar reseñas.</string>
-    <string name="success_review_created">Reseña creada exitosamente.</string>
-    <string name="success_review_updated">Reseña actualizada exitosamente.</string>
-    <string name="confirm_delete_review">¿Está seguro de que desea eliminar esta reseña?</string>
-    <string name="review_item_book_title_placeholder">Título del libro</string>
-    <string name="review_item_content_placeholder">Contenido de la reseña...</string>
-    <string name="review_item_email_user_placeholder">Usuario</string>
-    <string name="button_edit_review_short">Editar</string>
-    <string name="button_delete_review_short">Eliminar</string>
-
-    <string name="book_price_display">Precio: $%s</string>
-    <string name="book_author_display">Autor: %s</string>
-    <string name="book_category_display">Categoría: %s</string>
-    <string name="error_not_authenticated_buy">Usuario no autenticado. Por favor, inicia sesión.</string>
-    <string name="error_show_reviews_fragment">Error: No se puede mostrar el fragment de reseñas.</string>
-    <string name="error_token_not_found_cart">Token no encontrado. Por favor, inicia sesión nuevamente.</string>
-    <string name="success_add_to_cart">Libro agregado al carrito</string>
-    <string name="error_add_to_cart_code">Error al agregar al carrito. Código: %d</string>
-    <string name="error_network_connection_cart">Fallo la conexión al agregar al carrito.</string>
-    <string name="review_item_book_title_display">Libro: %s</string>
-    <string name="review_item_date_display">Fecha: %s</string>
-    <string name="no_reviews_found">No se encontraron reseñas para tu usuario.</string>
-    <string name="error_loading_my_reviews">Error al cargar tus reseñas: %s</string>
-    <string name="error_network_connection_reviews">Error de red. Verifica tu conexión.</string>
-    <string name="error_token_not_found_reviews">Token de autenticación no encontrado. Por favor, inicia sesión.</string>
-    <string name="error_user_id_not_found">No se pudo obtener el ID de usuario.</string>
-    <string name="confirm_delete_review_id">¿Estás seguro de que deseas eliminar la reseña con ID: %d?</string>
-    <string name="success_review_deleted">Reseña eliminada exitosamente.</string>
-    <string name="error_deleting_review">Error al eliminar la reseña: %s</string>
-    <string name="error_network_connection_delete_review">Error de red al eliminar la reseña.</string>
-    <string name="no_reviews_found_for_book">No se encontraron reseñas para este libro.</string>
-    <string name="error_loading_reviews_for_book">Error al cargar reseñas del libro: %s</string>
-    <string name="error_review_no_book_selected">Por favor, seleccione un libro para la reseña.</string>
-    <string name="error_loading_review_edit">Error al cargar la reseña para editar.</string>
-    <string name="error_creating_review">Error al crear la reseña: %s</string>
-    <string name="error_updating_review">Error al actualizar la reseña: %s</string>
-    <string name="hint_review_content">Reseña</string>
-
-    <string name="hint_select_book_spinner">Selecciona un libro</string>
-    <string name="error_loading_books_for_spinner">Error al cargar la lista de libros.</string>
-    <string name="error_network_connection_books">Error de conexión al cargar libros.</string>
-
-    <string name="confirm_delete_review_title">Confirmar Eliminación</string>
-    <string name="confirm_delete_review_message">¿Estás seguro de que quieres eliminar esta reseña?</string>
-    <string name="app_footer_text">®Mercado Libro 2025</string>
-    <string name="personal_data_laws_info">De acuerdo con las leyes de protección de datos personales, tienes derecho a solicitar la eliminación de tu cuenta y de todos tus datos asociados en cualquier momento.</string>
-
-    <string name="error_email_required">El email es requerido.</string>
-
-
-
-    <string name="error_password_length">La contraseña debe tener entre 8 y 16 caracteres.</string>
-    <string name="error_password_format">La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.</string>
-
-    <string name="error_repeat_password_required">Repite la contraseña.</string>
-    <string name="error_password_mismatch">Las contraseñas no coinciden.</string>
-
-
-    <string name="error_username_length">El nombre de usuario debe tener entre 3 y 50 caracteres.</string>
-    <string name="error_username_format">El nombre de usuario solo puede contener letras y espacios.</string>
-
-    <string name="label_repeat_password">Repetir Contraseña</string>
-    <string name="hint_repeat_password_input">Vuelve a ingresar tu contraseña</string>
-
-
+    <string name="dialog_alert_positive_button">Aceptar</string>
 </resources>
