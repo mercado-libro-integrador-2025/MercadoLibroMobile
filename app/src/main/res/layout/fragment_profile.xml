@@ -10,32 +10,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="@dimen/padding_large">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_large"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardBackgroundColor="@color/card_background_color"
-
-            android:contentDescription="Título: Bienvenido a la sección de contacto"
-            android:importantForAccessibility="yes"
-            android:accessibilityLiveRegion="polite"
-            android:accessibilityTraversalBefore="@id/etNombre"
-            android:accessibilityTraversalAfter="@id/tvInformacionPago"
-            android:focusable="true"
-            android:labelFor="@id/etNombre"
-
-            >
+            app:cardCornerRadius="@dimen/card_corner_radius_large_16dp"
+            app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borde_card"
                 android:orientation="vertical"
                 android:padding="@dimen/padding_large">
 
@@ -52,7 +41,7 @@
                     android:textSize="@dimen/text_size_xlarge_26sp"
                     android:textStyle="bold"
 
-                    android:contentDescription="@string/welcome_message"
+                    android:contentDescription="Hola querido lector"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
                     android:accessibilityTraversalBefore="@id/etNombre"
@@ -66,16 +55,16 @@
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:gravity="center"
+                    android:minHeight="@dimen/min_touch_target_size"
                     android:padding="@dimen/padding_small"
                     android:text="@string/email_placeholder"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_large"
 
-                    android:contentDescription="@string/email_placeholder"
+                    android:contentDescription="Data desde el back"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
                     android:accessibilityTraversalBefore="@id/etNombre"
@@ -87,16 +76,17 @@
 
                 <Button
                     android:id="@+id/button2"
-                    android:layout_width="match_parent"
+                    android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/azul_electrico"
+                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_my_reviews"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius"
 
-                    android:contentDescription="@string/button_my_reviews"
+                    android:contentDescription="Mis reseñas"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
                     android:accessibilityTraversalBefore="@id/etNombre"
@@ -108,16 +98,17 @@
 
                 <Button
                     android:id="@+id/button8"
-                    android:layout_width="match_parent"
+                    android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/azul_electrico"
+                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_shipping_status"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius"
 
-                    android:contentDescription="@string/button_shipping_status"
+                    android:contentDescription="Estado de mi envio"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
                     android:accessibilityTraversalBefore="@id/etNombre"
@@ -129,16 +120,41 @@
 
                 <Button
                     android:id="@+id/button10"
+                    android:layout_width="@dimen/button_width_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:minHeight="@dimen/min_touch_target_size"
+                    android:text="@string/button_edit_data"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Editar mis datos"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tvPersonalDataLaws"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/azul_electrico"
-                    android:text="@string/button_edit_data"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="@dimen/line_spacing_extra"
+                    android:paddingStart="@dimen/padding_large"
+                    android:paddingEnd="@dimen/padding_large"
+                    android:text="@string/personal_data_laws_info"
+                    android:textAlignment="center"
+                    android:textColor="@color/sunstone_neutral_5"
+                    android:textSize="@dimen/text_size_small"
 
-                    android:contentDescription="@string/button_edit_data"
+                    android:contentDescription="Proteccion legal de datos"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
                     android:accessibilityTraversalBefore="@id/etNombre"
@@ -152,15 +168,16 @@
                     android:id="@+id/button9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_top_button_large"
-                    android:backgroundTint="@color/crim"
+                    android:backgroundTint="@color/error_color"
+                    android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_unsubscribe"
-                    android:textColor="@color/white"
+                    android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius"
 
-                    android:contentDescription="@string/button_unsubscribe"
+                    android:contentDescription="Dar de baja"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
                     android:accessibilityTraversalBefore="@id/etNombre"

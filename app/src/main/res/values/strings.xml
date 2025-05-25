@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mercado Libro</string>
+    <string name="app_name"></string>
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     <string name="logout_message">Sesión cerrada. ¡Hasta pronto!</string>
@@ -18,7 +18,6 @@
     <string name="book_price_placeholder">Precio: $100.00</string>
     <string name="book_author_placeholder">Autor:</string>
     <string name="book_category_placeholder">Categoría:</string>
-    <string name="book_stock_placeholder">En stock: 9</string>
     <string name="button_buy">Comprar</string>
     <string name="button_synopsis">Sinopsis</string>
     <string name="error_respuesta">Error de respuesta: %s</string>
@@ -75,8 +74,8 @@
     <string name="label_city_entered">Ciudad ingresada: %s</string>
     <string name="label_province_entered">Provincia ingresada: %s</string>
 
-    <string name="label_username">Usuario</string>
-    <string name="hint_username_input">Ingrese su usuario</string>
+    <string name="label_username">Email</string>
+    <string name="hint_username_input">Ingrese su email</string>
     <string name="label_password">Contraseña</string>
     <string name="hint_password_input">Ingrese su contraseña</string>
     <string name="label_name">Nombre</string>
@@ -164,7 +163,7 @@
     <string name="dialog_confirm_delete_yes_button">Sí</string>
     <string name="dialog_confirm_delete_no_button">No</string>
     <string name="logo_content_description">Logo</string>
-    <string name="label_card_type_display_placeholder"></string>
+    <string name="label_card_type_display_placeholder">Tipo de Tarjeta: No especificado</string>
 
     <string name="label_card_number_display">Número de Tarjeta: %s</string>
     <string name="label_cvv_display">CVV: %s</string>
@@ -174,5 +173,84 @@
     <string name="error_loading_orders">Error al cargar los pedidos: %s</string>
     <string name="error_network_connection_orders">Error de conexión al cargar pedidos: %s</string>
     <string name="email_not_found">Email no encontrado</string>
+
+    <string name="button_view_reviews">Reseñas</string>
+    <string name="reviews_for_book_placeholder">Reseñas del Libro</string>
+    <string name="reviews_for_book_display">Reseñas de: %s</string>
+    <string name="reviews_for_book_default">Reseñas del Libro</string>
+    <string name="my_reviews_title">Mis Reseñas</string>
+    <string name="button_create_new_review">Crear Nueva Reseña</string>
+    <string name="create_review_title">Crear Reseña</string>
+    <string name="edit_review_title">Editar Reseña</string>
+    <string name="review_item_date_placeholder">Fecha: </string>
+    <string name="button_save_review">Guardar Reseña</string>
+    <string name="button_delete_review">Eliminar Reseña</string>
+    <string name="book_title_placeholder_review">Título del Libro:</string>
+    <string name="book_title_placeholder_review_id">Libro ID: %d</string> <string name="select_book_for_review_message">Seleccione un libro para esta reseña</string>
+
+    <string name="error_review_empty_content">Por favor, complete el contenido de la reseña.</string> <string name="error_not_logged_in_review">Debe iniciar sesión para crear o editar reseñas.</string>
+    <string name="success_review_created">Reseña creada exitosamente.</string>
+    <string name="success_review_updated">Reseña actualizada exitosamente.</string>
+    <string name="confirm_delete_review">¿Está seguro de que desea eliminar esta reseña?</string>
+    <string name="review_item_book_title_placeholder">Título del libro</string>
+    <string name="review_item_content_placeholder">Contenido de la reseña...</string>
+    <string name="review_item_email_user_placeholder">Usuario</string>
+    <string name="button_edit_review_short">Editar</string>
+    <string name="button_delete_review_short">Eliminar</string>
+
+    <string name="book_price_display">Precio: $%s</string>
+    <string name="book_author_display">Autor: %s</string>
+    <string name="book_category_display">Categoría: %s</string>
+    <string name="error_not_authenticated_buy">Usuario no autenticado. Por favor, inicia sesión.</string>
+    <string name="error_show_reviews_fragment">Error: No se puede mostrar el fragment de reseñas.</string>
+    <string name="error_token_not_found_cart">Token no encontrado. Por favor, inicia sesión nuevamente.</string>
+    <string name="success_add_to_cart">Libro agregado al carrito</string>
+    <string name="error_add_to_cart_code">Error al agregar al carrito. Código: %d</string>
+    <string name="error_network_connection_cart">Fallo la conexión al agregar al carrito.</string>
+    <string name="review_item_book_title_display">Libro: %s</string>
+    <string name="review_item_date_display">Fecha: %s</string>
+    <string name="no_reviews_found">No se encontraron reseñas para tu usuario.</string>
+    <string name="error_loading_my_reviews">Error al cargar tus reseñas: %s</string>
+    <string name="error_network_connection_reviews">Error de red. Verifica tu conexión.</string>
+    <string name="error_token_not_found_reviews">Token de autenticación no encontrado. Por favor, inicia sesión.</string>
+    <string name="error_user_id_not_found">No se pudo obtener el ID de usuario.</string>
+    <string name="confirm_delete_review_id">¿Estás seguro de que deseas eliminar la reseña con ID: %d?</string>
+    <string name="success_review_deleted">Reseña eliminada exitosamente.</string>
+    <string name="error_deleting_review">Error al eliminar la reseña: %s</string>
+    <string name="error_network_connection_delete_review">Error de red al eliminar la reseña.</string>
+    <string name="no_reviews_found_for_book">No se encontraron reseñas para este libro.</string>
+    <string name="error_loading_reviews_for_book">Error al cargar reseñas del libro: %s</string>
+    <string name="error_review_no_book_selected">Por favor, seleccione un libro para la reseña.</string>
+    <string name="error_loading_review_edit">Error al cargar la reseña para editar.</string>
+    <string name="error_creating_review">Error al crear la reseña: %s</string>
+    <string name="error_updating_review">Error al actualizar la reseña: %s</string>
+    <string name="hint_review_content">Reseña</string>
+
+    <string name="hint_select_book_spinner">Selecciona un libro</string>
+    <string name="error_loading_books_for_spinner">Error al cargar la lista de libros.</string>
+    <string name="error_network_connection_books">Error de conexión al cargar libros.</string>
+
+    <string name="confirm_delete_review_title">Confirmar Eliminación</string>
+    <string name="confirm_delete_review_message">¿Estás seguro de que quieres eliminar esta reseña?</string>
+    <string name="app_footer_text">®Mercado Libro 2025</string>
+    <string name="personal_data_laws_info">De acuerdo con las leyes de protección de datos personales, tienes derecho a solicitar la eliminación de tu cuenta y de todos tus datos asociados en cualquier momento.</string>
+
+    <string name="error_email_required">El email es requerido.</string>
+
+
+
+    <string name="error_password_length">La contraseña debe tener entre 8 y 16 caracteres.</string>
+    <string name="error_password_format">La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.</string>
+
+    <string name="error_repeat_password_required">Repite la contraseña.</string>
+    <string name="error_password_mismatch">Las contraseñas no coinciden.</string>
+
+
+    <string name="error_username_length">El nombre de usuario debe tener entre 3 y 50 caracteres.</string>
+    <string name="error_username_format">El nombre de usuario solo puede contener letras y espacios.</string>
+
+    <string name="label_repeat_password">Repetir Contraseña</string>
+    <string name="hint_repeat_password_input">Vuelve a ingresar tu contraseña</string>
+
 
 </resources>

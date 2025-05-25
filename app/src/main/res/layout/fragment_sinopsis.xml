@@ -27,17 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/image_height_large"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:scaleType="fitCenter"
-
                 android:contentDescription="@string/content_description_book_cover"
-                android:importantForAccessibility="yes"
-                android:accessibilityLiveRegion="polite"
-                android:accessibilityTraversalBefore="@id/etNombre"
-                android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                android:focusable="true"
-                android:labelFor="@id/etNombre"
-
-                />
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/book_title"
@@ -47,17 +38,7 @@
                 android:text="@string/book_title_placeholder"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large"
-                android:textStyle="bold"
-
-                android:contentDescription="Título del libro"
-                android:importantForAccessibility="yes"
-                android:accessibilityLiveRegion="polite"
-                android:accessibilityTraversalBefore="@id/etNombre"
-                android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                android:focusable="true"
-                android:labelFor="@id/etNombre"
-
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/book_synopsis_label"
@@ -67,17 +48,7 @@
                 android:text="@string/label_synopsis"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_medium"
-                android:textStyle="bold"
-
-                android:contentDescription="Sinopsis"
-                android:importantForAccessibility="yes"
-                android:accessibilityLiveRegion="polite"
-                android:accessibilityTraversalBefore="@id/etNombre"
-                android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                android:focusable="true"
-                android:labelFor="@id/etNombre"
-
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/book_synopsis"
@@ -86,18 +57,8 @@
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:lineSpacingExtra="@dimen/line_spacing_extra"
                 android:text="@string/book_synopsis_placeholder"
-                android:textColor="@color/vino"
-                android:textSize="@dimen/text_size_medium"
-
-                android:contentDescription="Sinopsis"
-                android:importantForAccessibility="yes"
-                android:accessibilityLiveRegion="polite"
-                android:accessibilityTraversalBefore="@id/etNombre"
-                android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                android:focusable="true"
-                android:labelFor="@id/etNombre"
-
-                />
+                android:textColor="@color/sunstone_neutral_6"
+                android:textSize="@dimen/text_size_medium" />
 
             <Button
                 android:id="@+id/btnvolversinopsis"
@@ -105,19 +66,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_top_button"
-                android:backgroundTint="@color/vino"
+                android:backgroundTint="@color/sunstone_neutral_6"
                 android:text="@string/button_back"
-                android:textColor="@color/white"
-
-                android:contentDescription="Volver"
-                android:importantForAccessibility="yes"
-                android:accessibilityLiveRegion="polite"
-                android:accessibilityTraversalBefore="@id/etNombre"
-                android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                android:focusable="true"
-                android:labelFor="@id/etNombre"
-
-                />
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

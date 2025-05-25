@@ -9,125 +9,55 @@
         android:id="@+id/idPedido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="ID Pedido"
-        android:textSize="18sp"
-
-        android:contentDescription="Id Pedido"
-        android:importantForAccessibility="yes"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:focusable="true"
-        android:labelFor="@id/etNombre"
-
-        />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Usuario"
-        android:textSize="16sp"
-
-        android:contentDescription="Usuario"
-        android:importantForAccessibility="yes"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:focusable="true"
-        android:labelFor="@id/etNombre"
-
-        />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/direccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Dirección"
-        android:textSize="16sp"
-
-        android:contentDescription="Direccion"
-        android:importantForAccessibility="yes"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:focusable="true"
-        android:labelFor="@id/etNombre"
-
-        />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/metodoPago"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Método de Pago"
-        android:textSize="16sp"
-
-        android:contentDescription="Metodo de pago"
-        android:importantForAccessibility="yes"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:focusable="true"
-        android:labelFor="@id/etNombre"
-
-        />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/estado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Estado"
-        android:textSize="16sp"
-
-        android:contentDescription="Estado"
-        android:importantForAccessibility="yes"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:focusable="true"
-        android:labelFor="@id/etNombre"
-
-        />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/fechaPedido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Fecha de Pedido"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-
-        android:contentDescription="Fecha de pedido"
-        android:importantForAccessibility="yes"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:focusable="true"
-        android:labelFor="@id/etNombre"
-
-        />
+        android:textColor="@color/sunstone_neutral_5"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/sunstone_neutral_5"
         android:text="Total"
-        android:textSize="16sp"
-
-        android:contentDescription="Total"
-        android:importantForAccessibility="yes"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:focusable="true"
-        android:labelFor="@id/etNombre"
-
-        />
+        android:textSize="16sp" />
 </LinearLayout>
