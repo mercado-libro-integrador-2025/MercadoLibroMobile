@@ -18,7 +18,17 @@
         android:textStyle="bold"
         android:textColor="@color/text_primary"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/margin_large" />
+        android:layout_marginBottom="@dimen/margin_large"
+
+        android:contentDescription="Ms pedidios"
+        android:importantForAccessibility="yes"
+        android:accessibilityLiveRegion="polite"
+        android:accessibilityTraversalBefore="@id/etNombre"
+        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+        android:focusable="true"
+        android:labelFor="@id/etNombre"
+
+        />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -26,7 +36,17 @@
         android:layout_marginBottom="@dimen/margin_medium"
         app:cardElevation="@dimen/card_elevation"
         app:cardCornerRadius="@dimen/card_corner_radius"
-        app:cardBackgroundColor="@color/card_background_color">
+        app:cardBackgroundColor="@color/card_background_color"
+
+        android:contentDescription="Título: Bienvenido a la sección de contacto"
+        android:importantForAccessibility="yes"
+        android:accessibilityLiveRegion="polite"
+        android:accessibilityTraversalBefore="@id/etNombre"
+        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+        android:focusable="true"
+        android:labelFor="@id/etNombre"
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +58,17 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewPedidos"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+
+                android:contentDescription="Mis Pedidos"
+                android:importantForAccessibility="yes"
+                android:accessibilityLiveRegion="polite"
+                android:accessibilityTraversalBefore="@id/etNombre"
+                android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                android:focusable="true"
+                android:labelFor="@id/etNombre"
+
+                />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
