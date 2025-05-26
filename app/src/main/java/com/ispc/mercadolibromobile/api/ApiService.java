@@ -9,6 +9,7 @@ import com.ispc.mercadolibromobile.models.ItemCarrito;
 import com.ispc.mercadolibromobile.models.Direccion;
 import com.ispc.mercadolibromobile.models.Pago;
 import com.ispc.mercadolibromobile.models.Contacto;
+import com.ispc.mercadolibromobile.models.UserInfo;
 
 import java.util.List;
 
@@ -27,13 +28,16 @@ public interface ApiService {
 
     // =================== Usuarios ===================
     @GET("usuarios/")
-    Call<List<User>> getUsers();
+    Call<List<UserInfo>> getUsers();
 
     @GET("usuarios/me/")
     Call<User> getAuthenticatedUser(@Header("Authorization") String token);
 
     @DELETE("usuarios/{id}/")
     Call<Void> deleteUser(@Path("id") int id, @Header("Authorization") String token);
+
+    @PUT("usuarios/{id}/") //
+    Call<UserInfo> updateUser(@Path("id") int userId, @Header("Authorization") String authToken, @Body UserInfo userInfo);
 
     // =================== Auth ===================
     @FormUrlEncoded

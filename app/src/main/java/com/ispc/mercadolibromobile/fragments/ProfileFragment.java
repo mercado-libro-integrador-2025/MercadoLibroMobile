@@ -21,11 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ispc.mercadolibromobile.R;
 import com.ispc.mercadolibromobile.activities.SplashActivity;
-import com.ispc.mercadolibromobile.adapters.AddressAdapter; // Importar el nuevo AddressAdapter
+import com.ispc.mercadolibromobile.adapters.AddressAdapter;
 import com.ispc.mercadolibromobile.api.ApiService;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
-import com.ispc.mercadolibromobile.models.Direccion; // Importar el modelo Direccion
-import com.ispc.mercadolibromobile.models.User;
+import com.ispc.mercadolibromobile.models.User; // <--- Este es el modelo principal con tokens y UserInfo
+import com.ispc.mercadolibromobile.models.UserInfo; // <--- NUEVA IMPORTACIÓN: para acceder a los datos del perfil
+import com.ispc.mercadolibromobile.models.Direccion;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
 import com.ispc.mercadolibromobile.fragments.MyReviewsFragment;
 import com.ispc.mercadolibromobile.fragments.PedidosFragment;
@@ -41,7 +42,7 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
     private TextView emailTextView;
     private String authToken;
     private ApiService apiService;
-    private RecyclerView rvAddresses; // RecyclerView para direcciones
+    private RecyclerView rvAddresses;
     private AddressAdapter addressAdapter;
     private List<Direccion> addressList;
 
@@ -58,7 +59,7 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
         rvAddresses = rootView.findViewById(R.id.rvAddresses);
         rvAddresses.setLayoutManager(new LinearLayoutManager(requireContext()));
         addressList = new ArrayList<>();
-        addressAdapter = new AddressAdapter(addressList, requireContext(), this); // 'this' como listener
+        addressAdapter = new AddressAdapter(addressList, requireContext(), this);
         rvAddresses.setAdapter(addressAdapter);
 
         Button estadoEnvioButton = rootView.findViewById(R.id.button8);
@@ -89,13 +90,18 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
 
         Button editProfileButton = rootView.findViewById(R.id.button10);
         editProfileButton.setOnClickListener(v -> {
-            Toast.makeText(requireContext(), getString(R.string.feature_not_implemented), Toast.LENGTH_SHORT).show();
+            if (isAdded()) {
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new EditProfileFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
         });
 
         Button btnAddAddress = rootView.findViewById(R.id.btnAddAddress);
         btnAddAddress.setOnClickListener(v -> {
             getParentFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, DireccionFragment.newInstance(null)) // Pasar null para indicar nueva dirección
+                    .replace(R.id.fragment_container, DireccionFragment.newInstance(null))
                     .addToBackStack(null)
                     .commit();
         });
@@ -124,6 +130,8 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
         super.onResume();
         if (authToken != null) {
             loadAddresses();
+            String userEmail = SessionUtils.getUserEmail(requireContext());
+            emailTextView.setText(userEmail != null ? userEmail : getString(R.string.email_not_found));
         }
     }
     private void loadAddresses() {
@@ -162,7 +170,7 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
     @Override
     public void onEditAddress(Direccion direccion) {
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, DireccionFragment.newInstance(direccion)) // Pasar la dirección a editar
+                .replace(R.id.fragment_container, DireccionFragment.newInstance(direccion))
                 .addToBackStack(null)
                 .commit();
     }
@@ -227,13 +235,14 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
     }
 
     private void obtenerUsuarioAutenticado(@NonNull String authToken) {
-        Call<User> call = apiService.getAuthenticatedUser(authToken);
+        Call<User> call = apiService.getAuthenticatedUser(authToken); // <--- CAMBIO AQUÍ: Ahora espera el modelo User completo
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if (isAdded()) {
-                    if (response.isSuccessful() && response.body() != null) {
+                    if (response.isSuccessful() && response.body() != null && response.body().getUser() != null) {
                         int userId = response.body().getUser().getId();
+                        SessionUtils.saveUserId(requireContext(), userId); // <--- Asegúrate de guardar el ID aquí
                         Log.d(TAG, "User ID obtenido: " + userId);
                         eliminarUsuario(userId, authToken);
                     } else {
