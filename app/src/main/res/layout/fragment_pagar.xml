@@ -24,7 +24,17 @@
             android:textSize="@dimen/text_size_xlarge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:contentDescription="Metodo de Pago"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            />
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -35,96 +45,311 @@
             app:cardElevation="@dimen/card_elevation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMetodoPago">
+            app:layout_constraintTop_toBottomOf="@id/tvMetodoPago"
+
+            android:contentDescription="Título: Bienvenido a la sección de pago"
+            android:importantForAccessibility="yes"
+            android:accessibilityLiveRegion="polite"
+            android:accessibilityTraversalBefore="@id/etNombre"
+            android:accessibilityTraversalAfter="@id/tvInformacionPago"
+            android:focusable="true"
+            android:labelFor="@id/etNombre"
+
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/borde_card"
                 android:orientation="vertical"
-                android:padding="@dimen/padding_large">
+                android:padding="@dimen/padding_large"
+                >
 
-                <TextView
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tvNumeroTarjeta"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/label_card_number"
                     android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_size_medium"
 
-                <EditText
-                    android:id="@+id/etNumeroTarjeta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="@string/hint_enter_card_number"
-                    android:inputType="number"
-                    android:minHeight="@dimen/min_touch_target_size"
-                    android:paddingBottom="@dimen/padding_small"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/sunstone_neutral_2" />
+                    android:enabled="true"
+                    android:hint="@string/label_card_number"
+                    android:inputType="textCapWords"
+                    android:padding="8dp"
+                    android:visibility="visible"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:helperText="Introduce una tarjeta válida"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:startIconContentDescription="Icono de tarjeta"
+                    app:startIconDrawable="@android:drawable/ic_input_get"
+                    app:startIconTint="@android:color/darker_gray"
+
+                    android:contentDescription="Tarjeta"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNumeroTarjeta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/hint_enter_card_number"
+                        android:inputType="number"
+                        android:minHeight="@dimen/min_touch_target_size"
+                        android:paddingBottom="@dimen/padding_small"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_hint"
+
+                        android:layout_margin="8dp"
+                        android:enabled="true"
+                        android:padding="8dp"
+                        android:visibility="visible"
+                        app:boxBackgroundMode="outline"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@android:color/darker_gray"
+                        app:boxStrokeWidth="2dp"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="50"
+                        app:endIconMode="clear_text"
+                        app:errorEnabled="true"
+                        app:helperText="Introduce una tarjeta válida"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:startIconContentDescription="Icono de tarjeta"
+                        app:startIconDrawable="@android:drawable/ic_input_get"
+                        app:startIconTint="@android:color/darker_gray"
+
+                        android:contentDescription="Tarjeta"
+                        android:importantForAccessibility="yes"
+                        android:accessibilityLiveRegion="polite"
+                        android:accessibilityTraversalBefore="@id/etNombre"
+                        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                        android:focusable="true"
+                        android:labelFor="@id/etNombre"
+
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/line_height"
                     android:layout_marginTop="@dimen/margin_small"
                     android:layout_marginBottom="@dimen/margin_medium"
-                    android:background="@color/sunstone_neutral_5" />
+                    android:background="@color/line_separator_color"
 
-                <TextView
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tvCVV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/label_cvv"
-                    android:textColor="@color/sunstone_neutral_5"
-                    android:textSize="@dimen/text_size_medium" />
-
-                <EditText
-                    android:id="@+id/etCVV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="@string/hint_enter_cvv"
-                    android:inputType="number"
-                    android:minHeight="@dimen/min_touch_target_size"
-                    android:paddingBottom="@dimen/padding_small"
                     android:textColor="@color/text_primary"
-                    android:textColorHint="@color/sunstone_neutral_2" />
+                    android:textSize="@dimen/text_size_medium"
+
+                    android:enabled="true"
+                    android:hint="@string/label_cvv"
+                    android:inputType="textCapWords"
+                    android:padding="8dp"
+                    android:visibility="visible"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:helperText="Introduce un cvv válido"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:startIconContentDescription="Icono de cvv"
+                    app:startIconDrawable="@android:drawable/ic_input_get"
+                    app:startIconTint="@android:color/darker_gray"
+
+                    android:contentDescription="cvv"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCVV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/hint_enter_cvv"
+                        android:inputType="number"
+                        android:minHeight="@dimen/min_touch_target_size"
+                        android:paddingBottom="@dimen/padding_small"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_hint"
+
+                        android:layout_margin="8dp"
+                        android:enabled="true"
+                        android:padding="8dp"
+                        android:visibility="visible"
+                        app:boxBackgroundMode="outline"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@android:color/darker_gray"
+                        app:boxStrokeWidth="2dp"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="50"
+                        app:endIconMode="clear_text"
+                        app:errorEnabled="true"
+                        app:helperText="Introduce un cvv válido"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:startIconContentDescription="Icono de cvv"
+                        app:startIconDrawable="@android:drawable/ic_input_get"
+                        app:startIconTint="@android:color/darker_gray"
+
+                        android:contentDescription="cvv"
+                        android:importantForAccessibility="yes"
+                        android:accessibilityLiveRegion="polite"
+                        android:accessibilityTraversalBefore="@id/etNombre"
+                        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                        android:focusable="true"
+                        android:labelFor="@id/etNombre"
+
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/line_height"
                     android:layout_marginTop="@dimen/margin_small"
                     android:layout_marginBottom="@dimen/margin_medium"
-                    android:background="@color/sunstone_neutral_5" />
+                    android:background="@color/line_separator_color"
+                    />
 
-                <TextView
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tvVencimiento"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/label_expiration"
-                    android:textColor="@color/sunstone_neutral_5"
-                    android:textSize="@dimen/text_size_medium" />
-
-                <EditText
-                    android:id="@+id/etVencimiento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="@string/hint_enter_expiration"
-                    android:inputType="text"
-                    android:maxLength="5"
-                    android:minHeight="@dimen/min_touch_target_size"
-                    android:paddingBottom="@dimen/padding_small"
                     android:textColor="@color/text_primary"
-                    android:textColorHint="@color/sunstone_neutral_2" />
+                    android:textSize="@dimen/text_size_medium"
+
+                    android:enabled="true"
+                    android:hint="@string/label_expiration"
+                    android:inputType="textCapWords"
+                    android:padding="8dp"
+                    android:visibility="visible"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:helperText="Introduce un vencimiento válido"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:startIconContentDescription="Icono de vencimiento"
+                    app:startIconDrawable="@android:drawable/ic_input_get"
+                    app:startIconTint="@android:color/darker_gray"
+
+                    android:contentDescription="Vencimiento"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etVencimiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/hint_enter_expiration"
+                        android:inputType="text"
+                        android:maxLength="5"
+                        android:minHeight="@dimen/min_touch_target_size"
+                        android:paddingBottom="@dimen/padding_small"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_hint"
+
+                        android:layout_margin="8dp"
+                        android:enabled="true"
+                        android:padding="8dp"
+                        android:visibility="visible"
+                        app:boxBackgroundMode="outline"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@android:color/darker_gray"
+                        app:boxStrokeWidth="2dp"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="50"
+                        app:endIconMode="clear_text"
+                        app:errorEnabled="true"
+                        app:helperText="Introduce un vencimiento válido"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:startIconContentDescription="Icono de vencimiento"
+                        app:startIconDrawable="@android:drawable/ic_input_get"
+                        app:startIconTint="@android:color/darker_gray"
+
+                        android:contentDescription="Venciiento"
+                        android:importantForAccessibility="yes"
+                        android:accessibilityLiveRegion="polite"
+                        android:accessibilityTraversalBefore="@id/etNombre"
+                        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                        android:focusable="true"
+                        android:labelFor="@id/etNombre"
+
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/line_height"
                     android:layout_marginTop="@dimen/margin_small"
                     android:layout_marginBottom="@dimen/margin_medium"
-                    android:background="@color/line_separator_color" />
+                    android:background="@color/line_separator_color"
+
+                    />
 
                 <TextView
                     android:id="@+id/tvTipoTarjeta"
@@ -132,7 +357,17 @@
                     android:layout_height="wrap_content"
                     android:text="@string/label_card_type"
                     android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_size_medium"
+
+                    android:contentDescription="Típo de tarjeta"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Spinner
                     android:id="@+id/spTipoTarjeta"
@@ -141,7 +376,19 @@
                     android:background="@drawable/spinner_background"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:overlapAnchor="false"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+
+                    android:contentDescription="Típo de tarjeta"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
+
+                <!--
 
                 <TextView
                     android:id="@+id/misdatosr"
@@ -205,6 +452,7 @@
                             android:textSize="@dimen/text_size_small" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+                -->
 
                 <TextView
                     android:id="@+id/tvInformacionPago"
@@ -214,7 +462,39 @@
                     android:text="@string/info_payment_verification"
                     android:textAlignment="center"
                     android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_small"
+
+                    android:layout_gravity="center"
+                    android:autoLink="web"
+                    android:ellipsize="end"
+                    android:enabled="true"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="4dp"
+                    android:maxLines="2"
+                    android:minLines="2"
+                    android:padding="@dimen/padding_medium_10dp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
+                    app:drawableLeftCompat="@android:drawable/ic_menu_mylocation"
+
+                    android:contentDescription="Pro favor verifique sus datos"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/btnPagar"
@@ -224,7 +504,37 @@
                     android:backgroundTint="@color/sunstone_neutral_2"
                     android:text="@string/button_pay"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_large" />
+                    android:textSize="@dimen/text_size_large"
+
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:drawableLeft="@android:drawable/ic_menu_set_as"
+                    android:drawablePadding="8dp"
+                    android:elevation="4dp"
+                    android:enabled="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
+                    app:cornerRadius="8dp"
+
+                    android:contentDescription="Pagar"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

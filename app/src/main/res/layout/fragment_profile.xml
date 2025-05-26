@@ -39,7 +39,17 @@
                     android:textAlignment="center"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_xlarge_26sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+
+                    android:contentDescription="Hola querido lector"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -52,44 +62,131 @@
                     android:padding="@dimen/padding_small"
                     android:text="@string/email_placeholder"
                     android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_size_large" />
+                    android:textSize="@dimen/text_size_large"
+
+                    android:contentDescription="Data desde el back"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/button2"
                     android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/sunstone_neutral_7"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_my_reviews"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Mis reseñas"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/button8"
                     android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/sunstone_neutral_7"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_shipping_status"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Estado de mi envio"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/button10"
                     android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:backgroundTint="@color/sunstone_neutral_2"
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/sunstone_neutral_7"
                     android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_edit_data"
+                    android:textColor="@color/sunstone_neutral_4"
+                    android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Editar mis datos"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:background="@color/line_separator_color" />
+
+                <TextView
+                    android:id="@+id/tvAddressesTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:text="@string/my_addresses_title"
                     android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAddresses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_direccion" />
+
+                <Button
+                    android:id="@+id/btnAddAddress"
+                    android:layout_width="@dimen/button_width_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:backgroundTint="@color/sunstone_neutral_6"
+                    android:minHeight="@dimen/min_touch_target_size"
+                    android:text="@string/button_add_new_address"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:background="@color/line_separator_color" />
                 <TextView
                     android:id="@+id/tvPersonalDataLaws"
                     android:layout_width="match_parent"
@@ -102,7 +199,17 @@
                     android:text="@string/personal_data_laws_info"
                     android:textAlignment="center"
                     android:textColor="@color/sunstone_neutral_5"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_small"
+
+                    android:contentDescription="Proteccion legal de datos"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/button9"
@@ -115,7 +222,17 @@
                     android:text="@string/button_unsubscribe"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Dar de baja"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
