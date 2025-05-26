@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar"></style>
+
+    <style name="NavigationViewSectionHeader" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">@dimen/text_size_drawer_section_title</item>
+        <item name="android:textColor">@color/sunstone_neutral_4</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

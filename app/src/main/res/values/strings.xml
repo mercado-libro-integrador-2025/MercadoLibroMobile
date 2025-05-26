@@ -283,4 +283,18 @@
     <string name="error_network_connection_profile">Error de conexión al intentar actualizar el perfil.</string>
     <string name="success_profile_updated">Perfil actualizado con éxito.</string>
 
+    <string name="nav_header_title">¡Hola!</string>
+    <string name="nav_header_subtitle">tu.email@ejemplo.com</string>
+    <string name="nav_header_desc">Encabezado de navegación</string>
+
+    <string name="drawer_menu_my_reviews">Mis Reseñas</string>
+    <string name="drawer_menu_my_addresses">Mis Direcciones</string>
+    <string name="drawer_menu_my_payments">Mis Métodos de Pago</string>
+    <string name="drawer_menu_my_orders">Mis Pedidos</string>
+
+    <string name="drawer_menu_section_general">General</string>
+
+    <string name="nav_header_title_default">Bienvenido</string>
+    <string name="nav_header_subtitle_default">Iniciar Sesión</string>
+
 </resources>

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.widget.TextView;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,13 +18,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.ispc.mercadolibromobile.R;
 
-
 import com.ispc.mercadolibromobile.fragments.BooksFragment;
 import com.ispc.mercadolibromobile.fragments.ContactFragment;
 import com.ispc.mercadolibromobile.fragments.ProfileFragment;
 import com.ispc.mercadolibromobile.fragments.CarritoFragment;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
 import com.google.android.material.navigation.NavigationView;
+import com.ispc.mercadolibromobile.fragments.MyReviewsFragment;
+import com.ispc.mercadolibromobile.fragments.DireccionFragment;
+import com.ispc.mercadolibromobile.fragments.PagoFragment;
+import com.ispc.mercadolibromobile.fragments.PedidosFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,10 +47,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.beige_suave));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.beige_suave));
         }
 
-        // Configurar la ActionBar (Toolbar)
+        // Configure the ActionBar (Toolbar)
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setLogo(R.drawable.ic_logo_app);
@@ -62,6 +67,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+
+        if (headerView != null) {
+            TextView userNameTextView = headerView.findViewById(R.id.textViewUserName);
+
+            String userEmail = SessionUtils.getUserEmail(this);
+
+            if (userEmail != null && !userEmail.isEmpty()) {
+                userNameTextView.setText(userEmail);
+            } else {
+                userNameTextView.setText(getString(R.string.nav_header_title_default));
+            }
+        } else {
+        }
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -99,7 +119,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.fragment_container, new ProfileFragment())
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_my_reviews) { // NEW ITEM
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new MyReviewsFragment())
+                    .addToBackStack(null)
+                    .commit();
+        } else if (id == R.id.nav_my_addresses) { // NEW ITEM
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new DireccionFragment()) // Using DireccionFragment
+                    .addToBackStack(null)
+                    .commit();
+        } else if (id == R.id.nav_my_payments) { // NEW ITEM
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new PagoFragment()) // Using PagoFragment
+                    .addToBackStack(null)
+                    .commit();
+        } else if (id == R.id.nav_my_orders) { // NEW ITEM
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new PedidosFragment()) // Using PedidosFragment
+                    .addToBackStack(null)
+                    .commit();
+        }else if (id == R.id.nav_logout) {
             Toast.makeText(this, getString(R.string.logout_message), Toast.LENGTH_SHORT).show();
             SessionUtils.clearSession(this);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
