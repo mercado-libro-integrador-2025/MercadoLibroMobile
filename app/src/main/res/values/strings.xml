@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Mercado Libro</string>
+    <string name="app_name"></string>
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     <string name="logout_message">Sesión cerrada. ¡Hasta pronto!</string>
@@ -160,7 +160,8 @@
     <string name="error_city_required">La ciudad es obligatoria.</string>
     <string name="error_province_required">La provincia es obligatoria.</string>
     <string name="error_token_not_found">Token no encontrado, por favor inicie sesión.</string>
-    <string name="no_address_saved_placeholder">No hay dirección guardada</string> <string name="label_street_entered">Calle ingresada: %s</string>
+    <string name="no_address_saved_placeholder">No hay dirección guardada</string>
+    <string name="label_street_entered">Calle ingresada: %s</string>
     <string name="label_number_entered">Número ingresado: %s</string>
     <string name="label_city_entered">Ciudad ingresada: %s</string>
     <string name="label_province_entered">Provincia ingresada: %s</string>
@@ -194,7 +195,8 @@
     <string name="reviews_for_book_placeholder">Reseñas del Libro</string>
     <string name="reviews_for_book_display">Reseñas de: %s</string>
     <string name="reviews_for_book_default">Reseñas del Libro</string>
-    <string name="my_reviews_title_reviews">Mis Reseñas</string> <string name="button_create_new_review">Crear Nueva Reseña</string>
+    <string name="my_reviews_title_reviews">Mis Reseñas</string>
+    <string name="button_create_new_review">Crear Nueva Reseña</string>
     <string name="create_review_title">Crear Reseña</string>
     <string name="edit_review_title">Editar Reseña</string>
     <string name="hint_review_title">Título de la reseña</string>
@@ -271,4 +273,14 @@
     <string name="dialog_confirm_delete_no_button">No</string>
 
     <string name="dialog_alert_positive_button">Aceptar</string>
+
+    <string name="title_edit_profile">Editar Perfil</string>
+    <string name="hint_enter_username">Ingresa tu nombre de usuario</string>
+    <string name="button_save_profile">Guardar Cambios</string>
+    <string name="error_username_required">El nombre de usuario es requerido</string>
+    <string name="error_loading_user_data">Error al cargar los datos del usuario.</string>
+    <string name="error_updating_profile">Error al actualizar el perfil.</string>
+    <string name="error_network_connection_profile">Error de conexión al intentar actualizar el perfil.</string>
+    <string name="success_profile_updated">Perfil actualizado con éxito.</string>
+
 </resources>

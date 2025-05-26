@@ -23,7 +23,7 @@ import com.ispc.mercadolibromobile.api.ApiService;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
 import com.ispc.mercadolibromobile.models.Book;
 import com.ispc.mercadolibromobile.models.Review;
-import com.ispc.mercadolibromobile.utils.SessionUtils;
+import com.ispc.mercadolibromobile.utils.SessionUtils; // Assuming SessionUtils provides getUserEmail
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class CreateEditReviewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             reviewId = getArguments().getInt(ARG_REVIEW_ID, 0);
-            bookId = getArguments().getInt(ARG_BOOK_ID, 0); // bookId será 0 si no se pasó (ej. para crear una reseña genérica)
+            bookId = getArguments().getInt(ARG_BOOK_ID, 0); //
         }
     }
 
@@ -101,8 +101,28 @@ public class CreateEditReviewFragment extends Fragment {
             btnDeleteReview.setVisibility(View.GONE);
 
             if (bookId != 0) {
-                tvBookTitleReview.setText(getString(R.string.book_title_placeholder_review_id, bookId));
-                tvBookTitleReview.setVisibility(View.VISIBLE);
+                apiService.getBookById(bookId).enqueue(new Callback<Book>() {
+                    @Override
+                    public void onResponse(Call<Book> call, Response<Book> response) {
+                        if (isAdded() && response.isSuccessful() && response.body() != null) {
+                            tvBookTitleReview.setText(getString(R.string.review_item_book_title_display, response.body().getTitulo()));
+                            tvBookTitleReview.setVisibility(View.VISIBLE);
+                        } else {
+                            tvBookTitleReview.setText(getString(R.string.book_title_placeholder_review_id, bookId)); // Fallback
+                            tvBookTitleReview.setVisibility(View.VISIBLE);
+                            Log.e(TAG, "Error al cargar título del libro: " + response.code() + " - " + response.message());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Book> call, Throwable t) {
+                        if (isAdded()) {
+                            tvBookTitleReview.setText(getString(R.string.book_title_placeholder_review_id, bookId)); // Fallback
+                            tvBookTitleReview.setVisibility(View.VISIBLE);
+                            Log.e(TAG, "Error de red al cargar título del libro: " + t.getMessage());
+                        }
+                    }
+                });
                 spinnerBookSelection.setVisibility(View.GONE);
             } else {
                 tvBookTitleReview.setVisibility(View.GONE);
@@ -141,16 +161,16 @@ public class CreateEditReviewFragment extends Fragment {
                         spinnerBookSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                if (position > 0) { // Ignorar el hint
+                                if (position > 0) {
                                     bookId = availableBooks.get(position - 1).getIdLibro();
                                 } else {
-                                    bookId = 0; // Si se selecciona el hint, no hay libro seleccionado
+                                    bookId = 0;
                                 }
                             }
 
                             @Override
                             public void onNothingSelected(AdapterView<?> parent) {
-                                bookId = 0; // No hay nada seleccionado
+                                bookId = 0;
                             }
                         });
 
@@ -179,6 +199,7 @@ public class CreateEditReviewFragment extends Fragment {
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
         apiService.getReviewById("Bearer " + token, reviewId).enqueue(new Callback<Review>() {
             @Override
             public void onResponse(@NonNull Call<Review> call, @NonNull Response<Review> response) {
@@ -209,7 +230,7 @@ public class CreateEditReviewFragment extends Fragment {
 
     private void saveReview() {
         String content = etReviewContent.getText().toString().trim();
-        int userId = SessionUtils.getUserId(requireContext());
+        String userEmail = SessionUtils.getUserEmail(requireContext());
         String token = SessionUtils.getAuthToken(requireContext());
 
         if (content.isEmpty()) {
@@ -217,7 +238,7 @@ public class CreateEditReviewFragment extends Fragment {
             return;
         }
 
-        if (userId == -1 || token == null) {
+        if (userEmail == null || token == null) {
             Toast.makeText(requireContext(), getString(R.string.error_not_logged_in_review), Toast.LENGTH_SHORT).show();
             return;
         }
@@ -227,13 +248,15 @@ public class CreateEditReviewFragment extends Fragment {
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+
         if (reviewId == 0) {
-            // Crear nueva reseña
-            Review newReview = new Review(content, bookId, userId);
+            Review newReview = new Review(content, bookId, userEmail);
             apiService.createReview("Bearer " + token, newReview).enqueue(new Callback<Review>() {
                 @Override
                 public void onResponse(@NonNull Call<Review> call, @NonNull Response<Review> response) {
                     if (isAdded()) {
+                        progressBar.setVisibility(View.GONE);
                         if (response.isSuccessful() && response.body() != null) {
                             Toast.makeText(requireContext(), getString(R.string.success_review_created), Toast.LENGTH_SHORT).show();
                             getParentFragmentManager().popBackStack(); // Regresar al fragment anterior
@@ -247,22 +270,23 @@ public class CreateEditReviewFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Call<Review> call, @NonNull Throwable t) {
                     if (isAdded()) {
+                        progressBar.setVisibility(View.GONE);
                         Log.e(TAG, "Fallo de red al crear reseña: " + t.getMessage(), t);
                         Toast.makeText(requireContext(), getString(R.string.error_network_connection_reviews), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         } else {
-            // Editar reseña existente
-            Review updatedReview = new Review(reviewId, content, bookId, userId, null, null, null); // emailUsuario también se pasa como null si no se actualiza
+            Review updatedReview = new Review(reviewId, content, bookId, null, null, userEmail); // <--- IMPORTANT CHANGE
 
             apiService.updateReview("Bearer " + token, reviewId, updatedReview).enqueue(new Callback<Review>() {
                 @Override
                 public void onResponse(@NonNull Call<Review> call, @NonNull Response<Review> response) {
                     if (isAdded()) {
+                        progressBar.setVisibility(View.GONE);
                         if (response.isSuccessful() && response.body() != null) {
                             Toast.makeText(requireContext(), getString(R.string.success_review_updated), Toast.LENGTH_SHORT).show();
-                            getParentFragmentManager().popBackStack(); // Regresar al fragment anterior
+                            getParentFragmentManager().popBackStack();
                         } else {
                             Log.e(TAG, "Error al actualizar reseña. Código: " + response.code() + ", Mensaje: " + response.message());
                             Toast.makeText(requireContext(), getString(R.string.error_updating_review, response.message()), Toast.LENGTH_SHORT).show();
@@ -273,6 +297,7 @@ public class CreateEditReviewFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Call<Review> call, @NonNull Throwable t) {
                     if (isAdded()) {
+                        progressBar.setVisibility(View.GONE);
                         Log.e(TAG, "Fallo de red al actualizar reseña: " + t.getMessage(), t);
                         Toast.makeText(requireContext(), getString(R.string.error_network_connection_reviews), Toast.LENGTH_SHORT).show();
                     }
@@ -286,13 +311,14 @@ public class CreateEditReviewFragment extends Fragment {
                 .setTitle(getString(R.string.confirm_delete_review_title))
                 .setMessage(getString(R.string.confirm_delete_review_message))
                 .setPositiveButton(getString(R.string.dialog_confirm_delete_yes_button), (dialog, which) -> {
-                    // Lógica para eliminar la reseña
                     String token = SessionUtils.getAuthToken(requireContext());
                     if (token != null) {
+                        progressBar.setVisibility(View.VISIBLE);
                         apiService.deleteReview("Bearer " + token, reviewId).enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                                 if (isAdded()) {
+                                    progressBar.setVisibility(View.GONE);
                                     if (response.isSuccessful()) {
                                         Toast.makeText(requireContext(), getString(R.string.success_review_deleted), Toast.LENGTH_SHORT).show();
                                         getParentFragmentManager().popBackStack(); // Regresar al fragment anterior
@@ -306,6 +332,7 @@ public class CreateEditReviewFragment extends Fragment {
                             @Override
                             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                                 if (isAdded()) {
+                                    progressBar.setVisibility(View.GONE);
                                     Log.e(TAG, "Fallo de red al eliminar reseña: " + t.getMessage(), t);
                                     Toast.makeText(requireContext(), getString(R.string.error_network_connection_delete_review), Toast.LENGTH_SHORT).show();
                                 }

@@ -93,7 +93,7 @@ public class ReviewListFragment extends Fragment {
         if (token != null) {
             call = apiService.getAllReviews("Bearer " + token);
         } else {
-            Log.w(TAG, "No se encontró token de autenticación para getAllReviews. Si el endpoint lo requiere, la llamada fallará.");
+            Log.w(TAG, "No se encontró token de autenticación. Llamando a getAllReviews sin token.");
             call = apiService.getAllReviews(null);
         }
 
@@ -108,12 +108,12 @@ public class ReviewListFragment extends Fragment {
                         List<Review> filteredReviews = new ArrayList<>();
 
                         for (Review review : allReviews) {
-                            if (review.getIdLibro() == bookId) {
+                            if (review.getIdLibro() == bookId) { // Filtrado en el cliente
                                 filteredReviews.add(review);
                             }
                         }
 
-                        reviewAdapter = new ReviewAdapter(filteredReviews, requireContext());
+                        reviewAdapter = new ReviewAdapter(filteredReviews, requireContext(), false, null);
                         recyclerViewReviews.setAdapter(reviewAdapter);
 
                         if (filteredReviews.isEmpty()) {
@@ -121,6 +121,12 @@ public class ReviewListFragment extends Fragment {
                         }
                     } else {
                         Log.e(TAG, "Error al cargar reseñas del libro. Código: " + response.code() + ", Mensaje: " + response.message());
+                        try {
+                            String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                            Log.e(TAG, "Error body: " + errorBody);
+                        } catch (Exception e) {
+                            Log.e(TAG, "Error reading error body: " + e.getMessage());
+                        }
                         Toast.makeText(requireContext(), getString(R.string.error_loading_reviews_for_book, response.message()), Toast.LENGTH_SHORT).show();
                     }
                 }

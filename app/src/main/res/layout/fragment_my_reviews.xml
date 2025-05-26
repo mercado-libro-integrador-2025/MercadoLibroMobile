@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/fondo2"
     android:orientation="vertical"
     android:padding="@dimen/padding_large"
@@ -20,11 +21,15 @@
 
     <Button
         android:id="@+id/btnCreateNewReview"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/button_width_medium"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_top_xlarge"
+        android:minHeight="@dimen/min_touch_target_size"
+        app:cornerRadius="@dimen/card_corner_radius"
+        android:layout_gravity="center"
         android:layout_marginBottom="@dimen/margin_medium"
-        android:backgroundTint="@color/sunstone_neutral_2"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/sunstone_neutral_7"
         android:text="@string/button_create_new_review" />
 
     <ProgressBar
