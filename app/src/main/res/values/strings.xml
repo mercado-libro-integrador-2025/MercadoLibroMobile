@@ -28,6 +28,15 @@
     <string name="error_registration_failed">No se pudo registrar. Intenta nuevamente.</string>
     <string name="error_registration_failed_toast">Error al registrar. Por favor, intenta nuevamente.</string>
     <string name="logo_content_description">Logo</string>
+    <string name="label_repeat_password">Repetir Contraseña</string>
+    <string name="hint_repeat_password_input">Vuelve a escribir tu contraseña</string>
+    <string name="error_password_mismatch">Las contraseñas no coinciden.</string>
+    <string name="error_username_length">El nombre debe tener entre 3 y 50 caracteres.</string>
+    <string name="error_username_format">El nombre solo puede contener letras y espacios.</string>
+    <string name="error_repeat_password_required">La confirmación de contraseña es requerida.</string>
+    <string name="error_password_format">La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial (@$!%*?&amp;_-).</string>
+    <string name="error_email_required">El email es requerido.</string>
+    <string name="error_password_length">La contraseña debe tener entre 8 y 16 caracteres.</string>
 
     <string name="welcome_message">¡Hola querido Lector!</string>
     <string name="email_placeholder">Dato desde el back</string>

@@ -78,3 +78,4 @@ Este proyecto está desarrollado bajo la organización en GitHub siguiendo el fl
 🧑 Luna Dalla Lasta Marcelo Javier  
 🧑 Plaza Leonardo  
 👩 Nobiltá Ivette Jael  
+👩 Arnaudo Octavio
