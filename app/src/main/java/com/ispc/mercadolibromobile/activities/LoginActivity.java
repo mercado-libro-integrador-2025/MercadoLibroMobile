@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isLoginMode = true;
 
     // Regex para validar contraseña: Al menos 1 mayúscula, 1 minúscula, 1 número, 1 carácter especial, longitud 8-16
-    private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&_\\-#])[A-Za-z\\d@$!%*?&_\\-#]{8,16}$";
+    private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&_\\-])[A-Za-z\\d@$!%*?&_\\-]{8,16}$";
     // Regex para validar nombre de usuario: Solo letras y espacios
     private static final String USERNAME_REGEX = "^[a-zA-Z\\s]+$";
 
@@ -131,8 +131,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validateButtonState() {
-
-
+        // La lógica de habilitar el botón se puede simplificar ahora que las validaciones son más robustas
+        // El botón se habilitará si todos los campos requeridos (según el modo) tienen texto.
+        // Las validaciones específicas de formato y longitud se harán al intentar el login/registro.
         String email = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String name = nameEditText.getText().toString().trim();
@@ -155,9 +156,9 @@ public class LoginActivity extends AppCompatActivity {
 
         clearErrors();
 
-        // Validaciones para Email
+        // Validaciones para Email (aplicadas tanto en login como en registro)
         if (TextUtils.isEmpty(email)) {
-            usernameLayout.setError(getString(R.string.error_email_invalid));
+            usernameLayout.setError(getString(R.string.error_email_required));
             usernameEditText.requestFocus();
             return;
         }
@@ -167,20 +168,20 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Validaciones para Contraseña
+        // Validaciones para Contraseña (AHORA APLICADAS TAMBIÉN PARA LOGIN)
         if (TextUtils.isEmpty(password)) {
             passwordLayout.setError(getString(R.string.error_password_required));
             passwordEditText.requestFocus();
             return;
         }
-        // aca aplico el mismo codigo  de longitud y formato que en el registro
+        // Se aplican las mismas reglas de longitud y formato que en el registro
         if (password.length() < 8 || password.length() > 16) {
-            passwordLayout.setError(getString(R.string.error_password_min_length));
+            passwordLayout.setError(getString(R.string.error_password_length));
             passwordEditText.requestFocus();
             return;
         }
         if (!password.matches(PASSWORD_REGEX)) {
-            passwordLayout.setError(getString(R.string.error_password_required));
+            passwordLayout.setError(getString(R.string.error_password_format));
             passwordEditText.requestFocus();
             return;
         }
@@ -228,7 +229,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Validaciones para Email
         if (TextUtils.isEmpty(email)) {
-            usernameLayout.setError(getString(R.string.error_email_invalid));
+            usernameLayout.setError(getString(R.string.error_email_required));
             usernameEditText.requestFocus();
             return;
         }
@@ -245,24 +246,24 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         if (password.length() < 8 || password.length() > 16) {
-            passwordLayout.setError(getString(R.string.error_password_min_length));
+            passwordLayout.setError(getString(R.string.error_password_length));
             passwordEditText.requestFocus();
             return;
         }
         if (!password.matches(PASSWORD_REGEX)) {
-            passwordLayout.setError(getString(R.string.error_password_required));
+            passwordLayout.setError(getString(R.string.error_password_format));
             passwordEditText.requestFocus();
             return;
         }
 
         // Validaciones para Repetir Contraseña
         if (TextUtils.isEmpty(repeatPassword)) {
-            repeatPasswordLayout.setError(getString(R.string.error_password_required));
+            repeatPasswordLayout.setError(getString(R.string.error_repeat_password_required));
             repeatPasswordEditText.requestFocus();
             return;
         }
         if (!password.equals(repeatPassword)) {
-            repeatPasswordLayout.setError(getString(R.string.error_password_required));
+            repeatPasswordLayout.setError(getString(R.string.error_password_mismatch));
             repeatPasswordEditText.requestFocus();
             return;
         }
@@ -274,12 +275,12 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         if (username.length() < 3 || username.length() > 50) {
-            nameLayout.setError(getString(R.string.error_email_invalid));
+            nameLayout.setError(getString(R.string.error_username_length));
             nameEditText.requestFocus();
             return;
         }
         if (!username.matches(USERNAME_REGEX)) {
-            nameLayout.setError(getString(R.string.error_invalid_email));
+            nameLayout.setError(getString(R.string.error_username_format));
             nameEditText.requestFocus();
             return;
         }
