@@ -213,7 +213,7 @@ public class CreateEditReviewFragment extends Fragment {
         String token = SessionUtils.getAuthToken(requireContext());
 
         if (content.isEmpty()) {
-            Toast.makeText(requireContext(), getString(R.string.error_review_empty_content), Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), getString(R.string.error_review_empty_fields), Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -48,7 +48,6 @@ public interface ApiService {
     Call<List<Book>> getBooks();
 
     // =================== Reseñas ===================
-    // CORRECCIÓN: Cambiado Resena a Review
     @GET("resenas/")
     Call<List<Review>> getAllReviews(@Header("Authorization") String token); // Renombrado para claridad
 
@@ -85,26 +84,33 @@ public interface ApiService {
     Call<ItemCarrito> agregarAlCarrito(@Header("Authorization") String token, @Body ItemCarrito itemCarrito);
 
     @GET("carrito/")
-    Call<List<ItemCarrito>> obtenerCarrito(@Header("Authorization") String token); // Añadido: método para obtener carrito
+    Call<List<ItemCarrito>> obtenerCarrito(@Header("Authorization") String token);
 
     @DELETE("carrito/{id}/")
     Call<Void> eliminarDelCarrito(@Header("Authorization") String token, @Path("id") int id);
 
     // =================== Direcciones ===================
     @GET("direcciones/")
-    Call<List<Direccion>> getDirecciones(@Header("Authorization") String token); // Añadido: método para obtener direcciones
+    Call<List<Direccion>> getDirecciones(@Header("Authorization") String token);
 
     @POST("direcciones/")
     Call<Direccion> createDireccion(@Header("Authorization") String token, @Body Direccion direccion);
+
+    @PUT("direcciones/{id}/") // Nuevo: para actualizar una dirección existente
+    Call<Direccion> updateDireccion(@Path("id") int id, @Header("Authorization") String token, @Body Direccion direccion);
+
+    @DELETE("direcciones/{id}/") // Nuevo: para eliminar una dirección
+    Call<Void> deleteDireccion(@Path("id") int id, @Header("Authorization") String token);
 
     // =================== Pagos ===================
     @POST("pagos/")
     Call<Pago> realizarPago(@Header("Authorization") String token, @Body Pago pago);
 
     @GET("metodopagos/")
-    Call<List<Pago>> getMostrarPago(@Header("Authorization") String token); // Añadido: método para mostrar pagos
+    Call<List<Pago>> getMostrarPago(@Header("Authorization") String token);
 
     // =================== Contacto ===================
     @POST("contacto/")
     Call<Void> enviarConsulta(@Body Contacto contacto);
+
 }

@@ -60,7 +60,6 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
     //material
-
     implementation "com.android.databinding:viewbinding:8.10.0"
 }
 

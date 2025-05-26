@@ -9,6 +9,7 @@
 local.properties
 
 # Gradle
+/gradle/daemon/
 .gradle/
 build/
 gradle/wrapper/dists/
