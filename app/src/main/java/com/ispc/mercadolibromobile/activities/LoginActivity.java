@@ -32,11 +32,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
 
-    private TextInputLayout usernameLayout, passwordLayout, nameLayout;
-    private TextInputEditText usernameEditText, passwordEditText, nameEditText;
+    private TextInputLayout usernameLayout, passwordLayout, nameLayout, repeatPasswordLayout;
+    private TextInputEditText usernameEditText, passwordEditText, nameEditText, repeatPasswordEditText;
     private Button loginButton, toggleModeButton, poliButton;
     private ProgressBar progressBar;
     private boolean isLoginMode = true;
+
+    // Regex para validar contraseña: Al menos 1 mayúscula, 1 minúscula, 1 número, 1 carácter especial, longitud 8-16
+    private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&_-])[A-Za-z\\d@$!%*?&_-]{8,16}$";
+    // Regex para validar nombre de usuario: Solo letras y espacios
+    private static final String USERNAME_REGEX = "^[a-zA-Z\\s]+$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +57,12 @@ public class LoginActivity extends AppCompatActivity {
         usernameLayout = findViewById(R.id.textInputLayoutUsername);
         passwordLayout = findViewById(R.id.textInputLayoutPassword);
         nameLayout = findViewById(R.id.textInputLayoutName);
+        repeatPasswordLayout = findViewById(R.id.textInputLayoutRepeatPassword); // Nuevo
 
         usernameEditText = findViewById(R.id.textInputEditTextUsername);
         passwordEditText = findViewById(R.id.textInputEditTextPassword);
         nameEditText = findViewById(R.id.textInputEditTextName);
+        repeatPasswordEditText = findViewById(R.id.textInputEditTextRepeatPassword); // Nuevo
 
         loginButton = findViewById(R.id.buttonMainAction);
         toggleModeButton = findViewById(R.id.buttonToggleMode);
@@ -82,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         TextWatcher watcher = new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                clearErrors(); // Limpiar errores al escribir
                 validateButtonState();
             }
         };
@@ -89,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText.addTextChangedListener(watcher);
         passwordEditText.addTextChangedListener(watcher);
         nameEditText.addTextChangedListener(watcher);
+        repeatPasswordEditText.addTextChangedListener(watcher); // Nuevo listener
     }
 
     private void toggleLoginMode(Animation fadeIn) {
@@ -99,10 +108,15 @@ public class LoginActivity extends AppCompatActivity {
         if (isLoginMode) {
             nameLayout.setVisibility(View.GONE);
             findViewById(R.id.textViewName).setVisibility(View.GONE);
+            repeatPasswordLayout.setVisibility(View.GONE); // Ocultar al cambiar a login
+            findViewById(R.id.textViewRepeatPassword).setVisibility(View.GONE); // Ocultar
         } else {
             nameLayout.setVisibility(View.VISIBLE);
             findViewById(R.id.textViewName).setVisibility(View.VISIBLE);
             findViewById(R.id.textViewName).startAnimation(fadeIn);
+            repeatPasswordLayout.setVisibility(View.VISIBLE); // Mostrar al cambiar a registro
+            findViewById(R.id.textViewRepeatPassword).setVisibility(View.VISIBLE); // Mostrar
+            findViewById(R.id.textViewRepeatPassword).startAnimation(fadeIn);
         }
 
         clearErrors();
@@ -113,15 +127,24 @@ public class LoginActivity extends AppCompatActivity {
         usernameLayout.setError(null);
         passwordLayout.setError(null);
         nameLayout.setError(null);
+        repeatPasswordLayout.setError(null); // Limpiar error de repetir contraseña
     }
 
     private void validateButtonState() {
+
+
         String email = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String name = nameEditText.getText().toString().trim();
+        String repeatPassword = repeatPasswordEditText.getText().toString().trim();
 
-        boolean isEnabled = !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)
-                && (isLoginMode || !TextUtils.isEmpty(name));
+        boolean isEnabled;
+        if (isLoginMode) {
+            isEnabled = !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password);
+        } else {
+            isEnabled = !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)
+                    && !TextUtils.isEmpty(name) && !TextUtils.isEmpty(repeatPassword);
+        }
 
         loginButton.setEnabled(isEnabled);
     }
@@ -130,12 +153,33 @@ public class LoginActivity extends AppCompatActivity {
         String email = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        clearErrors();
+
+        // Validaciones para Email
+        if (TextUtils.isEmpty(email)) {
+            usernameLayout.setError(getString(R.string.error_email_invalid));
+            usernameEditText.requestFocus();
+            return;
+        }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             usernameLayout.setError(getString(R.string.error_invalid_email));
             usernameEditText.requestFocus();
             return;
         }
-        if (password.isEmpty()) {
+
+        // Validaciones para Contraseña
+        if (TextUtils.isEmpty(password)) {
+            passwordLayout.setError(getString(R.string.error_password_required));
+            passwordEditText.requestFocus();
+            return;
+        }
+        // aca aplico el mismo codigo  de longitud y formato que en el registro
+        if (password.length() < 8 || password.length() > 16) {
+            passwordLayout.setError(getString(R.string.error_password_min_length));
+            passwordEditText.requestFocus();
+            return;
+        }
+        if (!password.matches(PASSWORD_REGEX)) {
             passwordLayout.setError(getString(R.string.error_password_required));
             passwordEditText.requestFocus();
             return;
@@ -157,9 +201,10 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
-                    // Usar recurso de string para el mensaje de error
-                    usernameLayout.setError(getString(R.string.error_invalid_credentials));
-                    Toast.makeText(LoginActivity.this, getString(R.string.error_login_failed), Toast.LENGTH_SHORT).show();
+                    // Si las credenciales son incorrectas, mostrar error específico
+                    usernameLayout.setError(null); // Limpiar error de formato si lo hubo
+                    passwordLayout.setError(null); // Limpiar error de formato si lo hubo
+                    Toast.makeText(LoginActivity.this, getString(R.string.error_invalid_credentials), Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Login failed: " + response.code() + " - " + response.message());
                 }
             }
@@ -177,26 +222,68 @@ public class LoginActivity extends AppCompatActivity {
         String email = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String username = nameEditText.getText().toString().trim();
+        String repeatPassword = repeatPasswordEditText.getText().toString().trim(); // Obtener valor
 
         clearErrors();
 
+        // Validaciones para Email
+        if (TextUtils.isEmpty(email)) {
+            usernameLayout.setError(getString(R.string.error_email_invalid));
+            usernameEditText.requestFocus();
+            return;
+        }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             usernameLayout.setError(getString(R.string.error_invalid_email));
             usernameEditText.requestFocus();
             return;
         }
 
-        if (password.length() < 6) {
+        // Validaciones para Contraseña
+        if (TextUtils.isEmpty(password)) {
+            passwordLayout.setError(getString(R.string.error_password_required));
+            passwordEditText.requestFocus();
+            return;
+        }
+        if (password.length() < 8 || password.length() > 16) {
             passwordLayout.setError(getString(R.string.error_password_min_length));
             passwordEditText.requestFocus();
             return;
         }
+        if (!password.matches(PASSWORD_REGEX)) {
+            passwordLayout.setError(getString(R.string.error_password_required));
+            passwordEditText.requestFocus();
+            return;
+        }
 
+        // Validaciones para Repetir Contraseña
+        if (TextUtils.isEmpty(repeatPassword)) {
+            repeatPasswordLayout.setError(getString(R.string.error_password_required));
+            repeatPasswordEditText.requestFocus();
+            return;
+        }
+        if (!password.equals(repeatPassword)) {
+            repeatPasswordLayout.setError(getString(R.string.error_password_required));
+            repeatPasswordEditText.requestFocus();
+            return;
+        }
+
+        // Validaciones para Nombre de usuario (Registro)
         if (TextUtils.isEmpty(username)) {
             nameLayout.setError(getString(R.string.error_name_required));
             nameEditText.requestFocus();
             return;
         }
+        if (username.length() < 3 || username.length() > 50) {
+            nameLayout.setError(getString(R.string.error_email_invalid));
+            nameEditText.requestFocus();
+            return;
+        }
+        if (!username.matches(USERNAME_REGEX)) {
+            nameLayout.setError(getString(R.string.error_invalid_email));
+            nameEditText.requestFocus();
+            return;
+        }
+
 
         progressBar.setVisibility(View.VISIBLE);
 
@@ -217,7 +304,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<AuthModels.SignupResponse> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                // Usar recurso de string para el mensaje de error de red
                 Toast.makeText(LoginActivity.this, getString(R.string.error_network_connection), Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Register network error: ", t);
             }

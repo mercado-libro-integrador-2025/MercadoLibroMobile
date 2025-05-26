@@ -39,7 +39,17 @@
                     android:textAlignment="center"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_xlarge_26sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+
+                    android:contentDescription="Hola querido lector"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -52,7 +62,17 @@
                     android:padding="@dimen/padding_small"
                     android:text="@string/email_placeholder"
                     android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_size_large" />
+                    android:textSize="@dimen/text_size_large"
+
+                    android:contentDescription="Data desde el back"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/button2"
@@ -65,7 +85,17 @@
                     android:text="@string/button_my_reviews"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Mis reseñas"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/button8"
@@ -78,7 +108,17 @@
                     android:text="@string/button_shipping_status"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Estado de mi envio"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/button10"
@@ -91,7 +131,17 @@
                     android:text="@string/button_edit_data"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Editar mis datos"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <View
                     android:layout_width="match_parent"
@@ -149,7 +199,17 @@
                     android:text="@string/personal_data_laws_info"
                     android:textAlignment="center"
                     android:textColor="@color/sunstone_neutral_5"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_small"
+
+                    android:contentDescription="Proteccion legal de datos"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
                 <Button
                     android:id="@+id/button9"
@@ -162,7 +222,17 @@
                     android:text="@string/button_unsubscribe"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    app:cornerRadius="@dimen/card_corner_radius"
+
+                    android:contentDescription="Dar de baja"
+                    android:importantForAccessibility="yes"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalBefore="@id/etNombre"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+                    android:focusable="true"
+                    android:labelFor="@id/etNombre"
+
+                    />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

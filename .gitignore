@@ -3,14 +3,18 @@
 *.iml
 *.iws
 
+.vs/
+
 # Archivos de configuración local
 local.properties
 
 # Gradle
+/gradle/daemon/
 .gradle/
 build/
 gradle/wrapper/dists/
 gradle/caches
+gradle/daemon
 
 # Archivos generados por compilación
 *.apk

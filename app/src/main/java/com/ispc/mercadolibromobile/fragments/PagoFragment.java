@@ -49,10 +49,10 @@ public class PagoFragment extends Fragment {
         etVencimiento = view.findViewById(R.id.etVencimiento);
         spTipoTarjeta = view.findViewById(R.id.spTipoTarjeta);
 
-        tvNumeroTarjetaMostrar = view.findViewById(R.id.tvNumeroTarjetaMostrar);
-        tvCVVMostrar = view.findViewById(R.id.tvCVVMostrar);
-        tvVencimientoMostrar = view.findViewById(R.id.tvVencimientoMostrar);
-        tvMostrarTipoTarjeta = view.findViewById(R.id.tvmostarTipoTarjeta);
+        //tvNumeroTarjetaMostrar = view.findViewById(R.id.tvNumeroTarjetaMostrar);
+        //tvCVVMostrar = view.findViewById(R.id.tvCVVMostrar);
+        //tvVencimientoMostrar = view.findViewById(R.id.tvVencimientoMostrar);
+        //tvMostrarTipoTarjeta = view.findViewById(R.id.tvmostarTipoTarjeta);
 
         btnPagar = view.findViewById(R.id.btnPagar);
 
