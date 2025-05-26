@@ -26,141 +26,50 @@
         android:id="@+id/imageViewLogo"
         android:layout_width="@dimen/logo_width"
         android:layout_height="@dimen/logo_height"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
         android:layout_marginTop="@dimen/margin_large"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:adjustViewBounds="true"
-        android:alpha="0.9"
         android:contentDescription="@string/logo_content_description"
-        android:elevation="4dp"
-        android:enabled="true"
-        android:focusable="true"
-        android:importantForAccessibility="yes"
-        android:labelFor="@id/etNombre"
-        android:padding="8dp"
-
-        android:src="@drawable/ic_logo_app"
-        android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logo_app"
-
-        />
+        app:srcCompat="@drawable/ic_logo_app" />
 
     <TextView
         android:id="@+id/tvUsernameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:contentDescription="@string/label_username"
-        android:focusable="true"
-        android:importantForAccessibility="yes"
-        android:labelFor="@id/etNombre"
-
         android:text="@string/label_username"
         android:textColor="@color/text_primary"
         android:textSize="@dimen/text_size_medium_18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_extra_small"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:contentDescription="Usuario"
-        android:enabled="true"
-
-        android:focusable="true"
-        android:hint="Usuario"
-        android:importantForAccessibility="yes"
-        android:inputType="textEmailAddress"
-        android:labelFor="@id/etNombre"
-        android:visibility="visible"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeColor="@android:color/darker_gray"
-        app:boxStrokeWidth="2dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="50"
-        app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:errorTextColor="@color/error_color"
-        app:helperText="Introduce un usuario válido"
-        app:hintAnimationEnabled="true"
-
-        app:hintEnabled="true"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsernameLabel"
-        app:startIconContentDescription="Icono de usuario"
-        app:startIconDrawable="@drawable/ic_profile"
-        app:startIconTint="@android:color/darker_gray"
-
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tvUsernameLabel">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/input_margin"
-            android:accessibilityLiveRegion="polite"
-            android:accessibilityTraversalAfter="@id/tvInformacionPago"
-            android:accessibilityTraversalBefore="@id/etNombre"
             android:background="@drawable/input_field_background"
-            android:contentDescription="Usuario"
-            android:enabled="true"
-            android:focusable="true"
-
             android:hint="@string/hint_username_input"
-            android:importantForAccessibility="yes"
             android:inputType="textEmailAddress"
-            android:labelFor="@id/etNombre"
             android:minHeight="@dimen/min_touch_target_size"
             android:padding="@dimen/padding_medium"
             android:textColor="@color/text_primary"
             android:textStyle="bold"
-            android:visibility="visible"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@android:color/darker_gray"
-            app:boxStrokeWidth="2dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="50"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-
-            app:helperText="Introduce un usuario válido"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextColor="@color/input_hint_color"
-            app:startIconContentDescription="Icono de usuario"
-            app:startIconDrawable="@drawable/ic_profile"
-            app:startIconTint="@android:color/darker_gray"
-
-            />
+            app:hintTextColor="@color/input_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -168,108 +77,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:contentDescription="Contraseña"
-        android:focusable="true"
-        android:importantForAccessibility="yes"
-        android:labelFor="@id/etNombre"
-
         android:text="@string/label_password"
         android:textColor="@color/text_primary"
         android:textSize="@dimen/text_size_medium_18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutUsername"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutUsername" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:layout_marginTop="@dimen/margin_extra_small"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:contentDescription="Contraseña"
-
-        android:enabled="true"
-        android:focusable="true"
-        android:hint="Contraseña"
-        android:importantForAccessibility="yes"
-        android:inputType="textPassword"
-        android:labelFor="@id/etNombre"
-        android:visibility="visible"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeWidth="2dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="50"
         app:errorEnabled="true"
         app:errorTextColor="@color/error_color"
-        app:helperText="Introduce una contraseña válida"
-        app:hintAnimationEnabled="true"
-        app:hintEnabled="true"
-
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/tvPasswordLabel"
-        app:passwordToggleEnabled="true"
-        app:startIconContentDescription="Icono de contraseña"
-        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-        app:startIconTint="@android:color/darker_gray"
-
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tvPasswordLabel">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:accessibilityLiveRegion="polite"
-            android:accessibilityTraversalAfter="@id/tvInformacionPago"
-            android:accessibilityTraversalBefore="@id/etNombre"
             android:background="@drawable/input_field_background"
-            android:contentDescription="Contraseña"
-            android:enabled="true"
-            android:focusable="true"
             android:hint="@string/hint_password_input"
-
-            android:importantForAccessibility="yes"
             android:inputType="textPassword"
-            android:labelFor="@id/etNombre"
             android:minHeight="@dimen/min_touch_target_size"
             android:padding="@dimen/padding_medium"
             android:textColor="@color/text_primary"
             android:textStyle="bold"
-            android:visibility="visible"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@android:color/darker_gray"
-            app:boxStrokeWidth="2dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="50"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-
-            app:helperText="Introduce una contraseña valida"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextColor="@color/input_hint_color"
-            app:startIconContentDescription="Icono de contraseña"
-            app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-            app:startIconTint="@android:color/darker_gray"
-
-            />
+            app:hintTextColor="@color/input_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -277,7 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
-        android:text="Repetir Contraseña"
+        android:text="@string/label_repeat_password"
         android:textColor="@color/text_primary"
         android:textSize="@dimen/text_size_medium_18sp"
         android:textStyle="bold"
@@ -294,23 +133,22 @@
         android:visibility="gone"
         app:errorEnabled="true"
         app:errorTextColor="@color/error_color"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRepeatPassword"
-        app:passwordToggleEnabled="true">
+        app:layout_constraintTop_toBottomOf="@+id/textViewRepeatPassword">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextRepeatPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/input_field_background"
-            android:hint="Escribe nuevamente la contraseña"
+            android:hint="@string/hint_repeat_password_input"
             android:inputType="textPassword"
             android:minHeight="@dimen/min_touch_target_size"
             android:padding="@dimen/padding_medium"
             android:textColor="@color/text_primary"
             android:textStyle="bold"
-            android:visibility="gone"
             app:hintTextColor="@color/input_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -318,67 +156,39 @@
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:contentDescription="Nombre"
-        android:focusable="true"
-        android:importantForAccessibility="yes"
-        android:labelFor="@id/etNombre"
+        android:layout_marginTop="@dimen/margin_medium"
         android:text="@string/label_name"
-
         android:textColor="@color/text_primary"
         android:textSize="@dimen/text_size_medium_18sp"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutRepeatPassword"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutRepeatPassword" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_extra_small"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:contentDescription="Nombre"
-        android:focusable="true"
-        android:importantForAccessibility="yes"
-
-        android:labelFor="@id/etNombre"
         android:visibility="gone"
         app:errorEnabled="true"
         app:errorTextColor="@color/error_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName"
-
-        >
+        app:layout_constraintTop_toBottomOf="@+id/textViewName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:accessibilityLiveRegion="polite"
-            android:accessibilityTraversalAfter="@id/tvInformacionPago"
-            android:accessibilityTraversalBefore="@id/etNombre"
             android:background="@drawable/input_field_background"
-            android:contentDescription="Nombre"
-            android:focusable="true"
             android:hint="@string/hint_name_input"
-
-            android:importantForAccessibility="yes"
             android:inputType="textPersonName"
-            android:labelFor="@id/etNombre"
             android:minHeight="@dimen/min_touch_target_size"
+            android:padding="@dimen/padding_medium"
             android:textColor="@color/text_primary"
-
             android:textStyle="bold"
-            android:visibility="gone"
             app:hintTextColor="@color/input_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -387,131 +197,50 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:backgroundTint="@color/button_background_primary"
-        android:clickable="true"
-        android:contentDescription="Ingresar"
-
-        android:drawableLeft="@android:drawable/stat_sys_download"
-        android:drawablePadding="8dp"
-        android:elevation="4dp"
-        android:enabled="true"
-        android:focusable="true"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:importantForAccessibility="yes"
-        android:labelFor="@id/etNombre"
+        android:backgroundTint="@color/button_login_primary"
         android:minHeight="@dimen/min_touch_target_size"
-        android:padding="12dp"
         android:text="@string/button_login_text"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeColor="@android:color/darker_gray"
-        app:boxStrokeWidth="2dp"
-        app:cornerRadius="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName" />
 
     <Button
         android:id="@+id/buttonToggleMode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:layout_marginTop="@dimen/margin_medium"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
         android:backgroundTint="@color/button_toggle_secondary"
-        android:clickable="true"
-        android:contentDescription="Registrarse"
-
-        android:drawableLeft="@android:drawable/stat_sys_upload"
-        android:drawablePadding="8dp"
-        android:elevation="4dp"
-        android:enabled="true"
-        android:focusable="true"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:importantForAccessibility="yes"
-        android:labelFor="@id/etNombre"
         android:minHeight="@dimen/min_touch_target_size"
-        android:padding="12dp"
         android:text="@string/button_register_text"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeColor="@android:color/darker_gray"
-        app:boxStrokeWidth="2dp"
-        app:cornerRadius="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMainAction"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/buttonMainAction" />
 
     <Button
         android:id="@+id/buttonpoli"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_large"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
         android:background="@android:color/transparent"
-        android:contentDescription="Politicas de Privacidad"
-        android:focusable="true"
         android:gravity="center"
-        android:importantForAccessibility="yes"
-        android:labelFor="@id/etNombre"
-
         android:minHeight="@dimen/min_touch_target_size"
         android:text="@string/button_politics_text"
         android:textColor="@color/text_primary"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-
-        />
+        app:layout_constraintStart_toStartOf="@+id/guideline_start" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:contentDescription="Cargando"
-        android:focusable="true"
-
-        android:importantForAccessibility="yes"
-        android:labelFor="@id/etNombre"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
