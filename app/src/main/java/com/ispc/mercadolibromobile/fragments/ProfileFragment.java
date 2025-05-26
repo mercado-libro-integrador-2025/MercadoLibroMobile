@@ -16,22 +16,34 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ispc.mercadolibromobile.R;
 import com.ispc.mercadolibromobile.activities.SplashActivity;
+import com.ispc.mercadolibromobile.adapters.AddressAdapter; // Importar el nuevo AddressAdapter
 import com.ispc.mercadolibromobile.api.ApiService;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
+import com.ispc.mercadolibromobile.models.Direccion; // Importar el modelo Direccion
 import com.ispc.mercadolibromobile.models.User;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
+import com.ispc.mercadolibromobile.fragments.MyReviewsFragment;
+import com.ispc.mercadolibromobile.fragments.PedidosFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements AddressAdapter.OnAddressActionListener {
     private TextView emailTextView;
     private String authToken;
     private ApiService apiService;
+    private RecyclerView rvAddresses; // RecyclerView para direcciones
+    private AddressAdapter addressAdapter;
+    private List<Direccion> addressList;
 
     private static final String TAG = "ProfileFragment";
 
@@ -43,6 +55,12 @@ public class ProfileFragment extends Fragment {
         emailTextView = rootView.findViewById(R.id.textView9);
         apiService = RetrofitClient.getApiService(requireContext());
 
+        rvAddresses = rootView.findViewById(R.id.rvAddresses);
+        rvAddresses.setLayoutManager(new LinearLayoutManager(requireContext()));
+        addressList = new ArrayList<>();
+        addressAdapter = new AddressAdapter(addressList, requireContext(), this); // 'this' como listener
+        rvAddresses.setAdapter(addressAdapter);
+
         Button estadoEnvioButton = rootView.findViewById(R.id.button8);
         estadoEnvioButton.setOnClickListener(v -> {
             Log.d(TAG, "Botón estadoEnvioButton presionado - Iniciando PedidosFragment");
@@ -53,15 +71,12 @@ public class ProfileFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        // Obtener el email y el token de autenticación usando SessionUtils
-        String userEmail = SessionUtils.getUserEmail(requireContext()); // Usar requireContext()
-        authToken = SessionUtils.getAuthToken(requireContext()); // Usar requireContext()
+        String userEmail = SessionUtils.getUserEmail(requireContext());
+        authToken = SessionUtils.getAuthToken(requireContext());
         Log.d(TAG, "Token: " + authToken);
 
-        // Mostrar el email del usuario
-        emailTextView.setText(userEmail != null ? userEmail : getString(R.string.email_not_found)); // Usar recurso de string
+        emailTextView.setText(userEmail != null ? userEmail : getString(R.string.email_not_found));
 
-        // CORRECCIÓN: Usar 'rootView' en lugar de 'view'
         Button btnMyReviews = rootView.findViewById(R.id.button2);
         btnMyReviews.setOnClickListener(v -> {
             if (isAdded()) {
@@ -72,25 +87,123 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        // Botón de Editar mis datos
         Button editProfileButton = rootView.findViewById(R.id.button10);
         editProfileButton.setOnClickListener(v -> {
             Toast.makeText(requireContext(), getString(R.string.feature_not_implemented), Toast.LENGTH_SHORT).show();
         });
 
+        Button btnAddAddress = rootView.findViewById(R.id.btnAddAddress);
+        btnAddAddress.setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, DireccionFragment.newInstance(null)) // Pasar null para indicar nueva dirección
+                    .addToBackStack(null)
+                    .commit();
+        });
 
         Button deleteUserButton = rootView.findViewById(R.id.button9);
         deleteUserButton.setOnClickListener(v -> {
             if (authToken != null) {
                 confirmarEliminacionUsuario();
             } else {
-                Toast.makeText(requireContext(), getString(R.string.error_no_active_session_delete), Toast.LENGTH_SHORT).show(); // Usar recurso de string
+                Toast.makeText(requireContext(), getString(R.string.error_no_active_session_delete), Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "Token inválido: No se puede obtener el ID del usuario");
             }
         });
 
+        if (authToken != null) {
+            loadAddresses();
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.error_auth_required_addresses), Toast.LENGTH_SHORT).show();
+        }
+
         return rootView;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (authToken != null) {
+            loadAddresses();
+        }
+    }
+    private void loadAddresses() {
+        if (authToken == null) {
+            Log.e(TAG, "No hay token de autenticación para cargar direcciones.");
+            return;
+        }
+
+        apiService.getDirecciones("Bearer " + authToken).enqueue(new Callback<List<Direccion>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Direccion>> call, @NonNull Response<List<Direccion>> response) {
+                if (isAdded()) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        addressList.clear();
+                        addressList.addAll(response.body());
+                        addressAdapter.notifyDataSetChanged();
+                        if (addressList.isEmpty()) {
+                            Toast.makeText(requireContext(), getString(R.string.no_addresses_saved), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e(TAG, "Error al cargar direcciones: " + response.code() + " - " + response.message());
+                        Toast.makeText(requireContext(), getString(R.string.error_loading_addresses), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Direccion>> call, @NonNull Throwable t) {
+                if (isAdded()) {
+                    Log.e(TAG, "Fallo de red al cargar direcciones: " + t.getMessage(), t);
+                    Toast.makeText(requireContext(), getString(R.string.error_network_connection_addresses), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    @Override
+    public void onEditAddress(Direccion direccion) {
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, DireccionFragment.newInstance(direccion)) // Pasar la dirección a editar
+                .addToBackStack(null)
+                .commit();
+    }
+    @Override
+    public void onDeleteAddress(int direccionId) {
+        if (authToken == null) {
+            Toast.makeText(requireContext(), getString(R.string.error_auth_required_delete_address), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.confirm_delete_address_title))
+                .setMessage(getString(R.string.confirm_delete_address_message))
+                .setPositiveButton(getString(R.string.dialog_confirm_delete_yes_button), (dialog, which) -> {
+                    apiService.deleteDireccion(direccionId, "Bearer " + authToken).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                            if (isAdded()) {
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(requireContext(), getString(R.string.success_address_deleted), Toast.LENGTH_SHORT).show();
+                                    loadAddresses();
+                                } else {
+                                    Log.e(TAG, "Error al eliminar dirección: " + response.code() + " - " + response.message());
+                                    Toast.makeText(requireContext(), getString(R.string.error_deleting_address), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                            if (isAdded()) {
+                                Log.e(TAG, "Fallo de red al eliminar dirección: " + t.getMessage(), t);
+                                Toast.makeText(requireContext(), getString(R.string.error_network_connection_delete_address), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                })
+                .setNegativeButton(getString(R.string.dialog_confirm_delete_no_button), null)
+                .show();
+    }
+
     private void confirmarEliminacionUsuario() {
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_confirm_delete, null);
 
@@ -104,7 +217,6 @@ public class ProfileFragment extends Fragment {
 
             positiveButton.setOnClickListener(v -> {
                 dialog.dismiss();
-                // Obtener el ID del usuario autenticado antes de intentar eliminarlo
                 obtenerUsuarioAutenticado("Bearer " + authToken);
             });
 
@@ -113,20 +225,19 @@ public class ProfileFragment extends Fragment {
 
         dialog.show();
     }
+
     private void obtenerUsuarioAutenticado(@NonNull String authToken) {
-        // Usar la instancia de ApiService obtenida de RetrofitClient
         Call<User> call = apiService.getAuthenticatedUser(authToken);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                // Asegurarse de que el fragmento está adjunto antes de actualizar la UI
                 if (isAdded()) {
                     if (response.isSuccessful() && response.body() != null) {
-                        int userId = response.body().getUser().getId(); // Acceder al ID del usuario a través de UserInfo
+                        int userId = response.body().getUser().getId();
                         Log.d(TAG, "User ID obtenido: " + userId);
                         eliminarUsuario(userId, authToken);
                     } else {
-                        Toast.makeText(requireContext(), getString(R.string.error_getting_user_data), Toast.LENGTH_SHORT).show(); // Usar recurso de string
+                        Toast.makeText(requireContext(), getString(R.string.error_getting_user_data), Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "Error al obtener usuario: " + response.code() + " - " + response.message());
                     }
                 }
@@ -134,32 +245,29 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-                // Asegurarse de que el fragmento está adjunto antes de mostrar Toast
                 if (isAdded()) {
-                    Toast.makeText(requireContext(), getString(R.string.error_network_connection_user_data), Toast.LENGTH_SHORT).show(); // Usar recurso de string
+                    Toast.makeText(requireContext(), getString(R.string.error_network_connection_user_data), Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Fallo en la llamada de usuario autenticado: " + t.getMessage(), t);
                 }
             }
         });
     }
+
     private void eliminarUsuario(int userId, @NonNull String authToken) {
-        // Usar la instancia de ApiService obtenida de RetrofitClient
         Call<Void> call = apiService.deleteUser(userId, authToken);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                // Asegurarse de que el fragmento está adjunto antes de actualizar la UI
                 if (isAdded()) {
                     if (response.isSuccessful()) {
                         Log.d(TAG, "Usuario eliminado con éxito");
-                        Toast.makeText(requireContext(), getString(R.string.success_user_deleted), Toast.LENGTH_SHORT).show(); // Usar recurso de string
-                        SessionUtils.clearSession(requireContext()); // Limpiar la sesión usando SessionUtils
-                        // Redirigir a SplashActivity para reiniciar la aplicación
-                        Intent intent = new Intent(requireActivity(), SplashActivity.class); // Usar requireActivity()
+                        Toast.makeText(requireContext(), getString(R.string.success_user_deleted), Toast.LENGTH_SHORT).show();
+                        SessionUtils.clearSession(requireContext());
+                        Intent intent = new Intent(requireActivity(), SplashActivity.class);
                         startActivity(intent);
-                        requireActivity().finish(); // Finaliza la actividad actual
+                        requireActivity().finish();
                     } else {
-                        Toast.makeText(requireContext(), getString(R.string.error_deleting_user), Toast.LENGTH_SHORT).show(); // Usar recurso de string
+                        Toast.makeText(requireContext(), getString(R.string.error_deleting_user), Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "Error al eliminar usuario: " + response.code() + " - " + response.message());
                     }
                 }
@@ -167,9 +275,8 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                // Asegurarse de que el fragmento está adjunto antes de mostrar Toast
                 if (isAdded()) {
-                    Toast.makeText(requireContext(), getString(R.string.error_network_connection_delete_user), Toast.LENGTH_SHORT).show(); // Usar recurso de string
+                    Toast.makeText(requireContext(), getString(R.string.error_network_connection_delete_user), Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Fallo en la llamada de eliminación de usuario: " + t.getMessage(), t);
                 }
             }
