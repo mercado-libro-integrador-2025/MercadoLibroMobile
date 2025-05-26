@@ -88,16 +88,6 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
             }
         });
 
-        Button editProfileButton = rootView.findViewById(R.id.button10);
-        editProfileButton.setOnClickListener(v -> {
-            if (isAdded()) {
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new EditProfileFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-
         Button btnAddAddress = rootView.findViewById(R.id.btnAddAddress);
         btnAddAddress.setOnClickListener(v -> {
             getParentFragmentManager().beginTransaction()

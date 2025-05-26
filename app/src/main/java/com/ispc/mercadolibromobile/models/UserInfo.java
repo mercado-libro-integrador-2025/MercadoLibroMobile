@@ -1,6 +1,6 @@
 package com.ispc.mercadolibromobile.models;
 
-import java.io.Serializable; // Implementar Serializable si lo necesitas para Bundles
+import java.io.Serializable;
 
 public class UserInfo implements Serializable {
     private int id;

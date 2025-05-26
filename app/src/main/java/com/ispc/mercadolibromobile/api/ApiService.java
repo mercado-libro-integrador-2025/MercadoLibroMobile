@@ -53,25 +53,25 @@ public interface ApiService {
 
     // =================== Reseñas ===================
     @GET("resenas/")
-    Call<List<Review>> getAllReviews(@Header("Authorization") String token); // Renombrado para claridad
-
+    Call<List<Review>> getAllReviews(@Header("Authorization") String token);
     @GET("resenas/libro/{idLibro}/")
     Call<List<Review>> getReviewsForBook(@Path("idLibro") int idLibro);
 
-    @GET("resenas/usuario/{idUsuario}/")
-    Call<List<Review>> getReviewsByUser(@Header("Authorization") String token, @Path("idUsuario") int idUsuario);
-
+    @GET("resenas/mis-resenas/")
+    Call<List<Review>> getMyReviews(@Header("Authorization") String token);
     @POST("resenas/")
-    Call<Review> createReview(@Header("Authorization") String token, @Body Review review); // CORRECCIÓN: Retorna Review
+    Call<Review> createReview(@Header("Authorization") String token, @Body Review review);
 
     @DELETE("resenas/{id}/")
-    Call<Void> deleteReview(@Header("Authorization") String token, @Path("id") int id); // CORRECCIÓN: id como int
+    Call<Void> deleteReview(@Header("Authorization") String token, @Path("id") int id);
 
     @PUT("resenas/{id}/")
-    Call<Review> updateReview(@Header("Authorization") String token, @Path("id") int reviewId, @Body Review review); // CORRECCIÓN: id como int, retorna Review
-
+    Call<Review> updateReview(@Header("Authorization") String token, @Path("id") int reviewId, @Body Review review);
     @GET("resenas/{id}/")
-    Call<Review> getReviewById(@Header("Authorization") String token, @Path("id") int reviewId); // Nuevo: para editar
+    Call<Review> getReviewById(@Header("Authorization") String token, @Path("id") int reviewId);
+
+    @GET("libros/{id}/")
+    Call<Book> getBookById(@Path("id")int bookId);
 
     // =================== Pedidos ===================
     @GET("pedidos/")
@@ -116,5 +116,4 @@ public interface ApiService {
     // =================== Contacto ===================
     @POST("contacto/")
     Call<Void> enviarConsulta(@Body Contacto contacto);
-
 }

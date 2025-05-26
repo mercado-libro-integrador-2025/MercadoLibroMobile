@@ -66,10 +66,9 @@ public class MyReviewsFragment extends Fragment implements ReviewAdapter.OnRevie
     }
 
     private void loadMyReviews() {
-        int userId = SessionUtils.getUserId(getContext());
         String token = SessionUtils.getAuthToken(getContext());
 
-        if (userId == -1 || token == null) {
+        if (token == null) {
             progressBar.setVisibility(View.GONE);
             Toast.makeText(requireContext(), getString(R.string.error_not_logged_in_review), Toast.LENGTH_SHORT).show();
             return;
@@ -77,25 +76,13 @@ public class MyReviewsFragment extends Fragment implements ReviewAdapter.OnRevie
 
         progressBar.setVisibility(View.VISIBLE);
 
-        // Llamar a getAllReviews y luego filtrar por userId en el frontend
-        apiService.getAllReviews("Bearer " + token).enqueue(new Callback<List<Review>>() {
+        apiService.getMyReviews("Bearer " + token).enqueue(new Callback<List<Review>>() {
             @Override
             public void onResponse(@NonNull Call<List<Review>> call, @NonNull Response<List<Review>> response) {
                 if (isAdded()) {
                     progressBar.setVisibility(View.GONE);
                     if (response.isSuccessful() && response.body() != null) {
-                        List<Review> allReviews = response.body();
-                        List<Review> myReviews = new ArrayList<>();
-
-                        // Filtrar las reseñas por el ID del usuario actual
-                        for (Review review : allReviews) {
-                            // Asumo que el campo 'id_usuario' en el modelo Review es el que se usa para filtrar
-                            // Si el backend no devuelve 'id_usuario' en getAllReviews, esto no funcionará.
-                            // Deberías verificar la estructura de la respuesta de getAllReviews.
-                            if (review.getIdUsuario() == userId) {
-                                myReviews.add(review);
-                            }
-                        }
+                        List<Review> myReviews = response.body();
 
                         reviewAdapter = new ReviewAdapter(myReviews, requireContext(), true, MyReviewsFragment.this);
                         recyclerViewMyReviews.setAdapter(reviewAdapter);
@@ -104,6 +91,12 @@ public class MyReviewsFragment extends Fragment implements ReviewAdapter.OnRevie
                         }
                     } else {
                         Log.e(TAG, "Error al cargar tus reseñas: " + response.code() + " - " + response.message());
+                        try {
+                            String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                            Log.e(TAG, "Error body: " + errorBody);
+                        } catch (Exception e) {
+                            Log.e(TAG, "Error reading error body: " + e.getMessage());
+                        }
                         Toast.makeText(requireContext(), getString(R.string.error_loading_my_reviews, response.message()), Toast.LENGTH_SHORT).show();
                     }
                 }
