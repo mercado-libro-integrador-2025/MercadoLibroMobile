@@ -24,9 +24,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DireccionFragment extends Fragment {
+public class DireccionFormFragment extends Fragment {
 
-    private static final String TAG = "DireccionFragment";
+    private static final String TAG = "DireccionFormFragment";
     private static final String ARG_DIRECCION = "direccion_object";
 
     private EditText etCalle, etNumero, etCiudad, etProvincia;
@@ -36,8 +36,28 @@ public class DireccionFragment extends Fragment {
     private Direccion currentDireccion;
     private ApiService apiService;
 
-    public static DireccionFragment newInstance(@Nullable Direccion direccion) {
-        DireccionFragment fragment = new DireccionFragment();
+    public interface OnDireccionSavedListener {
+        void onDireccionSaved(Direccion direccion);
+    }
+    private OnDireccionSavedListener listener;
+
+    @Override
+    public void onAttach(@NonNull android.content.Context context) {
+        super.onAttach(context);
+        if (context instanceof OnDireccionSavedListener) {
+            listener = (OnDireccionSavedListener) context;
+        } else {}
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
+
+    public static DireccionFormFragment newInstance(@Nullable Direccion direccion) {
+        DireccionFormFragment fragment = new DireccionFormFragment();
         Bundle args = new Bundle();
         if (direccion != null) {
             args.putSerializable(ARG_DIRECCION, direccion);
@@ -135,10 +155,20 @@ public class DireccionFragment extends Fragment {
                     if (isAdded()) {
                         if (response.isSuccessful() && response.body() != null) {
                             Toast.makeText(requireContext(), getString(R.string.success_address_updated), Toast.LENGTH_SHORT).show();
+                            if (listener != null) {
+                                listener.onDireccionSaved(response.body());
+                            }
                             getParentFragmentManager().popBackStack();
                         } else {
                             Log.e(TAG, "Error al actualizar dirección. Código: " + response.code() + ", Mensaje: " + response.message());
-                            Toast.makeText(requireContext(), getString(R.string.error_updating_address), Toast.LENGTH_SHORT).show();
+                            try {
+                                String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                                Log.e(TAG, "Error body actualizar dirección: " + errorBody);
+                                Toast.makeText(requireContext(), getString(R.string.error_updating_address) + ": " + errorBody, Toast.LENGTH_LONG).show();
+                            } catch (Exception e) {
+                                Log.e(TAG, "Error al parsear error body", e);
+                                Toast.makeText(requireContext(), getString(R.string.error_updating_address), Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 }
@@ -158,10 +188,20 @@ public class DireccionFragment extends Fragment {
                     if (isAdded()) {
                         if (response.isSuccessful() && response.body() != null) {
                             Toast.makeText(requireContext(), getString(R.string.success_address_saved), Toast.LENGTH_SHORT).show();
+                            if (listener != null) {
+                                listener.onDireccionSaved(response.body());
+                            }
                             getParentFragmentManager().popBackStack();
                         } else {
                             Log.e(TAG, "Error al guardar dirección. Código: " + response.code() + ", Mensaje: " + response.message());
-                            Toast.makeText(requireContext(), getString(R.string.error_saving_address, response.message()), Toast.LENGTH_SHORT).show();
+                            try {
+                                String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                                Log.e(TAG, "Error body guardar dirección: " + errorBody);
+                                Toast.makeText(requireContext(), getString(R.string.error_saving_address) + ": " + errorBody, Toast.LENGTH_LONG).show();
+                            } catch (Exception e) {
+                                Log.e(TAG, "Error al parsear error body", e);
+                                Toast.makeText(requireContext(), getString(R.string.error_saving_address), Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 }

@@ -2,6 +2,13 @@ package com.ispc.mercadolibromobile.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Base64;
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 
 public class SessionUtils {
     private static final String PREF_NAME = "user_session";
@@ -9,8 +16,9 @@ public class SessionUtils {
     private static final String KEY_REFRESH_TOKEN = "refresh_token";
     private static final String KEY_USER_EMAIL = "user_email";
     private static final String KEY_USER_ID = "user_id";
-
     private static final String KEY_USERNAME = "username";
+
+    private static final String TAG = "SessionUtils"; // Tag para logs
 
     private static SharedPreferences getPrefs(Context context) {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -51,23 +59,74 @@ public class SessionUtils {
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(KEY_USER_ID, userId);
-        editor.apply();
+        editor.commit(); // *** CAMBIADO A COMMIT() PARA ESCRITURA SÍNCRONA ***
+        Log.d(TAG, "User ID saved: " + userId + " (using commit)"); // Log para verificar que se guarda
     }
 
     public static int getUserId(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        return prefs.getInt(KEY_USER_ID, -1);
+        int userId = prefs.getInt(KEY_USER_ID, -1); // El valor por defecto es -1
+        Log.d(TAG, "User ID retrieved from SharedPreferences: " + userId); // Log para verificar que se recupera
+        return userId;
     }
 
-    public static void saveUserName(Context context, String username) { // <--- Cambiado a username
+    public static void saveUserName(Context context, String username) {
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(KEY_USERNAME, username); // <--- Usa KEY_USERNAME
+        editor.putString(KEY_USERNAME, username);
         editor.apply();
     }
 
-    public static String getUserName(Context context) { // <--- Cambiado a username
+    public static String getUserName(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        return prefs.getString(KEY_USERNAME, null); // <--- Usa KEY_USERNAME
+        return prefs.getString(KEY_USERNAME, null);
+    }
+
+    /**
+     * Decodifica un token JWT para extraer el ID de usuario.
+     * Asume que el ID de usuario está en el claim "user_id" del payload.
+     * @param token El token JWT (access token).
+     * @return El ID de usuario si se encuentra y es válido, de lo contrario -1.
+     */
+    public static int getUserIdFromJwt(String token) {
+        if (token == null || token.isEmpty()) {
+            Log.e(TAG, "Token JWT es nulo o vacío.");
+            return -1;
+        }
+
+        try {
+            String[] split = token.split("\\.");
+            if (split.length < 2) {
+                Log.e(TAG, "Token JWT inválido: no tiene suficientes partes.");
+                return -1;
+            }
+
+            // Decodificar el payload (segunda parte del token)
+            byte[] decodedBytes = Base64.decode(split[1], Base64.URL_SAFE);
+            String payload = new String(decodedBytes, "UTF-8");
+            Log.d(TAG, "JWT Payload decoded: " + payload); // Log del payload decodificado
+
+            JSONObject jsonPayload = new JSONObject(payload);
+            if (jsonPayload.has("user_id")) {
+                int userId = jsonPayload.getInt("user_id");
+                Log.d(TAG, "User ID found in JWT payload: " + userId); // Log del user_id encontrado
+                return userId;
+            } else {
+                Log.w(TAG, "El payload del JWT no contiene el campo 'user_id'. Payload: " + payload);
+                return -1;
+            }
+        } catch (UnsupportedEncodingException e) {
+            Log.e(TAG, "Error de codificación al decodificar JWT: " + e.getMessage());
+            return -1;
+        } catch (JSONException e) {
+            Log.e(TAG, "Error al parsear JSON del payload JWT: " + e.getMessage());
+            return -1;
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, "Error de Base64 al decodificar JWT (posiblemente token mal formado): " + e.getMessage());
+            return -1;
+        } catch (Exception e) {
+            Log.e(TAG, "Error inesperado al obtener user ID de JWT: " + e.getMessage());
+            return -1;
+        }
     }
 }

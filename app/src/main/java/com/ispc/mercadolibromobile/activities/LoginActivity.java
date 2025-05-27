@@ -196,7 +196,20 @@ public class LoginActivity extends AppCompatActivity {
                     AuthModels.LoginResponse data = response.body();
                     SessionUtils.saveAuthToken(LoginActivity.this, data.getAccess());
                     SessionUtils.saveRefreshToken(LoginActivity.this, data.getRefresh());
-                    SessionUtils.saveUserId(LoginActivity.this, data.getUserId());
+
+                    // *** MODIFICACIÓN CLAVE AQUÍ: Extraer user_id del token de acceso ***
+                    int userId = SessionUtils.getUserIdFromJwt(data.getAccess());
+                    Log.d(TAG, "User ID extracted from JWT in LoginActivity: " + userId); // NUEVO LOG
+                    if (userId != -1) {
+                        SessionUtils.saveUserId(LoginActivity.this, userId);
+                        Log.d(TAG, "User ID saved in SessionUtils from LoginActivity: " + SessionUtils.getUserId(LoginActivity.this)); // NUEVO LOG: verificar que se guardó
+                    } else {
+                        Log.e(TAG, "No se pudo obtener el User ID del token JWT. El carrito puede no funcionar.");
+                        // Considera mostrar un Toast o manejar este error de forma más robusta
+                        // ya que el carrito no funcionará sin un userId válido.
+                    }
+                    // *******************************************************************
+
                     SessionUtils.saveUserEmail(LoginActivity.this, email);
 
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));

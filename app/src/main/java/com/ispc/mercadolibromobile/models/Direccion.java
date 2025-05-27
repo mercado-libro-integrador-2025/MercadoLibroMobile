@@ -25,6 +25,7 @@ public class Direccion implements Serializable {
         this.numero = numero;
         this.ciudad = ciudad;
         this.provincia = provincia;
+
     }
 
     // Getters y Setters
@@ -75,4 +76,17 @@ public class Direccion implements Serializable {
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
+
+    public String getFullAddress() {
+        StringBuilder fullAddress = new StringBuilder();
+        fullAddress.append(calle).append(" ").append(numero);
+        fullAddress.append(", ").append(ciudad).append(", ").append(provincia);
+        return fullAddress.toString();
+    }
+
+    @Override
+    public String toString() {
+        return getFullAddress();
+    }
+
 }
