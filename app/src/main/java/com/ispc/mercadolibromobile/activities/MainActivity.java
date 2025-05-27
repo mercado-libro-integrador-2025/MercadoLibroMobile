@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setLogo(R.drawable.ic_logo_app);
             getSupportActionBar().setDisplayUseLogoEnabled(true);
-            getSupportActionBar().setTitle(R.string.app_name);
+            getSupportActionBar().setTitle("");
         }
 
         drawerLayout = findViewById(R.id.drawer_layout);

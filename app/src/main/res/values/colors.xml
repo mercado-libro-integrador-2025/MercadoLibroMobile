@@ -42,4 +42,7 @@
     <color name="sunstone_dark">#FFA000</color>
     <color name="sunstone_accent">#FFD54F</color>
     <color name="white_alpha_70">#B3FFFFFF</color>
+    <color name="fondo_drawer_oscuro">#2C2C2C</color>
+    <color name="nav_drawer_group_title_color">#FFFFFF</color>
+
 </resources>
