@@ -35,7 +35,7 @@
 
     <item
         android:textAppearance="@style/NavigationViewSectionHeader"
-        android:title="@string/drawer_menu_section_general">
+        android:title="@string/drawer_menu_section_general" >
         <menu>
             <item
                 android:id="@+id/nav_products"

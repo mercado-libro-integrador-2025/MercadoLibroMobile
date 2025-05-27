@@ -53,9 +53,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/fondo_drawer_oscuro"
         android:fitsSystemWindows="true"
+        android:theme="@style/Theme.NavigationViewGroupTitleOverride"
         app:headerLayout="@layout/nav_header_main"
-        app:itemBackground="@drawable/selector_drawer_item_background"
+        app:itemBackground="@color/selector_drawer_item_background"
         app:itemIconTint="@color/selector_drawer_item_icon"
         app:itemTextColor="@color/selector_drawer_item_text"
         app:menu="@menu/drawer_menu" />

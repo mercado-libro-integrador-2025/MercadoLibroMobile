@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name"></string>
+    <string name="app_name">MercadoLibro</string>
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     <string name="logout_message">Sesión cerrada. ¡Hasta pronto!</string>
