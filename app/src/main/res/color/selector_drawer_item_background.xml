@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true">
+    <item android:state_checked="true" android:color="@color/fondo_drawer_oscuro">
         <shape android:shape="rectangle">
             <corners android:radius="4dp" />
             <solid android:color="@color/sunstone_neutral_4" />
         </shape>
     </item>
-    <item android:state_pressed="true">
+    <item android:state_pressed="true" android:color="@color/fondo_drawer_oscuro">
         <shape android:shape="rectangle">
             <corners android:radius="4dp" />
-            <solid android:color="#404040" />
+            <solid android:color="@color/fondo_drawer_oscuro" />
         </shape>
     </item>
-    <item android:drawable="@android:color/transparent" />
+    <item android:drawable="@android:color/transparent" android:color="#404040" />
 </selector>
