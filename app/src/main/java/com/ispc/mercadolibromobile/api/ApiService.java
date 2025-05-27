@@ -9,6 +9,7 @@ import com.ispc.mercadolibromobile.models.ItemCarrito;
 import com.ispc.mercadolibromobile.models.Direccion;
 import com.ispc.mercadolibromobile.models.Pago;
 import com.ispc.mercadolibromobile.models.Contacto;
+import com.ispc.mercadolibromobile.models.UserInfo;
 
 import java.util.List;
 
@@ -27,13 +28,16 @@ public interface ApiService {
 
     // =================== Usuarios ===================
     @GET("usuarios/")
-    Call<List<User>> getUsers();
+    Call<List<UserInfo>> getUsers();
 
     @GET("usuarios/me/")
     Call<User> getAuthenticatedUser(@Header("Authorization") String token);
 
     @DELETE("usuarios/{id}/")
     Call<Void> deleteUser(@Path("id") int id, @Header("Authorization") String token);
+
+    @PUT("usuarios/{id}/") //
+    Call<UserInfo> updateUser(@Path("id") int userId, @Header("Authorization") String authToken, @Body UserInfo userInfo);
 
     // =================== Auth ===================
     @FormUrlEncoded
@@ -49,25 +53,25 @@ public interface ApiService {
 
     // =================== Reseñas ===================
     @GET("resenas/")
-    Call<List<Review>> getAllReviews(@Header("Authorization") String token); // Renombrado para claridad
-
+    Call<List<Review>> getAllReviews(@Header("Authorization") String token);
     @GET("resenas/libro/{idLibro}/")
     Call<List<Review>> getReviewsForBook(@Path("idLibro") int idLibro);
 
-    @GET("resenas/usuario/{idUsuario}/")
-    Call<List<Review>> getReviewsByUser(@Header("Authorization") String token, @Path("idUsuario") int idUsuario);
-
+    @GET("resenas/mis-resenas/")
+    Call<List<Review>> getMyReviews(@Header("Authorization") String token);
     @POST("resenas/")
-    Call<Review> createReview(@Header("Authorization") String token, @Body Review review); // CORRECCIÓN: Retorna Review
+    Call<Review> createReview(@Header("Authorization") String token, @Body Review review);
 
     @DELETE("resenas/{id}/")
-    Call<Void> deleteReview(@Header("Authorization") String token, @Path("id") int id); // CORRECCIÓN: id como int
+    Call<Void> deleteReview(@Header("Authorization") String token, @Path("id") int id);
 
     @PUT("resenas/{id}/")
-    Call<Review> updateReview(@Header("Authorization") String token, @Path("id") int reviewId, @Body Review review); // CORRECCIÓN: id como int, retorna Review
-
+    Call<Review> updateReview(@Header("Authorization") String token, @Path("id") int reviewId, @Body Review review);
     @GET("resenas/{id}/")
-    Call<Review> getReviewById(@Header("Authorization") String token, @Path("id") int reviewId); // Nuevo: para editar
+    Call<Review> getReviewById(@Header("Authorization") String token, @Path("id") int reviewId);
+
+    @GET("libros/{id}/")
+    Call<Book> getBookById(@Path("id")int bookId);
 
     // =================== Pedidos ===================
     @GET("pedidos/")

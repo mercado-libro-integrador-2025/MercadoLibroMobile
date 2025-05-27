@@ -23,7 +23,8 @@
     <dimen name="text_size_section_title">18sp</dimen>
     <dimen name="text_size_content">16sp</dimen>
 
-    <dimen name="icon_size_medium">24dp</dimen> <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="card_corner_radius_large_16dp">16dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="card_elevation_small">4dp</dimen>
@@ -57,5 +58,14 @@
     <dimen name="margin_extra_small_5dp">5dp</dimen>
     <dimen name="padding_medium_12dp">12dp</dimen>
     <dimen name="progress_bar_size">48dp</dimen>
+
+    <dimen name="card_corner_radius_large">12dp</dimen>
+    <dimen name="card_elevation_elevated">4dp</dimen>
+    <dimen name="margin_xsmall">4dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="text_size_drawer_header_email">18sp</dimen>
+    <dimen name="text_size_drawer_section_title">16sp</dimen>
 
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Mercado Libro</string>
+    <string name="app_name">MercadoLibro</string>
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     <string name="logout_message">Sesión cerrada. ¡Hasta pronto!</string>
@@ -160,7 +160,8 @@
     <string name="error_city_required">La ciudad es obligatoria.</string>
     <string name="error_province_required">La provincia es obligatoria.</string>
     <string name="error_token_not_found">Token no encontrado, por favor inicie sesión.</string>
-    <string name="no_address_saved_placeholder">No hay dirección guardada</string> <string name="label_street_entered">Calle ingresada: %s</string>
+    <string name="no_address_saved_placeholder">No hay dirección guardada</string>
+    <string name="label_street_entered">Calle ingresada: %s</string>
     <string name="label_number_entered">Número ingresado: %s</string>
     <string name="label_city_entered">Ciudad ingresada: %s</string>
     <string name="label_province_entered">Provincia ingresada: %s</string>
@@ -194,7 +195,8 @@
     <string name="reviews_for_book_placeholder">Reseñas del Libro</string>
     <string name="reviews_for_book_display">Reseñas de: %s</string>
     <string name="reviews_for_book_default">Reseñas del Libro</string>
-    <string name="my_reviews_title_reviews">Mis Reseñas</string> <string name="button_create_new_review">Crear Nueva Reseña</string>
+    <string name="my_reviews_title_reviews">Mis Reseñas</string>
+    <string name="button_create_new_review">Crear Nueva Reseña</string>
     <string name="create_review_title">Crear Reseña</string>
     <string name="edit_review_title">Editar Reseña</string>
     <string name="hint_review_title">Título de la reseña</string>
@@ -241,7 +243,6 @@
     <string name="confirm_delete_review_message">¿Estás seguro de que quieres eliminar esta reseña?</string>
     <string name="review_item_title_placeholder">Título de la reseña</string>
 
-
     <string name="title_policies_main">Políticas de Calidad y Seguridad</string>
     <string name="title_quality">Calidad del Producto</string>
     <string name="content_quality">En Mercado Libro, nos comprometemos a ofrecer productos de la más alta calidad. Cada libro es cuidadosamente seleccionado y verificado para asegurar que cumpla con nuestros estándares antes de ser enviado. Trabajamos con proveedores de confianza para garantizar la autenticidad y el buen estado de cada ejemplar. Su satisfacción es nuestra prioridad, y nos esforzamos por superar sus expectativas en cada compra.</string>
@@ -257,6 +258,11 @@
     <string name="content_customer_service">Nuestro equipo de atención al cliente está siempre disponible para ayudarle con cualquier pregunta, inquietud o problema que pueda tener. Nos esforzamos por ofrecer un servicio rápido, amable y eficiente. Ya sea que necesite ayuda con un pedido, tenga preguntas sobre un producto o simplemente quiera compartir sus comentarios, no dude en contactarnos. Su opinión es invaluable para nosotros y nos ayuda a mejorar continuamente.</string>
     <string name="footer_acknowledgement">Gracias por confiar en Mercado Libro. ¡Esperamos que disfrute de su lectura!</string>
 
+    <string name="dialog_alert_positive_button">Aceptar</string>
+    <string name="error_name_invalid_characters">El nombre solo puede contener letras y espacios.</string>
+    <string name="error_max_length">Este campo no puede exceder los %d caracteres.</string>
+    <string name="error_asunto_min_length">El asunto debe tener al menos 2 caracteres.</string>
+
     <string name="drawer_menu_profile">Perfil</string>
     <string name="drawer_menu_products">Productos</string>
     <string name="drawer_menu_contact">Contacto</string>
@@ -271,7 +277,28 @@
     <string name="dialog_confirm_delete_no_button">No</string>
 
     <string name="dialog_alert_positive_button">Aceptar</string>
-    <string name="error_name_invalid_characters">El nombre solo puede contener letras y espacios.</string>
-    <string name="error_max_length">Este campo no puede exceder los %d caracteres.</string>
-    <string name="error_asunto_min_length">El asunto debe tener al menos 2 caracteres.</string>
+
+    <string name="title_edit_profile">Editar Perfil</string>
+    <string name="hint_enter_username">Ingresa tu nombre de usuario</string>
+    <string name="button_save_profile">Guardar Cambios</string>
+    <string name="error_username_required">El nombre de usuario es requerido</string>
+    <string name="error_loading_user_data">Error al cargar los datos del usuario.</string>
+    <string name="error_updating_profile">Error al actualizar el perfil.</string>
+    <string name="error_network_connection_profile">Error de conexión al intentar actualizar el perfil.</string>
+    <string name="success_profile_updated">Perfil actualizado con éxito.</string>
+
+    <string name="nav_header_title">¡Hola!</string>
+    <string name="nav_header_subtitle">tu.email@ejemplo.com</string>
+    <string name="nav_header_desc">Encabezado de navegación</string>
+
+    <string name="drawer_menu_my_reviews">Mis Reseñas</string>
+    <string name="drawer_menu_my_addresses">Mis Direcciones</string>
+    <string name="drawer_menu_my_payments">Mis Métodos de Pago</string>
+    <string name="drawer_menu_my_orders">Mis Pedidos</string>
+
+    <string name="drawer_menu_section_general">General</string>
+
+    <string name="nav_header_title_default">Bienvenido</string>
+    <string name="nav_header_subtitle_default">Iniciar Sesión</string>
+
 </resources>

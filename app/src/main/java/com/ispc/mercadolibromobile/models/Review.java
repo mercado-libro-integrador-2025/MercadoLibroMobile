@@ -12,9 +12,6 @@ public class Review {
     @SerializedName("libro")
     private int idLibro;
 
-    @SerializedName("id_usuario")
-    private int idUsuario;
-
     @SerializedName("titulo_libro")
     private String tituloLibroAsociado;
 
@@ -24,17 +21,16 @@ public class Review {
     @SerializedName("email_usuario")
     private String emailUsuario;
 
-    public Review(String contenido, int idLibro, int idUsuario) {
+    public Review(String contenido, int idLibro, String emailUsuario) {
         this.contenido = contenido;
         this.idLibro = idLibro;
-        this.idUsuario = idUsuario;
+        this.emailUsuario = emailUsuario;
     }
 
-    public Review(int idResena, String contenido, int idLibro, int idUsuario, String tituloLibroAsociado, String fecha, String emailUsuario) {
+    public Review(int idResena, String contenido, int idLibro, String tituloLibroAsociado, String fecha, String emailUsuario) {
         this.idResena = idResena;
         this.contenido = contenido;
         this.idLibro = idLibro;
-        this.idUsuario = idUsuario;
         this.tituloLibroAsociado = tituloLibroAsociado;
         this.fecha = fecha;
         this.emailUsuario = emailUsuario;
@@ -51,10 +47,6 @@ public class Review {
 
     public int getIdLibro() {
         return idLibro;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
     }
 
     public String getTituloLibroAsociado() {
@@ -82,9 +74,6 @@ public class Review {
         this.idLibro = idLibro;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 
     public void setTituloLibroAsociado(String tituloLibroAsociado) {
         this.tituloLibroAsociado = tituloLibroAsociado;

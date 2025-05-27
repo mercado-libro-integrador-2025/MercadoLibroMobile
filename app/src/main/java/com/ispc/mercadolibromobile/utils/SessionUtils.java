@@ -10,6 +10,8 @@ public class SessionUtils {
     private static final String KEY_USER_EMAIL = "user_email";
     private static final String KEY_USER_ID = "user_id";
 
+    private static final String KEY_USERNAME = "username";
+
     private static SharedPreferences getPrefs(Context context) {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
@@ -26,10 +28,6 @@ public class SessionUtils {
         getPrefs(context).edit().putString(KEY_USER_EMAIL, email).apply();
     }
 
-    public static void saveUserId(Context context, int userId) {
-        getPrefs(context).edit().putInt(KEY_USER_ID, userId).apply();
-    }
-
     public static String getAuthToken(Context context) {
         return getPrefs(context).getString(KEY_ACCESS_TOKEN, null);
     }
@@ -42,11 +40,34 @@ public class SessionUtils {
         return getPrefs(context).getString(KEY_USER_EMAIL, null);
     }
 
-    public static int getUserId(Context context) {
-        return getPrefs(context).getInt(KEY_USER_ID, -1);
+    public static void clearSession(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
     }
 
-    public static void clearSession(Context context) {
-        getPrefs(context).edit().clear().apply();
+    public static void saveUserId(Context context, int userId) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(KEY_USER_ID, userId);
+        editor.apply();
+    }
+
+    public static int getUserId(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return prefs.getInt(KEY_USER_ID, -1);
+    }
+
+    public static void saveUserName(Context context, String username) { // <--- Cambiado a username
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(KEY_USERNAME, username); // <--- Usa KEY_USERNAME
+        editor.apply();
+    }
+
+    public static String getUserName(Context context) { // <--- Cambiado a username
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return prefs.getString(KEY_USERNAME, null); // <--- Usa KEY_USERNAME
     }
 }

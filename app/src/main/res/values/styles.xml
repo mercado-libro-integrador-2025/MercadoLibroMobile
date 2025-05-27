@@ -1,9 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
     <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="navigationViewStyle">@style/AppNavigationViewStyle</item>
     </style>
+
+    <style name="NavigationViewSectionHeader" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">@dimen/text_size_drawer_section_title</item>
+        <item name="android:textColor">@color/sunstone_neutral_4</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppNavigationViewStyle" parent="Widget.Material3.NavigationView">
+        <item name="itemTextColor">@color/selector_drawer_item_text</item>
+        <item name="itemIconTint">@color/selector_drawer_item_icon</item>
+        <item name="android:textColorPrimary">@color/nav_drawer_group_title_color</item>
+        <item name="android:textColorSecondary">@color/nav_drawer_group_title_color</item>
+        <item name="colorOnSurfaceVariant">@color/nav_drawer_group_title_color</item>
+        <item name="colorOnBackground">@color/nav_drawer_group_title_color</item>
+    </style>
+
+    <style name="Theme.NavigationViewGroupTitleOverride" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorOnSurfaceVariant">@color/nav_drawer_group_title_color</item>
+        <item name="colorOnBackground">@color/nav_drawer_group_title_color</item>
+        <item name="android:textColorPrimary">@color/nav_drawer_group_title_color</item>
+        <item name="android:textColorSecondary">@color/nav_drawer_group_title_color</item>
+    </style>
+
 </resources>

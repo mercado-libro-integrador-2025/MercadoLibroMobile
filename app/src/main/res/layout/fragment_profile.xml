@@ -120,29 +120,6 @@
 
                     />
 
-                <Button
-                    android:id="@+id/button10"
-                    android:layout_width="@dimen/button_width_medium"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_top_xlarge"
-                    android:layout_marginLeft="20dp"
-                    android:backgroundTint="@color/sunstone_neutral_7"
-                    android:minHeight="@dimen/min_touch_target_size"
-                    android:text="@string/button_edit_data"
-                    android:textColor="@color/sunstone_neutral_4"
-                    android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius"
-
-                    android:contentDescription="Editar mis datos"
-                    android:importantForAccessibility="yes"
-                    android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                    android:focusable="true"
-                    android:labelFor="@id/etNombre"
-
-                    />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
