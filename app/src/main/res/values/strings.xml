@@ -271,4 +271,7 @@
     <string name="dialog_confirm_delete_no_button">No</string>
 
     <string name="dialog_alert_positive_button">Aceptar</string>
+    <string name="error_name_invalid_characters">El nombre solo puede contener letras y espacios.</string>
+    <string name="error_max_length">Este campo no puede exceder los %d caracteres.</string>
+    <string name="error_asunto_min_length">El asunto debe tener al menos 2 caracteres.</string>
 </resources>

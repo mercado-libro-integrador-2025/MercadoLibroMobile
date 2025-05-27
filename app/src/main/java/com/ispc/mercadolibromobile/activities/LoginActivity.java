@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isLoginMode = true;
 
     // Regex para validar contraseña: Al menos 1 mayúscula, 1 minúscula, 1 número, 1 carácter especial, longitud 8-16
-    private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&_\\-])[A-Za-z\\d@$!%*?&_\\-]{8,16}$";
+    private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&_\\-#])[A-Za-z\\d@$!%*?&_\\-#]{8,16}$";
     // Regex para validar nombre de usuario: Solo letras y espacios
     private static final String USERNAME_REGEX = "^[a-zA-Z\\s]+$";
 
