@@ -54,6 +54,8 @@
         android:layout_marginTop="@dimen/margin_extra_small"
         app:errorEnabled="true"
         app:errorTextColor="@color/error_color"
+        app:startIconDrawable="@drawable/ic_profile"
+        app:startIconTint="@android:color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/tvUsernameLabel">
@@ -92,7 +94,10 @@
         android:layout_marginTop="@dimen/margin_extra_small"
         app:errorEnabled="true"
         app:errorTextColor="@color/error_color"
-        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@android:drawable/ic_lock_lock"
+        app:startIconTint="@android:color/black"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@android:color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/tvPasswordLabel">
@@ -123,7 +128,8 @@
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
+       />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutRepeatPassword"
@@ -133,7 +139,8 @@
         android:visibility="gone"
         app:errorEnabled="true"
         app:errorTextColor="@color/error_color"
-        app:passwordToggleEnabled="true"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@android:color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/textViewRepeatPassword">
