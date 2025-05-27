@@ -21,15 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ispc.mercadolibromobile.R;
 import com.ispc.mercadolibromobile.activities.SplashActivity;
-import com.ispc.mercadolibromobile.adapters.AddressAdapter;
+import com.ispc.mercadolibromobile.adapters.DireccionAdapter;
 import com.ispc.mercadolibromobile.api.ApiService;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
 import com.ispc.mercadolibromobile.models.User; // <--- Este es el modelo principal con tokens y UserInfo
-import com.ispc.mercadolibromobile.models.UserInfo; // <--- NUEVA IMPORTACIÓN: para acceder a los datos del perfil
 import com.ispc.mercadolibromobile.models.Direccion;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
-import com.ispc.mercadolibromobile.fragments.MyReviewsFragment;
-import com.ispc.mercadolibromobile.fragments.PedidosFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +35,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileFragment extends Fragment implements AddressAdapter.OnAddressActionListener {
+public class ProfileFragment extends Fragment implements DireccionAdapter.OnDireccionInteractionListener { // <-- Interfaz del adaptador actualizada
+
     private TextView emailTextView;
     private String authToken;
     private ApiService apiService;
     private RecyclerView rvAddresses;
-    private AddressAdapter addressAdapter;
+    private DireccionAdapter addressAdapter;
     private List<Direccion> addressList;
 
     private static final String TAG = "ProfileFragment";
@@ -59,7 +57,7 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
         rvAddresses = rootView.findViewById(R.id.rvAddresses);
         rvAddresses.setLayoutManager(new LinearLayoutManager(requireContext()));
         addressList = new ArrayList<>();
-        addressAdapter = new AddressAdapter(addressList, requireContext(), this);
+        addressAdapter = new DireccionAdapter(addressList, this);
         rvAddresses.setAdapter(addressAdapter);
 
         Button estadoEnvioButton = rootView.findViewById(R.id.button8);
@@ -91,7 +89,7 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
         Button btnAddAddress = rootView.findViewById(R.id.btnAddAddress);
         btnAddAddress.setOnClickListener(v -> {
             getParentFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, DireccionFragment.newInstance(null))
+                    .replace(R.id.fragment_container, DireccionFormFragment.newInstance(null))
                     .addToBackStack(null)
                     .commit();
         });
@@ -103,6 +101,14 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
             } else {
                 Toast.makeText(requireContext(), getString(R.string.error_no_active_session_delete), Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "Token inválido: No se puede obtener el ID del usuario");
+            }
+        });
+
+        getParentFragmentManager().setFragmentResultListener("requestKeyDireccionSaved", this, (requestKey, bundle) -> {
+            Direccion savedDireccion = (Direccion) bundle.getSerializable("saved_direccion");
+            if (savedDireccion != null) {
+                Toast.makeText(getContext(), "Dirección guardada/actualizada con éxito.", Toast.LENGTH_SHORT).show();
+                loadAddresses();
             }
         });
 
@@ -124,9 +130,12 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
             emailTextView.setText(userEmail != null ? userEmail : getString(R.string.email_not_found));
         }
     }
+
     private void loadAddresses() {
         if (authToken == null) {
             Log.e(TAG, "No hay token de autenticación para cargar direcciones.");
+            addressList.clear();
+            addressAdapter.notifyDataSetChanged();
             return;
         }
 
@@ -143,7 +152,14 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
                         }
                     } else {
                         Log.e(TAG, "Error al cargar direcciones: " + response.code() + " - " + response.message());
-                        Toast.makeText(requireContext(), getString(R.string.error_loading_addresses), Toast.LENGTH_SHORT).show();
+                        try {
+                            String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                            Log.e(TAG, "Error body al cargar direcciones: " + errorBody);
+                            Toast.makeText(requireContext(), getString(R.string.error_loading_addresses) + " " + errorBody, Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Log.e(TAG, "Error parsing error body al cargar direcciones", e);
+                            Toast.makeText(requireContext(), getString(R.string.error_loading_addresses), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -158,14 +174,20 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
         });
     }
     @Override
-    public void onEditAddress(Direccion direccion) {
+    public void onDireccionClick(Direccion direccion) {
+        onEditDireccion(direccion);
+    }
+
+    @Override
+    public void onEditDireccion(Direccion direccion) {
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, DireccionFragment.newInstance(direccion))
+                .replace(R.id.fragment_container, DireccionFormFragment.newInstance(direccion))
                 .addToBackStack(null)
                 .commit();
     }
+
     @Override
-    public void onDeleteAddress(int direccionId) {
+    public void onDeleteDireccion(int direccionId) {
         if (authToken == null) {
             Toast.makeText(requireContext(), getString(R.string.error_auth_required_delete_address), Toast.LENGTH_SHORT).show();
             return;
@@ -175,7 +197,7 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
                 .setTitle(getString(R.string.confirm_delete_address_title))
                 .setMessage(getString(R.string.confirm_delete_address_message))
                 .setPositiveButton(getString(R.string.dialog_confirm_delete_yes_button), (dialog, which) -> {
-                    apiService.deleteDireccion(direccionId, "Bearer " + authToken).enqueue(new Callback<Void>() {
+                    apiService.deleteDireccion(direccionId, "Bearer " + authToken).enqueue(new Callback<Void>() { // Asegúrate de que deleteDireccion en ApiService toma el token como segundo parámetro
                         @Override
                         public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                             if (isAdded()) {
@@ -184,7 +206,14 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
                                     loadAddresses();
                                 } else {
                                     Log.e(TAG, "Error al eliminar dirección: " + response.code() + " - " + response.message());
-                                    Toast.makeText(requireContext(), getString(R.string.error_deleting_address), Toast.LENGTH_SHORT).show();
+                                    try {
+                                        String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                                        Log.e(TAG, "Error body al eliminar dirección: " + errorBody);
+                                        Toast.makeText(requireContext(), getString(R.string.error_deleting_address) + " " + errorBody, Toast.LENGTH_LONG).show();
+                                    } catch (Exception e) {
+                                        Log.e(TAG, "Error parsing error body al eliminar dirección", e);
+                                        Toast.makeText(requireContext(), getString(R.string.error_deleting_address), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         }
@@ -225,14 +254,14 @@ public class ProfileFragment extends Fragment implements AddressAdapter.OnAddres
     }
 
     private void obtenerUsuarioAutenticado(@NonNull String authToken) {
-        Call<User> call = apiService.getAuthenticatedUser(authToken); // <--- CAMBIO AQUÍ: Ahora espera el modelo User completo
+        Call<User> call = apiService.getAuthenticatedUser(authToken);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if (isAdded()) {
                     if (response.isSuccessful() && response.body() != null && response.body().getUser() != null) {
                         int userId = response.body().getUser().getId();
-                        SessionUtils.saveUserId(requireContext(), userId); // <--- Asegúrate de guardar el ID aquí
+                        SessionUtils.saveUserId(requireContext(), userId);
                         Log.d(TAG, "User ID obtenido: " + userId);
                         eliminarUsuario(userId, authToken);
                     } else {

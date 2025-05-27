@@ -2,6 +2,7 @@ package com.ispc.mercadolibromobile.api;
 
 import com.ispc.mercadolibromobile.models.AuthModels;
 import com.ispc.mercadolibromobile.models.Book;
+import com.ispc.mercadolibromobile.models.ItemCarritoUpdatedTo;
 import com.ispc.mercadolibromobile.models.Pedido;
 import com.ispc.mercadolibromobile.models.Review;
 import com.ispc.mercadolibromobile.models.User;
@@ -20,6 +21,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -84,14 +86,19 @@ public interface ApiService {
     Call<Pedido> crearPedido(@Header("Authorization") String token, @Body Pedido nuevoPedido);
 
     // =================== Carrito ===================
-    @POST("carrito/")
-    Call<ItemCarrito> agregarAlCarrito(@Header("Authorization") String token, @Body ItemCarrito itemCarrito);
-
     @GET("carrito/")
-    Call<List<ItemCarrito>> obtenerCarrito(@Header("Authorization") String token);
+    Call<List<ItemCarrito>> obtenerCarrito(@Header("Authorization") String authToken);
 
     @DELETE("carrito/{id}/")
-    Call<Void> eliminarDelCarrito(@Header("Authorization") String token, @Path("id") int id);
+    Call<Void> eliminarDelCarrito(@Header("Authorization") String authToken, @Path("id") int itemId);
+
+    // Nuevo método para actualizar un ItemCarrito
+    @PATCH("carrito/{id}/")
+    Call<ItemCarrito> actualizarItemCarrito(@Header("Authorization") String authToken, @Path("id") int itemId, @Body ItemCarritoUpdatedTo itemCarritoUpdatedTo);
+
+    @POST("carrito/")
+    Call<ItemCarrito> agregarAlCarrito(@Header("Authorization") String authToken, @Body ItemCarrito itemCarrito);
+
 
     // =================== Direcciones ===================
     @GET("direcciones/")
@@ -100,11 +107,12 @@ public interface ApiService {
     @POST("direcciones/")
     Call<Direccion> createDireccion(@Header("Authorization") String token, @Body Direccion direccion);
 
-    @PUT("direcciones/{id}/") // Nuevo: para actualizar una dirección existente
+    @PUT("direcciones/{id}/")
     Call<Direccion> updateDireccion(@Path("id") int id, @Header("Authorization") String token, @Body Direccion direccion);
 
-    @DELETE("direcciones/{id}/") // Nuevo: para eliminar una dirección
+    @DELETE("direcciones/{id}/")
     Call<Void> deleteDireccion(@Path("id") int id, @Header("Authorization") String token);
+
 
     // =================== Pagos ===================
     @POST("pagos/")
@@ -116,4 +124,5 @@ public interface ApiService {
     // =================== Contacto ===================
     @POST("contacto/")
     Call<Void> enviarConsulta(@Body Contacto contacto);
+
 }
