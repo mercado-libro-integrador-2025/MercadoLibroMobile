@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/borde_card"
+            app:boxStrokeColor="@android:color/system_error_900"
             android:orientation="vertical"
             android:padding="@dimen/padding_large">
 
@@ -38,6 +39,7 @@
                 android:accessibilityTraversalAfter="@id/tvInformacionPago"
                 android:accessibilityTraversalBefore="@id/etNombre"
                 android:autoLink="web"
+                android:background="@android:color/system_error_900"
                 android:contentDescription="Contacto"
                 android:drawablePadding="6dp"
                 android:ellipsize="end"
@@ -54,19 +56,19 @@
                 android:padding="8dp"
                 android:text="@string/contact_title"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_xlarge_28sp"
                 android:textStyle="bold"
                 android:visibility="visible"
+
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusBottomEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@android:color/darker_gray"
                 app:boxStrokeWidth="2dp"
-                app:drawableLeftCompat="@android:drawable/ic_menu_myplaces"/>
 
+                app:drawableLeftCompat="@android:drawable/ic_menu_myplaces" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilNombre"
@@ -90,18 +92,35 @@
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@android:color/darker_gray"
                 app:boxStrokeWidth="2dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
+
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
+
                 app:helperText="Introduce un nombre válido"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 app:startIconContentDescription="Icono de nombre"
                 app:startIconDrawable="@drawable/ic_profile"
-                app:startIconTint="@android:color/darker_gray">
+
+                app:helperTextTextColor="@android:color/system_error_900"
+                android:textColorHint="@android:color/system_error_900"
+                app:boxBackgroundColor="@android:color/white"
+                android:background="@android:color/white"
+                android:backgroundTint="@android:color/white"
+                app:boxStrokeColor="@android:color/system_error_900"
+                app:endIconTint="@android:color/system_error_900"
+                app:errorTextColor="@android:color/system_error_900"
+                app:counterTextColor="@android:color/system_error_900"
+                app:hintTextColor="@android:color/system_error_900"
+                app:placeholderTextColor="@android:color/system_error_900"
+                app:prefixTextColor="@android:color/system_error_900"
+                app:startIconTint="@android:color/system_error_900"
+                app:suffixTextColor="@android:color/system_error_900"
+
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNombre"
@@ -125,7 +144,6 @@
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
                     app:counterEnabled="true"
                     app:counterMaxLength="50"
@@ -136,14 +154,20 @@
                     app:hintEnabled="true"
                     app:startIconContentDescription="Icono de nombre"
                     app:startIconDrawable="@drawable/ic_profile"
-                    app:startIconTint="@android:color/darker_gray"
+
+                    app:boxStrokeColor="@android:color/system_error_900"
+                    app:startIconTint="@android:color/system_error_900"
+                    android:textColor="@android:color/system_error_900"
+                    android:textColorHighlight="@android:color/system_error_900"
+                    android:textColorHint="@android:color/system_error_900"
+
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eitEmail"
+                android:id="@+id/tilEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -166,7 +190,6 @@
                 android:maxLines="1"
                 android:padding="8dp"
                 android:singleLine="true"
-                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp"
                 android:visibility="visible"
                 app:boxBackgroundMode="outline"
@@ -174,18 +197,33 @@
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@android:color/darker_gray"
                 app:boxStrokeWidth="2dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
                 app:endIconMode="clear_text"
+
                 app:errorEnabled="true"
                 app:helperText="Introduce un correo válido"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 app:startIconContentDescription="Icono de correo"
                 app:startIconDrawable="@android:drawable/ic_dialog_email"
-                app:startIconTint="@android:color/darker_gray"
+
+                app:helperTextTextColor="@android:color/system_error_900"
+                android:textColorHint="@android:color/system_error_900"
+                app:boxBackgroundColor="@android:color/white"
+                android:background="@android:color/white"
+                android:backgroundTint="@android:color/white"
+                app:boxStrokeColor="@android:color/system_error_900"
+                app:endIconTint="@android:color/system_error_900"
+                app:errorTextColor="@android:color/system_error_900"
+                app:counterTextColor="@android:color/system_error_900"
+                app:hintTextColor="@android:color/system_error_900"
+                app:placeholderTextColor="@android:color/system_error_900"
+                app:prefixTextColor="@android:color/system_error_900"
+                app:startIconTint="@android:color/system_error_900"
+                app:suffixTextColor="@android:color/system_error_900"
+
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -212,7 +250,6 @@
                     android:maxLines="1"
                     android:padding="8dp"
                     android:singleLine="true"
-                    android:textColorHint="@android:color/darker_gray"
                     android:textSize="16sp"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
@@ -220,18 +257,24 @@
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
                     app:counterEnabled="true"
                     app:counterMaxLength="50"
                     app:endIconMode="clear_text"
+
                     app:errorEnabled="true"
                     app:helperText="Introduce un correo válido"
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true"
                     app:startIconContentDescription="Icono de correo"
                     app:startIconDrawable="@android:drawable/ic_dialog_email"
-                    app:startIconTint="@android:color/darker_gray"
+
+                    app:boxStrokeColor="@android:color/system_error_900"
+                    app:startIconTint="@android:color/system_error_900"
+                    android:textColor="@android:color/system_error_900"
+                    android:textColorHighlight="@android:color/system_error_900"
+                    android:textColorHint="@android:color/system_error_900"
+
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -260,7 +303,6 @@
                 android:minLines="2"
                 android:padding="8dp"
                 android:singleLine="true"
-                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp"
                 android:visibility="visible"
                 app:boxBackgroundMode="outline"
@@ -268,18 +310,33 @@
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@android:color/darker_gray"
                 app:boxStrokeWidth="2dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
                 app:endIconMode="clear_text"
+
                 app:errorEnabled="true"
                 app:helperText="Introduce un asunto válido"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 app:startIconContentDescription="Icono de asunto"
                 app:startIconDrawable="@drawable/ic_contact"
-                app:startIconTint="@android:color/darker_gray"
+
+                app:helperTextTextColor="@android:color/system_error_900"
+                android:textColorHint="@android:color/system_error_900"
+                app:boxBackgroundColor="@android:color/white"
+                android:background="@android:color/white"
+                android:backgroundTint="@android:color/white"
+                app:boxStrokeColor="@android:color/system_error_900"
+                app:endIconTint="@android:color/system_error_900"
+                app:errorTextColor="@android:color/system_error_900"
+                app:counterTextColor="@android:color/system_error_900"
+                app:hintTextColor="@android:color/system_error_900"
+                app:placeholderTextColor="@android:color/system_error_900"
+                app:prefixTextColor="@android:color/system_error_900"
+                app:startIconTint="@android:color/system_error_900"
+                app:suffixTextColor="@android:color/system_error_900"
+
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -307,7 +364,6 @@
                     android:minLines="2"
                     android:padding="8dp"
                     android:singleLine="true"
-                    android:textColorHint="@android:color/darker_gray"
                     android:textSize="16sp"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
@@ -315,20 +371,25 @@
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
                     app:counterEnabled="true"
                     app:counterMaxLength="50"
                     app:endIconMode="clear_text"
+
                     app:errorEnabled="true"
                     app:helperText="Introduce un asunto válido"
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true"
                     app:startIconContentDescription="Icono de asunto"
                     app:startIconDrawable="@drawable/ic_contact"
-                    app:startIconTint="@android:color/darker_gray"
-                   />
 
+                    app:boxStrokeColor="@android:color/system_error_900"
+                    app:startIconTint="@android:color/system_error_900"
+                    android:textColor="@android:color/system_error_900"
+                    android:textColorHighlight="@android:color/system_error_900"
+                    android:textColorHint="@android:color/system_error_900"
+
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -358,7 +419,6 @@
                 android:minLines="5"
                 android:padding="8dp"
                 android:singleLine="true"
-                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp"
                 android:visibility="visible"
                 app:boxBackgroundMode="outline"
@@ -366,18 +426,33 @@
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@android:color/darker_gray"
                 app:boxStrokeWidth="2dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
                 app:endIconMode="clear_text"
+
                 app:errorEnabled="true"
                 app:helperText="Introduce una consulta válida"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 app:startIconContentDescription="Icono de consulta"
                 app:startIconDrawable="@android:drawable/ic_menu_agenda"
-                app:startIconTint="@android:color/darker_gray"
+
+                app:helperTextTextColor="@android:color/system_error_900"
+                android:textColorHint="@android:color/system_error_900"
+                app:boxBackgroundColor="@android:color/white"
+                android:background="@android:color/white"
+                android:backgroundTint="@android:color/white"
+                app:boxStrokeColor="@android:color/system_error_900"
+                app:endIconTint="@android:color/system_error_900"
+                app:errorTextColor="@android:color/system_error_900"
+                app:counterTextColor="@android:color/system_error_900"
+                app:hintTextColor="@android:color/system_error_900"
+                app:placeholderTextColor="@android:color/system_error_900"
+                app:prefixTextColor="@android:color/system_error_900"
+                app:startIconTint="@android:color/system_error_900"
+                app:suffixTextColor="@android:color/system_error_900"
+
                 >
 
 
@@ -407,7 +482,6 @@
                     android:minLines="5"
                     android:padding="8dp"
                     android:singleLine="true"
-                    android:textColorHint="@android:color/darker_gray"
                     android:textSize="16sp"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
@@ -415,18 +489,23 @@
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
                     app:counterEnabled="true"
                     app:counterMaxLength="50"
                     app:endIconMode="clear_text"
+
                     app:errorEnabled="true"
                     app:helperText="Introduce una consulta válida"
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true"
                     app:startIconContentDescription="Icono de consulta"
                     app:startIconDrawable="@android:drawable/ic_menu_agenda"
-                    app:startIconTint="@android:color/darker_gray"
+
+                    app:boxStrokeColor="@android:color/system_error_900"
+                    app:startIconTint="@android:color/system_error_900"
+                    android:textColor="@android:color/system_error_900"
+                    android:textColorHighlight="@android:color/system_error_900"
+                    android:textColorHint="@android:color/system_error_900"
 
                     />
 
@@ -442,7 +521,8 @@
                 android:accessibilityLiveRegion="polite"
                 android:accessibilityTraversalAfter="@id/tvInformacionPago"
                 android:accessibilityTraversalBefore="@id/etNombre"
-                android:backgroundTint="@color/sunstone_neutral_7"
+
+                android:backgroundTint="@color/sunstone_neutral_2"
                 android:clickable="true"
                 android:contentDescription="Enviar consulta"
                 android:drawableLeft="@android:drawable/ic_menu_send"
@@ -461,6 +541,7 @@
                 android:textStyle="bold"
                 android:visibility="visible"
                 app:boxBackgroundMode="outline"
+
                 app:boxCornerRadiusBottomEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusTopEnd="8dp"
@@ -469,8 +550,7 @@
                 app:boxStrokeWidth="2dp"
                 app:cornerRadius="8dp"
 
-               />
-
+                />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
