@@ -24,6 +24,7 @@ import com.ispc.mercadolibromobile.models.Book;
 import com.ispc.mercadolibromobile.models.ItemCarrito;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
 
+import java.io.IOException; // Importar IOException
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,11 +90,11 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
 
         holder.btnComprar.setOnClickListener(v -> {
             String token = SessionUtils.getAuthToken(activity);
-            int userId = SessionUtils.getUserId(activity);
+            int userId = SessionUtils.getUserId(activity); // Ahora debería obtener el ID correcto
 
             Log.d(TAG, "Botón de compra clickeado. Token: " + token + ", UserId: " + userId);
 
-            if (token != null && userId != -1) {
+            if (token != null && userId != -1) { // Asegúrate de que userId no sea -1
                 double precio = book.getPrecio();
                 ItemCarrito itemCarrito = new ItemCarrito(book.getIdLibro(), userId, 1, precio);
                 agregarAlCarrito(itemCarrito);
@@ -172,8 +173,16 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
                     Log.d(TAG, "Libro agregado al carrito exitosamente.");
                     Toast.makeText(activity, "Libro agregado al carrito", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.e(TAG, "Error al agregar al carrito. Código de respuesta: " + response.code() + " - " + response.message());
-                    Toast.makeText(activity, "Error al agregar al carrito. Código: " + response.code(), Toast.LENGTH_SHORT).show();
+                    // *** MODIFICACIÓN CLAVE AQUÍ: Log del errorBody ***
+                    try {
+                        String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                        Log.e(TAG, "Error al agregar al carrito. Código de respuesta: " + response.code() + " - " + response.message() + " - Error Body: " + errorBody);
+                        Toast.makeText(activity, "Error al agregar al carrito. Código: " + response.code() + " - " + errorBody, Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error al agregar al carrito. Código de respuesta: " + response.code() + " - " + response.message() + " - Error al leer errorBody: " + e.getMessage());
+                        Toast.makeText(activity, "Error al agregar al carrito. Código: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                    // **************************************************
                 }
             }
 
