@@ -260,7 +260,7 @@
 
     <string name="error_name_invalid_characters">El nombre solo puede contener letras y espacios.</string>
     <string name="error_max_length">Este campo no puede exceder los %d caracteres.</string>
-    <string name="error_asunto_min_length">El asunto debe tener al menos 2 caracteres.</string>
+    <string name="error_min_length">Este campo debe tener al menos los %d caracteres.</string>
 
     <string name="drawer_menu_profile">Perfil</string>
     <string name="drawer_menu_products">Productos</string>
