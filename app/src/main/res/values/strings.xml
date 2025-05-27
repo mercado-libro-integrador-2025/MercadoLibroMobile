@@ -258,7 +258,6 @@
     <string name="content_customer_service">Nuestro equipo de atención al cliente está siempre disponible para ayudarle con cualquier pregunta, inquietud o problema que pueda tener. Nos esforzamos por ofrecer un servicio rápido, amable y eficiente. Ya sea que necesite ayuda con un pedido, tenga preguntas sobre un producto o simplemente quiera compartir sus comentarios, no dude en contactarnos. Su opinión es invaluable para nosotros y nos ayuda a mejorar continuamente.</string>
     <string name="footer_acknowledgement">Gracias por confiar en Mercado Libro. ¡Esperamos que disfrute de su lectura!</string>
 
-    <string name="dialog_alert_positive_button">Aceptar</string>
     <string name="error_name_invalid_characters">El nombre solo puede contener letras y espacios.</string>
     <string name="error_max_length">Este campo no puede exceder los %d caracteres.</string>
     <string name="error_asunto_min_length">El asunto debe tener al menos 2 caracteres.</string>
