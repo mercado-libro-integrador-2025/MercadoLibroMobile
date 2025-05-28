@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class SessionUtils {
     private static final String PREF_NAME = "user_session";
@@ -60,13 +61,13 @@ public class SessionUtils {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(KEY_USER_ID, userId);
         editor.commit(); // *** CAMBIADO A COMMIT() PARA ESCRITURA SÍNCRONA ***
-        Log.d(TAG, "User ID saved: " + userId + " (using commit)"); // Log para verificar que se guarda
+        Log.d(TAG, "User ID saved: " + userId + " (using commit)");
     }
 
     public static int getUserId(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        int userId = prefs.getInt(KEY_USER_ID, -1); // El valor por defecto es -1
-        Log.d(TAG, "User ID retrieved from SharedPreferences: " + userId); // Log para verificar que se recupera
+        int userId = prefs.getInt(KEY_USER_ID, -1);
+        Log.d(TAG, "User ID retrieved from SharedPreferences: " + userId);
         return userId;
     }
 
@@ -82,12 +83,6 @@ public class SessionUtils {
         return prefs.getString(KEY_USERNAME, null);
     }
 
-    /**
-     * Decodifica un token JWT para extraer el ID de usuario.
-     * Asume que el ID de usuario está en el claim "user_id" del payload.
-     * @param token El token JWT (access token).
-     * @return El ID de usuario si se encuentra y es válido, de lo contrario -1.
-     */
     public static int getUserIdFromJwt(String token) {
         if (token == null || token.isEmpty()) {
             Log.e(TAG, "Token JWT es nulo o vacío.");
@@ -101,15 +96,14 @@ public class SessionUtils {
                 return -1;
             }
 
-            // Decodificar el payload (segunda parte del token)
             byte[] decodedBytes = Base64.decode(split[1], Base64.URL_SAFE);
             String payload = new String(decodedBytes, "UTF-8");
-            Log.d(TAG, "JWT Payload decoded: " + payload); // Log del payload decodificado
+            Log.d(TAG, "JWT Payload decoded: " + payload);
 
             JSONObject jsonPayload = new JSONObject(payload);
             if (jsonPayload.has("user_id")) {
                 int userId = jsonPayload.getInt("user_id");
-                Log.d(TAG, "User ID found in JWT payload: " + userId); // Log del user_id encontrado
+                Log.d(TAG, "User ID found in JWT payload: " + userId);
                 return userId;
             } else {
                 Log.w(TAG, "El payload del JWT no contiene el campo 'user_id'. Payload: " + payload);
@@ -127,6 +121,36 @@ public class SessionUtils {
         } catch (Exception e) {
             Log.e(TAG, "Error inesperado al obtener user ID de JWT: " + e.getMessage());
             return -1;
+        }
+    }
+
+    // verificacion expiracion token
+    public static boolean isTokenExpired(String token) {
+        if (token == null || token.isEmpty()) {
+            Log.e(TAG, "Token nulo o vacío. Se considera expirado.");
+            return true;
+        }
+
+        try {
+            String[] parts = token.split("\\.");
+            if (parts.length < 2) {
+                Log.e(TAG, "Token inválido. Se considera expirado.");
+                return true;
+            }
+
+            byte[] decodedBytes = Base64.decode(parts[1], Base64.URL_SAFE);
+            String payload = new String(decodedBytes, StandardCharsets.UTF_8);
+            JSONObject jsonObject = new JSONObject(payload);
+
+            long exp = jsonObject.getLong("exp"); // Tiempo de expiración en segundos
+            long now = System.currentTimeMillis() / 1000; // Tiempo actual en segundos
+
+            Log.d(TAG, "Tiempo de expiración del token: " + exp + ", tiempo actual: " + now);
+
+            return exp < now;
+        } catch (Exception e) {
+            Log.e(TAG, "Error al verificar expiración del token: " + e.getMessage());
+            return true; // Si hay algun error,se trata el token como expirado
         }
     }
 }

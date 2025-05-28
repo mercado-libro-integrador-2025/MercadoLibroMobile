@@ -40,6 +40,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //agrego y Verifico la expiración del token antes de continuar
+        String token = SessionUtils.getAuthToken(this);
+        if (token == null || SessionUtils.isTokenExpired(token)) {
+            SessionUtils.clearSession(this);
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
@@ -50,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.beige_suave));
         }
 
-        // Configure the ActionBar (Toolbar)
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setLogo(R.drawable.ic_logo_app);
@@ -80,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 userNameTextView.setText(getString(R.string.nav_header_title_default));
             }
-        } else {
         }
 
         if (savedInstanceState == null) {
@@ -119,27 +129,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.fragment_container, new ProfileFragment())
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_my_reviews) { // NEW ITEM
+        } else if (id == R.id.nav_my_reviews) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new MyReviewsFragment())
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_my_addresses) { // NEW ITEM
+        } else if (id == R.id.nav_my_addresses) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new DireccionFragment()) // Using DireccionFragment
+                    .replace(R.id.fragment_container, new DireccionFragment())
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_my_payments) { // NEW ITEM
+        } else if (id == R.id.nav_my_payments) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new PagoFragment()) // Using PagoFragment
+                    .replace(R.id.fragment_container, new PagoFragment())
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_my_orders) { // NEW ITEM
+        } else if (id == R.id.nav_my_orders) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new PedidosFragment()) // Using PedidosFragment
+                    .replace(R.id.fragment_container, new PedidosFragment())
                     .addToBackStack(null)
                     .commit();
-        }else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             Toast.makeText(this, getString(R.string.logout_message), Toast.LENGTH_SHORT).show();
             SessionUtils.clearSession(this);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
