@@ -3,11 +3,12 @@ package com.ispc.mercadolibromobile.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-import android.widget.TextView;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,32 +17,43 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import com.ispc.mercadolibromobile.R;
 
-import com.ispc.mercadolibromobile.fragments.BooksFragment;
-import com.ispc.mercadolibromobile.fragments.ContactFragment;
-import com.ispc.mercadolibromobile.fragments.ProfileFragment;
-import com.ispc.mercadolibromobile.fragments.CarritoFragment;
-import com.ispc.mercadolibromobile.utils.SessionUtils;
 import com.google.android.material.navigation.NavigationView;
+import com.ispc.mercadolibromobile.R;
+import com.ispc.mercadolibromobile.api.ApiService;
+import com.ispc.mercadolibromobile.api.RetrofitClient;
+import com.ispc.mercadolibromobile.fragments.BooksFragment;
+import com.ispc.mercadolibromobile.fragments.CarritoFragment;
+import com.ispc.mercadolibromobile.fragments.ContactFragment;
+import com.ispc.mercadolibromobile.fragments.DireccionFormFragment;
 import com.ispc.mercadolibromobile.fragments.MyReviewsFragment;
-import com.ispc.mercadolibromobile.fragments.DireccionFragment;
 import com.ispc.mercadolibromobile.fragments.PagoFragment;
 import com.ispc.mercadolibromobile.fragments.PedidosFragment;
+import com.ispc.mercadolibromobile.fragments.ProfileFragment;
+import com.ispc.mercadolibromobile.models.ItemCarrito;
+import com.ispc.mercadolibromobile.utils.SessionUtils;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity implements
+        NavigationView.OnNavigationItemSelectedListener,
+        CarritoFragment.CartUpdateListener {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
     private Toolbar toolbar;
+    private TextView cartBadgeTextView;
+    private ApiService apiService;
 
     private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //agrego y Verifico la expiración del token antes de continuar
+        // Verifico y agrego la expiracion del token antes de continuar
         String token = SessionUtils.getAuthToken(this);
         if (token == null || SessionUtils.isTokenExpired(token)) {
             SessionUtils.clearSession(this);
@@ -51,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
             return;
         }
-
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
@@ -83,9 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (headerView != null) {
             TextView userNameTextView = headerView.findViewById(R.id.textViewUserName);
-
             String userEmail = SessionUtils.getUserEmail(this);
-
             if (userEmail != null && !userEmail.isEmpty()) {
                 userNameTextView.setText(userEmail);
             } else {
@@ -99,6 +108,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
             navigationView.setCheckedItem(R.id.nav_products);
         }
+
+        apiService = RetrofitClient.getApiService(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateCartBadgeCount();
     }
 
     @Override
@@ -113,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.nav_products) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new BooksFragment())
@@ -136,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
         } else if (id == R.id.nav_my_addresses) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new DireccionFragment())
+                    .replace(R.id.fragment_container, new DireccionFormFragment())
                     .addToBackStack(null)
                     .commit();
         } else if (id == R.id.nav_my_payments) {
@@ -164,6 +180,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+
+        // Obtener la referencia al TextView del badge
+        MenuItem cartItem = menu.findItem(R.id.action_cart);
+        View actionView = cartItem.getActionView();
+        if (actionView != null) {
+            cartBadgeTextView = actionView.findViewById(R.id.cart_badge);
+            actionView.setOnClickListener(v -> onOptionsItemSelected(cartItem));
+        }
+
+        updateCartBadgeCount();
         return true;
     }
 
@@ -178,5 +204,67 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // =======================================================
+    // Métodos para el Contador del Carrito
+    // =======================================================
+
+    @Override
+    public void onCartUpdated() {
+        Log.d(TAG, "onCartUpdated() llamado desde un fragmento. Actualizando badge.");
+        updateCartBadgeCount(); // Cuando el carrito se actualice en el fragmento, refresca el badge
+    }
+
+    // Método para actualizar el contador del carrito haciendo una llamada a la API
+    public void updateCartBadgeCount() {
+        String token = SessionUtils.getAuthToken(this);
+
+        if (token == null || apiService == null) {
+            if (cartBadgeTextView != null) {
+                cartBadgeTextView.setVisibility(View.GONE);
+                cartBadgeTextView.setText("0");
+            }
+            Log.d(TAG, "No hay sesión activa o apiService no inicializado. Ocultando badge.");
+            return;
+        }
+
+        Call<List<ItemCarrito>> call = apiService.obtenerCarrito("Bearer " + token);
+        call.enqueue(new Callback<List<ItemCarrito>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<ItemCarrito>> call, @NonNull Response<List<ItemCarrito>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    int totalQuantity = 0;
+                    for (ItemCarrito item : response.body()) {
+                        totalQuantity += item.getCantidad();
+                    }
+                    int itemCount = totalQuantity;
+
+                    if (cartBadgeTextView != null) {
+                        if (itemCount > 0) {
+                            cartBadgeTextView.setText(String.valueOf(itemCount));
+                            cartBadgeTextView.setVisibility(View.VISIBLE);
+                            Log.d(TAG, "Badge actualizado con " + itemCount + " ítems.");
+                        } else {
+                            cartBadgeTextView.setVisibility(View.GONE);
+                            Log.d(TAG, "Carrito vacío. Ocultando badge.");
+                        }
+                    }
+                } else {
+                    Log.e(TAG, "Error al obtener cantidad del carrito: " + response.code() + ", " + response.message());
+                    if (cartBadgeTextView != null) {
+                        cartBadgeTextView.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<ItemCarrito>> call, @NonNull Throwable t) {
+                Log.e(TAG, "Fallo de conexión al obtener cantidad del carrito: " + t.getMessage());
+                if (cartBadgeTextView != null) {
+                    cartBadgeTextView.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 }
