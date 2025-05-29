@@ -297,4 +297,8 @@
     <string name="nav_header_title_default">Bienvenido</string>
     <string name="nav_header_subtitle_default">Iniciar Sesión</string>
 
+    <string name="helper_text_name">Introduce tu nombre</string>
+    <string name="helper_text_email">Introduce un correo válido</string>
+    <string name="helper_text_subject">Un breve asunto</string>
+    <string name="helper_text_query">Escribe tu consulta o comentario</string>
 </resources>

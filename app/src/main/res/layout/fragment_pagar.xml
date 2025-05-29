@@ -29,10 +29,10 @@
             android:contentDescription="Metodo de Pago"
             android:importantForAccessibility="yes"
             android:accessibilityLiveRegion="polite"
-            android:accessibilityTraversalBefore="@id/etNombre"
+
             android:accessibilityTraversalAfter="@id/tvInformacionPago"
             android:focusable="true"
-            android:labelFor="@id/etNombre"
+
 
             />
 
@@ -50,10 +50,10 @@
             android:contentDescription="Título: Bienvenido a la sección de pago"
             android:importantForAccessibility="yes"
             android:accessibilityLiveRegion="polite"
-            android:accessibilityTraversalBefore="@id/etNombre"
+
             android:accessibilityTraversalAfter="@id/tvInformacionPago"
             android:focusable="true"
-            android:labelFor="@id/etNombre"
+
 
             >
 
@@ -99,10 +99,9 @@
                     android:contentDescription="Tarjeta"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
+
                     android:accessibilityTraversalAfter="@id/tvInformacionPago"
                     android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     >
 
@@ -143,10 +142,9 @@
                         android:contentDescription="Tarjeta"
                         android:importantForAccessibility="yes"
                         android:accessibilityLiveRegion="polite"
-                        android:accessibilityTraversalBefore="@id/etNombre"
+
                         android:accessibilityTraversalAfter="@id/tvInformacionPago"
                         android:focusable="true"
-                        android:labelFor="@id/etNombre"
 
                         />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -194,10 +192,9 @@
                     android:contentDescription="cvv"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
+
                     android:accessibilityTraversalAfter="@id/tvInformacionPago"
                     android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     >
 
@@ -238,10 +235,9 @@
                         android:contentDescription="cvv"
                         android:importantForAccessibility="yes"
                         android:accessibilityLiveRegion="polite"
-                        android:accessibilityTraversalBefore="@id/etNombre"
+
                         android:accessibilityTraversalAfter="@id/tvInformacionPago"
                         android:focusable="true"
-                        android:labelFor="@id/etNombre"
 
                         />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -288,10 +284,9 @@
                     android:contentDescription="Vencimiento"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
+
                     android:accessibilityTraversalAfter="@id/tvInformacionPago"
                     android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     >
 
@@ -333,10 +328,9 @@
                         android:contentDescription="Venciiento"
                         android:importantForAccessibility="yes"
                         android:accessibilityLiveRegion="polite"
-                        android:accessibilityTraversalBefore="@id/etNombre"
+
                         android:accessibilityTraversalAfter="@id/tvInformacionPago"
                         android:focusable="true"
-                        android:labelFor="@id/etNombre"
 
                         />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -362,10 +356,9 @@
                     android:contentDescription="Típo de tarjeta"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
+
                     android:accessibilityTraversalAfter="@id/tvInformacionPago"
                     android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 
@@ -381,10 +374,9 @@
                     android:contentDescription="Típo de tarjeta"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
+
                     android:accessibilityTraversalAfter="@id/tvInformacionPago"
                     android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 
@@ -489,10 +481,9 @@
                     android:contentDescription="Pro favor verifique sus datos"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
+
                     android:accessibilityTraversalAfter="@id/tvInformacionPago"
                     android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 
@@ -529,10 +520,9 @@
                     android:contentDescription="Pagar"
                     android:importantForAccessibility="yes"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
+
                     android:accessibilityTraversalAfter="@id/tvInformacionPago"
                     android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
             </LinearLayout>

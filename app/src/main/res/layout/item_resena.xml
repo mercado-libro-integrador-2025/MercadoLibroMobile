@@ -1,106 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/margin_medium"
-    android:layout_marginStart="@dimen/margin_small"
-    android:layout_marginEnd="@dimen/margin_small"
-    app:cardCornerRadius="@dimen/card_corner_radius_large"
-    app:cardElevation="@dimen/card_elevation_elevated"
-    app:cardBackgroundColor="@color/card_background_color">
+    app:cardBackgroundColor="@color/card_background_color_light"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation_small">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/padding_large"
-        android:background="@drawable/borde_card">
+        android:padding="@dimen/padding_large">
 
         <TextView
             android:id="@+id/tvBookTitleAssociated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_size_xlarge"
-            android:textStyle="bold"
             android:layout_marginBottom="@dimen/margin_small"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="@string/review_item_book_title_placeholder"/>
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold"
+            tools:text="El Señor de los Anillos: La Comunidad del Anillo" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sunstone_neutral_3"
             android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginBottom="@dimen/margin_medium"/>
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:background="@color/line_separator_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/margin_small"
             android:gravity="center_vertical"
-            android:layout_marginBottom="@dimen/margin_small">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_calendar" /> <TextView
-            android:id="@+id/tvReviewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/sunstone_neutral_5"
-            android:textSize="@dimen/text_size_small"
-            android:layout_marginStart="@dimen/margin_xsmall"
-            android:text="@string/review_item_date_placeholder"/>
-        </LinearLayout>
+                android:layout_marginStart="@dimen/margin_medium"
+                android:contentDescription="Fecha de la reseña"
+                android:src="@drawable/ic_calendar" />
 
+            <TextView
+                android:id="@+id/tvReviewDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_xsmall"
+                android:textColor="@color/sunstone_neutral_5"
+                android:textSize="@dimen/text_size_small"
+                tools:text="28/05/2025" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvReviewContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_size_medium"
-            android:lineSpacingExtra="2dp"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginBottom="@dimen/margin_medium"
-            android:text="@string/review_item_content_placeholder"/>
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="Una lectura fascinante que me transportó a un mundo lleno de aventuras y personajes inolvidables. ¡Totalmente recomendado!" />
 
         <LinearLayout
             android:id="@+id/review_actions_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="end"
-            android:visibility="gone">
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <Button
                 android:id="@+id/btnEditReview"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/button_edit_review_short"
-                app:cornerRadius="@dimen/card_corner_radius"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/margin_small"
                 android:backgroundTint="@color/sunstone_neutral_7"
+                android:text="@string/button_edit_address"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_small"
-                android:paddingStart="@dimen/padding_small"
-                android:paddingEnd="@dimen/padding_small"
-                android:layout_marginEnd="@dimen/margin_small"/>
+                android:minHeight="@dimen/min_touch_target_size"
+                app:cornerRadius="@dimen/card_corner_radius" />
 
             <Button
                 android:id="@+id/btnDeleteReviewItem"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/button_delete_review_short"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/margin_small"
                 android:backgroundTint="@color/sunstone_neutral_6"
+                android:text="@string/button_delete_address"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_small"
-                app:cornerRadius="@dimen/card_corner_radius"
-                android:paddingStart="@dimen/padding_small"
-                android:paddingEnd="@dimen/padding_small"/>
+                android:minHeight="@dimen/min_touch_target_size"
+                app:cornerRadius="@dimen/card_corner_radius" />
         </LinearLayout>
 
     </LinearLayout>

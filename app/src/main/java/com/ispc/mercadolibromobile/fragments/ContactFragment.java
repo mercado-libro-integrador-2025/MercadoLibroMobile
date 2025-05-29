@@ -7,9 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.Toast; // Button and EditText imports are no longer strictly needed if not used directly
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,10 +29,13 @@ public class ContactFragment extends Fragment {
     private ApiService apiService;
     private FragmentContactBinding binding;
 
+    private String loggedInUserName = "Nombre del Usuario";
+    private String loggedInUserEmail = "usuario.logueado@ejemplo.com";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentContactBinding.inflate(inflater);
+        binding = FragmentContactBinding.inflate(inflater, container, false);
 
         apiService = RetrofitClient.getApiService(getContext());
 
@@ -55,50 +56,44 @@ public class ContactFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Limpiar los errores cuando el usuario empieza a escribir
-                if (binding.etNombre.getText().toString().trim().isEmpty()) {
-                    binding.etNombre.setError(null);
-                }
                 if (binding.etAsunto.getText().toString().trim().isEmpty()) {
-                    binding.etAsunto.setError(null);
-                }
-                if (binding.etEmail.getText().toString().trim().isEmpty()) {
-                    binding.etEmail.setError(null);
+                    binding.tilAsunto.setError(null);
                 }
                 if (binding.etConsulta.getText().toString().trim().isEmpty()) {
-                    binding.etConsulta.setError(null);
+                    binding.tilConsulta.setError(null);
                 }
             }
         };
 
-        binding.etNombre.addTextChangedListener(textWatcher);
         binding.etAsunto.addTextChangedListener(textWatcher);
-        binding.etEmail.addTextChangedListener(textWatcher);
         binding.etConsulta.addTextChangedListener(textWatcher);
     }
 
     private void validarYEnviarConsulta() {
-        String nombre = binding.etNombre.getText().toString().trim();
+        String nombre = loggedInUserName;
+        String email = loggedInUserEmail;
+
         String asunto = binding.etAsunto.getText().toString().trim();
-        String email = binding.etEmail.getText().toString().trim();
         String consulta = binding.etConsulta.getText().toString().trim();
 
         if (asunto.isEmpty()) {
-            binding.etAsunto.setError(getString(R.string.error_asunto_required));
+            binding.tilAsunto.setError(getString(R.string.error_asunto_required));
             binding.etAsunto.requestFocus();
-        } else if (nombre.isEmpty()) {
-            binding.etNombre.setError(getString(R.string.error_name_required));
-            binding.etNombre.requestFocus();
-        } else if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.etEmail.setError(getString(R.string.error_email_invalid));
-            binding.etEmail.requestFocus();
         } else if (consulta.isEmpty()) {
-            binding.etConsulta.setError(getString(R.string.error_query_required));
+            binding.tilConsulta.setError(getString(R.string.error_query_required));
             binding.etConsulta.requestFocus();
         } else if (consulta.length() < 10) {
-            binding.etConsulta.setError(getString(R.string.error_query_min_length));
+            binding.tilConsulta.setError(getString(R.string.error_query_min_length));
             binding.etConsulta.requestFocus();
         } else {
+            if (nombre.isEmpty() || email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Log.e(TAG, "Error: Nombre o email del usuario logueado no disponibles o inválidos. No se puede enviar la consulta.");
+                if (isAdded()) {
+                    Toast.makeText(getContext(), getString(R.string.error_user_id_not_found), Toast.LENGTH_LONG).show();
+
+                }
+                return;
+            }
             enviarConsulta(new Contacto(nombre, email, asunto, consulta));
         }
     }
@@ -133,13 +128,10 @@ public class ContactFragment extends Fragment {
     }
 
     private void limpiarCampos() {
-        binding.etNombre.setText("");
         binding.etAsunto.setText("");
-        binding.etEmail.setText("");
         binding.etConsulta.setText("");
-        binding.etNombre.setError(null);
-        binding.etAsunto.setError(null);
-        binding.etEmail.setError(null);
-        binding.etConsulta.setError(null);
+        binding.tilAsunto.setError(null);
+        binding.tilConsulta.setError(null);
     }
+
 }
