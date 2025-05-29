@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Toast; 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,18 +33,13 @@ public class ContactFragment extends Fragment {
     private ApiService apiService;
     private FragmentContactBinding binding;
 
-    private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s]+$");
-    private static final Pattern EMAIL_PATTERN = Pattern.compile(
-            "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-                    + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$"
-    );
-    private static final int MAX_LENGTH = 50; // Maximum length for all fields
-    private static final int MIN_LENGTH = 6;  // Minimum length for all fields
+    private String loggedInUserName = "Nombre del Usuario";
+    private String loggedInUserEmail = "usuario.logueado@ejemplo.com";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentContactBinding.inflate(inflater);
+        binding = FragmentContactBinding.inflate(inflater, container, false);
 
         apiService = RetrofitClient.getApiService(getContext());
 
@@ -67,19 +62,11 @@ public class ContactFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Clear errors on typing (though validation will re-apply them if needed)
-                // This clears error text ONLY if the field becomes empty,
-                // otherwise, `actualizarEstadoBotonEnviar` will set appropriate errors.
-                if (Objects.requireNonNull(binding.etNombre.getText()).toString().trim().isEmpty()) {
-                    binding.tilNombre.setError(null);
-                }
-                if (Objects.requireNonNull(binding.etAsunto.getText()).toString().trim().isEmpty()) {
+
+                if (binding.etAsunto.getText().toString().trim().isEmpty()) {
                     binding.tilAsunto.setError(null);
                 }
-                if (Objects.requireNonNull(binding.etEmail.getText()).toString().trim().isEmpty()) {
-                    binding.tilEmail.setError(null);
-                }
-                if (Objects.requireNonNull(binding.etConsulta.getText()).toString().trim().isEmpty()) {
+                if (binding.etConsulta.getText().toString().trim().isEmpty()) {
                     binding.tilConsulta.setError(null);
                 }
 
@@ -87,21 +74,16 @@ public class ContactFragment extends Fragment {
             }
         };
 
-        binding.etNombre.addTextChangedListener(textWatcher);
         binding.etAsunto.addTextChangedListener(textWatcher);
-        binding.etEmail.addTextChangedListener(textWatcher);
         binding.etConsulta.addTextChangedListener(textWatcher);
     }
 
-    private void actualizarEstadoBotonEnviar() {
-        String nombre = Objects.requireNonNull(binding.etNombre.getText()).toString().trim();
-        String asunto = Objects.requireNonNull(binding.etAsunto.getText()).toString().trim();
-        String email = Objects.requireNonNull(binding.etEmail.getText()).toString().trim();
-        String consulta = Objects.requireNonNull(binding.etConsulta.getText()).toString().trim();
+    private void validarYEnviarConsulta() {
+        String nombre = loggedInUserName;
+        String email = loggedInUserEmail;
 
-        // --- Real-time validations for enabling/disabling the button and showing/hiding errors ---
-
-        // Name: not empty, letters/spaces only, min 6, max 50 characters
+        String asunto = binding.etAsunto.getText().toString().trim();
+        String consulta = binding.etConsulta.getText().toString().trim();
         boolean nombreValido = !nombre.isEmpty() && NAME_PATTERN.matcher(nombre).matches() &&
                 nombre.length() >= MIN_LENGTH && nombre.length() <= MAX_LENGTH;
         if (nombre.isEmpty()) {
@@ -116,109 +98,25 @@ public class ContactFragment extends Fragment {
             binding.tilNombre.setError(null);
         }
 
-        // Subject: not empty, min 6, max 50 characters
         boolean asuntoValido = !asunto.isEmpty() && asunto.length() >= MIN_LENGTH && asunto.length() <= MAX_LENGTH;
         if (asunto.isEmpty()) {
             binding.tilAsunto.setError(getString(R.string.error_asunto_required));
-        } else if (asunto.length() < MIN_LENGTH) {
-            binding.tilAsunto.setError(getString(R.string.error_min_length, MIN_LENGTH));
-        } else if (asunto.length() > MAX_LENGTH) {
-            binding.tilAsunto.setError(getString(R.string.error_max_length, MAX_LENGTH));
-        } else {
-            binding.tilAsunto.setError(null);
-        }
-
-        // Email: not empty, valid format, min 6, max 50 characters
-        boolean emailValido = !email.isEmpty() && EMAIL_PATTERN.matcher(email).matches() &&
-                email.length() >= MIN_LENGTH && email.length() <= MAX_LENGTH;
-        if (email.isEmpty()) {
-            binding.tilEmail.setError(getString(R.string.error_email_required));
-        } else if (!EMAIL_PATTERN.matcher(email).matches()) {
-            binding.tilEmail.setError(getString(R.string.error_email_invalid));
-        } else if (email.length() < MIN_LENGTH) {
-            binding.tilEmail.setError(getString(R.string.error_min_length, MIN_LENGTH));
-        } else if (email.length() > MAX_LENGTH) {
-            binding.tilEmail.setError(getString(R.string.error_max_length, MAX_LENGTH));
-        } else {
-            binding.tilEmail.setError(null);
-        }
-
-        // Query: not empty, min 6, max 50 characters
-        boolean consultaValida = !consulta.isEmpty() && consulta.length() >= MIN_LENGTH && consulta.length() <= MAX_LENGTH;
-        if (consulta.isEmpty()) {
-            binding.tilConsulta.setError(getString(R.string.error_query_required));
-        } else if (consulta.length() < MIN_LENGTH) {
-            binding.tilConsulta.setError(getString(R.string.error_min_length, MIN_LENGTH));
-        } else if (consulta.length() > MAX_LENGTH) {
-            binding.tilConsulta.setError(getString(R.string.error_max_length, MAX_LENGTH));
-        } else {
-            binding.tilConsulta.setError(null);
-        }
-
-        // --- Button state update ---
-        if (nombreValido && asuntoValido && emailValido && consultaValida) {
-            binding.btnEnviarConsulta.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.system_error_900));
-        } else {
-            binding.btnEnviarConsulta.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.darker_gray));
-        }
-    }
-
-
-    private void validarYEnviarConsulta() {
-        // This method performs final validations and shows specific errors
-        // if the user tries to submit with invalid fields.
-        // The main real-time validation logic is in actualizarEstadoBotonEnviar().
-
-        String nombre = Objects.requireNonNull(binding.etNombre.getText()).toString().trim();
-        String asunto = Objects.requireNonNull(binding.etAsunto.getText()).toString().trim();
-        String email = Objects.requireNonNull(binding.etEmail.getText()).toString().trim();
-        String consulta = Objects.requireNonNull(binding.etConsulta.getText()).toString().trim();
-
-        // Apply all validations for the submission action
-        if (nombre.isEmpty()) {
-            binding.tilNombre.setError(getString(R.string.error_name_required));
-            binding.etNombre.requestFocus();
-        } else if (!NAME_PATTERN.matcher(nombre).matches()) {
-            binding.tilNombre.setError(getString(R.string.error_name_invalid_characters));
-            binding.etNombre.requestFocus();
-        } else if (nombre.length() < MIN_LENGTH) {
-            binding.tilNombre.setError(getString(R.string.error_min_length, MIN_LENGTH));
-            binding.etNombre.requestFocus();
-        } else if (nombre.length() > MAX_LENGTH) {
-            binding.tilNombre.setError(getString(R.string.error_max_length, MAX_LENGTH));
-            binding.etNombre.requestFocus();
-        } else if (asunto.isEmpty()) {
-            binding.tilAsunto.setError(getString(R.string.error_asunto_required));
             binding.etAsunto.requestFocus();
-        } else if (asunto.length() < MIN_LENGTH) {
-            binding.tilAsunto.setError(getString(R.string.error_min_length, MIN_LENGTH));
-            binding.etAsunto.requestFocus();
-        } else if (asunto.length() > MAX_LENGTH) {
-            binding.tilAsunto.setError(getString(R.string.error_max_length, MAX_LENGTH));
-            binding.etAsunto.requestFocus();
-        } else if (email.isEmpty()) {
-            binding.tilEmail.setError(getString(R.string.error_email_required));
-            binding.etEmail.requestFocus();
-        } else if (!EMAIL_PATTERN.matcher(email).matches()) {
-            binding.tilEmail.setError(getString(R.string.error_email_invalid));
-            binding.etEmail.requestFocus();
-        } else if (email.length() < MIN_LENGTH) {
-            binding.tilEmail.setError(getString(R.string.error_min_length, MIN_LENGTH));
-            binding.etEmail.requestFocus();
-        } else if (email.length() > MAX_LENGTH) {
-            binding.tilEmail.setError(getString(R.string.error_max_length, MAX_LENGTH));
-            binding.etEmail.requestFocus();
         } else if (consulta.isEmpty()) {
             binding.tilConsulta.setError(getString(R.string.error_query_required));
             binding.etConsulta.requestFocus();
-        } else if (consulta.length() < MIN_LENGTH) {
-            binding.tilConsulta.setError(getString(R.string.error_min_length, MIN_LENGTH));
-            binding.etConsulta.requestFocus();
-        } else if (consulta.length() > MAX_LENGTH) {
-            binding.tilConsulta.setError(getString(R.string.error_max_length, MAX_LENGTH));
+        } else if (consulta.length() < 10) {
+            binding.tilConsulta.setError(getString(R.string.error_query_min_length));
             binding.etConsulta.requestFocus();
         } else {
-            // If all validations pass, send the query
+            if (nombre.isEmpty() || email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Log.e(TAG, "Error: Nombre o email del usuario logueado no disponibles o inválidos. No se puede enviar la consulta.");
+                if (isAdded()) {
+                    Toast.makeText(getContext(), getString(R.string.error_user_id_not_found), Toast.LENGTH_LONG).show();
+
+                }
+                return;
+            }
             enviarConsulta(new Contacto(nombre, email, asunto, consulta));
         }
     }
@@ -255,13 +153,10 @@ public class ContactFragment extends Fragment {
     }
 
     private void limpiarCampos() {
-        binding.etNombre.setText("");
         binding.etAsunto.setText("");
-        binding.etEmail.setText("");
         binding.etConsulta.setText("");
-        binding.tilNombre.setError(null);
         binding.tilAsunto.setError(null);
-        binding.tilEmail.setError(null);
         binding.tilConsulta.setError(null);
     }
+
 }

@@ -84,7 +84,7 @@ public class DireccionFormFragment extends Fragment {
         etNumero = view.findViewById(R.id.etNumero);
         etCiudad = view.findViewById(R.id.etCiudad);
         etProvincia = view.findViewById(R.id.etProvincia);
-        btnSaveOrContinue = view.findViewById(R.id.btnIrAlPago);
+        btnSaveOrContinue = view.findViewById(R.id.btnSaveAddress);
 
         apiService = RetrofitClient.getApiService(requireContext());
 

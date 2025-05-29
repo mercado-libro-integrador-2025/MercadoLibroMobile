@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_large"
             app:cardBackgroundColor="@color/card_background_color"
-            app:cardCornerRadius="@dimen/card_corner_radius_large_16dp"
+            app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
@@ -34,20 +34,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_xlarge"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+
+                    android:contentDescription="Hola querido lector"
+                    android:focusable="true"
                     android:fontFamily="@font/abril_fatface"
-                    android:text="@string/welcome_message"
+                    android:importantForAccessibility="yes"
+                      android:text="@string/welcome_message"
                     android:textAlignment="center"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_xlarge_26sp"
                     android:textStyle="bold"
-
-                    android:contentDescription="Hola querido lector"
-                    android:importantForAccessibility="yes"
-                    android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                    android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 
@@ -57,20 +55,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+
+                    android:contentDescription="Data desde el back"
+                    android:focusable="true"
                     android:gravity="center"
-                    android:minHeight="@dimen/min_touch_target_size"
+                    android:importantForAccessibility="yes"
+                      android:minHeight="@dimen/min_touch_target_size"
                     android:padding="@dimen/padding_small"
                     android:text="@string/email_placeholder"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_large"
-
-                    android:contentDescription="Data desde el back"
-                    android:importantForAccessibility="yes"
-                    android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                    android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 
@@ -78,22 +74,20 @@
                     android:id="@+id/button2"
                     android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+
                     android:backgroundTint="@color/sunstone_neutral_7"
-                    android:minHeight="@dimen/min_touch_target_size"
+                    android:contentDescription="Mis reseñas"
+                    android:focusable="true"
+                    android:importantForAccessibility="yes"
+                      android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_my_reviews"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius"
-
-                    android:contentDescription="Mis reseñas"
-                    android:importantForAccessibility="yes"
-                    android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                    android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 
@@ -101,22 +95,20 @@
                     android:id="@+id/button8"
                     android:layout_width="@dimen/button_width_medium"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+
                     android:backgroundTint="@color/sunstone_neutral_7"
-                    android:minHeight="@dimen/min_touch_target_size"
+                    android:contentDescription="Estado de mi envio"
+                    android:focusable="true"
+                    android:importantForAccessibility="yes"
+                      android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_shipping_status"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius"
-
-                    android:contentDescription="Estado de mi envio"
-                    android:importantForAccessibility="yes"
-                    android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                    android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 
@@ -164,27 +156,26 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:background="@color/line_separator_color" />
+
                 <TextView
                     android:id="@+id/tvPersonalDataLaws"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+
+                    android:contentDescription="Proteccion legal de datos"
+                    android:focusable="true"
                     android:gravity="center_horizontal"
-                    android:lineSpacingExtra="@dimen/line_spacing_extra"
+                    android:importantForAccessibility="yes"
+                      android:lineSpacingExtra="@dimen/line_spacing_extra"
                     android:paddingStart="@dimen/padding_large"
                     android:paddingEnd="@dimen/padding_large"
                     android:text="@string/personal_data_laws_info"
                     android:textAlignment="center"
                     android:textColor="@color/sunstone_neutral_5"
                     android:textSize="@dimen/text_size_small"
-
-                    android:contentDescription="Proteccion legal de datos"
-                    android:importantForAccessibility="yes"
-                    android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                    android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 
@@ -194,20 +185,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_top_button_large"
+                    android:accessibilityLiveRegion="polite"
+                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
+
                     android:backgroundTint="@color/error_color"
-                    android:minHeight="@dimen/min_touch_target_size"
+                    android:contentDescription="Dar de baja"
+                    android:focusable="true"
+                    android:importantForAccessibility="yes"
+                      android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_unsubscribe"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius"
-
-                    android:contentDescription="Dar de baja"
-                    android:importantForAccessibility="yes"
-                    android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalBefore="@id/etNombre"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-                    android:focusable="true"
-                    android:labelFor="@id/etNombre"
 
                     />
 

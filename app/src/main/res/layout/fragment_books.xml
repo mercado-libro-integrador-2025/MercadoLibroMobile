@@ -38,10 +38,10 @@
     android:contentDescription="Busca tu proxima historia"
     android:importantForAccessibility="yes"
     android:accessibilityLiveRegion="polite"
-    android:accessibilityTraversalBefore="@id/etNombre"
+
     android:accessibilityTraversalAfter="@id/tvInformacionPago"
     android:focusable="true"
-    android:labelFor="@id/etNombre"
+
 
 
     />
@@ -55,10 +55,10 @@
         android:contentDescription="Título: Bienvenido a la sección de historia"
         android:importantForAccessibility="yes"
         android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
+
         android:accessibilityTraversalAfter="@id/tvInformacionPago"
         android:focusable="true"
-        android:labelFor="@id/etNombre"
+
 
         />
 </LinearLayout>
