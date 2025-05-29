@@ -243,7 +243,6 @@
     <string name="confirm_delete_review_message">¿Estás seguro de que quieres eliminar esta reseña?</string>
     <string name="review_item_title_placeholder">Título de la reseña</string>
 
-
     <string name="title_policies_main">Políticas de Calidad y Seguridad</string>
     <string name="title_quality">Calidad del Producto</string>
     <string name="content_quality">En Mercado Libro, nos comprometemos a ofrecer productos de la más alta calidad. Cada libro es cuidadosamente seleccionado y verificado para asegurar que cumpla con nuestros estándares antes de ser enviado. Trabajamos con proveedores de confianza para garantizar la autenticidad y el buen estado de cada ejemplar. Su satisfacción es nuestra prioridad, y nos esforzamos por superar sus expectativas en cada compra.</string>
@@ -258,6 +257,10 @@
     <string name="title_customer_service">Atención al Cliente</string>
     <string name="content_customer_service">Nuestro equipo de atención al cliente está siempre disponible para ayudarle con cualquier pregunta, inquietud o problema que pueda tener. Nos esforzamos por ofrecer un servicio rápido, amable y eficiente. Ya sea que necesite ayuda con un pedido, tenga preguntas sobre un producto o simplemente quiera compartir sus comentarios, no dude en contactarnos. Su opinión es invaluable para nosotros y nos ayuda a mejorar continuamente.</string>
     <string name="footer_acknowledgement">Gracias por confiar en Mercado Libro. ¡Esperamos que disfrute de su lectura!</string>
+
+    <string name="error_name_invalid_characters">El nombre solo puede contener letras y espacios.</string>
+    <string name="error_max_length">Este campo no puede exceder los %d caracteres.</string>
+    <string name="error_min_length">Este campo debe tener al menos los %d caracteres.</string>
 
     <string name="drawer_menu_profile">Perfil</string>
     <string name="drawer_menu_products">Productos</string>

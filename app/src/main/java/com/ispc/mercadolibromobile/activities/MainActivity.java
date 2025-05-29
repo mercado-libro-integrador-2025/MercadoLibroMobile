@@ -53,6 +53,16 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Verifico y agrego la expiracion del token antes de continuar
+        String token = SessionUtils.getAuthToken(this);
+        if (token == null || SessionUtils.isTokenExpired(token)) {
+            SessionUtils.clearSession(this);
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return;
+        }
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
