@@ -65,7 +65,7 @@ public class ProfileFragment extends Fragment implements DireccionAdapter.OnDire
             Log.d(TAG, "Botón estadoEnvioButton presionado - Iniciando PedidosFragment");
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            //fragmentTransaction.replace(R.id.fragment_container, new PedidosFragment());
+            fragmentTransaction.replace(R.id.fragment_container, new PedidoFragment());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
