@@ -37,9 +37,6 @@
                     android:layout_margin="8dp"
                     android:layout_marginBottom="@dimen/margin_xlarge_20dp"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
-
                     android:autoLink="web"
                     android:contentDescription="@string/title_policies_main"
                     android:drawablePadding="6dp"
@@ -49,7 +46,7 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:letterSpacing="0.02"
+                    android:letterSpacing="0.02"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="2"
                     android:minLines="2"
@@ -78,20 +75,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:autoLink="web"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:contentDescription="@string/title_quality"
-
                     android:ellipsize="end"
                     android:enabled="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:letterSpacing="0.02"
+                    android:letterSpacing="0.02"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="1"
                     android:minHeight="@dimen/min_touch_target_size"
@@ -104,7 +98,6 @@
                     android:textStyle="bold"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
-
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
@@ -121,19 +114,14 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_extra_small_5dp"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="@string/content_quality"
                     android:focusable="true"
-
                     android:importantForAccessibility="yes"
-                      android:padding="@dimen/padding_extra_small_5dp"
+                    android:padding="@dimen/padding_extra_small_5dp"
                     android:text="@string/content_quality"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_content"
-                    android:visibility="gone"
-
-                    />
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/titleGarantia"
@@ -141,20 +129,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:autoLink="web"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:contentDescription="@string/title_satisfaction_guarantee"
-
                     android:ellipsize="end"
                     android:enabled="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:letterSpacing="0.02"
+                    android:letterSpacing="0.02"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="1"
                     android:minHeight="@dimen/min_touch_target_size"
@@ -167,16 +152,13 @@
                     android:textStyle="bold"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
-
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
-                    app:drawableLeftCompat="@android:drawable/ic_input_add"
-
-                    />
+                    app:drawableLeftCompat="@android:drawable/ic_input_add" />
 
                 <TextView
                     android:id="@+id/contentGarantia"
@@ -184,13 +166,11 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_extra_small_5dp"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="@string/content_satisfaction_guarantee"
                     android:focusable="true"
 
                     android:importantForAccessibility="yes"
-                      android:padding="@dimen/padding_extra_small_5dp"
+                    android:padding="@dimen/padding_extra_small_5dp"
                     android:text="@string/content_satisfaction_guarantee"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_content"
@@ -204,20 +184,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:autoLink="web"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:contentDescription="@string/title_transaction_security"
-
                     android:ellipsize="end"
                     android:enabled="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:letterSpacing="0.02"
+                    android:letterSpacing="0.02"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="1"
                     android:minHeight="@dimen/min_touch_target_size"
@@ -230,16 +207,13 @@
                     android:textStyle="bold"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
-
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
-                    app:drawableLeftCompat="@android:drawable/ic_input_add"
-
-                    />
+                    app:drawableLeftCompat="@android:drawable/ic_input_add" />
 
                 <TextView
                     android:id="@+id/contentSeguridad"
@@ -247,19 +221,14 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_extra_small_5dp"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="@string/content_transaction_security"
                     android:focusable="true"
-
                     android:importantForAccessibility="yes"
-                      android:padding="@dimen/padding_extra_small_5dp"
+                    android:padding="@dimen/padding_extra_small_5dp"
                     android:text="@string/content_transaction_security"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_content"
-                    android:visibility="gone"
-
-                    />
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/titlePrivacidad"
@@ -267,20 +236,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:autoLink="web"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:contentDescription="@string/title_data_privacy"
-
                     android:ellipsize="end"
                     android:enabled="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:letterSpacing="0.02"
+                    android:letterSpacing="0.02"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="1"
                     android:minHeight="@dimen/min_touch_target_size"
@@ -293,7 +259,6 @@
                     android:textStyle="bold"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
-
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
@@ -310,19 +275,14 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_extra_small_5dp"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="@string/content_data_privacy"
                     android:focusable="true"
-
                     android:importantForAccessibility="yes"
-                      android:padding="@dimen/padding_extra_small_5dp"
+                    android:padding="@dimen/padding_extra_small_5dp"
                     android:text="@string/content_data_privacy"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_content"
-                    android:visibility="gone"
-
-                    />
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/titleEnvio"
@@ -330,20 +290,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:autoLink="web"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:contentDescription="@string/title_secure_shipping"
-
                     android:ellipsize="end"
                     android:enabled="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:letterSpacing="0.02"
+                    android:letterSpacing="0.02"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="1"
                     android:minHeight="@dimen/min_touch_target_size"
@@ -356,16 +313,13 @@
                     android:textStyle="bold"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
-
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
-                    app:drawableLeftCompat="@android:drawable/ic_input_add"
-
-                    />
+                    app:drawableLeftCompat="@android:drawable/ic_input_add" />
 
                 <TextView
                     android:id="@+id/contentEnvio"
@@ -373,19 +327,14 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_extra_small_5dp"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="@string/content_secure_shipping"
                     android:focusable="true"
-
                     android:importantForAccessibility="yes"
-                      android:padding="@dimen/padding_extra_small_5dp"
+                    android:padding="@dimen/padding_extra_small_5dp"
                     android:text="@string/content_secure_shipping"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_content"
-                    android:visibility="gone"
-
-                    />
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/titleAtencion"
@@ -393,20 +342,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:autoLink="web"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:contentDescription="@string/title_customer_service"
-
                     android:ellipsize="end"
                     android:enabled="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:letterSpacing="0.02"
+                    android:letterSpacing="0.02"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="1"
                     android:minHeight="@dimen/min_touch_target_size"
@@ -419,16 +365,13 @@
                     android:textStyle="bold"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
-
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
-                    app:drawableLeftCompat="@android:drawable/ic_input_add"
-
-                    />
+                    app:drawableLeftCompat="@android:drawable/ic_input_add" />
 
                 <TextView
                     android:id="@+id/contentAtencion"
@@ -436,13 +379,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_extra_small_5dp"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="@string/content_customer_service"
                     android:focusable="true"
-
                     android:importantForAccessibility="yes"
-                      android:padding="@dimen/padding_extra_small_5dp"
+                    android:padding="@dimen/padding_extra_small_5dp"
                     android:text="@string/content_customer_service"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_content"
@@ -457,10 +397,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_xlarge_20dp"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:autoLink="web"
-
                     android:contentDescription="@string/footer_acknowledgement"
                     android:ellipsize="end"
                     android:enabled="true"
@@ -468,7 +405,7 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:letterSpacing="0.02"
+                    android:letterSpacing="0.02"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="2"
                     android:minLines="2"
@@ -480,7 +417,6 @@
                     android:textStyle="bold"
                     android:visibility="visible"
                     app:boxBackgroundMode="outline"
-
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"

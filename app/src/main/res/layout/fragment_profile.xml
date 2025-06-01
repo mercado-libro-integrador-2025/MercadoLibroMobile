@@ -35,13 +35,11 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_xlarge"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="Hola querido lector"
                     android:focusable="true"
                     android:fontFamily="@font/abril_fatface"
                     android:importantForAccessibility="yes"
-                      android:text="@string/welcome_message"
+                    android:text="@string/welcome_message"
                     android:textAlignment="center"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_xlarge_26sp"
@@ -56,18 +54,15 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="Data desde el back"
                     android:focusable="true"
                     android:gravity="center"
                     android:importantForAccessibility="yes"
-                      android:minHeight="@dimen/min_touch_target_size"
+                    android:minHeight="@dimen/min_touch_target_size"
                     android:padding="@dimen/padding_small"
                     android:text="@string/email_placeholder"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_large"
-
                     />
 
                 <Button
@@ -77,13 +72,11 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:backgroundTint="@color/sunstone_neutral_7"
                     android:contentDescription="Mis reseñas"
                     android:focusable="true"
                     android:importantForAccessibility="yes"
-                      android:minHeight="@dimen/min_touch_target_size"
+                    android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_my_reviews"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
@@ -98,13 +91,11 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:backgroundTint="@color/sunstone_neutral_7"
                     android:contentDescription="Estado de mi envio"
                     android:focusable="true"
                     android:importantForAccessibility="yes"
-                      android:minHeight="@dimen/min_touch_target_size"
+                    android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_shipping_status"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
@@ -163,13 +154,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_xlarge"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:contentDescription="Proteccion legal de datos"
                     android:focusable="true"
                     android:gravity="center_horizontal"
                     android:importantForAccessibility="yes"
-                      android:lineSpacingExtra="@dimen/line_spacing_extra"
+                    android:lineSpacingExtra="@dimen/line_spacing_extra"
                     android:paddingStart="@dimen/padding_large"
                     android:paddingEnd="@dimen/padding_large"
                     android:text="@string/personal_data_laws_info"
@@ -186,18 +175,15 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_top_button_large"
                     android:accessibilityLiveRegion="polite"
-                    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-
                     android:backgroundTint="@color/error_color"
                     android:contentDescription="Dar de baja"
                     android:focusable="true"
                     android:importantForAccessibility="yes"
-                      android:minHeight="@dimen/min_touch_target_size"
+                    android:minHeight="@dimen/min_touch_target_size"
                     android:text="@string/button_unsubscribe"
                     android:textColor="@color/sunstone_neutral_4"
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius"
-
                     />
 
             </LinearLayout>
