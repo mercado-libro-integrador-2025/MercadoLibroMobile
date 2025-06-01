@@ -11,9 +11,13 @@ public class MercadoPagoPreferenceRequest {
     @SerializedName("direccion_id")
     private int direccionId;
 
-    public MercadoPagoPreferenceRequest(List<ProductoParaMP> productos, int direccionId) {
+    @SerializedName("is_mobile_app")
+    private boolean isMobileApp;
+
+    public MercadoPagoPreferenceRequest(List<ProductoParaMP> productos, int direccionId, boolean isMobileApp) {
         this.productos = productos;
         this.direccionId = direccionId;
+        this.isMobileApp = isMobileApp;
     }
 
     public List<ProductoParaMP> getProductos() {
@@ -22,5 +26,9 @@ public class MercadoPagoPreferenceRequest {
 
     public int getDireccionId() {
         return direccionId;
+    }
+
+    public boolean getIsMobileApp() {
+        return isMobileApp;
     }
 }

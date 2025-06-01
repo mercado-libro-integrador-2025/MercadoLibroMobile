@@ -33,17 +33,19 @@ import com.ispc.mercadolibromobile.models.ItemCarrito;
 import com.ispc.mercadolibromobile.models.ProductoParaMP;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
 import com.mercadopago.android.px.core.MercadoPagoCheckout;
+import com.mercadopago.android.px.core.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoListener {
     public static final String KEY_SELECTED_ADDRESS = "selected_address_from_list";
     private static final String TAG = "CarritoFragment";
-
     public interface CartUpdateListener {
         void onCartUpdated();
     }
@@ -92,8 +94,6 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
                 }
             });
 
-
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -128,7 +128,6 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
         recyclerViewCarrito.setAdapter(adapter);
 
         apiService = RetrofitClient.getApiService(getContext());
-
         obtenerDatosCarrito();
 
         getParentFragmentManager().setFragmentResultListener("requestKeyAddressSelection", this, (requestKey, bundle) -> {
@@ -193,18 +192,20 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
             Log.d(TAG, "  - Libro ID: " + p.getIdLibro() + ", Cantidad: " + p.getCantidad());
         }
 
-        MercadoPagoPreferenceRequest request = new MercadoPagoPreferenceRequest(productosParaMP, direccionSeleccionada.getId());
+        MercadoPagoPreferenceRequest request = new MercadoPagoPreferenceRequest(productosParaMP, direccionSeleccionada.getId(), true);
 
-        apiService.crearPreferenciaMercadoPago("Bearer " + token, request).enqueue(new retrofit2.Callback<MercadoPagoPreferenceResponse>() {
+        apiService.crearPreferenciaMercadoPago("Bearer " + token, request).enqueue(new Callback<MercadoPagoPreferenceResponse>() {
             @Override
-            public void onResponse(@NonNull Call<MercadoPagoPreferenceResponse> call, @NonNull retrofit2.Response<MercadoPagoPreferenceResponse> response) {
+            public void onResponse(@NonNull Call<MercadoPagoPreferenceResponse> call, @NonNull Response<MercadoPagoPreferenceResponse> response) {
                 if (isAdded()) {
                     if (response.isSuccessful() && response.body() != null) {
                         String preferenceId = response.body().getPreferenceId();
+                        String initPointToUse = response.body().getSandboxInitPoint();
                         Log.d(TAG, "Preferencia de Mercado Pago creada: " + preferenceId);
                         try {
+                            // THIS IS THE CRUCIAL CHANGE: Use your exact Public Key
                             MercadoPagoCheckout checkout = new MercadoPagoCheckout.Builder(
-                                    "TEST-8172258200747869-051120-3beb4a6a51e00538722eefca692fc36e-128356048",
+                                    "TEST-826ea554-1909-4e44-8169-70fa973537ba",
                                     preferenceId
                             ).build();
 
@@ -247,9 +248,9 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
             return;
         }
 
-        apiService.getDirecciones("Bearer " + token).enqueue(new retrofit2.Callback<List<Direccion>>() {
+        apiService.getDirecciones("Bearer " + token).enqueue(new Callback<List<Direccion>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Direccion>> call, @NonNull retrofit2.Response<List<Direccion>> response) {
+            public void onResponse(@NonNull Call<List<Direccion>> call, @NonNull Response<List<Direccion>> response) {
                 if (isAdded()) {
                     if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                         direccionSeleccionada = response.body().get(0);
@@ -290,10 +291,10 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
             return;
         }
         Call<List<ItemCarrito>> call = apiService.obtenerCarrito("Bearer " + token);
-        call.enqueue(new retrofit2.Callback<List<ItemCarrito>>() {
+        call.enqueue(new Callback<List<ItemCarrito>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onResponse(@NonNull Call<List<ItemCarrito>> call, @NonNull retrofit2.Response<List<ItemCarrito>> response) {
+            public void onResponse(@NonNull Call<List<ItemCarrito>> call, @NonNull Response<List<ItemCarrito>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<ItemCarrito> nuevosItems = response.body();
                     if (isAdded()) {
@@ -358,9 +359,9 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
 
         ItemCarritoUpdateDto itemUpdateDto = new ItemCarritoUpdateDto(nuevaCantidad);
 
-        apiService.actualizarItemCarrito("Bearer " + token, itemId, itemUpdateDto).enqueue(new retrofit2.Callback<ItemCarrito>() {
+        apiService.actualizarItemCarrito("Bearer " + token, itemId, itemUpdateDto).enqueue(new Callback<ItemCarrito>() {
             @Override
-            public void onResponse(@NonNull Call<ItemCarrito> call, @NonNull retrofit2.Response<ItemCarrito> response) {
+            public void onResponse(@NonNull Call<ItemCarrito> call, @NonNull Response<ItemCarrito> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(getContext(), "Cantidad actualizada.", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Cantidad actualizada en el carrito exitosamente.");
@@ -404,9 +405,9 @@ public class CarritoFragment extends Fragment implements CarritoAdapter.CarritoL
             return;
         }
 
-        apiService.eliminarDelCarrito("Bearer " + token, item.getId()).enqueue(new retrofit2.Callback<Void>() {
+        apiService.eliminarDelCarrito("Bearer " + token, item.getId()).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(@NonNull Call<Void> call, @NonNull retrofit2.Response<Void> response) {
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Producto eliminado del carrito.", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Item eliminado del carrito exitosamente.");
