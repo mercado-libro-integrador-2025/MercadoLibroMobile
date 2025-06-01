@@ -59,6 +59,7 @@
                 android:minHeight="@dimen/min_touch_target_size"
                 android:padding="@dimen/padding_small"
                 android:src="@drawable/ic_delete"
+                app:tint="@color/sunstone_neutral_5"
                 android:contentDescription="Eliminar libro del carrito" />
 
             <ImageButton

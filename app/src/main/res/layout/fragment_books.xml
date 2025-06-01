@@ -1,63 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fondo2"
+    android:orientation="vertical"
     android:padding="@dimen/padding_large">
-<EditText
-    android:id="@+id/search_bar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:hint="@string/hint_search_book"
-    android:padding="@dimen/padding_large"
-    android:drawableStart="@drawable/ic_search"
-    android:drawablePadding="@dimen/padding_small"
-    android:textColorHint="@color/text_hint"
-    android:textColor="@color/text_primary"
-    android:inputType="textCapSentences"
-    android:imeOptions="actionSearch"
-    android:maxLines="1"
 
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:accessibilityLiveRegion="polite"
+        android:autofillHints="name"
+        android:background="@color/white"
+        android:contentDescription="Busca tu proxima historia"
+        android:cursorVisible="true"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/padding_small"
+        android:enabled="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:fontFamily="sans-serif"
+        android:gravity="start|center_vertical"
+        android:hint="@string/hint_search_book"
+        android:imeOptions="actionSearch"
+        android:importantForAccessibility="yes"
+        android:importantForAutofill="yes"
+        android:inputType="textCapSentences"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:padding="@dimen/padding_large"
+        android:singleLine="true"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_hint"
         android:textSize="16sp"
         android:textStyle="normal"
-        android:fontFamily="sans-serif"
-        android:maxLength="50"
-        android:singleLine="true"
-        android:gravity="start|center_vertical"
-        android:cursorVisible="true"
-        android:enabled="true"
-        android:focusableInTouchMode="true"
-        android:autofillHints="name"
-        android:importantForAutofill="yes"
-     android:visibility="visible"
-        android:layout_marginTop="16dp"
-
-    android:contentDescription="Busca tu proxima historia"
-    android:importantForAccessibility="yes"
-    android:accessibilityLiveRegion="polite"
-
-    android:accessibilityTraversalAfter="@id/tvInformacionPago"
-    android:focusable="true"
+        android:visibility="visible"
 
 
-
-    />
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBooks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/margin_medium"
-
-        android:contentDescription="Título: Bienvenido a la sección de historia"
-        android:importantForAccessibility="yes"
         android:accessibilityLiveRegion="polite"
-
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
+        android:contentDescription="Título: Bienvenido a la sección de historia"
         android:focusable="true"
+        android:importantForAccessibility="yes"
 
 
         />
