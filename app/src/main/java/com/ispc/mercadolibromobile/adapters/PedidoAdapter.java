@@ -75,6 +75,17 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
         if (holder.totalTextView != null) {
             holder.totalTextView.setText(String.format(Locale.getDefault(), "Total: $%.2f", pedido.getTotal()));
         }
+
+        if (holder.estadoTextView != null) {
+            String estado = pedido.getEstado();
+            if (estado != null && !estado.isEmpty()) {
+                holder.estadoTextView.setText("Estado: " + estado);
+            } else {
+                holder.estadoTextView.setText("Estado: Desconocido");
+            }
+        } else {
+            Log.e("PedidoAdapter", "estadoTextView is null for item at position: " + position);
+        }
     }
 
     @Override
@@ -84,9 +95,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
 
     public static class PedidoViewHolder extends RecyclerView.ViewHolder {
         public TextView idPedidoTextView;
-        public TextView usuarioTextView;
         public TextView direccionTextView;
-        public TextView idTransaccionMPTextView;
         public TextView estadoTextView;
         public TextView fechaPedidoTextView;
         public TextView totalTextView;
