@@ -205,10 +205,8 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, "User ID saved in SessionUtils from LoginActivity: " + SessionUtils.getUserId(LoginActivity.this)); // NUEVO LOG: verificar que se guardó
                     } else {
                         Log.e(TAG, "No se pudo obtener el User ID del token JWT. El carrito puede no funcionar.");
-                        // Considera mostrar un Toast o manejar este error de forma más robusta
-                        // ya que el carrito no funcionará sin un userId válido.
+
                     }
-                    // *******************************************************************
 
                     SessionUtils.saveUserEmail(LoginActivity.this, email);
 

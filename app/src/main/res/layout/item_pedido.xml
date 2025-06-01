@@ -1,63 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_marginBottom="@dimen/margin_medium"
+    app:cardBackgroundColor="@color/card_background_color_light"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation_small">
 
-    <TextView
-        android:id="@+id/idPedido"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/sunstone_neutral_5"
-        android:text="ID Pedido"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large">
 
-    <TextView
-        android:id="@+id/usuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/sunstone_neutral_5"
-        android:text="Usuario"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/idPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de pedido:"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/direccion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/sunstone_neutral_5"
-        android:text="Dirección"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/fechaPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:text="Fecha del pedido: "
+            android:textColor="@color/sunstone_neutral_7"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/metodoPago"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/sunstone_neutral_5"
-        android:text="Método de Pago"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/direccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:text="Dirección de envío: "
+            android:textColor="@color/sunstone_neutral_7"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/estado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/sunstone_neutral_5"
-        android:text="Estado"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:text="Estado del Pedido:"
+            android:textColor="@color/sunstone_neutral_7"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/fechaPedido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fecha de Pedido"
-        android:textColor="@color/sunstone_neutral_5"
-        android:textSize="16sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_top_xlarge"
+            android:background="@color/line_separator_color" />
 
-    <TextView
-        android:id="@+id/total"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/sunstone_neutral_5"
-        android:text="Total"
-        android:textSize="16sp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:text="Monto total de la compra:"
+            android:textColor="@color/sunstone_neutral_6"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

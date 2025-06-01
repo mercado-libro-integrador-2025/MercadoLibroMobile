@@ -53,7 +53,7 @@
                     app:boxCornerRadiusBottomEnd="@dimen/input_field_corner_radius"
                     app:boxCornerRadiusBottomStart="@dimen/input_field_corner_radius"
                     app:boxCornerRadiusTopEnd="@dimen/input_field_corner_radius"
-                    app:boxCornerRadiusTopStart="@dimen/input_field_corner
+                    app:boxCornerRadiusTopStart="@dimen/input_field_corner_radius"
                     app:counterEnabled="true"
                     app:counterMaxLength="100"
                     app:endIconMode="clear_text"

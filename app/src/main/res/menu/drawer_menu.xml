@@ -15,10 +15,6 @@
             android:icon="@drawable/ic_location"
             android:title="@string/drawer_menu_my_addresses" />
         <item
-            android:id="@+id/nav_my_payments"
-            android:icon="@drawable/ic_credit"
-            android:title="@string/drawer_menu_my_payments" />
-        <item
             android:id="@+id/nav_my_orders"
             android:icon="@drawable/ic_cart"
             android:title="@string/drawer_menu_my_orders" />

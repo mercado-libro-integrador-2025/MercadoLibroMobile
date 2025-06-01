@@ -7,21 +7,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast; 
+import android.widget.Toast; // Button and EditText imports are no longer strictly needed if not used directly
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 
 import com.ispc.mercadolibromobile.R;
 import com.ispc.mercadolibromobile.api.ApiService;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
 import com.ispc.mercadolibromobile.databinding.FragmentContactBinding;
 import com.ispc.mercadolibromobile.models.Contacto;
-
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,8 +41,6 @@ public class ContactFragment extends Fragment {
 
         binding.btnEnviarConsulta.setOnClickListener(v -> validarYEnviarConsulta());
 
-        binding.btnEnviarConsulta.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.darker_gray));
-
         agregarTextWatchers();
 
         return binding.getRoot();
@@ -62,15 +56,12 @@ public class ContactFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 if (binding.etAsunto.getText().toString().trim().isEmpty()) {
                     binding.tilAsunto.setError(null);
                 }
                 if (binding.etConsulta.getText().toString().trim().isEmpty()) {
                     binding.tilConsulta.setError(null);
                 }
-
-                actualizarEstadoBotonEnviar();
             }
         };
 
@@ -84,21 +75,7 @@ public class ContactFragment extends Fragment {
 
         String asunto = binding.etAsunto.getText().toString().trim();
         String consulta = binding.etConsulta.getText().toString().trim();
-        boolean nombreValido = !nombre.isEmpty() && NAME_PATTERN.matcher(nombre).matches() &&
-                nombre.length() >= MIN_LENGTH && nombre.length() <= MAX_LENGTH;
-        if (nombre.isEmpty()) {
-            binding.tilNombre.setError(getString(R.string.error_name_required));
-        } else if (!NAME_PATTERN.matcher(nombre).matches()) {
-            binding.tilNombre.setError(getString(R.string.error_name_invalid_characters));
-        } else if (nombre.length() < MIN_LENGTH) {
-            binding.tilNombre.setError(getString(R.string.error_min_length, MIN_LENGTH));
-        } else if (nombre.length() > MAX_LENGTH) {
-            binding.tilNombre.setError(getString(R.string.error_max_length, MAX_LENGTH));
-        } else {
-            binding.tilNombre.setError(null);
-        }
 
-        boolean asuntoValido = !asunto.isEmpty() && asunto.length() >= MIN_LENGTH && asunto.length() <= MAX_LENGTH;
         if (asunto.isEmpty()) {
             binding.tilAsunto.setError(getString(R.string.error_asunto_required));
             binding.etAsunto.requestFocus();
@@ -121,7 +98,6 @@ public class ContactFragment extends Fragment {
         }
     }
 
-
     private void enviarConsulta(@NonNull Contacto contacto) {
         Call<Void> call = apiService.enviarConsulta(contacto);
 
@@ -131,7 +107,6 @@ public class ContactFragment extends Fragment {
                 if (response.isSuccessful()) {
                     if (isAdded()) {
                         Toast.makeText(getContext(), getString(R.string.success_query_sent), Toast.LENGTH_SHORT).show();
-                        actualizarEstadoBotonEnviar(); // Update button state after clearing
                         limpiarCampos();
                     }
                 } else {

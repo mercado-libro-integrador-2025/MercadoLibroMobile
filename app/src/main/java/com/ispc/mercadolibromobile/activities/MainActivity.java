@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,8 +28,8 @@ import com.ispc.mercadolibromobile.fragments.CarritoFragment;
 import com.ispc.mercadolibromobile.fragments.ContactFragment;
 import com.ispc.mercadolibromobile.fragments.DireccionFormFragment;
 import com.ispc.mercadolibromobile.fragments.MyReviewsFragment;
-import com.ispc.mercadolibromobile.fragments.PagoFragment;
-import com.ispc.mercadolibromobile.fragments.PedidosFragment;
+//import com.ispc.mercadolibromobile.fragments.PedidosFragment;
+import com.ispc.mercadolibromobile.fragments.PedidoFragment;
 import com.ispc.mercadolibromobile.fragments.ProfileFragment;
 import com.ispc.mercadolibromobile.models.ItemCarrito;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
@@ -110,6 +111,14 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         apiService = RetrofitClient.getApiService(this);
+        handleDeepLink(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleDeepLink(intent);
     }
 
     @Override
@@ -155,14 +164,9 @@ public class MainActivity extends AppCompatActivity implements
                     .replace(R.id.fragment_container, new DireccionFormFragment())
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_my_payments) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new PagoFragment())
-                    .addToBackStack(null)
-                    .commit();
         } else if (id == R.id.nav_my_orders) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new PedidosFragment())
+                    .replace(R.id.fragment_container, new PedidoFragment())
                     .addToBackStack(null)
                     .commit();
         } else if (id == R.id.nav_logout) {
@@ -206,17 +210,39 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    // =======================================================
-    // Métodos para el Contador del Carrito
-    // =======================================================
+    private void handleDeepLink(Intent intent) {
+        if (intent != null && intent.getData() != null) {
+            Uri data = intent.getData();
+            Log.d(TAG, "Deep Link data: " + data.toString()); // Usando TAG
 
+            if ("mercadolibromobile".equals(data.getScheme()) && "checkout".equals(data.getHost())) {
+                String path = data.getPath(); // Ej. "/success", "/failure", "/pending"
+                String paymentId = data.getQueryParameter("payment_id");
+                String statusMp = data.getQueryParameter("status");
+                String externalReference = data.getQueryParameter("external_reference");
+
+                Log.d(TAG, "Path: " + path + ", Payment ID: " + paymentId + ", Status: " + statusMp + ", External Ref: " + externalReference);
+
+                if ("/success".equals(path)) {
+                    Toast.makeText(this, "Pago Exitoso! Ref: " + externalReference, Toast.LENGTH_LONG).show();
+
+                } else if ("/failure".equals(path)) {
+                    Toast.makeText(this, "Pago Fallido! Ref: " + externalReference, Toast.LENGTH_LONG).show();
+                } else if ("/pending".equals(path)) {
+                    Toast.makeText(this, "Pago Pendiente! Ref: " + externalReference, Toast.LENGTH_LONG).show();
+                }
+
+                setIntent(null);
+            }
+        }
+    }
+
+    // Métodos para el Contador del Carrito
     @Override
     public void onCartUpdated() {
         Log.d(TAG, "onCartUpdated() llamado desde un fragmento. Actualizando badge.");
-        updateCartBadgeCount(); // Cuando el carrito se actualice en el fragmento, refresca el badge
+        updateCartBadgeCount();
     }
-
-    // Método para actualizar el contador del carrito haciendo una llamada a la API
     public void updateCartBadgeCount() {
         String token = SessionUtils.getAuthToken(this);
 

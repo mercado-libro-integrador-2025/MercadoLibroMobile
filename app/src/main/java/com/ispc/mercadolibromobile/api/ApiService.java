@@ -1,14 +1,15 @@
 package com.ispc.mercadolibromobile.api;
 
+import com.ispc.mercadolibromobile.dtos.MercadoPagoPreferenceRequest;
+import com.ispc.mercadolibromobile.dtos.MercadoPagoPreferenceResponse;
 import com.ispc.mercadolibromobile.models.AuthModels;
 import com.ispc.mercadolibromobile.models.Book;
-import com.ispc.mercadolibromobile.models.ItemCarritoUpdatedTo;
+import com.ispc.mercadolibromobile.dtos.ItemCarritoUpdateDto;
 import com.ispc.mercadolibromobile.models.Pedido;
 import com.ispc.mercadolibromobile.models.Review;
 import com.ispc.mercadolibromobile.models.User;
 import com.ispc.mercadolibromobile.models.ItemCarrito;
 import com.ispc.mercadolibromobile.models.Direccion;
-import com.ispc.mercadolibromobile.models.Pago;
 import com.ispc.mercadolibromobile.models.Contacto;
 import com.ispc.mercadolibromobile.models.UserInfo;
 
@@ -75,30 +76,17 @@ public interface ApiService {
     @GET("libros/{id}/")
     Call<Book> getBookById(@Path("id")int bookId);
 
-    // =================== Pedidos ===================
-    @GET("pedidos/")
-    Call<List<Pedido>> getPedidos(@Header("Authorization") String token);
-
-    @GET("pedidos/{id}/")
-    Call<Pedido> getPedidoPorId(@Header("Authorization") String token, @Path("id") int id);
-
-    @POST("pedidos/")
-    Call<Pedido> crearPedido(@Header("Authorization") String token, @Body Pedido nuevoPedido);
-
     // =================== Carrito ===================
     @GET("carrito/")
     Call<List<ItemCarrito>> obtenerCarrito(@Header("Authorization") String authToken);
 
     @DELETE("carrito/{id}/")
     Call<Void> eliminarDelCarrito(@Header("Authorization") String authToken, @Path("id") int itemId);
-
-    // Nuevo método para actualizar un ItemCarrito
     @PATCH("carrito/{id}/")
-    Call<ItemCarrito> actualizarItemCarrito(@Header("Authorization") String authToken, @Path("id") int itemId, @Body ItemCarritoUpdatedTo itemCarritoUpdatedTo);
+    Call<ItemCarrito> actualizarItemCarrito(@Header("Authorization") String authToken, @Path("id") int itemId, @Body ItemCarritoUpdateDto itemCarritoUpdatedTo);
 
     @POST("carrito/")
     Call<ItemCarrito> agregarAlCarrito(@Header("Authorization") String authToken, @Body ItemCarrito itemCarrito);
-
 
     // =================== Direcciones ===================
     @GET("direcciones/")
@@ -114,12 +102,13 @@ public interface ApiService {
     Call<Void> deleteDireccion(@Path("id") int id, @Header("Authorization") String token);
 
 
-    // =================== Pagos ===================
-    @POST("pagos/")
-    Call<Pago> realizarPago(@Header("Authorization") String token, @Body Pago pago);
-
-    @GET("metodopagos/")
-    Call<List<Pago>> getMostrarPago(@Header("Authorization") String token);
+    // =================== Pagos y Pedidos ===================
+    @POST("checkout/crear-preferencia/")
+    Call<MercadoPagoPreferenceResponse> crearPreferenciaMercadoPago(@Header("Authorization") String authToken, @Body MercadoPagoPreferenceRequest request);
+    @GET("pedidos/")
+    Call<List<Pedido>> getPedidos(@Header("Authorization") String token);
+    @GET("pedidos/{id}/")
+    Call<Pedido> getPedidoPorId(@Header("Authorization") String token, @Path("id") int id);
 
     // =================== Contacto ===================
     @POST("contacto/")
