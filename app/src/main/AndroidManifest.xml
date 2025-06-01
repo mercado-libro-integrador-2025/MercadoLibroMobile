@@ -19,7 +19,7 @@
         <activity
             android:name="com.ispc.mercadolibromobile.activities.SplashActivity"
             android:exported="true"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/Base.Theme.MercadoLibroMobile">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
