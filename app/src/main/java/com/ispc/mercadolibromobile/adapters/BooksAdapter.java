@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +23,7 @@ import com.ispc.mercadolibromobile.models.Book;
 import com.ispc.mercadolibromobile.models.ItemCarrito;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +91,8 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             String token = SessionUtils.getAuthToken(activity);
             int userId = SessionUtils.getUserId(activity);
 
-            Log.d(TAG, "Botón de compra clickeado. Token: " + token + ", UserId: " + userId);
+            // Log: Botón de compra clickeado
+            Log.d(TAG, "Botón 'Comprar' clickeado para libro: " + book.getTitulo() + ". Token: " + (token != null ? "Presente" : "Ausente") + ", UserId: " + userId);
 
             if (token != null && userId != -1) {
                 double precio = book.getPrecio();
@@ -99,6 +100,8 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
                 agregarAlCarrito(itemCarrito);
             } else {
                 Toast.makeText(v.getContext(), "Usuario no autenticado. Por favor, inicia sesión.", Toast.LENGTH_SHORT).show();
+                // Log: Intento de compra sin token o userId válido
+                Log.e(TAG, "Intento de compra sin token o userId válido.");
             }
         });
 
@@ -110,6 +113,8 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
                         .commit();
             } else {
                 Toast.makeText(v.getContext(), activity.getString(R.string.error_show_reviews_fragment), Toast.LENGTH_SHORT).show();
+                // Log: Actividad nula al intentar ver reseñas
+                Log.e(TAG, "Actividad nula al intentar ver reseñas.");
             }
         });
     }
@@ -162,6 +167,14 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             return;
         }
 
+        // --- INICIO DE LOGS CLAVE ---
+        Log.d(TAG, "Enviando solicitud 'agregarAlCarrito' al backend:");
+        Log.d(TAG, "  Libro ID: " + itemCarrito.getLibro());
+        Log.d(TAG, "  Usuario ID: " + itemCarrito.getUsuario());
+        Log.d(TAG, "  Cantidad enviada: " + itemCarrito.getCantidad()); // ¡VERIFICA ESTA CANTIDAD!
+        Log.d(TAG, "  Precio Unitario enviado: " + itemCarrito.getPrecioUnitario());
+        // --- FIN DE LOGS CLAVE ---
+
         ApiService apiService = RetrofitClient.getApiService(activity);
         Call<ItemCarrito> call = apiService.agregarAlCarrito("Bearer " + token, itemCarrito);
 
@@ -169,17 +182,30 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             @Override
             public void onResponse(@NonNull Call<ItemCarrito> call, @NonNull Response<ItemCarrito> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "Libro agregado al carrito exitosamente.");
+                    ItemCarrito responseItem = response.body();
+                    // --- INICIO DE LOGS CLAVE DE RESPUESTA ---
+                    Log.d(TAG, "Libro agregado al carrito exitosamente. Respuesta del servidor:");
+                    Log.d(TAG, "  ID de ítem en carrito: " + (responseItem != null ? responseItem.getId() : "N/A"));
+                    Log.d(TAG, "  Cantidad confirmada por servidor: " + (responseItem != null ? responseItem.getCantidad() : "N/A")); // ¡VERIFICA ESTA CANTIDAD!
+                    Log.d(TAG, "  Precio Unitario confirmado por servidor: " + (responseItem != null ? responseItem.getPrecioUnitario() : "N/A"));
+                    Log.d(TAG, "  Total del ítem en carrito: " + (responseItem != null ? responseItem.getTotal() : "N/A")); // ¡VERIFICA ESTE TOTAL!
+                    // --- FIN DE LOGS CLAVE DE RESPUESTA ---
                     Toast.makeText(activity, "Libro agregado al carrito", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.e(TAG, "Error al agregar al carrito. Código de respuesta: " + response.code() + " - " + response.message());
-                    Toast.makeText(activity, "Error al agregar al carrito. Código: " + response.code(), Toast.LENGTH_SHORT).show();
+                    try {
+                        String errorBody = response.errorBody() != null ? response.errorBody().string() : "No error body";
+                        Log.e(TAG, "Error al agregar al carrito. Código de respuesta: " + response.code() + " - " + response.message() + " - Error Body: " + errorBody);
+                        Toast.makeText(activity, "Error al agregar al carrito. Código: " + response.code() + " - " + errorBody, Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error al agregar al carrito. Código de respuesta: " + response.code() + " - " + response.message() + " - Error al leer errorBody: " + e.getMessage());
+                        Toast.makeText(activity, "Error al agregar al carrito. Código: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ItemCarrito> call, @NonNull Throwable t) {
-                Log.e(TAG, "Fallo la conexión: " + t.getMessage());
+                Log.e(TAG, "Fallo la conexión: " + t.getMessage(), t); // Se agrega 't' para obtener el stack trace completo
                 Toast.makeText(activity, "Fallo la conexión", Toast.LENGTH_SHORT).show();
             }
         });

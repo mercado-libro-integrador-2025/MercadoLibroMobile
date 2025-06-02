@@ -8,7 +8,7 @@
     <color name="sunstone_neutral_7">#675D56</color>
 
     <color name="beige_suave">@color/sunstone_neutral_1</color>
-    <color name="text_primary">@color/sunstone_neutral_5</color>
+    <color name="text_primary">#373737</color>
     <color name="text_secondary">@color/sunstone_neutral_2</color>
     <color name="error_color">#FF0000</color>
     <color name="white">#FFFFFF</color>

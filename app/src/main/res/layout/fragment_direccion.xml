@@ -5,163 +5,179 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
-    tools:context=".fragments.DireccionFragment">
+    tools:context=".fragments.DireccionFormFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/padding_large">
-
-        <TextView
-            android:id="@+id/tvIngresarDireccion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_enter_address"
-            android:textSize="@dimen/text_size_xlarge"
-            android:textColor="@color/text_primary"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginStart="@dimen/margin_large"
-            android:layout_marginEnd="@dimen/margin_large"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewInput"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_large"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardBackgroundColor="@color/card_background_color"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvIngresarDireccion">
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="@dimen/padding_large"
-                android:background="@drawable/borde_card">
+                android:padding="@dimen/padding_large">
 
                 <TextView
-                    android:id="@+id/tvCalle"
+                    android:id="@+id/tvIngresarDireccion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_street"
-                    android:textSize="@dimen/text_size_medium"
-                    android:textColor="@color/text_primary" />
-
-                <EditText
-                    android:id="@+id/etCalle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
-                    android:hint="@string/hint_enter_street"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:fontFamily="@font/abril_fatface"
+                    android:text="@string/title_enter_address"
+                    android:textAlignment="center"
                     android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_hint"
-                    android:background="@null"
-                    android:inputType="textCapWords" />
+                    android:textSize="@dimen/text_size_xlarge_26sp"
+                    android:textStyle="bold" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_height"
-                    android:background="@color/line_separator_color"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:layout_marginBottom="@dimen/margin_medium" />
-
-                <TextView
-                    android:id="@+id/tvNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_number"
-                    android:textSize="@dimen/text_size_medium"
-                    android:textColor="@color/text_primary" />
-
-                <EditText
-                    android:id="@+id/etNumero"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
-                    android:hint="@string/hint_enter_number"
-                    android:inputType="number"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_hint"
-                    android:background="@null" />
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginBottom="@dimen/margin_large"
+                    app:cardBackgroundColor="@color/card_background_color_light"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
+                    app:cardElevation="@dimen/card_elevation_small">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_height"
-                    android:background="@color/line_separator_color"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:layout_marginBottom="@dimen/margin_medium" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/borde_card"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_large">
 
-                <TextView
-                    android:id="@+id/tvCiudad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_city"
-                    android:textSize="@dimen/text_size_medium"
-                    android:textColor="@color/text_primary" />
+                        <TextView
+                            android:id="@+id/tvCalle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_street"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_medium" />
 
-                <EditText
-                    android:id="@+id/etCiudad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
-                    android:hint="@string/hint_enter_city"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_hint"
-                    android:background="@null"
-                    android:inputType="textCapWords" />
+                        <EditText
+                            android:id="@+id/etCalle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/hint_enter_street"
+                            android:inputType="textCapWords"
+                            android:minHeight="@dimen/min_touch_target_size"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_hint" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_height"
-                    android:background="@color/line_separator_color"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:layout_marginBottom="@dimen/margin_medium" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:background="@color/line_separator_color" />
 
-                <TextView
-                    android:id="@+id/tvProvincia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_province"
-                    android:textSize="@dimen/text_size_medium"
-                    android:textColor="@color/text_primary" />
+                        <TextView
+                            android:id="@+id/tvNumero"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_number"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_medium" />
 
-                <EditText
-                    android:id="@+id/etProvincia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="@dimen/min_touch_target_size"
-                    android:hint="@string/hint_enter_province"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_hint"
-                    android:background="@null"
-                    android:inputType="textCapWords" />
+                        <EditText
+                            android:id="@+id/etNumero"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/hint_enter_number"
+                            android:inputType="number"
+                            android:minHeight="@dimen/min_touch_target_size"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_hint" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_height"
-                    android:background="@color/line_separator_color"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:layout_marginBottom="@dimen/margin_medium" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:background="@color/line_separator_color" />
 
-                <Button
-                    android:id="@+id/btnIrAlPago"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/button_save_data"
-                    android:textColor="@color/white"
-                    android:backgroundTint="@color/sunstone_neutral_6"
-                    android:layout_marginTop="@dimen/margin_top_button_large"
-                    android:textSize="@dimen/text_size_large"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                        <TextView
+                            android:id="@+id/tvCiudad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_city"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_medium" />
 
+                        <EditText
+                            android:id="@+id/etCiudad"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/hint_enter_city"
+                            android:inputType="textCapWords"
+                            android:minHeight="@dimen/min_touch_target_size"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_hint" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:background="@color/line_separator_color" />
+
+                        <TextView
+                            android:id="@+id/tvProvincia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_province"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_medium" />
+
+                        <EditText
+                            android:id="@+id/etProvincia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/hint_enter_province"
+                            android:inputType="textCapWords"
+                            android:minHeight="@dimen/min_touch_target_size"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_hint" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:background="@color/line_separator_color" />
+
+                        <Button
+                            android:id="@+id/btnSaveAddress"
+                            android:layout_width="@dimen/button_width_medium"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/margin_top_button_large"
+                            android:backgroundTint="@color/sunstone_neutral_5"
+                            android:minHeight="@dimen/min_touch_target_size"
+                            android:text="@string/button_save_address"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_medium"
+                            app:cornerRadius="@dimen/card_corner_radius" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>

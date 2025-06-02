@@ -14,7 +14,6 @@
         android:layout_marginBottom="@dimen/margin_medium"
         android:autoLink="web"
         android:background="#EFDFCD"
-
         android:drawablePadding="6dp"
         android:ellipsize="end"
         android:enabled="true"
@@ -37,15 +36,10 @@
         app:boxStrokeColor="@color/beige_suave"
         app:boxStrokeWidth="2dp"
         app:drawableLeftCompat="@android:drawable/ic_menu_help"
-
         android:contentDescription="Estas seguro"
         android:importantForAccessibility="yes"
         android:accessibilityLiveRegion="polite"
-        android:accessibilityTraversalBefore="@id/etNombre"
-        android:accessibilityTraversalAfter="@id/tvInformacionPago"
         android:focusable="true"
-        android:labelFor="@id/etNombre"
-
         />
 
     <LinearLayout
@@ -87,12 +81,7 @@
             android:contentDescription="Si"
             android:importantForAccessibility="yes"
             android:accessibilityLiveRegion="polite"
-            android:accessibilityTraversalBefore="@id/etNombre"
-            android:accessibilityTraversalAfter="@id/tvInformacionPago"
             android:focusable="true"
-            android:labelFor="@id/etNombre"
-
-
             />
 
         <Button
@@ -104,7 +93,6 @@
             android:minHeight="@dimen/min_touch_target_size"
             android:text="@string/dialog_confirm_delete_no_button"
             android:textColor="@color/text_primary"
-
             android:clickable="true"
             android:contentDescription="No"
             android:drawableLeft="@android:drawable/sym_call_missed"
@@ -126,13 +114,8 @@
             app:boxStrokeColor="@android:color/darker_gray"
             app:boxStrokeWidth="2dp"
             app:cornerRadius="8dp"
-
             android:importantForAccessibility="yes"
             android:accessibilityLiveRegion="polite"
-            android:accessibilityTraversalBefore="@id/etNombre"
-            android:accessibilityTraversalAfter="@id/tvInformacionPago"
-            android:labelFor="@id/etNombre"
-
             />
     </LinearLayout>
 </LinearLayout>

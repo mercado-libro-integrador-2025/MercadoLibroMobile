@@ -1,93 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/fondo2"
-    android:padding="@dimen/padding_large"
     tools:context=".fragments.CreateEditReviewFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large">
 
-        <TextView
-            android:id="@+id/tvReviewFormTitle"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:gravity="center_horizontal"
-            android:text="@string/create_review_title"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_size_xlarge"
-            android:textStyle="bold" />
+            android:layout_margin="@dimen/margin_large"
+            app:cardBackgroundColor="@color/card_background_color"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
 
-        <TextView
-            android:id="@+id/tvBookTitleReview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:text="@string/book_title_placeholder_review"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_size_large"
-            android:visibility="gone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_large">
 
-        <Spinner
-            android:id="@+id/spinnerBookSelection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:background="@drawable/input_field_background"
-            android:padding="@dimen/padding_small"
-            android:prompt="@string/hint_select_book_spinner"
-            android:spinnerMode="dropdown"
-            android:visibility="gone" />
+                <TextView
+                    android:id="@+id/tvReviewFormTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:fontFamily="@font/abril_fatface"
+                    android:text="@string/create_review_title"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_xlarge_26sp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/etReviewContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:background="@drawable/input_field_background"
-            android:gravity="top|start"
-            android:hint="@string/hint_review_content"
-            android:inputType="textMultiLine"
-            android:maxLines="5"
-            android:minLines="3"
-            android:padding="@dimen/padding_medium"
-            android:textColor="@color/text_primary"
-            android:textColorHint="@color/sunstone_neutral_2" />
+                <TextView
+                    android:id="@+id/tvBookTitleReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:text="Título del libro asociado a la reseña"
+                    tools:visibility="visible" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="@dimen/progress_bar_size"
-            android:layout_height="@dimen/progress_bar_size"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:visibility="gone" />
+                <Spinner
+                    android:id="@+id/spinnerBookSelection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top_xlarge"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:background="@drawable/input_field_background"
+                    android:minHeight="@dimen/min_touch_target_size"
+                    android:paddingStart="@dimen/padding_medium"
+                    android:paddingEnd="@dimen/padding_medium"
+                    android:prompt="@string/hint_select_book_spinner"
+                    android:spinnerMode="dropdown"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
-        <Button
-            android:id="@+id/btnSaveReview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            app:cornerRadius="@dimen/card_corner_radius"
-            android:backgroundTint="@color/sunstone_neutral_7"
-            android:text="@string/button_save_review"
-            android:textColor="@color/white" />
+                <EditText
+                    android:id="@+id/etReviewContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:background="@drawable/input_field_background"
+                    android:gravity="top|start"
+                    android:hint="@string/hint_review_content"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5"
+                    android:minLines="3"
+                    android:padding="@dimen/padding_medium"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/sunstone_neutral_2" />
 
-        <Button
-            android:id="@+id/btnDeleteReview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:backgroundTint="@color/sunstone_neutral_6"
-            android:text="@string/button_delete_review"
-            android:textColor="@color/white"
-            android:visibility="gone" />
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="@dimen/progress_bar_size"
+                    android:layout_height="@dimen/progress_bar_size"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnSaveReview"
+                    android:layout_width="@dimen/button_width_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_top_button_large"
+                    android:backgroundTint="@color/sunstone_neutral_5"
+                    android:minHeight="@dimen/min_touch_target_size"
+                    android:text="@string/button_save_review"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium"
+                    app:cornerRadius="@dimen/card_corner_radius" />
+
+                <Button
+                    android:id="@+id/btnDeleteReview"
+                    android:layout_width="@dimen/button_width_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:backgroundTint="@color/sunstone_neutral_6"
+                    android:minHeight="@dimen/min_touch_target_size"
+                    android:text="@string/button_delete_review"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium"
+                    android:visibility="gone"
+                    app:cornerRadius="@dimen/card_corner_radius"
+                    tools:visibility="visible" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>
