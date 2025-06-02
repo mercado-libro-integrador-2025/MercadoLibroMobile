@@ -1,5 +1,6 @@
 package com.ispc.mercadolibromobile.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,13 +28,17 @@ import com.ispc.mercadolibromobile.fragments.BooksFragment;
 import com.ispc.mercadolibromobile.fragments.CarritoFragment;
 import com.ispc.mercadolibromobile.fragments.ContactFragment;
 import com.ispc.mercadolibromobile.fragments.DireccionFormFragment;
+import com.ispc.mercadolibromobile.fragments.FeedbackFragment;
 import com.ispc.mercadolibromobile.fragments.MyReviewsFragment;
 //import com.ispc.mercadolibromobile.fragments.PedidosFragment;
+import com.ispc.mercadolibromobile.fragments.NosotrosFragment;
 import com.ispc.mercadolibromobile.fragments.PedidoFragment;
 import com.ispc.mercadolibromobile.fragments.ProfileFragment;
 import com.ispc.mercadolibromobile.models.ItemCarrito;
+import com.ispc.mercadolibromobile.models.UserInfo;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -112,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements
 
         apiService = RetrofitClient.getApiService(this);
         handleDeepLink(getIntent());
+        obtenerNombre(this);
     }
 
     @Override
@@ -147,6 +153,16 @@ public class MainActivity extends AppCompatActivity implements
         } else if (id == R.id.nav_contact) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new ContactFragment())
+                    .addToBackStack(null)
+                    .commit();
+
+        } else if (id == R.id.nav_nosotros) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new NosotrosFragment())
+
+        } else if (id == R.id.nav_feedback) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new FeedbackFragment())
                     .addToBackStack(null)
                     .commit();
         } else if (id == R.id.nav_profile) {
@@ -290,6 +306,44 @@ public class MainActivity extends AppCompatActivity implements
                 if (cartBadgeTextView != null) {
                     cartBadgeTextView.setVisibility(View.GONE);
                 }
+            }
+        });
+    }
+    public void obtenerNombre(Context context) {
+        Call<List<UserInfo>> call = apiService.getUsers();
+
+        call.enqueue(new Callback<List<UserInfo>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<UserInfo>> call, @NonNull Response<List<UserInfo>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<UserInfo> usuarios = response.body();
+                    String emailGuardado = SessionUtils.getUserEmail(context);
+
+                    // Filtrar usuarios por email que coincida con el guardado
+                    List<UserInfo> filtrados = new ArrayList<>();
+                    for (UserInfo user : usuarios) {
+                        if (emailGuardado.equals(user.getEmail())) {
+                            filtrados.add(user);
+                        }
+                    }
+
+                    if (filtrados.size() == 1) {
+                        String username = filtrados.get(0).getUsername();
+                        SessionUtils.saveUserName(context, username);
+                        Log.d("USERNAME", "Usuario autenticado: " + username);
+                    } else {
+                        Log.e("USERNAME", "Error: se esperaba 1 usuario con email " + emailGuardado +
+                                ", pero se encontraron " + filtrados.size());
+                    }
+
+                } else {
+                    Log.e("USERNAME", "Respuesta fallida del servidor: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<UserInfo>> call, @NonNull Throwable t) {
+                Log.e("USERNAME", "Error de red: " + t.getMessage());
             }
         });
     }

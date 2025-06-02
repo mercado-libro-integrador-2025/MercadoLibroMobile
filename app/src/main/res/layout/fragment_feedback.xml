@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_feedback"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- 🔍 Campo de búsqueda -->
+    <EditText
+        android:id="@+id/etBuscarContacto"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:hint="Buscar por asunto o mensaje"
+        android:inputType="text" />
+
+    <!-- ⏳ ProgressBar centrado arriba -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:visibility="gone" />
+
+    <!-- 📄 Lista de contactos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvContactos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp" />
+
+    <!-- ➕ Botón de agregar -->
+    <Button
+        android:id="@+id/btnAgregarContacto"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/sunstone_neutral_7"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Agregar contacto" />
+
+</LinearLayout>
