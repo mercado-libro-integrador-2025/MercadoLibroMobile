@@ -31,6 +31,7 @@ import com.ispc.mercadolibromobile.fragments.DireccionFormFragment;
 import com.ispc.mercadolibromobile.fragments.FeedbackFragment;
 import com.ispc.mercadolibromobile.fragments.MyReviewsFragment;
 //import com.ispc.mercadolibromobile.fragments.PedidosFragment;
+import com.ispc.mercadolibromobile.fragments.NosotrosFragment;
 import com.ispc.mercadolibromobile.fragments.PedidoFragment;
 import com.ispc.mercadolibromobile.fragments.ProfileFragment;
 import com.ispc.mercadolibromobile.models.ItemCarrito;
@@ -154,6 +155,11 @@ public class MainActivity extends AppCompatActivity implements
                     .replace(R.id.fragment_container, new ContactFragment())
                     .addToBackStack(null)
                     .commit();
+
+        } else if (id == R.id.nav_nosotros) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new NosotrosFragment())
+
         } else if (id == R.id.nav_feedback) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new FeedbackFragment())

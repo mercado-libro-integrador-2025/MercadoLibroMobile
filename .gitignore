@@ -25,6 +25,9 @@ gradle/daemon
 *.war
 *.ear
 
+# Carpeta libs con librerías locales
+libs/
+
 # Archivos de pruebas generados
 test-output/
 captures/
