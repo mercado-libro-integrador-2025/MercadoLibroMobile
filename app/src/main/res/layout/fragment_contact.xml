@@ -110,6 +110,19 @@
                     android:textSize="@dimen/text_size_medium"
                     app:cornerRadius="@dimen/card_corner_radius" />
 
+                <Button
+                    android:id="@+id/btnVolver"
+                    android:layout_width="@dimen/button_width_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_top_button"
+                    android:backgroundTint="@color/sunstone_neutral_7"
+                    android:text="Volver"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium"
+                    android:visibility="gone"
+                    app:cornerRadius="@dimen/card_corner_radius" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
