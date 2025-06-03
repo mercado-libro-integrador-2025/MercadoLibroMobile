@@ -7,9 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast; // Button and EditText imports are no longer strictly needed if not used directly
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.ispc.mercadolibromobile.R;
@@ -18,7 +19,6 @@ import com.ispc.mercadolibromobile.api.RetrofitClient;
 import com.ispc.mercadolibromobile.databinding.FragmentContactBinding;
 import com.ispc.mercadolibromobile.models.Contacto;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
-
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -31,35 +31,15 @@ public class ContactFragment extends Fragment {
     private ApiService apiService;
     private FragmentContactBinding binding;
 
-    public static final String ARG_FROM_FEEDBACK = "from_feedback";
-
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentContactBinding.inflate(inflater, container, false);
 
-        Bundle args = getArguments();
-        if (args != null) {
-            String modo = args.getString("modo", "");
-            if (!modo.isEmpty()) {
-                binding.etAsunto.setText(args.getString("asunto"));
-                binding.etConsulta.setText(args.getString("mensaje"));
-                if (modo.equals("ver")) {
-                    binding.etAsunto.setEnabled(false);
-                    binding.etConsulta.setEnabled(false);
-                    binding.btnEnviarConsulta.setVisibility(View.GONE);
-                }
-                binding.btnVolver.setVisibility(View.VISIBLE);
-                binding.btnVolver.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
-            }
-        }
-        // Mostrar botón "Volver" solo si se vino desde FeedbackFragment
-        boolean fromFeedback = args != null && args.getBoolean(ARG_FROM_FEEDBACK, false);
-        if (fromFeedback) {
-            binding.btnVolver.setVisibility(View.VISIBLE);
-            binding.btnVolver.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
-        }
-
         apiService = RetrofitClient.getApiService(requireContext());
+
+        binding.tvContactoTitulo.setText(getString(R.string.contact_title));
+        binding.btnEnviarConsulta.setText(getString(R.string.button_send));
+        binding.btnVolver.setVisibility(View.GONE);
 
         binding.btnEnviarConsulta.setOnClickListener(v -> validarYEnviarConsulta());
 
@@ -78,6 +58,7 @@ public class ContactFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+                // Clear errors as user types
                 if (Objects.requireNonNull(binding.etAsunto.getText()).toString().trim().isEmpty()) {
                     binding.tilAsunto.setError(null);
                 }
@@ -92,7 +73,7 @@ public class ContactFragment extends Fragment {
     }
 
     private void validarYEnviarConsulta() {
-        String nombre = SessionUtils.getUserName(requireContext());
+        String nombre = SessionUtils.getUserEmail(requireContext());
         String email = SessionUtils.getUserEmail(requireContext());
 
         String asunto = Objects.requireNonNull(binding.etAsunto.getText()).toString().trim();
@@ -101,22 +82,36 @@ public class ContactFragment extends Fragment {
         if (asunto.isEmpty()) {
             binding.tilAsunto.setError(getString(R.string.error_asunto_required));
             binding.etAsunto.requestFocus();
-        } else if (consulta.isEmpty()) {
+            return;
+        }
+        if (consulta.isEmpty()) {
             binding.tilConsulta.setError(getString(R.string.error_query_required));
             binding.etConsulta.requestFocus();
-        } else if (consulta.length() < 10) {
+            return;
+        }
+        if (consulta.length() < 10) {
             binding.tilConsulta.setError(getString(R.string.error_query_min_length));
             binding.etConsulta.requestFocus();
-        } else {
-            if (nombre.isEmpty() || email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Log.e(TAG, "Error: Nombre o email del usuario logueado no disponibles o inválidos. No se puede enviar la consulta.");
-                if (isAdded()) {
-                    Toast.makeText(getContext(), getString(R.string.error_user_id_not_found), Toast.LENGTH_LONG).show();
-                }
-                return;
-            }
-            enviarConsulta(new Contacto(nombre, email, asunto, consulta));
+            return;
         }
+        if (nombre == null || nombre.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(nombre).matches()) {
+            Log.e(TAG, "Error: Email del usuario logueado no disponible o inválido para usar como identificador. No se puede enviar la consulta.");
+            if (isAdded()) {
+                Toast.makeText(getContext(), getString(R.string.error_user_email_not_found), Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
+        if (email == null || email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Log.e(TAG, "Error: Email del usuario logueado no disponible o inválido. No se puede enviar la consulta.");
+            if (isAdded()) {
+                Toast.makeText(getContext(), getString(R.string.error_user_email_not_found), Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
+
+
+        Contacto nuevaConsulta = new Contacto(nombre, email, asunto, consulta);
+        enviarConsulta(nuevaConsulta);
     }
 
     private void enviarConsulta(@NonNull Contacto contacto) {
@@ -125,14 +120,13 @@ public class ContactFragment extends Fragment {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                if (response.isSuccessful()) {
-                    if (isAdded()) {
+                if (isAdded()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(getContext(), getString(R.string.success_query_sent), Toast.LENGTH_SHORT).show();
                         limpiarCampos();
-                    }
-                } else {
-                    Log.e(TAG, "Error al enviar consulta. Código: " + response.code() + ", Mensaje: " + response.message());
-                    if (isAdded()) {
+                        requireActivity().getSupportFragmentManager().popBackStack();
+                    } else {
+                        Log.e(TAG, "Error al enviar consulta. Código: " + response.code() + ", Mensaje: " + response.message());
                         Toast.makeText(getContext(), getString(R.string.error_sending_query), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -140,8 +134,8 @@ public class ContactFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                Log.e(TAG, "Fallo en la conexión al enviar consulta: " + t.getMessage(), t);
                 if (isAdded()) {
+                    Log.e(TAG, "Fallo en la conexión al enviar consulta: " + t.getMessage(), t);
                     Toast.makeText(getContext(), getString(R.string.error_network_connection), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -155,4 +149,9 @@ public class ContactFragment extends Fragment {
         binding.tilConsulta.setError(null);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }
