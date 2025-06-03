@@ -57,7 +57,9 @@
                     app:counterEnabled="true"
                     app:counterMaxLength="100"
                     app:endIconMode="clear_text"
-                    app:helperText="@string/helper_text_subject">
+                    app:helperText="@string/helper_text_subject"
+                    app:hintTextColor="@color/button_login_primary"
+                    app:boxStrokeColor="@color/button_login_primary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etAsunto"
@@ -82,7 +84,9 @@
                     app:counterMaxLength="500"
                     app:endIconMode="clear_text"
                     app:helperText="@string/helper_text_query"
-                    app:startIconContentDescription="Icono de consulta">
+                    app:startIconContentDescription="Icono de consulta"
+                    app:hintTextColor="@color/button_login_primary"
+                    app:boxStrokeColor="@color/button_login_primary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etConsulta"
