@@ -293,7 +293,6 @@
 
     <string name="drawer_menu_my_reviews">Mis Reseñas</string>
     <string name="drawer_menu_my_addresses">Mis Direcciones</string>
-    <string name="drawer_menu_my_payments">Mis Métodos de Pago</string>
     <string name="drawer_menu_my_orders">Mis Pedidos</string>
 
     <string name="drawer_menu_section_general">General</string>
@@ -305,7 +304,6 @@
     <string name="helper_text_email">Introduce un correo válido</string>
     <string name="helper_text_subject">Un breve asunto</string>
     <string name="helper_text_query">Escribe tu consulta o comentario</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Nosotros -->
@@ -337,4 +335,7 @@
 
     <string name="valor_3_titulo">✔ Comunidad colaborativa</string>
     <string name="valor_3_descripcion">Construimos redes solidarias entre lectores que comparten, intercambian y se apoyan mutuamente.</string>
+    <string name="error_user_name_not_found">No se pudo obtener el nombre del usuario. Por favor, intente iniciar sesión de nuevo.</string>
+    <string name="error_user_email_not_found">No se pudo obtener el email del usuario. Por favor, intente iniciar sesión de nuevo.</string>
+
 </resources>

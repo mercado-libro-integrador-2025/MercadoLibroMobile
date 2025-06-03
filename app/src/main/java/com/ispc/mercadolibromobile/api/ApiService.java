@@ -21,7 +21,6 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -116,6 +115,4 @@ public interface ApiService {
     Call<Void> enviarConsulta(@Body Contacto contacto);
     @GET("contacto/")
     Call<List<Contacto>> obtenerConsultas();
-    @HTTP(method = "DELETE", path = "contacto/", hasBody = true)
-    Call<Void> borrarConsulta(@Body Contacto contacto);
 }
