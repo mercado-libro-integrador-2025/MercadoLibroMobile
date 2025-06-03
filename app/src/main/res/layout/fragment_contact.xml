@@ -4,130 +4,111 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo2">
+    android:background="@drawable/fondo2"
+    android:padding="@dimen/padding_large"
+    tools:context=".fragments.ContactFragment">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardContacto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_large">
+        android:layout_margin="@dimen/margin_large"
+        app:cardBackgroundColor="@color/card_background_color"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardContacto"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_large"
-            app:cardBackgroundColor="@color/card_background_color"
-            app:cardCornerRadius="@dimen/card_corner_radius"
-            app:cardElevation="@dimen/card_elevation">
+            android:background="@drawable/borde_card"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_large">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvContactoTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_large"
+                android:drawableStart="@drawable/ic_contact"
+                android:drawablePadding="@dimen/padding_small"
+                android:fontFamily="@font/abril_fatface"
+                android:text="@string/contact_title"
+                android:textAlignment="center"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_xlarge_26sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAsunto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_large">
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:hint="@string/hint_subject"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/card_corner_radius"
+                app:boxStrokeColor="@color/button_login_primary"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                app:endIconMode="clear_text"
+                app:helperText="@string/helper_text_subject"
+                app:hintTextColor="@color/button_login_primary">
 
-                <TextView
-                    android:id="@+id/tvContactoTitulo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_xlarge"
-                    android:layout_marginBottom="@dimen/margin_top_xlarge"
-                    android:fontFamily="@font/abril_fatface"
-                    android:text="@string/contact_title"
-                    android:textAlignment="center"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_size_xlarge_26sp"
-                    android:textStyle="bold"
-                    tools:drawableLeft="@drawable/ic_contact"
-                    tools:drawablePadding="6dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilAsunto"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAsunto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_medium"
-                    android:hint="@string/hint_subject"
-                    app:boxCornerRadiusBottomEnd="@dimen/input_field_corner_radius"
-                    app:boxCornerRadiusBottomStart="@dimen/input_field_corner_radius"
-                    app:boxCornerRadiusTopEnd="@dimen/input_field_corner_radius"
-                    app:boxCornerRadiusTopStart="@dimen/input_field_corner_radius"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="100"
-                    app:endIconMode="clear_text"
-                    app:helperText="@string/helper_text_subject"
-                    app:hintTextColor="@color/button_login_primary"
-                    app:boxStrokeColor="@color/button_login_primary">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etAsunto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:minHeight="@dimen/min_touch_target_size"
-                        android:textColor="@color/text_primary" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilConsulta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_large"
-                    android:hint="@string/hint_query"
-                    app:boxCornerRadiusBottomEnd="@dimen/input_field_corner_radius"
-                    app:boxCornerRadiusBottomStart="@dimen/input_field_corner_radius"
-                    app:boxCornerRadiusTopEnd="@dimen/input_field_corner_radius"
-                    app:boxCornerRadiusTopStart="@dimen/input_field_corner_radius"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="500"
-                    app:endIconMode="clear_text"
-                    app:helperText="@string/helper_text_query"
-                    app:startIconContentDescription="Icono de consulta"
-                    app:hintTextColor="@color/button_login_primary"
-                    app:boxStrokeColor="@color/button_login_primary">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etConsulta"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top|start"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:minLines="5"
-                        android:textColor="@color/sunstone_neutral_5" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/btnEnviarConsulta"
-                    android:layout_width="@dimen/button_width_medium"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_top_button_large"
-                    android:backgroundTint="@color/sunstone_neutral_5"
-                    android:drawablePadding="@dimen/padding_small"
+                    android:background="@null"
+                    android:inputType="textCapSentences"
                     android:minHeight="@dimen/min_touch_target_size"
-                    android:paddingStart="@dimen/padding_large"
-                    android:paddingEnd="@dimen/padding_large"
-                    android:text="@string/button_send"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btnVolver"
-                    android:layout_width="@dimen/button_width_medium"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilConsulta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_large"
+                android:hint="@string/hint_query"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/card_corner_radius"
+                app:boxStrokeColor="@color/button_login_primary"
+                app:counterEnabled="true"
+                app:counterMaxLength="500"
+                app:endIconMode="clear_text"
+                app:helperText="@string/helper_text_query"
+                app:hintTextColor="@color/button_login_primary"
+                app:startIconContentDescription="Icono de consulta">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConsulta"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_top_button"
-                    android:backgroundTint="@color/sunstone_neutral_7"
-                    android:text="Volver"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium"
-                    android:visibility="gone"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    android:background="@null"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:minLines="5"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnEnviarConsulta"
+                android:layout_width="@dimen/button_width_medium"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_top_button_large"
+                android:backgroundTint="@color/sunstone_neutral_7"
+                android:minHeight="@dimen/min_touch_target_size"
+                android:text="@string/button_send"
+                android:textColor="@color/sunstone_neutral_4"
+                android:textSize="@dimen/text_size_medium"
+                app:cornerRadius="@dimen/card_corner_radius" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </ScrollView>

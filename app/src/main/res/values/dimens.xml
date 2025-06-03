@@ -67,4 +67,8 @@
     <dimen name="text_size_drawer_section_title">16sp</dimen>
     <dimen name="input_field_corner_radius">12dp</dimen>
 
+    <dimen name="image_height_history">180dp</dimen>
+    <dimen name="icon_size_small">32dp</dimen>
+    <dimen name="image_height_banner">200dp</dimen>
+
 </resources>

@@ -39,7 +39,6 @@ public class ContactFragment extends Fragment {
 
         binding.tvContactoTitulo.setText(getString(R.string.contact_title));
         binding.btnEnviarConsulta.setText(getString(R.string.button_send));
-        binding.btnVolver.setVisibility(View.GONE);
 
         binding.btnEnviarConsulta.setOnClickListener(v -> validarYEnviarConsulta());
 
