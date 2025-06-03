@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.beige_suave));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.button_login_primary));
         }
 
         if (getSupportActionBar() != null) {

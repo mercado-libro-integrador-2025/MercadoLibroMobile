@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.MercadoLibroMobile" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/button_login_primary</item>
+        <item name="android:navigationBarColor">@color/button_login_primary</item>
+
+        <item name="colorPrimary">@color/button_login_primary</item>
+
     </style>
 </resources>
