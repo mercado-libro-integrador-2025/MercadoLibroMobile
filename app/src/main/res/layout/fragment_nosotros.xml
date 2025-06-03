@@ -1,95 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FFFFFF"
-    tools:context=".fragments.NosotrosFragment">
+    android:padding="16dp"
+    android:background="@drawable/fondo2">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:spacing="16dp">
 
-        <!-- Header con fondo de libros -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/banner_nosotros">
-
-            <TextView
-                android:id="@+id/titulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/quienes_somos_titulo"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="60dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/subtitulo_quienes_somos"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:layout_below="@id/titulo"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center"/>
-        </RelativeLayout>
-
-        <!-- Nuestra Historia -->
+        <!-- Título -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/titulo_nuestra_historia"
+            android:text="@string/quienes_somos_titulo"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center" />
+            android:textColor="@color/black" />
 
-        <!-- Imagen -->
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/nuestra_historia"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="12dp"
-                android:contentDescription="@string/desc_quienes_somos"/>
-
-        <!-- Descripción -->
-        <TextView
+        <!-- Nuestra historia -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/descripcion_nuestra_historia"
-            android:textSize="14sp"
-            android:gravity="center"/>
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="24dp">
-
-            <!-- Misión -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFFFF"
-                android:layout_marginBottom="16dp">
+                android:padding="16dp">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:src="@drawable/nuestra_historia"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/desc_quienes_somos" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titulo_nuestra_historia"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/descripcion_nuestra_historia"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Misión y Visión -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Misión -->
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:src="@drawable/icono_mision"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/desc_icono_mision"/>
+                    android:contentDescription="@string/desc_icono_mision" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -97,32 +86,22 @@
                     android:text="@string/titulo_mision"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:layout_marginTop="8dp"
-                    android:layout_gravity="center"/>
+                    android:layout_marginTop="8dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/texto_mision"
                     android:textSize="14sp"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center" />
-            </LinearLayout>
+                    android:layout_marginTop="4dp" />
 
-            <!-- Visión -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFFFF">
-
+                <!-- Visión -->
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:src="@drawable/icono_vision"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/desc_icono_vision" />
+                    android:contentDescription="@string/desc_icono_vision"
+                    android:layout_marginTop="16dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,72 +109,88 @@
                     android:text="@string/titulo_vision"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:layout_marginTop="8dp"
-                    android:layout_gravity="center" />
+                    android:layout_marginTop="8dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/texto_vision"
                     android:textSize="14sp"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
+        <!-- Valores con Banner y Título adentro -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginTop="16dp">
 
-        <!-- Nuestros Valores -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/titulo_valores"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:layout_gravity="center" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <!-- Valor 1 -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/valor_1_titulo"
-            android:textStyle="bold"
-            android:layout_marginTop="12dp"
-            android:layout_gravity="center" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/valor_1_descripcion"
-            android:textSize="14sp"
-            android:gravity="center" />
+                <!-- Banner dentro de la Card -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/banner_nosotros"
+                    android:contentDescription="@string/quienes_somos_titulo" />
 
-        <!-- Valor 2 -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/valor_2_titulo"
-            android:textStyle="bold"
-            android:layout_marginTop="12dp"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/valor_2_descripcion"
-            android:textSize="14sp"
-            android:gravity="center" />
+                <!-- Título dentro de la Card -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titulo_valores"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
 
-        <!-- Valor 3 -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/valor_3_titulo"
-            android:textStyle="bold"
-            android:layout_marginTop="12dp"
-            android:layout_gravity="center" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/valor_3_descripcion"
-            android:textSize="14sp"
-            android:gravity="center" />
+                <!-- Valor 1 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valor_1_titulo"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valor_1_descripcion"
+                    android:textSize="14sp" />
+
+                <!-- Valor 2 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valor_2_titulo"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valor_2_descripcion"
+                    android:textSize="14sp" />
+
+                <!-- Valor 3 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valor_3_titulo"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valor_3_descripcion"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 </ScrollView>
