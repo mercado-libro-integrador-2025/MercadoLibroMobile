@@ -43,6 +43,12 @@ captures/
 .DS_Store
 Thumbs.db
 
+# Librerías locales
+libs/
+
+# Librerías locales del módulo app
+/app/libs/
+
 # Otros temporales
 *.tmp
 *.swp
