@@ -68,8 +68,6 @@
             android:id="@+id/textInputEditTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/input_margin"
-            android:accessibilityLiveRegion="polite"
             android:background="@drawable/input_field_background"
             android:contentDescription="Usuario"
             android:enabled="true"
@@ -147,8 +145,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
-       />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutRepeatPassword"
@@ -166,7 +163,7 @@
         app:passwordToggleEnabled="true"
         app:startIconContentDescription="Icono de contraseña"
         app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-        app:startIconTint="@android:color/darker_gray">
+        app:startIconTint="@android:color/black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextRepeatPassword"
@@ -179,10 +176,7 @@
             android:padding="@dimen/padding_medium"
             android:textColor="@color/text_primary"
             android:textStyle="bold"
-            app:hintTextColor="@color/input_hint_color"
-            app:startIconContentDescription="Icono de contraseña"
-            app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-            app:startIconTint="@android:color/darker_gray" />
+            app:hintTextColor="@color/input_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -225,33 +219,50 @@
             app:hintTextColor="@color/input_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/buttonMainAction"
+    <LinearLayout
+        android:id="@+id/linearLayoutButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_medium"
-        android:backgroundTint="@color/button_login_primary"
-        android:minHeight="@dimen/min_touch_target_size"
-        android:text="@string/button_login_text"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
 
-    <Button
-        android:id="@+id/buttonToggleMode"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:accessibilityLiveRegion="polite"
-        android:backgroundTint="@color/button_toggle_secondary"
-        android:minHeight="@dimen/min_touch_target_size"
-        android:text="@string/button_register_text"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMainAction" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonMainAction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/button_login_primary"
+            android:minHeight="60dp"
+            android:text="@string/button_login_text"
+            android:textColor="@color/white"
+            android:paddingHorizontal="32dp"
+            android:textSize="18sp"
+            android:singleLine="true"        android:ellipsize="end"         app:cornerRadius="10dp"
+            android:elevation="4dp"
+            android:stateListAnimator="@null" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonToggleMode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:accessibilityLiveRegion="polite"
+            android:backgroundTint="@color/button_toggle_secondary"
+            android:minHeight="60dp"
+            android:text="@string/button_register_text"
+            android:textColor="@color/white"
+            android:paddingHorizontal="32dp"
+            android:textSize="18sp"
+            android:singleLine="true"        android:ellipsize="end"         app:cornerRadius="10dp"
+            android:elevation="4dp"
+            android:stateListAnimator="@null" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonpoli"

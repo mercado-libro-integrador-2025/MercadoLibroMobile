@@ -22,7 +22,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.ispc.mercadolibromobile.R;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
 import com.ispc.mercadolibromobile.models.AuthModels;
-import com.ispc.mercadolibromobile.models.User;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
 
 import retrofit2.Call;
@@ -205,6 +204,12 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     SessionUtils.saveUserEmail(LoginActivity.this, email);
+
+
+                    // Redirijo a MainActivity después de un login exitoso
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish(); //  cierro LoginActivity para que el usuario no pueda volver con el botón de atrás
 
                 } else {
                     usernameLayout.setError(null);
