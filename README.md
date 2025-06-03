@@ -63,6 +63,8 @@ La autenticación se realiza mediante JWT, lo que garantiza que las credenciales
 La aplicación cuenta con una Activity multimedia que incluye recursos como videos o imágenes, mejorando la interacción y experiencia del usuario.
 
 ## Descarga de la Aplicación ⤵
+### APK:  [MercadoLibro.zip](https://github.com/user-attachments/files/20581821/MercadoLibro.zip)
+
 
 Mientras tanto, te ofrecemos ver un demo en video aquí: https://drive.google.com/file/d/1lFl3A5HsGwVYQQ5GT4aZKUP-lF9OQLAZ/view?usp=sharing.
 
