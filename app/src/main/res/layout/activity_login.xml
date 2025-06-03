@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logo_app" />
+        app:srcCompat="@drawable/logo4" />
 
     <TextView
         android:id="@+id/tvUsernameLabel"
