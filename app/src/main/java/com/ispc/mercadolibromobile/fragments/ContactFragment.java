@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Toast; // Button and EditText imports are no longer strictly needed if not used directly
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.ispc.mercadolibromobile.R;
@@ -18,6 +17,9 @@ import com.ispc.mercadolibromobile.api.ApiService;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
 import com.ispc.mercadolibromobile.databinding.FragmentContactBinding;
 import com.ispc.mercadolibromobile.models.Contacto;
+import com.ispc.mercadolibromobile.utils.SessionUtils;
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,15 +31,35 @@ public class ContactFragment extends Fragment {
     private ApiService apiService;
     private FragmentContactBinding binding;
 
-    private String loggedInUserName = "Nombre del Usuario";
-    private String loggedInUserEmail = "usuario.logueado@ejemplo.com";
+    public static final String ARG_FROM_FEEDBACK = "from_feedback";
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentContactBinding.inflate(inflater, container, false);
 
-        apiService = RetrofitClient.getApiService(getContext());
+        Bundle args = getArguments();
+        if (args != null) {
+            String modo = args.getString("modo", "");
+            if (!modo.isEmpty()) {
+                binding.etAsunto.setText(args.getString("asunto"));
+                binding.etConsulta.setText(args.getString("mensaje"));
+                if (modo.equals("ver")) {
+                    binding.etAsunto.setEnabled(false);
+                    binding.etConsulta.setEnabled(false);
+                    binding.btnEnviarConsulta.setVisibility(View.GONE);
+                }
+                binding.btnVolver.setVisibility(View.VISIBLE);
+                binding.btnVolver.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
+            }
+        }
+        // Mostrar botón "Volver" solo si se vino desde FeedbackFragment
+        boolean fromFeedback = args != null && args.getBoolean(ARG_FROM_FEEDBACK, false);
+        if (fromFeedback) {
+            binding.btnVolver.setVisibility(View.VISIBLE);
+            binding.btnVolver.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
+        }
+
+        apiService = RetrofitClient.getApiService(requireContext());
 
         binding.btnEnviarConsulta.setOnClickListener(v -> validarYEnviarConsulta());
 
@@ -56,10 +78,10 @@ public class ContactFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (binding.etAsunto.getText().toString().trim().isEmpty()) {
+                if (Objects.requireNonNull(binding.etAsunto.getText()).toString().trim().isEmpty()) {
                     binding.tilAsunto.setError(null);
                 }
-                if (binding.etConsulta.getText().toString().trim().isEmpty()) {
+                if (Objects.requireNonNull(binding.etConsulta.getText()).toString().trim().isEmpty()) {
                     binding.tilConsulta.setError(null);
                 }
             }
@@ -70,11 +92,11 @@ public class ContactFragment extends Fragment {
     }
 
     private void validarYEnviarConsulta() {
-        String nombre = loggedInUserName;
-        String email = loggedInUserEmail;
+        String nombre = SessionUtils.getUserName(requireContext());
+        String email = SessionUtils.getUserEmail(requireContext());
 
-        String asunto = binding.etAsunto.getText().toString().trim();
-        String consulta = binding.etConsulta.getText().toString().trim();
+        String asunto = Objects.requireNonNull(binding.etAsunto.getText()).toString().trim();
+        String consulta = Objects.requireNonNull(binding.etConsulta.getText()).toString().trim();
 
         if (asunto.isEmpty()) {
             binding.tilAsunto.setError(getString(R.string.error_asunto_required));
@@ -90,7 +112,6 @@ public class ContactFragment extends Fragment {
                 Log.e(TAG, "Error: Nombre o email del usuario logueado no disponibles o inválidos. No se puede enviar la consulta.");
                 if (isAdded()) {
                     Toast.makeText(getContext(), getString(R.string.error_user_id_not_found), Toast.LENGTH_LONG).show();
-
                 }
                 return;
             }
