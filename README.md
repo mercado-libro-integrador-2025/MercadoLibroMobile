@@ -37,7 +37,7 @@ El diseño es coherente, homogéneo y optimizado para pantallas móviles.
 Para ejecutar la aplicación en tu entorno local, sigue los siguientes pasos:
 1. Clonar el repositorio:
     ```bash
-   git clone https://github.com/CodeSquadMobile/Mercado-Libro-Mobile.git
+   https://github.com/mercado-libro-integrador-2025/MercadoLibroMobile.git
 2. Abrir el proyecto en Android Studio:
 * Abre Android Studio y selecciona "Open an existing project".
 * Navega a la carpeta donde clonaste el repositorio y selecciona la carpeta del proyecto.
@@ -65,11 +65,8 @@ La aplicación cuenta con una Activity multimedia que incluye recursos como vide
 ## Descarga de la Aplicación ⤵
 ### APK:  [MercadoLibro.zip](https://github.com/user-attachments/files/20581821/MercadoLibro.zip)
 
-
-Mientras tanto, te ofrecemos ver un demo en video aquí: https://drive.google.com/file/d/1lFl3A5HsGwVYQQ5GT4aZKUP-lF9OQLAZ/view?usp=sharing.
-
 ## Documentación
-Toda la documentación del proyecto está disponible en la Wiki del repositorio en GitHub, incluyendo el plan de seguridad, los casos de testing y las especificaciones técnicas. Además, se han adjuntado gráficos y diseños en el formato IEEE830.
+Toda la documentación del proyecto está disponible en la [Wiki del repositorio en GitHub](https://github.com/mercado-libro-integrador-2025/Practica-Profesionalizante-2025), incluyendo el plan de seguridad, los casos de testing y las especificaciones técnicas. Además, se han adjuntado gráficos y diseños en el formato IEEE830.
 
 -------------------------------------------
 
@@ -78,6 +75,6 @@ Este proyecto está desarrollado bajo la organización en GitHub siguiendo el fl
 **Equipo de Desarrollo:**  👥  
 🧑 Ñañez Nahir Nicolás  
 🧑 Luna Dalla Lasta Marcelo Javier  
-🧑 Plaza Leonardo  
+🧑 Romina Navarrete 
 👩 Nobiltá Ivette Jael  
 👩 Arnaudo Octavio
