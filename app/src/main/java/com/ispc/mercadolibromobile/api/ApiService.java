@@ -115,4 +115,6 @@ public interface ApiService {
     Call<Void> enviarConsulta(@Body Contacto contacto);
     @GET("contacto/")
     Call<List<Contacto>> obtenerConsultas();
+    @HTTP(method = "DELETE", path = "contacto/", hasBody = true)
+    Call<Void> borrarConsulta(@Body Contacto contacto);
 }
