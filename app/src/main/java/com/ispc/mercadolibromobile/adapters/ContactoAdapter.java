@@ -11,8 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ispc.mercadolibromobile.R;
 import com.ispc.mercadolibromobile.api.ApiService;
@@ -20,14 +18,9 @@ import com.ispc.mercadolibromobile.api.RetrofitClient;
 import com.ispc.mercadolibromobile.databinding.ItemContactoBinding;
 import com.ispc.mercadolibromobile.fragments.ContactFragment;
 import com.ispc.mercadolibromobile.models.Contacto;
-import com.ispc.mercadolibromobile.utils.SessionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ContactoViewHolder> {
 
