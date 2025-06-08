@@ -17,12 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.ispc.mercadolibromobile.R;
 import com.ispc.mercadolibromobile.api.RetrofitClient;
 import com.ispc.mercadolibromobile.models.AuthModels;
 import com.ispc.mercadolibromobile.utils.SessionUtils;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -131,9 +131,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validateButtonState() {
-        // La lógica de habilitar el botón se puede simplificar ahora que las validaciones son más robustas
-        // El botón se habilitará si todos los campos requeridos (según el modo) tienen texto.
-        // Las validaciones específicas de formato y longitud se harán al intentar el login/registro.
         String email = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String name = nameEditText.getText().toString().trim();
@@ -197,25 +194,26 @@ public class LoginActivity extends AppCompatActivity {
                     SessionUtils.saveAuthToken(LoginActivity.this, data.getAccess());
                     SessionUtils.saveRefreshToken(LoginActivity.this, data.getRefresh());
 
-                    // *** MODIFICACIÓN CLAVE AQUÍ: Extraer user_id del token de acceso ***
                     int userId = SessionUtils.getUserIdFromJwt(data.getAccess());
-                    Log.d(TAG, "User ID extracted from JWT in LoginActivity: " + userId); // NUEVO LOG
+                    Log.d(TAG, "User ID extracted from JWT in LoginActivity: " + userId);
                     if (userId != -1) {
                         SessionUtils.saveUserId(LoginActivity.this, userId);
-                        Log.d(TAG, "User ID saved in SessionUtils from LoginActivity: " + SessionUtils.getUserId(LoginActivity.this)); // NUEVO LOG: verificar que se guardó
+                        Log.d(TAG, "User ID saved in SessionUtils from LoginActivity: " + SessionUtils.getUserId(LoginActivity.this));
                     } else {
                         Log.e(TAG, "No se pudo obtener el User ID del token JWT. El carrito puede no funcionar.");
-
                     }
 
                     SessionUtils.saveUserEmail(LoginActivity.this, email);
 
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+
+                    // Redirijo a MainActivity después de un login exitoso
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish(); //  cierro LoginActivity para que el usuario no pueda volver con el botón de atrás
+
                 } else {
-                    // Si las credenciales son incorrectas, mostrar error específico
-                    usernameLayout.setError(null); // Limpiar error de formato si lo hubo
-                    passwordLayout.setError(null); // Limpiar error de formato si lo hubo
+                    usernameLayout.setError(null);
+                    passwordLayout.setError(null);
                     Toast.makeText(LoginActivity.this, getString(R.string.error_invalid_credentials), Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Login failed: " + response.code() + " - " + response.message());
                 }
@@ -229,7 +227,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
     private void registerUser() {
         String email = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
@@ -339,8 +336,14 @@ public class LoginActivity extends AppCompatActivity {
 
         dialog.show();
     }
+
     private abstract class SimpleTextWatcher implements TextWatcher {
-        @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-        @Override public void afterTextChanged(Editable s) {}
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
     }
 }

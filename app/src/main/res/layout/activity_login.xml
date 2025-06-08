@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logo_app" />
+        app:srcCompat="@drawable/logo4" />
 
     <TextView
         android:id="@+id/tvUsernameLabel"
@@ -62,14 +62,13 @@
         app:startIconTint="@android:color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsernameLabel">
-
+        app:layout_constraintTop_toBottomOf="@+id/tvUsernameLabel"
+        app:hintTextColor="@color/button_login_primary"
+        app:boxStrokeColor="@color/button_login_primary">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/input_margin"
-            android:accessibilityLiveRegion="polite"
             android:background="@drawable/input_field_background"
             android:contentDescription="Usuario"
             android:enabled="true"
@@ -114,8 +113,9 @@
         app:endIconTint="@android:color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/tvPasswordLabel">
-
+        app:layout_constraintTop_toBottomOf="@+id/tvPasswordLabel"
+        app:hintTextColor="@color/button_login_primary"
+        app:boxStrokeColor="@color/button_login_primary">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextPassword"
             android:layout_width="match_parent"
@@ -147,8 +147,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
-       />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutRepeatPassword"
@@ -166,8 +165,9 @@
         app:passwordToggleEnabled="true"
         app:startIconContentDescription="Icono de contraseña"
         app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-        app:startIconTint="@android:color/darker_gray">
-
+        app:startIconTint="@android:color/black"
+        app:hintTextColor="@color/button_login_primary"
+        app:boxStrokeColor="@color/button_login_primary">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextRepeatPassword"
             android:layout_width="match_parent"
@@ -179,10 +179,7 @@
             android:padding="@dimen/padding_medium"
             android:textColor="@color/text_primary"
             android:textStyle="bold"
-            app:hintTextColor="@color/input_hint_color"
-            app:startIconContentDescription="Icono de contraseña"
-            app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-            app:startIconTint="@android:color/darker_gray" />
+            app:hintTextColor="@color/input_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -209,8 +206,9 @@
         app:errorTextColor="@color/error_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName">
-
+        app:layout_constraintTop_toBottomOf="@+id/textViewName"
+        app:hintTextColor="@color/button_login_primary"
+        app:boxStrokeColor="@color/button_login_primary">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextName"
             android:layout_width="match_parent"
@@ -225,33 +223,54 @@
             app:hintTextColor="@color/input_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/buttonMainAction"
+    <LinearLayout
+        android:id="@+id/linearLayoutButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_medium"
-        android:backgroundTint="@color/button_login_primary"
-        android:minHeight="@dimen/min_touch_target_size"
-        android:text="@string/button_login_text"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
 
-    <Button
-        android:id="@+id/buttonToggleMode"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:accessibilityLiveRegion="polite"
-        android:backgroundTint="@color/button_toggle_secondary"
-        android:minHeight="@dimen/min_touch_target_size"
-        android:text="@string/button_register_text"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMainAction" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonMainAction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/button_login_primary"
+            android:minHeight="60dp"
+            android:text="@string/button_login_text"
+            android:textColor="@color/white"
+            android:paddingHorizontal="32dp"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            app:cornerRadius="10dp"
+            android:elevation="4dp"
+            android:stateListAnimator="@null" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonToggleMode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:accessibilityLiveRegion="polite"
+            android:backgroundTint="@color/button_toggle_secondary"
+            android:minHeight="60dp"
+            android:text="@string/button_register_text"
+            android:textColor="@color/white"
+            android:paddingHorizontal="32dp"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            app:cornerRadius="10dp"
+            android:elevation="4dp"
+            android:stateListAnimator="@null" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonpoli"
@@ -276,6 +295,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:indeterminateTint="@color/button_login_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

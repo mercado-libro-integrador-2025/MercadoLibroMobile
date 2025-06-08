@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <EditText
+            android:id="@+id/etBuscarContacto"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:hint="Buscar por asunto o mensaje"
+            android:inputType="text"
+            android:paddingEnd="8dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabCerrarBusqueda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:contentDescription="Cerrar búsqueda"
+            android:src="@android:drawable/ic_delete"
+            app:fabSize="mini"
+            app:tint="@color/white" />
+    </LinearLayout>
+
+    <!-- ⏳ ProgressBar centrado arriba -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:visibility="gone" />
+
+    <!-- 📄 Lista de contactos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvContactos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilConsulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:hint="@string/hint_query"
+        app:boxCornerRadiusBottomEnd="@dimen/input_field_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/input_field_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/input_field_corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/input_field_corner_radius"
+        app:counterEnabled="true"
+        app:counterMaxLength="500"
+        app:endIconMode="clear_text"
+        app:helperText="@string/helper_text_query"
+        app:startIconContentDescription="Icono de consulta">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="97dp"
+            android:gravity="top|start"
+            android:inputType="textMultiLine|textCapSentences"
+            android:minLines="5"
+            android:textColor="@color/sunstone_neutral_5" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnEnviarConsulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/sunstone_neutral_5"
+        android:drawablePadding="@dimen/padding_small"
+        android:minHeight="@dimen/min_touch_target_size"
+        android:paddingStart="@dimen/padding_large"
+        android:paddingEnd="@dimen/padding_large"
+        android:text="@string/button_send"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium"
+        app:cornerRadius="@dimen/card_corner_radius" />
+
+</LinearLayout>

@@ -265,6 +265,7 @@
     <string name="drawer_menu_profile">Perfil</string>
     <string name="drawer_menu_products">Productos</string>
     <string name="drawer_menu_contact">Contacto</string>
+    <string name="drawer_menu_about_us">"¿Quiénes somos?"</string>
     <string name="drawer_menu_logout">Cerrar sesión</string>
 
     <string name="toolbar_menu_cart">Carrito</string>
@@ -292,7 +293,6 @@
 
     <string name="drawer_menu_my_reviews">Mis Reseñas</string>
     <string name="drawer_menu_my_addresses">Mis Direcciones</string>
-    <string name="drawer_menu_my_payments">Mis Métodos de Pago</string>
     <string name="drawer_menu_my_orders">Mis Pedidos</string>
 
     <string name="drawer_menu_section_general">General</string>
@@ -304,4 +304,38 @@
     <string name="helper_text_email">Introduce un correo válido</string>
     <string name="helper_text_subject">Un breve asunto</string>
     <string name="helper_text_query">Escribe tu consulta o comentario</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Nosotros -->
+    <string name="quienes_somos_titulo">¿Quiénes Somos?</string>
+    <string name="subtitulo_quienes_somos">Conectamos lectores y damos nueva vida a los libros físicos.</string>
+    <string name="desc_quienes_somos">Imagen de una estantería con libros</string>
+    <string name="titulo_nuestra_historia">Nuestra historia</string>
+    <string name="descripcion_nuestra_historia">
+    MercadoLibro nació como una iniciativa para recuperar el valor de los libros físicos olvidados o almacenados sin uso.
+    Lo que comenzó como un proyecto de estudiantes se convirtió en una plataforma que impulsa el acceso a la lectura
+    a través del intercambio responsable, fortaleciendo una economía circular del conocimiento.</string>
+    <string name="desc_nuestra_historia">Imagen de tres personas conversando y leyendo libros en una biblioteca</string>
+    <string name="titulo_mision">Nuestra Misión</string>
+    <string name="texto_mision">
+    Promover el acceso a la lectura mediante la revalorización e intercambio de libros físicos, facilitando una alternativa sostenible, colaborativa y económica que conecte a lectores de todas las edades y contextos.
+</string>
+    <string name="desc_icono_mision">Imagen del ícono que representa la misión de la plataforma</string>
+    <string name="titulo_vision">Nuestra Visión</string>
+    <string name="texto_vision">
+    Ser la plataforma líder en Latinoamérica para el intercambio responsable de libros físicos, fortaleciendo una comunidad lectora activa y generando impacto social, cultural y ambiental positivo a través de una economía circular del conocimiento.
+</string>
+    <string name="desc_icono_vision">Imagen del ícono que representa la visión de la plataforma</string>
+    <string name="titulo_valores">Nuestros Valores</string>
+    <string name="valor_1_titulo">✔ Revalorización del libro físico</string>
+    <string name="valor_1_descripcion">Creemos en el valor cultural y afectivo de los libros impresos, dándoles una segunda vida útil.</string>
+
+    <string name="valor_2_titulo">✔ Acceso equitativo a la lectura</string>
+    <string name="valor_2_descripcion">Apostamos a facilitar el acceso al conocimiento sin depender del costo de los libros nuevos.</string>
+
+    <string name="valor_3_titulo">✔ Comunidad colaborativa</string>
+    <string name="valor_3_descripcion">Construimos redes solidarias entre lectores que comparten, intercambian y se apoyan mutuamente.</string>
+    <string name="error_user_name_not_found">No se pudo obtener el nombre del usuario. Por favor, intente iniciar sesión de nuevo.</string>
+    <string name="error_user_email_not_found">No se pudo obtener el email del usuario. Por favor, intente iniciar sesión de nuevo.</string>
+
 </resources>

@@ -25,6 +25,9 @@ gradle/daemon
 *.war
 *.ear
 
+# Carpeta libs con librerías locales
+libs/
+
 # Archivos de pruebas generados
 test-output/
 captures/
@@ -39,6 +42,12 @@ captures/
 # Archivos de sistema
 .DS_Store
 Thumbs.db
+
+# Librerías locales
+libs/
+
+# Librerías locales del módulo app
+/app/libs/
 
 # Otros temporales
 *.tmp

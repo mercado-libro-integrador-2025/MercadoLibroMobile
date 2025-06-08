@@ -38,14 +38,15 @@
                 android:icon="@drawable/ic_products"
                 android:title="@string/drawer_menu_products" />
             <item
-                android:id="@+id/nav_feedback"
-                android:icon="@android:drawable/ic_menu_mapmode"
-                android:title="Feedback" />
-            <item
                 android:id="@+id/nav_contact"
                 android:icon="@drawable/ic_contact"
                 android:title="@string/drawer_menu_contact" />
+            <item
+                android:id="@+id/nav_nosotros"
+                android:icon="@drawable/baseline_people_24"
+                android:title="@string/drawer_menu_about_us" />
         </menu>
+
     </item>
 
     <item
